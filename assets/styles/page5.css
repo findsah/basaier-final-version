@@ -1,0 +1,110 @@
+.zakat_calculator {
+  margin-top: 10rem;
+}
+
+.zakat_calculator p {
+  font-size: 15px;
+  color: #717171;
+}
+
+.card_overly {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebarImg_div {
+  position: relative;
+  background-size: 100%;
+  height: 121px;
+  color: #fff;
+  width: 314px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.sidebar_img {
+  height: 100%;
+  width: 100%;
+
+}
+
+.nav-item .active {
+  border: 2px solid #1488B5 !important;
+  border-radius: 22px;
+}
+
+.formDivInput {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  padding: 0;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  border: none;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+  border: none;
+}
+
+.zakat_calculation_div {
+  background-color: #fff;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-radius: 30px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.zakat_input {
+  border: 1px solid #EBEDED;
+  border-radius: 30px;
+  width: 100%;
+  padding: 2%;
+  height: 100%;
+}
+
+input {
+  outline: none;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+input::placeholder {
+  text-align: left;
+}
+
+.no-outline:focus {
+  outline: none;
+}
+
+.calculate_button {
+  background-color: #EBEDED;
+  border: none;
+  color: #1488B5;
+  padding: 8px 48px;
+  /* text-align: center; */
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 18px;
+}
+
+.total_money {
+  color: #1488B5;
+  margin: 0;
+}

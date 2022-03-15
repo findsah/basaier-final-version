@@ -1,0 +1,13 @@
+.social-media {
+    display: flex;
+}
+
+.mysocial-icons {
+    background: white;
+    padding: 0.7rem 2rem;
+    box-shadow: 0 0px 15px -3px lightgrey;
+    border-radius: 25px;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}

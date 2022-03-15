@@ -1,0 +1,396 @@
+{% load static %}
+{% include 'navbardark.html' %}
+<div class="container" style="margin-top: 10rem;">
+    <h3 class="pathlink">الرئيسيه / كن شريكا</h3>
+    <div class="title">
+        <h2 style="color: #1385B2; font-size: 37px;">كن شريكا</h2>
+        <p style="color: #858585; font-size: 15px;">كن شريكا مع بصائر</p>
+    </div>
+</div>
+
+<!-- MultiStep Form -->
+<div class="container" id="grad1">
+    <form id="msform">
+        <!-- progressbar -->
+        <ul id="progressbar" class="row">
+            <li class="active col-2" id="first">
+                <p style="font-size: 16px;">بيانات الجهة</p>
+            </li>
+            <li class="col-2" id="second">
+                <p style="font-size: 16px;">بيانات التواصل</p>
+            </li>
+            <li class="col-2" id="third">
+                <p style="font-size: 16px;">بيانات التواصل</p>
+            </li>
+            <li class="col-2" id="fourth">
+                <p style="font-size: 16px;">الهيكل التنظيمي</p>
+            </li>
+            <li class="col-2" id="fifth">
+                <p style="font-size: 16px;">مصادر التمويل</p>
+            </li>
+            <li class="col-2" id="sixth">
+                <p style="font-size: 16px;">تذكيات مقدمه من الكويت</p>
+            </li>
+        </ul>
+        <!-- fieldsets -->
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                بيانات الجهة
+            </h2>
+            <div class="mt-5" style="margin-bottom: 5rem;">
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم التسجيل بنظام وزارة الخارجية الكويتية
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        تاريخ بدء الترخيص
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        تاريخ انتهاء
+                        الترخيص
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة باللغة
+                        العربية
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        سم الجهة باللغة
+                        الانجليزية
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة باللغة
+                        المحلية
+                        المدنيه
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        ختر القاره
+                    </label>
+                    <select name="cars" id="cars" class="formDivInput">
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                    </select>
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اختر الدوله
+                    </label>
+                    <select name="cars" id="cars" class="formDivInput">
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                        <option value="اختر الدوله">اختر الدوله</option>
+                    </select>
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم المحافظة او
+                        الولاية
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        العنوان بالتفصيل
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                بيانات التواصل
+            </h2>
+            <div class="mt-5" style="margin-bottom: 5rem;">
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف 1
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف2
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف 3
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        البريد الالكتروني
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الموقع الالكتروني
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رابط فيسبوك
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رابط تويتر
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رابط انستغرام
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                التعريف بالجهة
+            </h2>
+            <div class="mt-5" style="margin-bottom: 5rem;">
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        سنة التاسيس
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الجهة أو الوزارة الرسمية التابعة لها
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        عدد فروع الجهة
+                    </label>
+                    <input class="formDivInput" type="text" placeholder="يوم / شهر / سنه">
+                </div>
+                <div class="formDiv text-right">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        طبيعة عمل الجهة
+                    </label>
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1" style="margin-left: 2rem;"> حكومي</label>
+                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                    <label for="vehicle2" style="margin-left: 2rem;"> اهلي</label>
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <label for="vehicle3" style="margin-left: 2rem;"> اخري</label>
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        عدد العاملين في الجهة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        عدد المشاريع المنفذة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        ابرز الاهداف
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        ابرز الانجازات
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الشرائح المستفيدة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                الهيكل التنظيمي
+            </h2>
+            <div class="row mt-5" style="margin-bottom: 5rem;">
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم مدير الجهة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم العضو1
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف اختياري
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم العضو2
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف اختياري
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم العضو3
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        رقم الهاتف اختياري
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                مصادر التمويل
+            </h2>
+            <div class="row mt-5" style="margin-bottom: 5rem;">
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة المانحة1
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الدولة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة المانحة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الدولة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة المانحة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الدولة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة المانحة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="col-md-6 formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        الدولة
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+        <fieldset>
+            <h2
+                style="color: #1385B2; font-size: 18px; border-bottom: 1px solid lightgray; padding: 3rem 0 1rem 0; text-align: right;">
+                تذكيات مقدمه من الكويت
+            </h2>
+            <div class="mt-5" style="margin-bottom: 5rem;">
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        اسم الجهة المزكية
+                    </label>
+                    <input class="formDivInput" type="text">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        ارفاق التزكيات
+                    </label>
+                    <input class="formDivInput" type="file">
+                </div>
+            </div>
+            <input type="button" name="next" class="next formDivBtn" style="color: #fff; background-color: #1385B2;"
+                value="حفظ ومتابعه" />
+
+        </fieldset>
+    </form>
+</div>
+{% include 'footer.html' %}

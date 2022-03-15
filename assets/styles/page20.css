@@ -1,0 +1,108 @@
+body {
+    font-family: Cairo;
+}
+
+.zakat_input, .phone_input, .code_input {
+    border: 1px solid #EBEDED;
+    border-radius: 30px;
+    width: 100%;
+    overflow: hidden;
+    padding: 3% 10%;
+}
+
+.phone_input {
+    padding: 0% !important;
+}
+
+.code_input {
+    padding: 7% 5% !important;
+}
+
+.moneybtn {
+    padding: 5% 25%;
+}
+
+input {
+    outline: none;
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.input_field {
+    width: 100%;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+.card {
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.144);
+    padding: 10%;
+}
+
+
+.iti--container {
+    width: 12% !important;
+    top: 85px !important;
+    right: 40%;
+}
+
+.iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container {
+    right: 0 !important;
+}
+
+.iti {
+    display: flex !important;
+}
+
+.iti__country-list {
+    position: unset !important;
+    overflow-x: clip;
+}
+
+.iti input, .iti input[type=text], .iti input[type=tel] {
+    padding: 0 !important;
+}
+
+.hr_line {
+    border: 1px solid #DDDDDD;
+}
+
+.buttons {
+    background-color: #fff;
+    border: 1px solid #F1584D !important;
+    border: none;
+    padding: 9% 0;
+    width: 100%;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 30px;
+}
+
+.login {
+    background-color: #1385B2 !important;
+    padding: 5% 0 !important;
+    border: 1px solid #1385B2 !important;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gmail_icon {
+    width: 30px;
+    height: auto;
+}
+
+.facebook_button {
+    background-color: #3B5998;
+    color: #fff;
+    border: 1px solid #3B5998 !important;
+    font-weight: bolder;
+}

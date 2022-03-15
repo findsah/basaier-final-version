@@ -1,0 +1,105 @@
+
+
+/* navbar classes */
+.color-dark {
+    color: #000000;
+}
+
+@media (min-width:768px) {
+    header.masthead {
+        padding-top: 12rem;
+        padding-bottom: 12rem;
+    }
+
+    header.masthead h3 {
+        font-size: 4rem;
+    }
+}
+
+
+.pathlink {
+    margin: 2rem 0;
+    font-size: 19px;
+}
+
+.firstSection {
+    margin: 2rem 0;
+}
+
+.firstSectionTitle {
+    margin: 2rem 0;
+}
+
+.firstSectionCard1 {
+    border-radius: 12px;
+    box-shadow: 0 0px 11px -3px grey;
+    width: 250px;
+}
+
+.firstSectionCard1P {
+    padding: 1rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 13px;
+}
+
+.firstSectionCard2 {
+    padding: 1rem;
+    width: 250px;
+}
+
+.firstSectionCard2div {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+
+}
+
+.firstSectionCard2div p {
+    margin: 0;
+}
+
+.firstSectionCard2btns {
+    outline: none;
+    border: none;
+    width: 6rem;
+    border-radius: 20px;
+    font-size: 12px;
+    height: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.formDiv {
+    margin: 2rem 0;
+}
+
+.formDivBtns {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: auto;
+}
+
+.formDivInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid lightgray;
+}
+
+.formDivBtn {
+    outline: none;
+    border: none;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 3rem;
+    cursor: pointer;
+    text-align: center;
+}

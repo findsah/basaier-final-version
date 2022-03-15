@@ -1,0 +1,35 @@
+.sidefilters {
+    width: 23%;
+    margin-top: -3.1rem;
+    background: white;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+.inputDiv {
+    margin: 2rem auto;
+    border: 1px solid lightgray;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    justify-content: center;
+    height: 2.5rem;
+    outline: none;
+}
+
+.inputDiv input {
+    border: none;
+    width: 80%;
+    border-radius: 20px;
+    padding: 0 10px;
+    outline: none;
+}
+.sections {
+    margin: 2rem 0;
+    border-bottom: 1px solid lightgray;
+}

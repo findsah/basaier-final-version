@@ -1,0 +1,53 @@
+{% load static %}
+{% include 'navbardark.html' %}
+<div class="container" style="margin-top: 10rem;">
+    <h3 class="pathlink">الرئيسيه / ادفع الان</h3>
+    <div class="title">
+        <h2 style="color: #1385B2; font-size: 37px;">ادفع الان</h2>
+        <p style="color: #858585; font-size: 15px;">اختر طريقه الدفع المناسبه لك</p>
+    </div>
+    <div class="row my-5">
+        <div class="col-12 col-md-7">
+            <div style="
+                padding: 1rem;
+                background-color: #fff;
+                box-shadow: 0 -2px 10px -3px lightgrey;
+                border-radius: 10px;">
+                <input class="formDivInput mb-3" type="text" placeholder="الاسم علي البطاقه">
+                <input class="formDivInput mb-3" type="text" placeholder="رقم البطاقه">
+                <div class="row">
+                    <div class="col-6">
+                        <select name="cars" id="cars" class="formDivInput mb-3" style="border-radius: 2rem;">
+                            <option value="شهر">شهر</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select name="cars" id="cars" class="formDivInput mb-3" style="border-radius: 2rem;">
+                            <option value="السنه">السنه</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                            <option value="اختر الدوله">اختر الدوله</option>
+                        </select>
+                    </div>
+                </div>
+                <input class="formDivInput mb-3" type="text" placeholder="رقم الCVV">
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="tafseel">
+                <h5 style="color: #1488B5; padding: 1rem 0;">تفاصيل التبرع</h5>
+                <div class="valueDiv">
+                    <p>المبلغ الاجمالي</p>
+                    <p>500.00</p>
+                </div>
+                <button class="mybg-eventBtn"
+                    style="background-color: #1488B5; color: #fff; margin: 2rem 0; font-size: 14px;">ادفع
+                    الان</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
