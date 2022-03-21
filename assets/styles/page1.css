@@ -8,7 +8,7 @@ body {
 
 /* navbar  */
 .logoimg {
-    transition: transform .2s;
+    transition: transform .5s;
 }
 
 .logoimg:hover {
@@ -76,6 +76,32 @@ a.openNav {
 .sidenav .nav-link {
     font-size: 13px;
     font-weight: bold;
+}
+
+.searchDiv {
+    display: none;
+    position: absolute;
+    left: 37%;
+    top: 33%;
+    color: #fff;
+    background: #979797;
+    padding: 5px;
+    width: 45%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.searchInput {
+    width: 90%;
+    outline: none;
+    border: none;
+}
+
+.display {
+    display: block;
 }
 
 .desktop-ul {

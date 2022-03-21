@@ -6,14 +6,14 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
-    
+
     <div class="carousel-inner">
         <div class="carousel-item active">
             {% for a in data|slice:"4:5" %}
-            <img class="d-block w-100 "  src="{{a.image.url}}" alt="First slide" >
-            {% endfor %} 
-                <!-- <img class="d-block w-100" src="{{a.image.url}}}" alt="First slide"> -->
-            
+            <img class="d-block w-100 " src="{{a.image.url}}" alt="First slide">
+            {% endfor %}
+            <!-- <img class="d-block w-100" src="{{a.image.url}}}" alt="First slide"> -->
+
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="my-heading">جمعيه بصائر الخيريه</h3>
                 <p class="myp-slider text-center">جمعيه كويتيه تساعدك علي التبرع بكل</p>
@@ -23,15 +23,15 @@
                 </a>
             </div>
         </div>
-        
-        
+
+
         <div class="carousel-item">
 
             {% for a in data|slice:"0:1" %}
-            <img class="d-block w-100"  src="{{a.image.url}}" alt="Second slide" >
-            {% endfor %} 
-            
-            
+            <img class="d-block w-100" src="{{a.image.url}}" alt="Second slide">
+            {% endfor %}
+
+
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="my-heading">جمعيه بصائر الخيريه</h3>
                 <p class="myp-slider text-center">جمعيه كويتيه تساعدك علي التبرع بكل</p>
@@ -41,15 +41,15 @@
                 </a>
             </div>
         </div>
-        
-        
+
+
         <div class="carousel-item">
-            
+
             {% for a in data|slice:"0:1" %}
-            <img class="d-block w-100"  src="{{a.image.url}}" alt="Third slide" >
-            {% endfor %} 
-            
-            
+            <img class="d-block w-100" src="{{a.image.url}}" alt="Third slide">
+            {% endfor %}
+
+
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="my-heading">جمعيه بصائر الخيريه</h3>
                 <p class="myp-slider text-center">جمعيه كويتيه تساعدك علي التبرع بكل</p>
@@ -59,7 +59,7 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
 </div>
 
@@ -80,7 +80,21 @@
         <div class="row">
 
             {% for a in data|slice:"1:2" %}
-            <!-- بوابه التبرع -->
+            <div class="col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s" style="margin:auto">
+                <div class="big-img">
+                    <a href="/seasonalprojects">
+                        <p class="myp-onimgtxt text-center" style="right: 12rem;">
+                            {{a.title}}
+                            &#62;
+                        </p>
+                    </a>
+                    <img src="{{a.image.url}}" class="img-fluid" width="140%" height="200px">
+                </div>
+            </div>
+            {% endfor %}
+
+
+            {% for a in data|slice:"2:3" %}
             <div class="col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s" style="margin:auto">
                 <div class="big-img">
                     <a href="/createownproject">
@@ -94,22 +108,6 @@
             </div>
             {% endfor %}
 
-
-            {% for a in data|slice:"2:3" %}
-            <!-- بوابه التبرع -->
-            <div class="col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s" style="margin:auto">
-                <div class="big-img">
-                <a href="/createownproject">
-                    <p class="myp-onimgtxt text-center" style="right: 12rem;">
-                        {{a.title}}
-                        &#62;
-                    </p>
-                </a>
-                    <img src="{{a.image.url}}" class="img-fluid" width="140%" height="200px">
-                </div>
-            </div>
-            {% endfor %}
-           
             <!-- <div class="col-md-6">
                 <div class="big-img">
                     <a href="/createownproject">
@@ -124,7 +122,7 @@
         </div>
 
         <div class="row">
-            {% for b in data|slice:"1:"  %}
+            <!-- {% for b in data|slice:"1:"  %}
             <div class="col-12 col-sm-6 col-md-3 my-3" style="margin:auto"> 
                
                 <div class="small-img">
@@ -138,11 +136,11 @@
                 </div>
                
            </div>
-           {% endfor %}
+           {% endfor %} -->
 
 
-            <!-- <div class="col-12 col-sm-6 col-md-3 my-3"> 
-                 <div class="small-img">
+            <div class="col-12 col-sm-6 col-md-3 my-3">
+                <div class="small-img">
                     <a href="/iqalculator">
                         <p class="myp-onimgtxt text-center" style="right:5rem; font-size: 18px;">
                             أحسب ذكاتك
@@ -151,8 +149,8 @@
                     </a>
                     <img src="{% static './images/sec2img6.png' %}" style="width: 100%; height: auto;">
                 </div>
-            </div> -->
-            <!-- <div class="col-12 col-sm-6 col-md-3 my-3">
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 my-3">
                 <div class="small-img">
                     <p class="myp-onimgtxt text-center" style="right: 3rem; font-size: 18px;">
                         استفسر عن مشروعك
@@ -160,8 +158,8 @@
                     </p>
                     <img src="{% static './images/sec2img5.png' %}" style="width: 100%; height: auto;">
                 </div>
-            </div> -->
-            <!-- <div class="col-12 col-sm-6 col-md-3 my-3">
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 my-3">
                 <div class="small-img">
                     <a href="/joinchat">
                         <p class="myp-onimgtxt text-center" style="right: 3rem; font-size: 18px;">
@@ -172,8 +170,8 @@
                     </a>
                     <img src="{% static './images/sec2img4.png' %}" style="width: 100%; height: auto;">
                 </div>
-            </div> -->
-            <!-- <div class="col-12 col-sm-6 col-md-3 my-3">
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 my-3">
                 <div class="small-img">
                     <a href="/donatedonation">
                         <p class="myp-onimgtxt text-center" style="right: 6rem; font-size: 18px;">
@@ -183,7 +181,7 @@
                     </a>
                     <img src="{% static './images/sec2img3.png' %}" style="width: 100%; height: auto;">
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>
@@ -246,8 +244,7 @@
 
 <!-- './images/bgFixed.png' -->
 <!-- background-image: url('{% static './images/hadfana.png' %}');  -->
-<section class="testimonials mybg-events text-center"
-    style="" >
+<section class="testimonials mybg-events text-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 wow fadeInUp">
@@ -270,51 +267,58 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="card card-custom">
-                    <img class="card-img-top" src="{% static './images/child.png' %}">
-                    <div class="card-block">
-                        <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                        <small>
-                            اليتيم محمد بن سوريا فقد أباه في رمضان
-                            اليتيم محمد بن سوريا فقد أباه في رمضان
-                        </small>
-                        <div class="card-bottom">
-                            <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                style="font-size: 14px;">30 دقيقه</span>
+                <a href="/detailpage">
+                    <div class="card card-custom">
+                        <img class="card-img-top" src="{% static './images/child.png' %}">
+                        <div class="card-block">
+                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                            <small>
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                            </small>
+                            <div class="card-bottom">
+                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                    style="font-size: 14px;">30 دقيقه</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="card card-custom">
-                    <img class="card-img-top" src="{% static './images/child.png' %}">
-                    <div class="card-block">
-                        <h4 class="card-title">الداعية محمد من كمبوديا</h4>
-                        <small>
-                            الداعيه محمد من كمبوديا اسلم علي يده
-                            الكثير الداعيه محمد من كمبوديا اسلم عل
-                        </small>
-                        <div class="card-bottom">
-                            <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                style="font-size: 14px;">30 دقيقه</span>
+                <a href="/detailpage">
+                    <div class="card card-custom">
+                        <img class="card-img-top" src="{% static './images/child.png' %}">
+                        <div class="card-block">
+                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                            <small>
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                            </small>
+                            <div class="card-bottom">
+                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                    style="font-size: 14px;">30 دقيقه</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="card card-custom">
-                    <img class="card-img-top" src="{% static './images/child.png' %}">
-                    <div class="card-block">
-                        <h4 class="card-title">اكتسبو الامل</h4>
-                        <small>اكتسبوا امل بعد بناء مدرسة في قريتهم
-                            اكتسبوا امل بعد بناء مدرسة في قريتهم
-                        </small>
-                        <div class="card-bottom">
-                            <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                style="font-size: 14px;">30 دقيقه</span>
+                <a href="/detailpage">
+                    <div class="card card-custom">
+                        <img class="card-img-top" src="{% static './images/child.png' %}">
+                        <div class="card-block">
+                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                            <small>
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                                اليتيم محمد بن سوريا فقد أباه في رمضان
+                            </small>
+                            <div class="card-bottom">
+                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                    style="font-size: 14px;">30 دقيقه</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -323,7 +327,7 @@
 <section class="testimonials text-center">
     <div class="container">
         <div class="row justify-content-center bgStyledSection"
-            style="">
+            style="background-image: url('{% static './images/bgFixed.png'%}');">
             <div class="col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br />يتيم مكفول
@@ -377,7 +381,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4 ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 4" class="thumb">
@@ -387,7 +391,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4 ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 5" class="thumb">
@@ -397,7 +401,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4 ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 6" class="thumb">
@@ -407,7 +411,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4 ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 7" class="thumb">
@@ -417,7 +421,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4 ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 8" class="thumb">
@@ -427,7 +431,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item col-md-4  ">
+                <div class="carousel-item col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-thumbnail">
                             <a href="#" title="image 2" class="thumb">

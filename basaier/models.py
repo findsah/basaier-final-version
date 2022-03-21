@@ -1,4 +1,4 @@
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 import decimal
 from unicodedata import name
 
@@ -77,7 +77,10 @@ class Category(models.Model): # Projects Categories
     def children_objects(self):
         return self.children.filter(inMenu=True)
     
-
+class Subcategory(models.Model):
+    title = models.CharField(max_length=50)
+    Subcategory = models.ManyToManyField(Category)
+    image = models.ImageField(upload_to='uploads/')
 
 class Project(models.Model): # Projects Main  
     NO = False
@@ -108,7 +111,7 @@ class Project(models.Model): # Projects Main
         upload_to='projects_small/%Y/%m/%d', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    category = models.ManyToManyField(Category)
+    subcategory = models.ManyToManyField(Subcategory)
     suggestedDonation = models.DecimalField(
         max_digits=10, decimal_places=3, default=1.000)
     files = models.FileField(upload_to="pdfs/%Y/%m/%d",null=True,blank=True)

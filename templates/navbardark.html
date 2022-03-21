@@ -142,11 +142,11 @@
                         <select name="cars" id="cars"
                             onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
                             style="border: none; background: none;   width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
-                            <a class="nav-link desktop-nav color-dark" href="/donatedonation">
+                            <!-- <a class="nav-link desktop-nav color-dark" href="/donatedonation">
                                 <option style="color: black;" value=" عن بصائر">
                                     عن بصائر
                                 </option>
-                            </a>
+                            </a> -->
                             <a class="nav-link desktop-nav color-dark" href="#">
                                 <option style="color: black;" value="#">
                                     من نحن
@@ -159,12 +159,12 @@
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/bepartner">
                                 <option style="color: black;" value="/bepartner">
-                                    اعضاء مجلس الاداره
+                                    كن شريكا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/ourpartners">
                                 <option style="color: black;" value="/ourpartners">
-                                    الفروع والمواقع
+                                    شركاؤنا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/contactus">
@@ -247,11 +247,11 @@
                         <select name="cars" id="cars"
                             onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
                             style="border: none; background: none;   width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
-                            <a class="nav-link desktop-nav color-dark" href="/donatedonation">
+                            <!-- <a class="nav-link desktop-nav color-dark" href="/donatedonation">
                                 <option style="color: black;" value=" عن بصائر">
                                     عن بصائر
                                 </option>
-                            </a>
+                            </a> -->
                             <a class="nav-link desktop-nav color-dark" href="#">
                                 <option style="color: black;" value="#">
                                     من نحن
@@ -264,12 +264,12 @@
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/bepartner">
                                 <option style="color: black;" value="/bepartner">
-                                    اعضاء مجلس الاداره
+                                    كن شريكا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/ourpartners">
                                 <option style="color: black;" value="/ourpartners">
-                                    الفروع والمواقع
+                                    شركاؤنا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-dark" href="/contactus">
@@ -321,7 +321,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#" class="btn btn-circle my-social-btn color-dark">
+                        <a href="/donationbasket" class="btn btn-circle my-social-btn color-dark">
                             <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
                         </a>
                     </li>
@@ -331,72 +331,3 @@
 
         </div>
     </nav>
-
-    <script>
-        new WOW().init();
-        wow = new WOW(
-            {
-                animateClass: 'animated',
-                offset: 100,
-            }
-        );
-        wow.init();
-
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.display = "0";
-            document.body.style.backgroundColor = "white";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginRight = "0";
-            document.body.style.backgroundColor = "white";
-        }
-
-
-
-        $('#carouselExample').on('slide.bs.carousel', function (e) {
-
-
-            var $e = $(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 3;
-            var totalItems = $('.carousel-item').length;
-
-            if (idx >= totalItems - (itemsPerSlide - 1)) {
-                var it = itemsPerSlide - (totalItems - idx);
-                for (var i = 0; i < it; i++) {
-                    // append slides to end
-                    if (e.direction == "left") {
-                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
-                    }
-                    else {
-                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
-                    }
-                }
-            }
-        });
-
-
-
-
-
-        $(document).ready(function () {
-            /* show lightbox when clicking a thumbnail */
-            $('a.thumb').click(function (event) {
-                event.preventDefault();
-                var content = $('.modal-body');
-                content.empty();
-                var title = $(this).attr("title");
-                $('.modal-title').html(title);
-                content.html($(this).html());
-                $(".modal-profile").modal({ show: true });
-            });
-
-        });
-
-    </script>
-</body>
-
-</html>

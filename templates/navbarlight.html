@@ -24,11 +24,14 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
 
+
     <!-- jquery files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
 
+    <!-- custom js files -->
+    <script src="{% static './js/index.js' %}"></script>
 
     <!-- fonts and animations files -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -64,8 +67,6 @@
     <link rel="stylesheet" href="{% static './styles/page19.css' %}">
     <link rel="stylesheet" href="{% static './styles/page20.css' %}">
 
-    <!-- custom js files -->
-    <script src="{% static './js/index.js' %}"></script>
 
 </head>
 
@@ -133,11 +134,11 @@
                         <select name="cars" id="cars"
                             onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
                             style="border: none; background: none; color: #fff; width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
-                            <a class="nav-link desktop-nav color-light" href="/donatedonation">
+                            <!-- <a class="nav-link desktop-nav color-light" href="/donatedonation">
                                 <option style="color: black;" value=" عن بصائر">
                                     عن بصائر
                                 </option>
-                            </a>
+                            </a> -->
                             <a class="nav-link desktop-nav color-light" href="#">
                                 <option style="color: black;" value="#">
                                     من نحن
@@ -150,12 +151,12 @@
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/bepartner">
                                 <option style="color: black;" value="/bepartner">
-                                    اعضاء مجلس الاداره
+                                    كن شريكا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/ourpartners">
                                 <option style="color: black;" value="/ourpartners">
-                                    الفروع والمواقع
+                                    شركاؤنا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/contactus">
@@ -238,11 +239,11 @@
                         <select name="cars" id="cars"
                             onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
                             style="border: none; background: none; color: #fff; width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
-                            <a class="nav-link desktop-nav color-light" href="/donatedonation">
+                            <!-- <a class="nav-link desktop-nav color-light" href="/donatedonation">
                                 <option style="color: black;" value=" عن بصائر">
                                     عن بصائر
                                 </option>
-                            </a>
+                            </a> -->
                             <a class="nav-link desktop-nav color-light" href="#">
                                 <option style="color: black;" value="#">
                                     من نحن
@@ -255,12 +256,12 @@
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/bepartner">
                                 <option style="color: black;" value="/bepartner">
-                                    اعضاء مجلس الاداره
+                                    كن شريكا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/ourpartners">
                                 <option style="color: black;" value="/ourpartners">
-                                    الفروع والمواقع
+                                    شركاؤنا
                                 </option>
                             </a>
                             <a class="nav-link desktop-nav color-light" href="/contactus">
@@ -302,9 +303,13 @@
                 </form> -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-link">
-                        <a href="#" class="btn btn-circle my-social-btn color-light ">
-                            <i style="font-size: 25px;" class="fa fa-search"></i>
+                        <a href="#" class="btn btn-circle my-social-btn color-light">
+                            <i style="font-size: 25px;" class="fa fa-search searchIcon"></i>
                         </a>
+                        <div class="searchDiv">
+                            <i style="font-size: 20px;" class="fa fa-search"></i>
+                            <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
+                        </div>
                     </li>
                     <li class="nav-link">
                         <a href="#" class="btn btn-circle my-social-btn color-light ">
@@ -312,7 +317,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#" class="btn btn-circle my-social-btn color-light ">
+                        <a href="/donationbasket" class="btn btn-circle my-social-btn color-light ">
                             <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
                         </a>
                     </li>
@@ -322,69 +327,3 @@
 
         </div>
     </nav>
-
-    <script>
-        new WOW().init();
-        wow = new WOW(
-            {
-                animateClass: 'animated',
-                offset: 100,
-            }
-        );
-        wow.init();
-
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.display = "0";
-            document.body.style.backgroundColor = "white";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginRight = "0";
-            document.body.style.backgroundColor = "white";
-        }
-
-
-
-        $('#carouselExample').on('slide.bs.carousel', function (e) {
-
-
-            var $e = $(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 3;
-            var totalItems = $('.carousel-item').length;
-
-            if (idx >= totalItems - (itemsPerSlide - 1)) {
-                var it = itemsPerSlide - (totalItems - idx);
-                for (var i = 0; i < it; i++) {
-                    // append slides to end
-                    if (e.direction == "left") {
-                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
-                    }
-                    else {
-                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
-                    }
-                }
-            }
-        });
-
-
-
-
-
-        $(document).ready(function () {
-            /* show lightbox when clicking a thumbnail */
-            $('a.thumb').click(function (event) {
-                event.preventDefault();
-                var content = $('.modal-body');
-                content.empty();
-                var title = $(this).attr("title");
-                $('.modal-title').html(title);
-                content.html($(this).html());
-                $(".modal-profile").modal({ show: true });
-            });
-
-        });
-
-    </script>

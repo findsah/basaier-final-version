@@ -8,6 +8,12 @@ $(document).ready(function () {
         }
     );
     wow.init();
+    console.log("outer")
+
+    $(".searchIcon").click(() => {
+        console.log("inner")
+        $(".searchDiv").addClass("display");
+    })
 
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
@@ -217,6 +223,4 @@ $(document).ready(function () {
             alert("wefw");
         }
     });
-
-
 });

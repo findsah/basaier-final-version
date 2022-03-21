@@ -1,5 +1,5 @@
 
-$(document).ready(function () {
+// $(document).ready(function () {
     new WOW().init();
     wow = new WOW(
         {
@@ -9,17 +9,21 @@ $(document).ready(function () {
     );
     wow.init();
 
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.display = "0";
-        document.body.style.backgroundColor = "white";
-    }
+    $(".searchIcon").click(() => {
+        $(".searchDiv").addClass("display");
+    })
 
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginRight = "0";
-        document.body.style.backgroundColor = "white";
-    }
+    // function openNav() {
+    //     document.getElementById("mySidenav").style.width = "250px";
+    //     document.getElementById("main").style.display = "0";
+    //     document.body.style.backgroundColor = "white";
+    // }
+
+    // function closeNav() {
+    //     document.getElementById("mySidenav").style.width = "0";
+    //     document.getElementById("main").style.marginRight = "0";
+    //     document.body.style.backgroundColor = "white";
+    // }
 
 
 
@@ -219,4 +223,4 @@ $(document).ready(function () {
     });
 
 
-});
+// });
