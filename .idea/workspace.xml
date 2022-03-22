@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e8672e7d-8cae-49d7-8e00-43cf491fd77d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaierNew/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaierNew/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +67,7 @@
       <updated>1647801245790</updated>
       <workItem from="1647801247115" duration="1835000" />
       <workItem from="1647869438331" duration="2022000" />
-      <workItem from="1647951389786" duration="3340000" />
+      <workItem from="1647951389786" duration="4855000" />
     </task>
     <servers />
   </component>

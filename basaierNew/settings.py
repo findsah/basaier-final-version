@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-voif2#ve=wq=z%!tc4f1)%2m9e$o-4x9xylyrcknn2p7h^95j+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'basaier.apps.BasaierConfig',
+    'import_export',
+    'rangefilter',
+
 ]
 
 MIDDLEWARE = [
