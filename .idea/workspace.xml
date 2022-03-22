@@ -2,72 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8672e7d-8cae-49d7-8e00-43cf491fd77d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/basierNew1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/basaierNew.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/admin/fonts/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/admin/fonts/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page16.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page16.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page20.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page20.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page4.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page4.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page5.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page5.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/page6.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/page6.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/Forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/Forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0002_signin2.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0002_signin2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0003_delete_signin2.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0003_delete_signin2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0004_signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0004_signup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0005_delete_signin.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0005_delete_signin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0006_image_carousel_delete_signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0006_image_carousel_delete_signup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0007_category_project_delete_image_carousel.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0007_category_project_delete_image_carousel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0008_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0008_image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0009_demo_alter_image_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0009_demo_alter_image_image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0010_project_isgift.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0010_project_isgift.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0011_project_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0011_project_files.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0012_alter_project_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0012_alter_project_files.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/migrations/0013_alter_project_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/migrations/0013_alter_project_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaierNew/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaierNew/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaierNew/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaierNew/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaierNew/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaierNew/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaierNew/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaierNew/wsgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/arsh_signin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/arsh_signin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page16.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page16.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page20.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page20.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page4.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page4.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page5.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page5.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/detailpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/detailpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/donatedonation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/happystories.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/happystories.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/iqalculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/iqalculator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ourpartners.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ourpartners.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/volunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/volunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/volunteerandspread.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/volunteerandspread.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +62,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647801245790</updated>
-      <workItem from="1647801247115" duration="1506000" />
+      <workItem from="1647801247115" duration="1835000" />
+      <workItem from="1647869438331" duration="2022000" />
+      <workItem from="1647951389786" duration="3340000" />
     </task>
     <servers />
   </component>
@@ -142,5 +81,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
