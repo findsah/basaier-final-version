@@ -1,0 +1,1433 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load app_filters %}
+{% load i18n %}
+
+{% block content %}
+
+    <style rel="stylesheet">
+        {#body {#}
+        {#    background-color: #F4F4F4 !important;#}
+        {# }#}
+        {##}
+        .btn-orange {
+            background-color: #EA694D;
+            color: whitesmoke;
+        }
+
+        {# HEADER: #}
+        .fund-header {
+            {#background-color: #52616D;#}
+            color: white;
+            top: 0;
+        }
+
+        .dropdown > a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .dropdown > a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+        #language {
+            background-color: transparent;
+            border: none;
+            width: fit-content;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        {# END HEADER: #}
+
+        {# NAVBAR: #}
+        .navbar {
+            margin-top: 30px;
+            background-color: white !important;
+        }
+
+        .navbar.navbar-default, .navbar button.navbar-toggle {
+            border: none;
+        }
+
+        .navbar-brand > img {
+            height: 30px;
+            width: 70px;
+            margin-top: 0;
+        }
+
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
+
+        {# END NAVBAR: #}
+
+
+        a {
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+            color: #63A6A5;
+        }
+
+        .container.text-center > h1 {
+            color: #EA694D;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+
+        {# FROM NET: #}
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        ol, ul {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 40px;
+        }
+
+        ul#zakat-calc-tabs li {
+            display: inline-block;
+            margin-right: 15px;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .padding-left-2 {
+            padding-left: 2px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        .zakat-tab.active {
+            background: #63a69f;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #fff;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab {
+            background: #fff;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #313131;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab:hover {
+            background: #63a69f;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+        }
+
+        img {
+            vertical-align: middle;
+
+            border: 0;
+        {#width: 44px;#}
+
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .orange-color {
+            color: #f26a4e;
+        }
+
+        .margin-30-bottom {
+            margin-bottom: 30px;
+        }
+
+        .margin-40-top {
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        :-webkit-any(article, aside, nav, section) h1 {
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+        }
+
+        .white-box {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .zakat-calc-details .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        #calcTab .nav-pills {
+            border-bottom: 2px solid #f26a4e;
+        }
+
+        .nav > li {
+        {#position: relative;#} display: block;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #calcTab .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            color: #fff;
+            background-color: #f26a4e;
+            outline: none;
+        }
+
+        #calcTab .nav-pills > li > a {
+            border-radius: 0;
+            background: #fff;
+        }
+
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: #fff;
+            background-color: #337ab7;
+        }
+
+        .nav > li > a {
+            padding: 10px 15px;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 4px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        a {
+            color: #337ab7;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .padding-30-top {
+            padding-top: 30px !important;
+        }
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .padding-bottom-20 {
+            padding-bottom: 20px;
+        }
+
+        .padding-80-top {
+            padding-top: 80px;
+        }
+
+        .btn-green {
+            color: #fff;
+            background-color: #63a69f;
+            border-color: #63a69f;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+            outline: 0;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .fatwa.white-box {
+            background: #fff;
+            padding: 15px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .bg-gray {
+            background: #f4f4f4;
+            height: 1400px;
+        }
+
+        .padding-50-v {
+            padding-bottom: 50px;
+            padding-top: 100px;
+        }
+
+        {# END NAVPANEL: #}
+
+        {# FOR MODALS: #}
+        .zakat-calc-modal .modal-header {
+            padding: 15px;
+            border-bottom: 0 solid #e5e5e5;
+        }
+
+        .modal-header .close {
+            margin-top: -2px;
+        }
+
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+        }
+
+        .close {
+            opacity: .8;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+            border-radius: 6px;
+        }
+
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .padding-10-v {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+        }
+
+        .btn-orange {
+            color: #fff;
+            background-color: #f26a4e;
+            border-color: #d85d43;
+            width: 100%;
+            padding: 10px 22px;
+        }
+
+        {# END FOR MODALS: #}
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .pt-3,
+        .py-3 {
+            padding-top: 1rem !important;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .padding-100-top {
+            padding-top: 100px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+
+    <body>
+
+    {# HEADER: #}
+    {#<header class="fund-header navbar-fixed-top">#}
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4">#}
+    {#                <i class="fa fa-envelope" id="forWhiteColor"></i> <span class="pdl5">basaier@basaier.org</span>#}
+    {#            </div>#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-center">#}
+    {#                <div class="dropdown">#}
+    {#                    <a class="dropdown-toggle" type="button" data-toggle="dropdown">En#}
+    {#                        <span class="caret"></span></a>#}
+    {#                    <ul class="dropdown-menu">#}
+    {#                        <li><a href="#">Ar</a></li>#}
+    {#                    </ul>#}
+    {#                </div>#}
+    {#                <select name="language" id="language" class="text-right">#}
+    {#                    <option value="1">En</option>#}
+    {#                    <option value="2">Ar</option>#}
+    {#                </select>#}
+    {#            </div>#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-right">#}
+    {#                <i class="fa fa-sign-in fa-lg"></i>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</header>#}
+    {# END HEADER: #}
+
+    {# COLLAPSED NAVBAR: #}
+    {#<nav class="navbar navbar-default navbar-fixed-top">#}
+    {#    <div class="container-fluid">#}
+    {#        <div class="navbar-header">#}
+    {#            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">#}
+    {#                <span class="icon-bar"></span>#}
+    {#                <span class="icon-bar"></span>#}
+    {#                <span class="icon-bar"></span>#}
+    {#            </button>#}
+    {#            <a class="navbar-brand" href="{% url 'index' %}"> <img src="/static/images/logo.png" alt="">#}
+    {#            </a>#}
+    {#        </div>#}
+    {#        <div class="collapse navbar-collapse" id="myNavbar">#}
+    {#            <ul class="nav navbar-nav">#}
+    {#                <li><a href="">About Zakat</a></li>#}
+    {#                <li><a href="#">Calculate Zakat</a></li>#}
+    {#                <li><a href="#">Fatwa</a></li>#}
+    {#                <li><a href="#">Zakat Outputs</a></li>#}
+    {#                <li><a href="#">Donations Ways</a></li>#}
+    {#            </ul>#}
+    {#            <ul class="nav navbar-nav navbar-right">#}
+    {#                <li><a href="#"><span class="fa fa-cart-plus fa-2x"></span></a></li>#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</nav>#}
+    {# END COLLAPSED NAVBAR: #}
+
+
+    <section class="bg-gray padding-50-v">
+        <h1 class="orange-color text-center margin-30-bottom margin-40-top">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                {% trans "احسب الزكاة" %} {% else %}
+                {% trans "Calculate Zakat" %} {% endif %}
+        </h1>
+        <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 padding-0-h">
+            <div class="row padding-40-top hidden-xs">
+                <div class="col-xs-12">
+                    <ul id="zakat-calc-tabs" style="border-bottom:2px solid #63A69F;">
+                        <li class="text-center padding-left-2">
+                            <a href="{% url 'zakatForMoney' %}">
+                                <div id="Div_Money" class="zakat-tab active">
+                                    <img src="/static/uploads/home-Money-Zakat.png" width="44">
+                                    <h4 style="padding-top:10px;text-align:center">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "مال" %}
+                                        {% else %}
+                                            {% trans "Money" %}
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="text-center">
+                            <a href="{% url 'zakatForGold' %}">
+                                <div id="Div_Gold" class="zakat-tab">
+                                    <img src="/static/uploads/Gold-Zakat-home.png" width="44">
+                                    <h4 style="padding-top:10px;text-align:center;">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "ذهب" %}
+                                        {% else %}
+                                            {% trans "Gold" %}
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                            </a>
+                        </li>
+
+                        {#                    <li class="text-center">#}
+                        {#                        <a href="{% url 'zakatForCattle' %}">#}
+                        {#                            <div id="Div_Animal" class="zakat-tab">#}
+                        {#                                <img src="/media/uploads/Animal-Zakat-home.png" width="44">#}
+                        {#                                <h4 style="padding-top:10px;text-align:center"> Cattle </h4>#}
+                        {#                            </div>#}
+                        {#                        </a>#}
+                        {#                    </li>#}
+
+                        {#                    <li class="text-center">#}
+                        {#                        <a href="{% url 'zakatForStocks' %}">#}
+                        {#                            <div id="Div_Stock" class="zakat-tab">#}
+                        {#                                <img src="/media/uploads/Stocks-Zakat.png" width="44">#}
+                        {#                                <h4 style="padding-top:10px;text-align:center"> Stocks </h4>#}
+                        {#                            </div>#}
+                        {#                        </a>#}
+                        {#                    </li>#}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- xs layout design -->
+            <div class="col-xs-12 padding-50-top hidden-lg hidden-md hidden-sm hidden-xs">
+
+                <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                    {#                <ul id="zakat-calc-tabs">#}
+                    {#                    <li class="text-center padding-left-2">#}
+                    {#                        <a href="{% url 'zakatForCattle' %}">#}
+                    {#                            <div class="zakat-tab text-center">#}
+                    {#                                <img src="/media/uploads/Animal-Zakat-home.png" width="44">#}
+                    {#                                <p style="padding-top:10px;text-align:center"> Cattle </p>#}
+                    {#                            </div>#}
+                    {#                        </a>#}
+                    {#                    </li>#}
+                    {#                </ul>#}
+                </div>
+
+                <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                    <ul id="zakat-calc-tabs">
+                        <li class="text-center padding-left-2">
+                            <a href="{% url 'zakatForMoney' %}">
+                                <div class="zakat-tab text-center">
+                                    <img src="/static/uploads/home-Money-Zakat.png" width="44">
+                                    <p style="padding-top:10px;text-align:center" class="font-14-en">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "مال" %}
+                                        {% else %}
+                                            {% trans "Money" %}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                    <ul id="zakat-calc-tabs">
+                        <li class="text-center padding-left-2">
+                            <a href="{% url 'zakatForGold' %}">
+                                <div class="zakat-tab text-center">
+                                    <img src="/static/uploads/Gold-Zakat-home.png" width="44">
+                                    <p style="padding-top:10px;text-align:center">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "ذهب" %}
+                                        {% else %}
+                                            {% trans "Gold" %}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                    {#                <ul id="zakat-calc-tabs">#}
+                    {#                    <li class="text-center padding-left-2">#}
+                    {#                        <a href="{% url 'zakatForStocks' %}">#}
+                    {#                            <div class="zakat-tab text-center">#}
+                    {#                                <img src="/media/uploads/Stocks-Zakat.png" width="44">#}
+                    {#                                <p style="padding-top:10px;text-align:center"> Stocks </p>#}
+                    {#                            </div>#}
+                    {#                        </a>#}
+                    {#                    </li>#}
+                    {#                </ul>#}
+                </div>
+            </div>
+
+            <div class="">
+                <div id="Div_ZakatMoney">
+                    <div class="col-md-8 col-sm-8 col-xs-12 zakat-calc-details">
+                        <div class="white-box-large">
+                            <div class="row">
+                                <div id="calcTab">
+                                    <ul class="nav nav-pills text-center" style="padding-left: 3%;">
+                                        <li class="active">
+                                            <a href="#tabs-1" data-toggle="tab">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "حاسبة سريعة" %}
+                                                {% else %}
+                                                    {% trans "Quick Calculator" %}
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        {#                                    <li>#}
+                                        {#                                        <a href="#tabs-2" data-toggle="tab">Detailed calculator </a>#}
+                                        {#                                    </li>#}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tab-content pt-3">
+                                {#                            <div class="col-md-12">#}
+                                {#                                <div class="form-group">#}
+                                {#                                    <select class="form-control selectpicker" data-width="100%" id="ddl_YearZakatMoney"#}
+                                {#                                            onchange="ChangeRateZakatMoney();">#}
+                                {#                                        <option value="0">Choose Year</option>#}
+                                {#                                        <option value="1"> Islamic Year</option>#}
+                                {#                                        <option value="2"> Calendar Year</option>#}
+                                {#                                    </select>#}
+                                {#                                </div>#}
+                                {#                            </div>#}
+                                {#                            <div class="col-md-10 col-sm-10 col-xs-12">#}
+                                {#                                <p> The percentage of Zakat according to the year you chose is </p>#}
+                                {#                            </div>#}
+                                {#                            <div class="col-md-2 col-sm-2 col-xs-12 pull-left text-left">#}
+                                <input type="hidden" id="txtRateZakatMoney" style="display:none;" value="0.025">
+                                {#                                <p class="orange-color font-english">#}
+                                {#                                    <input id="txtRateZakatPercentage" style="border: none;background:transparent;"#}
+                                {#                                                                            readonly="readonly" value="0%"></p>#}
+                                {#                            </div>#}
+                                <div id="tabs-1" class="tab-pane row padding-bottom-20 active">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input id="txtAmountZakatMoney" type="tel" class="form-control"
+                                                   placeholder="Amount value"
+                                                   onkeypress="return OnlyNumeric(event,this,15);">
+                                        </div>
+                                    </div>
+                                    <div class="pt-3 padding-bottom-20">
+                                        <div class="col-md-12">
+                                            <button id="CalculateZakatMoney" class="btn btn-green"
+                                                    onclick="CalZakatMoneyFast( '218.68','1.00000');" type="button"
+                                                    data-toggle="modal">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %} {% trans "حاسبة سريعة" %} {% else %}
+                                                    {% trans "Quick Calculator" %} {% endif %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  ************************************* -->
+                                <div id="tabs-2" class="tab-pane">
+                                    <div class="row padding-100-top">
+                                        <div class="col-md-12 padding-0-h-xs">
+                                            <div class="zakaty-calc-panel">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a href="#" data-toggle="modal" data-target="#calc">
+                                                            <i class="more-less fa fa-info-circle"></i>
+                                                            My Financial Accounts
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_23" name="CalSumval" type="tel" class="form-control"
+                                                       placeholder="Value of Money" item="23"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_24" name="CalSumval" type="tel" class="form-control"
+                                                       placeholder=" Value of the Bank Account" item="24"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_25" name="CalSumval" type="tel" class="form-control"
+                                                       placeholder="Others" item="25"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--  ************************************* -->
+                                    <div class="row padding-20-top">
+                                        <div class="col-md-12 padding-0-h-xs">
+                                            <div class="zakaty-calc-panel">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a href="#" data-toggle="modal" data-target="#Creditor">
+                                                            <i class="more-less fa fa-info-circle"></i>
+                                                            Creditor
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_26" name="CalSumval" type="tel" class="form-control"
+                                                       placeholder="Value of Monetary Amount" item="26"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_27" name="CalSumval" type="tel" class="form-control"
+                                                       placeholder="Others " item="27"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--  ************************************* -->
+                                    <div class="row padding-20-top">
+                                        <div class="col-md-12 padding-0-h-xs">
+                                            <div class="zakaty-calc-panel">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a href="#" data-toggle="modal" data-target="#Debit">
+                                                            <i class="more-less fa fa-info-circle"></i>
+                                                            Debtor
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_28" name="Caldiffval" type="tel"
+                                                       onkeypress="return OnlyNumeric(event,this,15);"
+                                                       class="form-control"
+                                                       placeholder="House Rent Value" item="28">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_29" name="Caldiffval" type="tel"
+                                                       onkeypress="return OnlyNumeric(event,this,15);"
+                                                       class="form-control"
+                                                       placeholder="Valeur d'un Crédit" item="29">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_30" name="Caldiffval" type="tel"
+                                                       onkeypress="return OnlyNumeric(event,this,15);"
+                                                       class="form-control"
+                                                       placeholder="Value of a Car Instalment" item="30">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <div class="form-group">
+                                                <input id="txt_31" name="Caldiffval" type="tel"
+                                                       onkeypress="return OnlyNumeric(event,this,15);"
+                                                       class="form-control"
+                                                       placeholder="Others" item="31">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--  ************************************* -->
+
+                                    <div class="row padding-80-top padding-bottom-20">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <button id="CalcZakatMoneyDetails" onclick="CalcZakatMoneyDetails();"
+                                                    class="btn btn-green" type="button" data-toggle="modal">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "احسب الزكاة" %} {% else %}
+                                                    {% trans "Calculate Zakat" %} {% endif %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/en/global/zakat/fatwa" class="dark-blue-color visible-xs">
+                            <div class="fatwa white-box">
+                                <img src="/Areas/Zakat/Content/images/zakat/book-icon.png">
+                                <span class="font-18 padding-10-h font-14-sm">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "فتوى" %}
+                                    {% else %}
+                                        {% trans "Fatwa" %}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </a>
+                        <div class="fatwa white-box">
+                            <h4>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "من اجل المال" %}
+                                {% else %}
+                                    {% trans "For Money" %}
+                                {% endif %}
+                            </h4>
+                            <p>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "تجب زكاة النقود عند استيفاء المبلغ النقدي ، سواء كان في البنك أو في اليد ، النصاب. ويشمل أيضًا الأموال المودعة في حسابات التقاعد والمعاشات التقاعدية. تبلغ نسبة النصاب المستحق الزكاة ربع العشر (2.5٪) من مجموع أموال ملكيته بعد سنة قمرية." %}
+                                {% else %}
+                                    {% trans "Zakat on cash becomes obligatory when the amount of cash, whether held in bank or on hand fulfills Nisab. It also includes money held in retirement and pension accounts. The percentage of Nisab that is payable as Zakat is a quarter of one-tenth (2.5%) of the total money of his/her ownership after one lunar year." %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal fade " id="CalcZakatMoneyAmount" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <p>
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "مجموع الزكاة" %}
+                                        {% else %}
+                                            {% trans "Total Zakat" %}
+                                        {% endif %}
+                                    </p>
+                                    <p class="orange-color">
+                        <span class="font-english">
+                            <input id="TotalZakatMoney" class="col-xs-12 form-control text-center english-font"
+                                   value="0">
+                        </span> {{ getMyCurrency }}
+                                    </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    {#                                <div class="row">#}
+                                    {#                                    <div class="col-md-12 col-sm-12 padding-10-v">#}
+                                    {#                                        <button id="btnAddToBasketZakatMoneyDetails"#}
+                                    {#                                                onclick="btnAddToBasketZakatMoneyClicked(1414, 613, null, 'TotalZakatMoney', 'btnAddToBasketZakatMoneyDetails', 'Money Zakat', null, 596, 1100683,1)"#}
+                                    {#                                                type="button" class="btn btn-dark-blue" data-dismiss="modal"> Add To#}
+                                    {#                                            Basket#}
+                                    {#                                        </button>#}
+                                    {#                                    </div>#}
+                                    {#                                    <div class="col-md-12 col-sm-12 padding-10-v">#}
+                                    {#                                        <button id="quickbtnAddToBasketZakatMoneyDetails"#}
+                                    {#                                                onclick="quickbtnAddToBasketZakatMoneyClicked(1414, 613, null, 'TotalZakatMoney', 'quickbtnAddToBasketZakatMoneyDetails', 'Money Zakat', null ,596,1100683,1)"#}
+                                    {#                                                type="button" class="btn btn-orange" data-dismiss="modal"> Pay Now#}
+                                    {#                                        </button>#}
+                                    {#                                    </div>#}
+                                    {#                                </div>#}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " id="CalcZakatMoneyDetailsAmount" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <p>
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "مجموع الزكاة" %}
+                                        {% else %}
+                                            {% trans "Total Zakat" %}
+                                        {% endif %}
+                                    </p>
+                                    <p class="orange-color">
+                        <span class="font-english">
+                            <input id="TotalZakatMoneyDetails" class="col-xs-12 form-control text-center english-font"
+                                   value="0">
+                        </span> {{ getMyCurrency }}
+                                    </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 padding-10-v">
+                                            <button id="btnAddToBasketZakatMoneyDetails"
+                                                    onclick="btnAddToBasketZakatMoneyClicked(1414, 613, null, 'TotalZakatMoneyDetails', 'btnAddToBasketZakatMoneyDetails', 'Money Zakat', null, 596, 1100683,1)"
+                                                    type="button" class="btn btn-dark-blue" data-dismiss="modal"> Add To
+                                                Basket
+                                            </button>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 padding-10-v">
+                                            <button id="quickbtnAddToBasketZakatMoneyDetails"
+                                                    onclick="quickbtnAddToBasketZakatMoneyClicked(1414, 613, null, 'TotalZakatMoneyDetails', 'quickbtnAddToBasketZakatMoneyDetails', 'Money Zakat', null ,596,1100683,1)"
+                                                    type="button" class="btn btn-orange" data-dismiss="modal"> Pay Now
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="calc" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <img src="">
+                                    <br><br>
+
+                                    <p>
+                                        Financial accounts shall mean the activity of the economic unit within a
+                                        specified
+                                        period of time (profit or loss) and the sources of funds of the economic unit
+                                        from
+                                        where
+                                        it was acquired and the uses of such funds at the end of such designated period.
+                                        Know the net cash flows of the economic unit over the same period of time.
+                                    </p>
+
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                            <button type="button" class="btn btn-dark-blue" data-dismiss="modal"> Done
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="Creditor" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                    <br><br>
+                                    <p class="padding-30-h"> The creditor of the party entitled to the amount paid by
+                                        the
+                                        other
+                                        party (the debtor). A creditor may be a person, institution, company or
+                                        government.
+                                        A
+                                        creditor is a person or institution that owns money </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                            <button type="button" class="btn btn-dark-blue" data-dismiss="modal"> Done
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="Debit" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                    <br><br>
+                                    <p class="padding-30-h"> Is the account that the buyer pays to the seller (the
+                                        creditor)
+                                        for
+                                        services or goods purchased. If the maturity date is paid, this debt is called
+                                        (good
+                                        debt) </p>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                            <button type="button" class="btn btn-dark-blue" data-dismiss="modal"> Done
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# END MODAL HERE: #}
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="white-box text-center">
+                            <img src="/static/uploads/currentNisabValue.png">
+                            <h4 class="orange-color">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "عملة" %}
+                                {% else %}
+                                    {% trans "Currency" %}
+                                {% endif %}
+                            </h4>
+                            <h4><span class="font-english" style="white-space: pre-wrap">  {{ getMyCurrency }} </span>
+                            </h4>
+                        </div>
+
+                        <a href="" class="dark-blue-color hidden-xs">
+                            <div class="fatwa white-box">
+                                <img src="/static/uploads/fatwaBook.png">
+                                <span class="font-18 padding-10-h font-14-sm">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "فتوى" %}
+                                    {% else %}
+                                        {% trans "Fatwa" %}
+                                    {% endif %}
+                                    </span>
+                            </div>
+                        </a>
+                        <div class="row">
+                            <div class="white-box zakat-calc-questions">
+                                <h4 class="orange-color">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "الأسئلة الأكثر شيوعًا" %}
+                                    {% else %}
+                                        {% trans "Most Common Questions" %}
+                                    {% endif %}
+                                </h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "استعمال التقريب في حساب الزكاة" %}
+                                            {% else %}
+                                                {% trans "Using approximation in calculating Zakah" %}
+                                            {% endif %}
+                                            <span class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "حكم شراء بيت للفقراء بمال الزكاة" %}
+                                            {% else %}
+                                                {% trans "Ruling on buying a house for the poor with Zakah money" %}
+                                            {% endif %}
+                                            <span class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "ورثوا الزيتون فهل يخرجون زكاته قبل توزيعه؟" %}
+                                            {% else %}
+                                                {% trans "They inherited olives so should they pay its Zakah before distributing them?" %}
+                                            {% endif %}
+                                            <span class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "زكاة الحلي التي أهدتها والدتها لابنتها" %}
+                                            {% else %}
+                                                {% trans "Zakat on jewelry gifted to a daughter by her mother" %}
+                                            {% endif %}
+                                            <span class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "زكاة المال في البنوك" %}
+                                            {% else %}
+                                                {% trans "Zakat on money in banks" %}
+                                            {% endif %}
+                                            <span
+                                                    class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""
+                                           class="black-color font-12-xs">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "إخراج الزكاة عن الأعمال التي لها معاملات دائنة" %}
+                                            {% else %}
+                                                {% trans "Paying Zakah for business which has credit transactions" %}
+                                            {% endif %}
+
+                                            <span class="pull-right"><i
+                                                    class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br><br>
+
+    <!-- Footer -->
+    {#<footer class="page-footer font-small blue-grey lighten-5" style="background-color: lightgray;">#}
+    {#    <!-- Footer Links -->#}
+    {#    <div class="container text-center text-md-left mt-5">#}
+    {##}
+    {#        <!-- Grid row -->#}
+    {#        <div class="row mt-5 dark-grey-text">#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">#}
+    {#                <!-- Content -->#}
+    {#                <div class="">#}
+    {#                    <a href="{% url 'index' %}" class=""><img src="/static/images/logo.png"#}
+    {#                                                              alt=""></a>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">#}
+    {##}
+    {#                <div class="widget widget--footer widget--contact">#}
+    {#                    <div class="">#}
+    {#                        <h4>{% trans "QUICK CONTACT" %}</h4>#}
+    {#                    </div>#}
+    {#                    <div class="widget__text-content text-left">#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-location-arrow"></i></span>#}
+    {#                            <span class="contact-text">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>#}
+    {#                        </div>#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-phone"></i></span>#}
+    {#                            <span class="contact-text">+965 90900055 </span>#}
+    {#                        </div>#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-envelope-o"></i></span>#}
+    {#                            <span class="contact-text">basaier@basaier.com</span>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div><!--/.widget-->#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-left">#}
+    {##}
+    {#                <!-- Links -->#}
+    {#                <div class="">#}
+    {#                    <h4>{% trans "FOLLOW US ON" %}</h4>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">#}
+    {#                        <span class=""><i class="fa fa-facebook-square"></i>#}
+    {#                        </span> Facebook </a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i#}
+    {#                            class="fa fa-twitter"></i> Twitter</a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i#}
+    {#                            class="fa fa-instagram"></i> Instagram </a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor"#}
+    {#                       href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"#}
+    {#                       target="_blank"><i class="fa fa-youtube"></i> Youtube</a>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#        </div>#}
+    {#        <!-- Grid row -->#}
+    {#    </div>#}
+    {#    <!-- Footer Links -->#}
+    {##}
+    {#    <!-- Copyright -->#}
+    {#    <div class="footer-copyright text-center text-black-50 py-3"#}
+    {#         style="background-color: black; color: white; padding: 10px;">© 2020 Copyright:#}
+    {#        <a class="dark-grey-text" href="https://mdbootstrap.com/"> Basaier</a>#}
+    {#    </div>#}
+    {#    <!-- Copyright -->#}
+    {##}
+    {#</footer>#}
+    <!-- Footer -->
+    <!-- // End Footer  -->
+
+
+    <script>
+
+        {#var AmountCannotBeBlank = "Amount cannot be blank";#}
+        {#var CookieNotEnabled = "Cookie not enabled";#}
+        {##}
+        {#function CalcZakatMoneyDetails() {#}
+        {#    var sumCalval = 0;#}
+        {#    var sumCaldiffval = 0;#}
+        {#    $('input[name^="CalSumval"]').each(function () {#}
+        {#        sumCalval += +$(this).val();#}
+        {#    });#}
+        {#    $('input[name^="Caldiffval"]').each(function () {#}
+        {#        sumCaldiffval += +$(this).val();#}
+        {#    });#}
+        {##}
+        {#    var arr = [];#}
+        {#    $("[id*=txt_]").each(function () {#}
+        {#        var id = $(this).attr("Item");#}
+        {#        if ($("#txt_" + id) != null) {#}
+        {#            var ZakkaAccountsId = id;#}
+        {#            // var ZakkaAccountsId = $('#ddlGoldRate_' + id + '>option[value=' + $('#ddlGoldRate_' + id).val() + ']').attr("TypeId");#}
+        {#            var Value = $("#txt_" + id).val();#}
+        {#            var CurrencyId = 1;#}
+        {#            if (ZakkaAccountsId != null && ZakkaAccountsId != undefined && ZakkaAccountsId > 0 && Value != null && Value != undefined && Value > 0) {#}
+        {#                var obj = {#}
+        {#                    ZakkaAccountsId: ZakkaAccountsId,#}
+        {#                    Value: Value,#}
+        {#                    CurrencyId: CurrencyId,#}
+        {#                    YearTypeId: $('#ddl_YearZakatMoney').val()#}
+        {#                };#}
+        {#                arr.push(obj);#}
+        {#            }#}
+        {#        }#}
+        {#    });#}
+
+        {#$("#TotalZakatMoneyDetails").val(parseFloat(sumCalval - sumCaldiffval));#}
+
+        {#var GoldPrice = parseFloat((218.68 * 85) / 1.00000).toFixed(2);#}
+        {#if ($('#ddl_YearZakatMoney').val() == "0") {#}
+        {#    alert('Please select year');#}
+        {#    $("#CalcZakatMoneyDetails").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } #}
+
+
+        {#if (parseFloat($('#TotalZakatMoneyDetails').val()) < parseFloat(GoldPrice)) {#}
+        {#    alert('The amount is less than the value of a quorum' + ' ' + GoldPrice + ' ' + "QAR");#}
+        {#    $("#CalcZakatMoneyDetails").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } else { #}
+        {#    $('#TotalZakatMoneyDetails').val(parseFloat($("#TotalZakatMoneyDetails").val() * $('#txtRateZakatMoney').val()).toFixed(2));#}
+        {#    $("#CalcZakatMoneyDetails").attr("role", "dialog").attr("data-target", "#CalcZakatMoneyDetailsAmount");#}
+        {#    ZakatDonationDeatilsInsert(arr);#}
+        {# } #}
+        {# }#}
+
+        {#function ChangeRateZakatMoney() {#}
+        {#    var year = $('#ddl_YearZakatMoney').val();#}
+        {#    if (year == "1") {#}
+        {#        $('#txtRateZakatMoney').val("0.025");#}
+        {#        $('#txtRateZakatPercentage').val("0.025%");#}
+        {#    }#}
+        {#    if (year == "2") {#}
+        {#        $('#txtRateZakatMoney').val("0.02575");#}
+        {#        $('#txtRateZakatPercentage').val("0.02575%");#}
+        {##}
+        {#    }#}
+        {#    if (year == "0") {#}
+        {#        $('#txtRateZakatMoney').val("0");#}
+        {#        $('#txtRateZakatPercentage').val("0%");#}
+        {#    }#}
+        {# } #}
+        {##}
+        {#    function CalZakatMoneyFast(ZakatGoldPrice, ExchangeRate) {#}
+        {#        var AmountZakat = $("#txtAmountZakatMoney").val();#}
+        {#        if (AmountZakat == null || AmountZakat == undefined || AmountZakat == '') {#}
+        {#            AmountZakat = 0;#}
+        {#        }#}
+        {#var GoldPrice2 = parseFloat(ZakatGoldPrice * 85).toFixed(2);#}
+        {#if ($('#ddl_YearZakatMoney').val() == "0") {#}
+        {#    alert('Please select year');#}
+        {#    $("#CalculateZakatMoney").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } #}
+        {#if (parseFloat(AmountZakat) < parseFloat(GoldPrice2)) {#}
+        {#    alert('The amount is less than the value of a quorum' + ' ' + GoldPrice2 + ' ' + "QAR");#}
+        {#    $("#CalculateZakatMoney").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } else { #}
+        {#        $('#TotalZakatMoney').val(parseFloat(AmountZakat * $('#txtRateZakatMoney').val()).toFixed(2));#}
+        {#        $("#CalculateZakatMoney").attr("role", "dialog").attr("data-target", "#CalcZakatMoneyAmount");#}
+        {# } #}
+        {#    }#}
+        {##}
+        {#    function OnlyNumeric(evt, item, maxLenght) {#}
+        {#        evt = (evt) ? evt : window.event;#}
+        {#        var charCode = (evt.which) ? evt.which : evt.keyCode;#}
+        {#        if (charCode > 31 && (charCode < 48 || charCode > 57)) {#}
+        {#            return false;#}
+        {#        }#}
+        {#        var maxleng = $(item).attr('maxlength');#}
+        {#        if (maxleng == null || maxleng == undefined || maxleng == '' || maxleng == 0) {#}
+        {#            maxleng = maxLenght;#}
+        {#        }#}
+        {#        var val = $(item).val();#}
+        {#        // Trim the field if it has content over the maxlength.#}
+        {#        if (maxleng != null && maxleng != undefined && maxleng != '' && maxleng != 0 && val.length > maxleng) {#}
+        {#            return false;#}
+        {#        }#}
+        {#        return true;#}
+        {#    }#}
+
+    </script>
+
+
+{% endblock %}

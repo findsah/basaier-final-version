@@ -1,0 +1,32 @@
+/* -----------------------------------
+** About us
+-------------------------------------*/
+.about-us-carousel{
+    background: $white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    @include breakpoint(max_md){
+        img{
+            width: 100%;
+        }
+    }
+}
+.fund-arrow-left-list{
+    li{
+        padding-bottom: 5px;
+        &:before{
+            font-family: 'FontAwesome';
+            content:"\f105";
+            color: $base;
+            padding-right: 15px;
+        }
+    }
+}
+.about-us-text-content{
+    p{
+        margin-bottom: 19px;
+    }
+}
+/* -----------------------------------
+** End About us
+-------------------------------------*/

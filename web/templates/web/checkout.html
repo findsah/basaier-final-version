@@ -1,0 +1,194 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+<div class="main-content section-padding">
+        <div class="container">
+            {% if request.user.is_authenticated %}
+            <form class="donate-page-form" method="post" action="{% url 'confirmation' %}" id="checkout-form">
+                <input type="hidden" name="route" value="logged">
+                {% csrf_token %}
+                {% endif %}
+                {% if request.user.is_authenticated == False %}
+                
+                <form class="donate-page-form" method="post" action="{% url 'confirmation' %}" id="checkout-form">
+                    <input type="hidden" name="route" id="route" value="guest">
+                    {% csrf_token %}
+            <div class="row pdt30">
+                    <div class="col-md-12">
+                        <h4 class="nv-color text-uppercase">{% trans "Donator details"%}</h4>
+                    </div>
+                </div>
+                <div class="row donate-detail-form">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <p>
+                                <a  class="btn" id="guestBtn">{%  trans "Guest"%}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <p>
+                                <a  class="btn" id="registerBtn">{% trans "New Donor"%}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <p>
+                                <a  class="btn" id="loginBtn">{% trans "Existing Donor"%}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div id="registration">
+                <div class="row pdt30">
+                    <div class="col-md-12">
+                        <h4 class="nv-color text-uppercase">{%  trans "Donator Registration" %}</h4>
+                    </div>
+                </div>
+                <div class="row donate-detail-form">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="email" class="form-control input-group__input" name="register_email" placeholder="Email *">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control input-group__input" name="register_password" placeholder="Password *">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control input-group__input" name="register_confirm_password" placeholder="Confirm Password *">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-group__input" name="register_name" placeholder="Name *">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="tel" class="form-control input-group__input" name="register_phone" placeholder="Mobile Phone *">
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            <div id="login">
+                <div class="row pdt30">
+                    <div class="col-md-12">
+                        <h4 class="nv-color text-uppercase">{% trans "Donator Login" %}</h4>
+                    </div>
+                </div>
+                <div class="row donate-detail-form">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-group__input" name="login_email" placeholder="Email *">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control input-group__input" name="login_password" placeholder="Password *">
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+                <div id="guest">
+                <div class="row pdt30">
+                    <div class="col-md-12">
+                        <h4 class="nv-color text-uppercase">{% trans "Donator As Guest"%}</h4>
+                    </div>
+                </div>
+                <div class="row donate-detail-form">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control input-group__input" placeholder="Email *">
+                        </div>
+                    </div>
+
+
+                </div>
+                </div>
+                {% endif %}
+            <h4 class="donate-page-title text-uppercase">{% trans "Donations" %}</h4>
+                {% for project in projects %}
+
+                    <input type="hidden" name="project_id[]" value="{{ project.id }}">
+                    <input type="hidden" name="project_category_id[]" value="{{ project.project_category_id }}">
+
+                <div class="row pdb20">
+                    <div class="col-md-3 pdb10">
+                        <a href="?deleteId={{ forloop.counter0 }}"><i class="fa fa-trash"></i></a>
+                            <span>{{ forloop.counter }}-
+                        {% for project_detail in projects_detail %}
+                            {% if project_detail.id == project.id %}
+                                {{ project_detail.get_name }} :
+                                {% for project_category in project_detail.category.all %}
+                                    {% if project_category.id == project.project_category_id %}
+                                        {{ project_category.get_name }}
+                                    {% endif %}
+                                    {% endfor %}
+                            </span>
+                            {% endif %}
+                            {% endfor %}
+
+                    </div>
+                    <div class="col-md-2 pdb10">
+                        <span>{% trans "Donation Amount"%}: </span>
+                        <input type="number" min="0" step="any" max="500" class="form-control input-group__input" name="amount[]" value="{{ project.amount }}">
+                    </div>
+
+
+                </div>
+
+                {% endfor %}
+
+                <div class="row pdb30">
+                    <div class="col-md-3 pdb10">
+                        <span>{% trans "Payment Mathod"%} <span class="red-color">*</span> </span>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="input-group__radio-wrap">
+                                    <input type="radio" id="payment-method-online" name="payment_method" value="Knet" checked>
+                                    <label for="payment-method-online">KNET</label>
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+                                <!--<div class="input-group__radio-wrap">-->
+                                    <!--<input type="radio" id="payment-method-offline" name="payment_method" value="Visa" required>-->
+                                    <!--<label for="payment-method-offline">VISA / Mastercard</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="submit" class="btn" id="pay-now" value="{% trans "Pay"%}">
+                        </div>
+                    </div>
+                </div>
+            <!-- </form> -->
+        </div>
+    </div>
+{% endblock %}

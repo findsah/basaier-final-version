@@ -1,0 +1,50 @@
+/* -----------------------------------
+** Testimonial
+-------------------------------------*/
+.fund-testimonial{
+    margin-bottom: 30px;
+    &__quote{
+        padding:15px 20px;
+        border-radius: 12px;
+        position: relative;
+        margin-bottom: 30px;
+        &:before{
+            position: absolute;
+            left:50px;
+            bottom:-10px;
+            width: 20px;
+            height: 20px;
+            background: $base;
+            transform: rotate(45deg);
+            content: '';
+        }
+    }
+    &__author{
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+    }
+    &__author-image{
+        width: 78px;
+        img{
+            border-radius: 12px;
+        }
+    }
+    &__author-text{
+        padding-left: 20px;
+    }
+    &__author-name{
+        margin-bottom: 0;
+    }
+}
+.fund-testimonial-carousel{
+    margin-left: -15px;
+    margin-right: -15px;
+    .fund-testimonial{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+/* -----------------------------------
+** End Testimonial
+-------------------------------------*/

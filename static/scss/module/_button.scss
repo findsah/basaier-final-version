@@ -1,0 +1,28 @@
+/* -----------------------------------
+** Button
+-------------------------------------*/
+.btn{
+    border:1px solid $base;
+    border-radius: 5px;
+    background: transparent;
+    color: $base;
+    font-size: 16px;
+    display: inline-block;
+    min-width: 122px;
+    white-space: nowrap;
+    font-family: $rb;
+    padding:9px 15px;
+    font-weight: 500;
+    &:hover,&.active{
+        background: $base;
+        color: $white;
+    }
+    &.base-bg{
+        border-color: $base;
+        color: $white;
+        background: $base;
+    }
+}
+/* -----------------------------------
+** End Button
+-------------------------------------*/

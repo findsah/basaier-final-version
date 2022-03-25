@@ -1,0 +1,25 @@
+.checkboxDiv {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 -2px 10px -3px lightgrey;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.tafseel {
+    background-color: #fff;
+    box-shadow: 0 -2px 10px -3px lightgrey;
+    border-radius: 20px;
+    text-align: center;
+}
+.valueDiv{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
+    color: gray;
+}

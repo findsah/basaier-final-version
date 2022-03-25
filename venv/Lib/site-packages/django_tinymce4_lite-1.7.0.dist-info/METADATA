@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: django-tinymce4-lite
+Version: 1.7.0
+Summary: A Django application that provides a fully functional TinyMCE 4 editor widget for models and forms.
+Home-page: https://github.com/romanvm/django-tinymce4-lite
+Author: Roman Miroshnychenko (fork author)
+Author-email: romanvm@yandex.ua
+License: MIT License
+Description-Content-Type: UNKNOWN
+Requires-Dist: Django (>=1.8.0)
+Requires-Dist: jsmin
+
+django-tinymce4-lite
+
+

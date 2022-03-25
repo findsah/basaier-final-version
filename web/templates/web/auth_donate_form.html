@@ -1,0 +1,9 @@
+{% if request.user.is_authenticated %}
+    <form class="donate-page-form" method="post" action="{% url 'checkout-logged' %}" id="confirmation-form">
+    {% csrf_token %}
+{% endif %}
+
+{% if request.user.is_authenticated == False %}
+    <form class="donate-page-form" method="post" action="{% url 'checkout-as-guest' %}" id="confirmation-form">
+    {% csrf_token %}
+{% endif %}

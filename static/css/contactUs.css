@@ -1,0 +1,182 @@
+.jumbotron {
+    display: flex;
+    justify-content: center;
+    /* background-image: url("img.jpg"); */
+    /* background-repeat: no-repeat; */
+    /* width: 100% !important; */
+    color: white !important;
+    background-color: #8EC56F !important;
+    font-size: 50px;
+    /* font-weight: bold; */
+}
+
+#topPullOnTop {
+    position: absolute;
+    top: 20%;
+    left: 37%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+@media(max-width: 768px){
+    #topPullOnTop {
+        top: 12%;
+        left: 47%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 414px){
+    #topPullOnTop {
+        top: -20%;
+        left: 43%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 411px){
+    #topPullOnTop {
+        top: -10%;
+        left: 45%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 375px){
+    #topPullOnTop {
+        top: -25%;
+        left: 44%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 360px){
+    #topPullOnTop {
+        top: -25%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 320px){
+    #topPullOnTop {
+        top: -35%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+#contactUsFormDiv {
+    border-radius: 10px;
+    background-color: white !important;
+    overflow: auto;
+    /*height: 393px;*/
+    padding: 15px;
+}
+
+.innerDivContactUsFormDiv > div > h3 {
+    margin-left: 3%;
+}
+
+/* #contactUsFormDiv > .innerDivContactUsFormDiv {
+    padding: 10px;
+} */
+.bgColor {
+    background-color: #F8F8F8;
+}
+
+.container2 {
+    padding: 25px 0;
+}
+
+.forPaddingFaIcons {
+    padding: 15px;
+    /*width: 30px;*/
+    /*height: 30px;*/
+}
+
+.borderRadiusForInputFields {
+    border-radius: 10px !important;
+    height: 48px !important;
+    background-color: transparent !important;
+    margin-bottom: 5%;
+}
+
+.borderRadiusForTextareaFields {
+    border-radius: 10px !important;
+    background-color: transparent !important;
+    margin-bottom: 5%;
+    height: 88px !important;
+}
+
+.whatsappNumber {
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 3%;
+    height: 97px;
+    padding-top: 10px;
+}
+
+.whatsappNumber > div > .h41 {
+    text-align: center;
+    vertical-align: middle !important;
+    padding: 7px 0;
+}
+
+.whatsappNumber > div > .h42 {
+    text-align: center;
+    vertical-align: middle !important;
+    padding: 15px 0;
+}
+
+.whatsappNumber > div > .h43 {
+    text-align: center;
+    vertical-align: middle !important;
+    padding: 15px 0;
+}
+
+.phoneNumberInfo {
+    border-radius: 10px;
+    /*overflow: auto;*/
+    /* padding: 15px; */
+    color: #A3B6D4;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+    .h43 {
+        display: none;
+    }
+    .hideh41 {
+        display: none;
+    }
+}
+
+.toRoundTheFaIcon {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #8BA3C9;
+    width: 50px;
+    height: 50px;
+}
+
+.setWidth1 {
+    /*width: 919px;*/
+    /*height: 360px;*/
+    padding: 30px 0;
+    /*overflow: auto*/
+}

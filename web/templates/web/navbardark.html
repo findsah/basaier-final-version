@@ -1,0 +1,801 @@
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CJYD2GTVX"></script>
+    {# GEOLOCATION API TO GET CURRENCY VALUE: #}
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    {# GEOLOCATION API TO GET CURRENCY VALUE: #}
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+
+        gtag('config', 'G-8CJYD2GTVX');
+
+    </script>
+
+    <!-- Facebook Pixel Code -->
+
+    <script>
+
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1993893774111809');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+
+                   src="https://www.facebook.com/tr?id=1993893774111809&ev=PageView&noscript=1"
+
+    /></noscript>
+
+    <!-- End Facebook Pixel Code -—>
+
+
+    <!-- Snap Pixel Code -->
+
+    <script type='text/javascript'>
+
+        (function (e, t, n) {
+            if (e.snaptr) return;
+            var a = e.snaptr = function () {
+                a.handleRequest ? a.handleRequest.apply(a, arguments) : a.queue.push(arguments)
+            };
+
+            a.queue = [];
+            var s = 'script';
+            r = t.createElement(s);
+            r.async = !0;
+
+            r.src = n;
+            var u = t.getElementsByTagName(s)[0];
+
+            u.parentNode.insertBefore(r, u);
+        })(window, document,
+
+            'https://sc-static.net/scevent.min.js');
+
+
+        snaptr('init', 'cd5fac92-3f29-400a-8284-674338f57553', {
+
+            'user_email': '__INSERT_USER_EMAIL__'
+
+        });
+
+
+        snaptr('track', 'PAGE_VIEW');
+
+
+    </script>
+
+    <!-- End Snap Pixel Code -->
+
+
+    {#<-- Twitter universal website tag code —>#}
+
+    <script>
+
+        !function (e, t, n, s, u, a) {
+            e.twq || (s = e.twq = function () {
+                s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+
+            }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = '//static.ads-twitter.com/uwt.js',
+
+                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+
+        // Insert Twitter Pixel ID and Standard Event data below
+
+        twq('init', 'o5uhb');
+
+        twq('track', 'PageView');
+
+    </script>
+
+    <!-- End Twitter universal website tag code -->
+
+
+    <!-- Google Tag Manager -->
+    <script type="text/javascript">(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KKV9QPX');</script>
+    <!-- End Google Tag Manager -->
+    {% get_current_language as LANGUAGE_CODE %}
+    <!-- Magnific Popup-->
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/static/css/select2.min.css">
+    <!-- REVOLUTION SLIDER STYLES -->
+    <link rel="stylesheet" type="text/css" href="/static/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/navigation.css">
+    <!-- Animate css-->
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+
+    {% if project %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ project.get_name }}"/>
+        <meta property="og:title" content="{{ project.get_name }}"/>
+        <meta property="og:description" content="{{ project.get_detail | striptags | nbsp }}"/>
+        <meta property="og:image" content="{{ project.get_image_url }}"/>
+        <title>{{ project.get_name }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}
+
+    {% if obj %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ obj.get_title }}"/>
+        <meta property="og:title" content="{{ obj.get_title }}"/>
+        <meta property="og:description" content="{{ obj.get_content | striptags }}"/>
+        <meta property="og:image" content="{{ obj.get_image_url }}"/>
+        <title>{{ obj.get_title }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}{% if session_id %}
+        <script src="https://ap-gateway.mastercard.com/checkout/version/48/checkout.js"
+                data-error="errorCallback"
+                data-cancel="cancelCallback"
+                data-complete="completeCallback"
+                data-beforeRedirect="Checkout.saveFormFields"
+                data-afterRedirect="Checkout.restoreFormFields">
+        </script>
+        <script type="text/javascript">
+            errorCallback = "https://basaier.org/en";
+            {#var getvalue = geoplugin_currencyCode();#}
+            {#console.log("VALUE AT LINE 263 OF JS OF TAP-COMPANY:", getvalue);#}
+
+            function cancelCallback() {
+                window.history.back();
+            }
+
+            completeCallback = "{% url 'creditcard-success' %}";
+            Checkout.configure({
+                merchant: "{{merchant}}",
+                session: {
+                    id: "{{session_id}}"
+                },
+                order: {
+                    amount: function () {
+                        return '{{amount}}'.replace(/,([^,]*)$/, ".$1");
+                    },
+                    {#currency: getvalue,#}
+                    currency: 'KWD',
+                    description: 'Donation',
+                    id: '{{transaction_id}}'
+                },
+                interaction: {
+                    merchant: {
+                        name: 'Basaier Charity',
+                        address: {
+                            line1: 'Firdos block 8 Rashed Awad Al Shanfa Street',
+                            line2: 'Jada 3 House No.41'
+                        }
+                    }
+                }
+            });
+            Checkout.showLightbox();
+        </script>
+    {% endif %}
+
+
+<!-- == mixitup == -->
+<script src="/static/js/mixitup.min.js"></script>
+<!-- == Select 2 == -->
+<script src="/static/js/select2.min.js"></script>
+<!-- == Color box == -->
+<script src="/static/js/jquery.colorbox-min.js"></script>
+{#<script src="{% static 'js/revolution/extensions/revolution.extension.slideanims.min.js' %}"></script>#}
+<!-- == Slick == -->
+<script src="/static/js/slick.min.js"></script>
+<!-- == Image Lazy Load == -->
+<script src="/static/js/jquery.lazy.min.js"></script>
+<!-- == Wow js == -->
+<script src="/static/js/wow.min.js"></script>
+<!-- == Revolution Slider JS == -->
+<script src="/static/js/revolution/jquery.themepunch.tools.min.js"></script>
+<script src="/static/js/revolution/jquery.themepunch.revolution.min.js"></script>
+{#<script src="{% static "js/revolution/extensions/revolution.extension.actions.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.layeranimation.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.navigation.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.slideanims.min.js" %}"></script>#}
+<script src="/static/js/revolution-active.js"></script>
+<!-- == custom Js File == -->
+<script src="/static/js/custom.js"></script>
+
+<script src="/static/cart/js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBjaOVpxq-vyWE7EOrUjmYsDdxRSrlar08"></script>
+<script src="/static/js/jquery.mapit.min.js"></script>
+<script src="/static/js/map-init.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {#    <title>Basier</title>#}
+
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!-- bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
+
+
+    <!-- jquery files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+
+
+    <!-- fonts and animations files -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    {% if project %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ project.get_name }}"/>
+        <meta property="og:title" content="{{ project.get_name }}"/>
+        <meta property="og:description" content="{{ project.get_detail | striptags | nbsp }}"/>
+        <meta property="og:image" content="{{ project.get_image_url }}"/>
+        <title>{{ project.get_name }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}
+
+    {% if obj %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ obj.get_title }}"/>
+        <meta property="og:title" content="{{ obj.get_title }}"/>
+        <meta property="og:description" content="{{ obj.get_content | striptags }}"/>
+        <meta property="og:image" content="{{ obj.get_image_url }}"/>
+        <title>{{ obj.get_title }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}
+
+
+    <!-- custom css files -->
+{#    {% if LANGUAGE_CODE == "ar" %}#}
+{#        <link rel="stylesheet" href="/static/css/style_ar.css">#}
+{#    {% else %}#}
+{#        <link rel="stylesheet" href="/static/css/style.css">#}
+{#    {% endif %}#}
+
+    <link rel="stylesheet" href="{% static 'styles/page1.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page2.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page3.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page4.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page5.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page6.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page7.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page8.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page9.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page11.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page12.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page13.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page14.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page15.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page16.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page17.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page18.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page19.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/page20.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/arsh_signin.css' %}">
+
+    <!-- custom js files -->
+    <script src="{% static 'js/index.js' %}"></script>
+
+    {% if session_id %}
+        <script src="https://ap-gateway.mastercard.com/checkout/version/48/checkout.js"
+                data-error="errorCallback"
+                data-cancel="cancelCallback"
+                data-complete="completeCallback"
+                data-beforeRedirect="Checkout.saveFormFields"
+                data-afterRedirect="Checkout.restoreFormFields">
+        </script>
+        <script type="text/javascript">
+            errorCallback = "https://basaier.org/en";
+            {#var getvalue = geoplugin_currencyCode();#}
+            {#console.log("VALUE AT LINE 263 OF JS OF TAP-COMPANY:", getvalue);#}
+
+            function cancelCallback() {
+                window.history.back();
+            }
+
+            completeCallback = "{% url 'creditcard-success' %}";
+            Checkout.configure({
+                merchant: "{{merchant}}",
+                session: {
+                    id: "{{session_id}}"
+                },
+                order: {
+                    amount: function () {
+                        return '{{amount}}'.replace(/,([^,]*)$/, ".$1");
+                    },
+                    {#currency: getvalue,#}
+                    currency: 'KWD',
+                    description: 'Donation',
+                    id: '{{transaction_id}}'
+                },
+                interaction: {
+                    merchant: {
+                        name: 'Basaier Charity',
+                        address: {
+                            line1: 'Firdos block 8 Rashed Awad Al Shanfa Street',
+                            line2: 'Jada 3 House No.41'
+                        }
+                    }
+                }
+            });
+            Checkout.showLightbox();
+        </script>
+    {% endif %}
+
+
+</head>
+
+<nav class="navbar navbar-dark fixed-top navbar-expand-lg"
+        style="box-shadow: 0 5px 20px lightgrey; color: black !important;">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/logo2.png' %}" class="logoimg" alt="logoimg">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="fa fa-bars mfa-white"></span>
+            </button>
+
+            <div id="main">
+                <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars" onclick="openNav()"></span></a>
+            </div>
+
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <ul class="mob-ul">
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/">الرئيسيه</a>
+                    </li>
+                    <li class="nav-item">
+                        <select name="cars" id="cars"
+                            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
+                            style="border: none; background: none;   width: 100px; cursor: pointer; outline: none;">
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    بوابه التبرع
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    مشاريع خاصه
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    المشاريع الموسميه والاغاثية
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    المساهامت والكفارات
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    الكفالات
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    الذكاه
+                                </option>
+                            </a>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select name="cars" id="cars"
+                            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
+                            style="border: none; background: none;   width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
+                            <!-- <a class="nav-link desktop-nav color-dark" href="/donatedonation">
+                                <option style="color: black;" value=" عن بصائر">
+                                    عن بصائر
+                                </option>
+                            </a> -->
+                            <a class="nav-link desktop-nav color-dark" href="#">
+                                <option style="color: black;" value="#">
+                                    من نحن
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/aboutus">
+                                <option style="color: black;" value="aboutus">
+                                    قالو عنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/bepartner">
+                                <option style="color: black;" value="/bepartner">
+                                    كن شريكا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/ourpartners">
+                                <option style="color: black;" value="/ourpartners">
+                                    شركاؤنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/contactus">
+                                <option style="color: black;" value="/contactus">
+                                    اتصل بنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/volunteer">
+                                <option style="color: black;" value="/volunteer">
+                                    الاسئله الشائعه
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/joinchat">
+                                <option style="color: black;" value="/joinchat">
+                                    مساعدك الشخصي
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="#">
+                                <option style="color: black;" value="#">
+                                    اللجان التابعه
+                                </option>
+                            </a>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/news"> اخبار ورحلات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/happystories"> قصص السعاده</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/volunteerandspread">تطوع معنا</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="collapse navbar-collapse justify-content-around" id="navbarResponsive">
+                <ul class="desktop-ul">
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/">الرئيسيه</a>
+                    </li>
+                    <li class="nav-item">
+                        <select name="cars" id="cars"
+                            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
+                            style="border: none; background: none;   width: 100px; cursor: pointer; outline: none;">
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    بوابه التبرع
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    مشاريع خاصه
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    المشاريع الموسميه والاغاثية
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    المساهامت والكفارات
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    الكفالات
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/seasonalprojects">
+                                <option style="color: black;" value="/seasonalprojects">
+                                    الذكاه
+                                </option>
+                            </a>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select name="cars" id="cars"
+                            onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
+                            style="border: none; background: none;   width: 100px; cursor: pointer; outline: none; margin: 0 10px;">
+                            <!-- <a class="nav-link desktop-nav color-dark" href="/donatedonation">
+                                <option style="color: black;" value=" عن بصائر">
+                                    عن بصائر
+                                </option>
+                            </a> -->
+                            <a class="nav-link desktop-nav color-dark" href="#">
+                                <option style="color: black;" value="#">
+                                    من نحن
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/aboutus">
+                                <option style="color: black;" value="aboutus">
+                                    قالو عنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/bepartner">
+                                <option style="color: black;" value="/bepartner">
+                                    كن شريكا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/ourpartners">
+                                <option style="color: black;" value="/ourpartners">
+                                    شركاؤنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/contactus">
+                                <option style="color: black;" value="/contactus">
+                                    اتصل بنا
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/volunteer">
+                                <option style="color: black;" value="/volunteer">
+                                    الاسئله الشائعه
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="/joinchat">
+                                <option style="color: black;" value="/joinchat">
+                                    مساعدك الشخصي
+                                </option>
+                            </a>
+                            <a class="nav-link desktop-nav color-dark" href="#">
+                                <option style="color: black;" value="#">
+                                    اللجان التابعه
+                                </option>
+                            </a>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/news"> اخبار ورحلات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/happystories"> قصص السعاده</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link desktop-nav color-dark" href="/volunteerandspread">تطوع معنا</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0 col-md-7">
+                <input class="myform-control mr-sm-2" type="search"
+                    placeholder="find peoples, instruments, bands and more..." aria-label="Search">
+                <button class="btn btn-light"><i class="fa fa-search"></i></button>
+            </form> -->
+                <ul class="navbar-nav">
+                    <li class="nav-link">
+                        <a href="#" class="btn-circle my-social-btn color-dark">
+                            <i style="font-size: 25px;" class="fa fa-search"></i>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#" class="btn-circle my-social-btn color-dark">
+                            <i style="font-size: 25px;" class="fa fa-user"></i>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'checkoutDetail' %}" class="btn-circle my-social-btn color-dark">
+                            <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+<body>
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+
+
+<section class="testimonials text-center" id="marketplace"
+    style="background-image: url('{% static './images/bgstyledgray.png'%}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto wow fadeInUp">
+                <h5 class="font-weight-bold" style="margin-bottom: 2rem; font-size: 18px;">نؤمن في مؤسسة بصائر
+                    الخيريه بأهمية التواصل
+                    الفعال، ونتطلع
+                    إلى مشاركتكم وتفاعلكم</h5>
+
+                <a href="/seasonalprojects">
+                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn" style="width: 15rem; height: 15rem;">
+                <img src="{% static './images/bgfooter.png' %}" alt="logoimg">
+            </div>
+            <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn">
+                <ul style="list-style: none; text-align: right;">
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">
+                            <h3>القائمة الرئيسية</h3>
+                        </a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-4 text-right my-auto  wow zoomIn">
+                <ul class="list-inline mb-0 p-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-linkedin fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-youtube fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-twitter fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i style="font-size: 25px;" class="fa fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text-mutedP small mb-4 mb-lg-0"> <sup>©</sup> 2021 جميع الحقوق </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{# ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartProjectOfNewPageOfSeasonalProjects').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+
+</html>

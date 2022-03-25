@@ -1,0 +1,57 @@
+/* -----------------------------------
+** Form Element
+-------------------------------------*/
+.input-group{
+    margin-bottom: 20px;
+    overflow-x: hidden;
+    display: block;
+    &__label{
+        padding-bottom: 5px;
+        display: block;
+    }
+    &__select{
+        display: block;
+        width: 100%;
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    &__radio-wrap{
+        display: flex;
+        align-items: center;
+        width:100%;
+        label{
+            margin:0;
+            padding-left: 10px;
+            margin-right: 20px;
+        }
+        input[type=radio]{
+            margin:0;
+        }
+    }
+}
+.select2-container{
+    //width: 100% !important;
+    .select2-selection--single{
+        height: 40px;
+
+        border-color: $border;
+        border-radius: 5px;
+        .select2-selection__rendered{
+            padding-left: 14px;
+            line-height: 38px;
+        }
+    }
+}
+.hide-search--dropdown .select2-search--dropdown{
+    display: none;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    right:10px;
+    b{
+        margin-top: 4px;
+    }
+}
+/* -----------------------------------
+** End Form Element
+-------------------------------------*/

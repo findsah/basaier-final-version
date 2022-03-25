@@ -1,0 +1,162 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+
+    {# 1ST SECTION: #}
+    <section class="section-padding" id="bgLightGray">
+        <div class="container margin-50-v">
+            <img id="Loading" src="/static/loaderGIF/ajax-loader.gif" style="display: none;">
+            <div class="col-xs-12 text-center">
+                <img src="/static/uploads/Contribution-to-campaign.png">
+                <p class="QC_h1 col-xs-12 margin-20-top" id="logoColor">
+                    <strong>
+                        {% trans "Private Campaign" %}
+                    </strong>
+                </p>
+                {#                <p class="col-xs-12 text-center font-16">#}
+                {#                    {% trans "Make love a theme and become an activist. You can join a campaign launched by other activists through Thawab and donate to it." %}#}
+                {#                </p>#}
+            </div>
+        </div>
+    </section>
+    {# END 1ST SECTION: #}
+
+    {# 2ND SECTION SHOW PROJECTS: #}
+    <section class="section-padding">
+        <div class="container">
+            {% for project in projects %}
+                <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-xl-3" id="marginBottom">
+                    <div class="box2 shareIconOnImage">
+
+{#                        <button type="button" data-toggle="modal" data-target="#exampleModal{{ project.id }}"><i#}
+{#                                class="fa fa-share-alt fa-1x" aria-hidden="true"></i>#}
+{#                        </button>#}
+                        <span data-toggle="modal" data-target="#exampleModal{{ project.id }}"
+                                              data-backdrop="static" data-keyboard="false" id=""><img
+                                                src="/static/shareIcon.jpeg" alt="">
+                                        </span>
+
+                        <div class="row text-center" id="forHeight">
+                            <p>{{ project.name | truncatechars:18 }}</p>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-lg-4 forPadding2">
+                            <div><img src="/static/{{ project.image }}" alt="" class="imageRounded"></div>
+                        </div>
+                        <div class="col-md-8 col-sm-6 col-xs-12 col-lg-8 col-lg-8 forPadding3">
+                            <div>
+                                <span id="newsDetails" class="text-left">Name:</span>
+                                <span id="logoColor"
+                                      class="text-right lessFontSize"
+                                      style="padding-right: 4%;">{{ project.name | truncatechars:15 }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row forPadding2">
+                                <div class="">
+                                    <span id="newsDetails" class="text-left">{% trans "Cost:" %}</span>
+                                    <span id="newsDetails" class=""
+                                          style="float: right !important;">{{ project.total_amount }}</span>
+                                </div>
+                            </div>
+                            <div class="row forPadding2">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success progress-bar-striped text-dark"
+                                         role="progressbar" aria-valuenow="{{ project.fund_percent | intcomma:False }}"
+                                         aria-valuemin="0" aria-valuemax="100"
+                                         style="width: {{ project.fund_percent | intcomma:False }}%;">
+                                        {{ project.fund_percent | intcomma:False }}%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row forPadding2">
+                                <form>
+                                    <input type="hidden" id="project_id_thawab_{{ project.id }}"
+                                           value="{{ project.id }}">
+                                    <input type="number" placeholder="cost"
+                                           class="text-center text-left2 contribute2"
+                                           id="amount_thawab_{{ project.id }}">
+                                    <a class="text-center text-right3 thawabContribution" projectId="{{ project.id }}">
+                                        {% trans "Donate" %}
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {# THE SHARE LINKS MODELS FOR COMPAIGNS PRIVATE AND PUBLIC: #}
+                <div class="modal fade" id="exampleModal{{ project.id }}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content col-12">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Share</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="icon-container1 d-flex">
+                                    <div class="smd"><i class="img-thumbnail2 fa fa-twitter fa-2x"
+                                                        style="color:#4c6ef5;background-color: aliceblue;"></i> <br>
+                                        <a href="https://twitter.com/share?text={{ user.username }}&url={{ request.build_absolute_uri }}/?productId={{ project.id }}">Twitter</a>
+                                    </div>
+                                    <div class="smd"><i class="img-thumbnail2 fa fa-facebook fa-2x"
+                                                        style="color: #3b5998;background-color: #eceff5;"></i>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}/?productId={{ project.id }}&t=title">Facebook</a>
+                                    </div>
+                                    <div class="smd"><i class="img-thumbnail2 fa fa-telegram fa-2x"
+                                                        style="color: #FF5700;background-color: #fdd9ce;"></i>
+                                        <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}/?productId={{ project.id }}&text=Basaier">Telegram</a>
+                                    </div>
+                                    <div class="smd"><i class="img-thumbnail2 fa fa-whatsapp fa-2x"
+                                                        style="color: #7bb32e;background-color: #d8d8d8;"></i>
+                                        <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}/?productId={{ project.id }}"
+                                           data-action="share/whatsapp/share">Whatsapp</a>
+                                    </div>
+
+                                    <div class="smd"><i class="img-thumbnail2 fa fa-linkedin fa-2x"
+                                                        style="background-color: #4c6ef5;"></i>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}/?productId={{ project.id }}/{{ project.id }}">LinkedIn</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><label style="font-weight: 600">Page Link <span
+                                    class="message"></span></label><br/>
+                                <div class="row"><input class="form-control" type="url"
+                                                        placeholder="{{ request.build_absolute_uri }}/?productId={{ project.id }}" id="myInput"
+                                                        aria-describedby="inputGroup-sizing-default"
+                                                        style="height: 40px;"
+                                                        value="{{ request.build_absolute_uri }}/?productId={{ project.id }}">
+                                    <button class="cpy" onclick="myFunction()"><i class="fa fa-clone fa-1x"
+                                                                                  style="margin-top: 1%; padding: 3px;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function myFunction() {
+                        $(".message").text("link copied");
+                    }
+                </script>
+                {# END THE SHARE LINKS MODELS FOR COMPAIGNS PRIVATE AND PUBLIC: #}
+
+
+            {% endfor %}
+        </div>
+        {# END CONTAINER: #}
+    </section>
+    {# END 2ND SECTION SHOW PROJECTS: #}
+
+
+
+{% endblock %}

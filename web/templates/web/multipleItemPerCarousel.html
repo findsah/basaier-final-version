@@ -1,0 +1,263 @@
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+<style type="text/css">
+    #multiItemMainDiv {
+        background-color: #4D5280;
+    }
+
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+    }
+
+    .carousel-control {
+        width: 10%;
+    {#width: 0px;#}
+    }
+
+    .carousel-control.left,
+    .carousel-control.right {
+        margin-right: 40px;
+        margin-left: 32px;
+        padding-top: 20%;
+        background-image: none;
+        opacity: 1;
+    }
+
+    .carousel-control > a > span {
+        color: white;
+        font-size: 50px !important;
+    }
+
+    .carousel-col {
+        position: relative;
+        min-height: 1px;
+        padding: 5px;
+        float: left;
+    }
+
+    .active > div {
+        display: none;
+    }
+
+    .active > div:first-child {
+        display: block;
+    }
+
+    /*xs*/
+    @media (max-width: 767px) {
+        .carousel-inner .active.left {
+            left: -50%;
+        }
+
+        .carousel-inner .active.right {
+            left: 50%;
+        }
+
+        .carousel-inner .next {
+            left: 50%;
+        }
+
+        .carousel-inner .prev {
+            left: -50%;
+        }
+
+        .carousel-col {
+            width: 50%;
+        }
+
+        .active > div:first-child + div {
+            display: block;
+        }
+    }
+
+    /*sm*/
+    @media (min-width: 768px) and (max-width: 991px) {
+        .carousel-inner .active.left {
+            left: -50%;
+        }
+
+        .carousel-inner .active.right {
+            left: 50%;
+        }
+
+        .carousel-inner .next {
+            left: 50%;
+        }
+
+        .carousel-inner .prev {
+            left: -50%;
+        }
+
+        .carousel-col {
+            width: 50%;
+        }
+
+        .active > div:first-child + div {
+            display: block;
+        }
+    }
+
+    /*md*/
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .carousel-inner .active.left {
+            left: -33%;
+        }
+
+        .carousel-inner .active.right {
+            left: 33%;
+        }
+
+        .carousel-inner .next {
+            left: 33%;
+        }
+
+        .carousel-inner .prev {
+            left: -33%;
+        }
+
+        .carousel-col {
+            width: 33%;
+        }
+
+        .active > div:first-child + div {
+            display: block;
+        }
+
+        .active > div:first-child + div + div {
+            display: block;
+        }
+    }
+
+    /*lg*/
+    @media (min-width: 1200px) {
+        .carousel-inner .active.left {
+            left: -25%;
+        }
+
+        .carousel-inner .active.right {
+            left: 25%;
+        }
+
+        .carousel-inner .next {
+            left: 25%;
+        }
+
+        .carousel-inner .prev {
+            left: -25%;
+        }
+
+        .carousel-col {
+            width: 25%;
+        }
+
+        .active > div:first-child + div {
+            display: block;
+        }
+
+        .active > div:first-child + div + div {
+            display: block;
+        }
+
+        .active > div:first-child + div + div + div {
+            display: block;
+        }
+    }
+</style>
+
+<div class="">
+
+    <div class="col-md-12">
+        <div class="section-heading text-center">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                <h2 class="section-title wow fadeInUpXsd ourPartnersImages" data-wow-duration=".7s" data-wow-delay=".1s"
+                    style="color: white; visibility: visible; animation-duration: 0.7s; animation-delay: 0.1s; animation-name: fadeInUpXsd;">{% trans "القصص" %}</h2>
+            {% else %}
+                <h2 class="section-title wow fadeInUpXsd ourPartnersImages" data-wow-duration=".7s" data-wow-delay=".1s"
+                    style="color: white; visibility: visible; animation-duration: 0.7s; animation-delay: 0.1s; animation-name: fadeInUpXsd;">{% trans "STORIES" %}</h2>
+            {% endif %}
+            <div class="section-heading-separator wow fadeInUpXsd" data-wow-duration="1.1s" data-wow-delay=".1s"
+                 style="visibility: visible; animation-duration: 1.1s; animation-delay: 0.1s; animation-name: fadeInUpXsd;"></div>
+        </div>
+    </div>
+
+    <div class="text-center" id="multiItemMainDiv">
+        <div class="">
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="2500">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for obj in news %}
+                            <li data-target="#carouselExampleIndicators"
+                                data-slide-to="{{ forloop.counter }}"></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="text-center" style="padding-bottom: 7%; padding-top: 7%;">
+                        <div class="carousel-inner" id="carousel-inner">
+                            {% for obj in news %}
+                                <div {% if forloop.first %}
+                                    class="item active" {% else %}
+                                    class="item" {% endif %}>
+                                    <div class="carousel-col text-center">
+                                        <div class="img-circle">
+                                            <a href="{% url 'news-detail' obj.id %}">
+                                                <img src="{{ obj.get_image_url }}"
+                                                     alt="" class="img-circle"
+                                                     id="imagesOfMultipleCarousel">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    {#                    <div class="left carousel-control">#}
+                    {#                        <a href="#carousel" role="button" data-slide="prev">#}
+                    {#                            <span class="fa fa-angle-left" aria-hidden="true"></span>#}
+                    {#                            <span class="sr-only">Previous</span>#}
+                    {#                        </a>#}
+                    {#                    </div>#}
+                    {#                    <div class="right carousel-control">#}
+                    {#                        <a href="#carousel" role="button" data-slide="next">#}
+                    {#                            <span class="fa fa-angle-right" aria-hidden="true"></span>#}
+                    {#                            <span class="sr-only">Next</span>#}
+                    {#                        </a>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- == jQuery Libraries == -->
+<script src="/static/cart/js/jquery-3.0.0.min.js"></script>
+
+<!-- == Bootsrap js File == -->
+<script src="/static/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $('.carousel[data-type="multi"] .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 1; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+</div>
+</div>

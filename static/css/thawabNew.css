@@ -1,0 +1,286 @@
+.jumbotronThawab {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    background-color: dodgerblue;
+    padding: 70px 0;
+    color: white !important;
+    font-size: 50px;
+}
+#topPullOnTop {
+    position: absolute;
+    top: 39%;
+    left: 46%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media(max-width: 768px){
+    #topPullOnTop {
+        top: 12%;
+        left: 47%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 414px){
+    #topPullOnTop {
+        top: -20%;
+        left: 43%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 411px){
+    #topPullOnTop {
+        top: -10%;
+        left: 45%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 375px){
+    #topPullOnTop {
+        top: -25%;
+        left: 44%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 360px){
+    #topPullOnTop {
+        top: -25%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 320px){
+    #topPullOnTop {
+        top: -35%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+.secondSection {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.divOfThawab {
+    position: relative;
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+    align-items:center;
+}
+
+.divOfThawab > hr {
+    height: 8px; 
+    background-color: #EEE8E8; 
+    flex: 1;
+    vertical-align: middle; 
+    margin-top: 10%;
+    /* display: block; */
+    /* margin: auto; */
+}
+
+@media(max-width: 1123px){
+    .divOfThawab > hr {
+        margin-top: 11%;
+    }
+}
+
+@media(max-width: 1000px){
+    .divOfThawab > hr {
+        margin-top: 13%;
+    }
+}
+
+@media(max-width: 862px){
+    .divOfThawab > hr {
+        margin-top: 15%;
+    }
+}
+
+@media(max-width: 768px){
+    .divOfThawab > hr {
+        margin-top: 17%;
+    }
+}
+
+@media(max-width: 630px){
+    .divOfThawab > hr {
+        margin-top: 19%;
+    }
+}
+
+@media(max-width: 503px){
+    .divOfThawab > hr {
+        margin-top: 24%;
+    }
+}
+
+@media(max-width: 411px){
+    .divOfThawab > hr {
+        margin-top: 33%;
+    }
+}
+
+@media(max-width: 414px){
+    .divOfThawab > hr {
+        margin-top: 32%;
+    }
+}
+
+@media(max-width: 322px){
+    .divOfThawab > hr {
+        margin-top: 40%;
+    }
+}
+
+@media(max-width: 280px){
+    .divOfThawab > hr {
+        margin-top: 45%;
+    }
+}
+
+.divOfThawab > .pTagOfThawab {
+    position: absolute; 
+    top: 0; 
+    left: 14%; 
+    background-color: #EEE8E8; 
+    width: 70%;
+    height: 270px;
+}
+
+.divOfThawab > .pTagOfThawab > h3 {
+    padding: 5% 15%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media(max-width: 660px){
+    .divOfThawab > .pTagOfThawab > h3 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 435px){
+    .divOfThawab > .pTagOfThawab > h3 {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 353px){
+    .divOfThawab > .pTagOfThawab > h3 {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 280px){
+    .divOfThawab > .pTagOfThawab > h3 {
+        font-size: 14px;
+    }
+}
+
+.innerDiv {
+    height: 408px;
+    padding-right: 15px;
+    -webkit-box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68); 
+    box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-bottom: 3%;
+}
+
+@media(max-width: 1024px){
+    .innerDiv {
+        height: 435px;
+    }
+}
+
+@media(max-width: 412px){
+    .innerDiv {
+        height: auto;
+    }
+}
+
+.innerDiv > .innerDiv2 {
+    padding: 15px;
+}
+
+.innerDiv > .innerDiv2 > .divToBeRounded1 > img {
+    padding: 10px;
+    border-radius: 50%;
+    border: 3px solid #9EB2D2;
+}
+
+.innerDiv > .innerDiv2 > .divToBeRounded2 > img {
+    padding: 10px;
+    border-radius: 50%;
+    border: 3px solid #8EC56F;
+}
+
+.innerDiv > .innerDiv2 > .divToBeRounded3 > img {
+    padding: 10px;
+    border-radius: 50%;
+    border: 3px solid #4D5280;
+}
+
+.innerDiv > .innerDiv2 > div {
+    padding-bottom: 3%;
+}
+
+#btnBackgroundColor1 {
+    background-color: #9EB2D2;
+    color: white;
+}
+
+#btnBackgroundColor2 {
+    background-color: #8EC56F;
+    color: white;
+}
+
+#btnBackgroundColor3 {
+    background-color: #4D5280;
+    color: white;
+}
+
+@media(max-width: 365px){
+    .innerDiv2 > div > h3 {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 280px){
+    .innerDiv2 > div > h3 {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 365px){
+    .innerDiv2 > div > h4 {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 280px){
+    .innerDiv2 > div > h4 {
+        font-size: 14px;
+    }
+}

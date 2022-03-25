@@ -1,0 +1,80 @@
+
+/*------------------------------------------------------------------
+	Template Name:	The Fund
+    Template URI:
+    Description ::
+    Author:
+    Author URI:
+    License:
+    License URI:
+    Version: 1.0
+    */
+
+    /*
+    ========================================================================
+    Index
+    ------------------------------------------------------------------------
+
+    # -  1.0 - All Global css
+    # -  2.0 - Heading Tag
+    # -  3.0 - Header
+    # -  4.0 - Menu Area
+    # -  5.0 - Button
+    # -  6.0 - Feature
+    # -  7.0 - Help Us
+    # -  8.0 - Volunteer
+    # -  9.0 - Gallery
+    # - 10.0 - Events
+    # - 11.0 - Blog
+    # - 12.0 - Testimonial
+    # - 13.0 - Join Us
+    # - 14.0 - Footer
+    # - 15.0 - Widget
+    # - 16.0 - Slider
+    # - 17.0 - Slick Slider
+    # - 18.0 - Form Element
+    # - 19.0 - Popup
+    # - 20.0 - Causes
+    # - 21.0 - Client
+    # - 22.0 - Banner
+    # - 23.0 - About us
+    # - 24.0 - Counter
+    # - 25.0 - Contact Us
+    # - 26.0 - Donate
+    # - 27.0 - Error
+    # - 28.0 - Color Swhicher
+    # - 29.0 - Preloader
+    */
+@import "base/variables.scss";
+@import "base/mixin.scss";
+@import "base/global.scss";
+@import "base/spacing.scss";
+
+
+@import "module/_header.scss";
+@import "module/_button.scss";
+@import "module/_feature.scss";
+@import "module/_help-us.scss";
+@import "module/_volunteer.scss";
+@import "module/_gallery.scss";
+@import "module/_event.scss";
+@import "module/_blog.scss";
+@import "module/_testimonial.scss";
+@import "module/_join-us.scss";
+@import "module/_footer.scss";
+@import "module/_widget.scss";
+@import "module/_slider.scss";
+@import "module/_slick.scss";
+@import "module/_form-element.scss";
+@import "module/_popup-box.scss";
+@import "module/_causes.scss";
+@import "module/_client.scss";
+@import "module/_banner.scss";
+@import "module/_about-us.scss";
+@import "module/_counter.scss";
+@import "module/_contact-us.scss";
+@import "module/_donate.scss";
+@import "module/_error.scss";
+@import "module/_color-swicher.scss";
+@import "module/_preloader.scss";
+@import "module/_lazy-load.scss";

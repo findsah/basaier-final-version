@@ -1,0 +1,119 @@
+{% extends 'web/navbardark.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+
+<div class="container" style="margin-top: 10rem;">
+    <h3 class="pathlink">الرئيسيه / انضم لاصدقاء النشر</h3>
+    <div class="title">
+        <h2 style="color: #1385B2; font-size: 37px;">انشأ رابط لمشروعك الخاص</h2>
+        <p style="color: #858585; font-size: 15px;">يمكنك تنضم لاصدقاء النشر من الان</p>
+    </div>
+    <div class="mt-5" style="margin-bottom: 10rem;">
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-search ml-3"></i>اختيار المشروع
+            </label>
+            <select name="cars" id="cars" class="formDivInput">
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+            </select>
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i> الدوله
+            </label>
+            <select name="cars" id="cars" class="formDivInput">
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+                <option value="اختر الدوله">اختر الدوله</option>
+            </select>
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>قيمه المشروع
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i> اسم المشروع
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>صله القرابه
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i> صوره البطاقه المدنيه
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>رقم الهاتف
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                كيف تحب ان يصل إليك تقرير المشروع
+            </label>
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            <label for="vehicle1" style="margin-left: 2rem;"> الي المنزل</label>
+            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+            <label for="vehicle2" style="margin-left: 2rem;"> واتساب</label>
+            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+            <label for="vehicle3" style="margin-left: 2rem;"> الايميل</label>
+            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+            <label for="vehicle3" style="margin-left: 2rem;"> جميع الوسائل</label>
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i> اسم المتبرع
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i> رقم هاتف المتبرع 1
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i> رقم هاتف المتبرع 2
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i> العنوان بالتفصيل
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDiv">
+            <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i> البريد الالكتروني (اختياري)
+            </label>
+            <input class="formDivInput" type="text">
+        </div>
+        <div class="formDivBtns">
+            <button class="formDivBtn" style="color: #fff; background-color: #1385B2;">ارسال طلب الرابط </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

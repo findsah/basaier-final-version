@@ -1,0 +1,43 @@
+/* -----------------------------------
+** Client
+-------------------------------------*/
+.client-carusel{
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 30px;
+    .carusel-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 120px;
+        border:1px solid $border;
+        margin-left: 10px;
+        margin-right: 10px;
+        transition: .3s;
+        img{
+
+            opacity: .5;
+            transition: .3s;
+        }
+    }
+
+    .slick-active + .slick-active + .slick-active + .slick-active {
+        background: $base;
+        border-color: $base;
+        img{
+            filter: invert(100%);
+            opacity: 1;
+        }
+    }
+    .slick-active + .slick-active + .slick-active + .slick-active + .slick-active {
+        background: transparent;
+        border:1px solid $border;
+        img{
+            filter: none;
+            opacity: .5;
+        }
+    }
+}
+/* -----------------------------------
+**  End Client
+-------------------------------------*/

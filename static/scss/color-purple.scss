@@ -1,0 +1,102 @@
+/* -----------------------------------
+**   Yellow Color
+-------------------------------------*/
+@import "base/variables.scss";
+a{
+    &:hover,&:focus,&.active{
+        color:$purple;
+    }
+}
+.base-color,
+#easy-menu > ul > li:hover > a,
+#easy-menu ul ul li a:hover,
+.feature-item:hover .feature-item__title,
+.feature-item__icon,
+.fund-volunteer:hover .fund-volunteer__name,
+.btn,
+.round-social-icons > li > a:hover,
+.base-bg .base-color,
+.quote-box .quote-icon,
+.fund-arrow-left-list li:before,
+.fund-pagination a.next:hover,
+.event-details-counter-wrap .event-counter .countdown-period
+{
+    color: $purple;
+}
+.btn.base-bg,
+.all-text-white .btn:hover,
+.help-us__icon-wrap,
+.fund-volunteer:hover .fund-volunteer__photo,
+.btn,
+.round-social-icons > li > a:hover,
+.filter-options > li > a.btn,
+.slick-arrow,
+.newsletter-form__input,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="time"]:focus,
+input[type="text"]:focus,
+.form-control:focus,
+textarea:focus,
+textarea.form-control:focus,
+.our-causes__rised::before,
+.slick-arrow,
+.client-carusel .slick-active + .slick-active + .slick-active + .slick-active,
+.tobar-fixed-check input:checked + label:before,
+.backtop-top-check input:checked + label:before,
+.removetopbar input:checked + label:before
+
+{
+    border-color: $purple;
+}
+.cd-top,
+.base-bg,
+.btn.base-bg,
+.all-text-white .btn:hover,
+.feature-item__icon-wrap:before,
+.section-heading-separator:after,
+.btn:hover,
+.btn.active,
+.filter-options > li > a:before,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.fund-testimonial__quote:before,
+.widget__title:after,
+#cboxContent,
+.preloader,
+.client-carusel .slick-active + .slick-active + .slick-active + .slick-active,
+.slick-dots li.slick-active button,
+.tobar-fixed-check input:checked + label:before,
+.backtop-top-check input:checked + label:before,
+.removetopbar input:checked + label:before
+{
+    background: $purple;
+}
+.upcomming-event__date,
+.blog-post__like-comment,
+.join-us-section,
+#cboxPrevious:before, #cboxNext:before, #cboxClose:before
+{
+    background:rgba(170, 0, 255, .8);
+}
+.join-us-section{
+    background:rgba(170, 0, 255, .8) !important;
+}
+.banner-area:before{
+    background:rgba(170, 0, 255, .7);
+}
+
+
+
+
+
+
+
+
+/* -----------------------------------
+** End Yellow Color
+-------------------------------------*/

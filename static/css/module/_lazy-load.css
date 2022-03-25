@@ -1,0 +1,7 @@
+.gallery-item {
+  min-height: 192px;
+}
+
+.gallery-item img {
+  object-fit: cover;
+}

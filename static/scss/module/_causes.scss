@@ -1,0 +1,258 @@
+/* -----------------------------------
+** Causes
+-------------------------------------*/
+.our-causes{
+    border-radius: 15px;
+    margin-bottom: 30px;
+    &__image-wrap{
+        position: relative;
+        @include breakpoint(max_sm){
+
+            img{
+                width: 100%;
+                max-height: 275px;
+                object-fit: cover;
+            }
+        }
+    }
+    &__percentage{
+        position: absolute;
+        left:0;
+        bottom:0;
+        width: 100%;
+        display: flex;
+    }
+    &__rised,&__goal{
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+    &__rised{
+        width:calc(50% + 32px);
+        background: $nv;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        &::before{
+            border-top: 45px solid transparent;
+            border-bottom: 40px solid transparent;
+            border-left: 30px solid #0aaaa0;
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -4px;
+            transform: rotate(34deg);
+        }
+    }
+    &__goal{
+        width:calc(50% - 32px);
+        padding-left: 4px;
+    }
+    &__text-content{
+        border-width: 0 1px 1px 1px;
+        border-color: $border;
+        padding:5px 28px 30px 28px;
+        border-radius: 0 0 16px 16px;
+        border-style: solid;
+        transition: .3s;
+        p{
+            max-width: 292px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    &__title{
+        margin-bottom: 10px;
+        letter-spacing: -.5px;
+        font-weight: 600;
+        margin-top: 17px;
+    }
+    &:hover{
+        .our-causes__text-content{
+            border-color:transparent;
+            box-shadow:0 1px 10px rgba(0,0,0,0.1);
+        }
+    }
+}
+
+.progress-bg .progress-rate {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  transition: 2.5s;
+}
+.progress-item{
+    display: flex;
+    align-items: center;
+
+    .progress-bg {
+      position: relative;
+      height: 3px;
+      background: #dedede;
+      width: calc(100% - 53px);
+    }
+    .progress-percent{
+        width: 100px;
+        text-align: right;
+    }
+}
+.causes-details-top{
+    box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    &__text-content{
+        padding:30px;
+    }
+}
+.causes-details-meta{
+    &>*{
+        &:before{
+            content: '|';
+            color: $nv;
+            padding:0 20px;
+        }
+        &:first-child{
+            &:before{
+                display: none;
+            }
+        }
+    }
+}
+.causes-details-progress{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    @include breakpoint(max_sm){
+        display: block;
+        padding-bottom: 15px;
+    }
+    .progress-item{
+        width: 60%;
+        box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+        border-radius: 30px;
+        padding:12px 25px;
+        margin-bottom: 25px;
+        @include breakpoint(max_sm){
+            width: 100%;
+        }
+
+    }
+}
+
+.project-progress {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-progress .progress-item {
+  width: 60%;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  padding: 12px 25px;
+  margin-bottom: 25px;
+}
+.accordion-wrap{
+    display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 100%;
+    @include breakpoint(max_sm){
+        display: block;
+        margin:0;
+    }
+    .image{
+        width: 50%;
+        padding:0 15px;
+        @include breakpoint(max_sm){
+            width: 100%;
+            margin-bottom: 30px;
+            padding:0;
+        }
+        img{
+            width: 100%;
+            height: inherit;
+            object-fit: cover;
+        }
+    }
+    .panel-group{
+        width: 50%;
+        padding:0 15px;
+        @include breakpoint(max_sm){
+            width: 100%;
+            padding:0;
+        }
+    }
+}
+.panel-group .panel{
+    border:0;
+    margin-bottom: 18px;
+    box-shadow: none;
+}
+.panel-default>.panel-heading{
+    background: transparent;
+    color: $nv;
+    border:1px solid $border;
+    border-radius: 4px;
+}
+.panel-title{
+    font-size: 14px;
+    font-weight: 500;
+    font-family: $open;
+}
+.panel-group .panel-heading+.panel-collapse>.panel-body{
+    border:0;
+    padding:15px 0;
+}
+.quote-box{
+    padding:30px;
+    position: relative;
+    overflow: hidden;
+    .quote-icon{
+        font-size: 65px;
+        transform: rotate(-180deg);
+        position: absolute;
+        right:40px;
+        top:-15px;
+        color: #abdcd9;
+    }
+    .quote-text{
+        font-size: 18px;
+        position:relative;
+        z-index: 5;
+    }
+}
+.causes-details-navigation,.blog-details-navigation{
+    .previous-post,.next-post{
+        position: relative;
+        padding:5px 0;
+        display: inline-block;
+        border-bottom: 1px solid $border;
+    }
+}
+.panel-title .collapsed{
+    &:after{
+
+        content:"\f067";
+    }
+}
+.panel-title a:not(.collapsed){
+    &:after{
+        content:"\f068";
+    }
+}
+.panel-title a{
+    display: block;
+    position: relative;
+    &:after{
+
+        font-family: 'FontAwesome';
+        float: right;
+    }
+}
+/* -----------------------------------
+** End Causes
+-------------------------------------*/

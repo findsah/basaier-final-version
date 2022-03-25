@@ -1,0 +1,116 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load projects_user %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/static/css/thawabNew.css">
+
+    <div style="position: relative; background-color: dodgerblue;">
+        <img src="/static/uploads/childHoldingATree.jpeg" alt=""
+             style="width: 100%; opacity: 0.6;">
+            <div id="topPullOnTop">
+                <h2 class="text-center" style="color: white;">{% trans "ثواب" %}</h2>
+            </div>
+    </div>
+
+    <div class="container secondSection">
+        <div class="text-center">
+            <h2 id="logoColor">{% trans "ثواب" %}</h2>
+        </div>
+        <div class="text-center">
+            <h5 id="logoColor" style="width: 65%; margin: auto; margin-top: 2%;">
+                {% trans "هناك نوع واحد من الحب ، ولكن هناك آلاف التقليد .... امنح الحب لمن تحبهم واتركه يلمع من خلاله. تقدم لك خدمة ثواب من قطر الخيرية الفرصة لمشاركة حبك لأحبائك مع العالم. يمكنك اختيار أحد مشاريعنا الخيرية أدناه لمساعدة من هم في أمس الحاجة إليها وتكريسه لمن تهتم بهم ... سواء كانوا لا يزالون يعيشون أو يفترقون في عالمنا" %}</h5>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="divOfThawab">
+            <hr>
+            <div class="container text-center pTagOfThawab">
+                <h5 id="logoColorLightBlue" style="width: 65%; margin: auto; margin-top: 10%;" class="text-center">
+                    {% trans "لم يكن من السهل أبدًا إرسال هدية خيرية نيابة عن أحبائنا ، على الرغم من سهولة اتباع الخطوات اختر قضية خيرية من المشاريع المختارة بعناية ، وساعد في تمويلها تخليداً لذكرى أحبائك يمكنك إما تغطية تكلفة المشروع بالكامل بنفسك ، أو عن طريق دعوة شبكتك لتمويل المشروع معًا" %}</h5>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+    <br>
+    <br><br><br>
+
+    <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <div class="innerDiv">
+                    <div class="innerDiv2">
+                        <div class="divToBeRounded1 text-center">
+                            <img src="/static/uploads/giveMoney.png" alt="">
+                        </div>
+                        <div class="text-center">
+                            <h3 id="logoColorLightBlue" style="margin: 3% 0;">{% trans "المساهمة في الحملة" %}</h3>
+                        </div>
+                        <div class="text-center" id="logoColorLightBlue">
+                            <h5 id="newsDetails" style="margin: 10% 0;">{% trans "لم يكن من السهل أبدًا إرسال هدية خيرية نيابة عن أحبائنا ، على الرغم من سهولة اتباع الخطوات اختر قضية خيرية من المشاريع المختارة بعناية ، وساعد في تمويلها تخليداً لذكرى أحبائك" %}
+                            </h5>
+                        </div>
+                        <div class="text-center">
+                            <a href="{% url 'thawabContribution' %}" class="btn text-center"
+                               id="btnBackgroundColor1">{% trans "ساهم الان" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <div class="innerDiv">
+                    <div class="innerDiv2">
+                        <div class="divToBeRounded2 text-center">
+                            <img src="/static/uploads/takeHeart.png" alt="">
+                        </div>
+                        <div class="text-center">
+                            <h3 id="logoColorGreen" style="margin: 3% 0;">كفيل</h3>
+                        </div>
+                        <div class="text-center" id="logoColorGreen">
+                            <h5 id="newsDetails" style="margin: 10% 0;">{% trans "لم يكن من السهل أبدًا إرسال هدية خيرية نيابة عن أحبائنا ، على الرغم من سهولة اتباع الخطوات اختر قضية خيرية من المشاريع المختارة بعناية ، وساعد في تمويلها تخليداً لذكرى أحبائك" %}
+                            </h5>
+                        </div>
+                        <div class="text-center">
+                            <a href="{% url 'thawabProjects' %}" class="btn text-center"
+                               id="btnBackgroundColor2">{% trans "اكفل الان" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="innerDiv">
+                    <div class="innerDiv2">
+                        <div class="divToBeRounded3 text-center">
+                            <img src="/static/uploads/horn.png" alt="">
+                        </div>
+                        <div class="text-center">
+                            <h3 id="logoColor" style="margin: 3% 0;">ابدأ حملة</h3>
+                        </div>
+                        <div class="text-center" id="logoColor">
+                            <h5 id="newsDetails" style="margin: 10% 0;">{% trans "لم يكن من السهل أبدًا إرسال هدية خيرية نيابة عن أحبائنا ، على الرغم من سهولة اتباع الخطوات اختر قضية خيرية من المشاريع المختارة بعناية ، وساعد في تمويلها تخليداً لذكرى أحبائك" %}
+                            </h5>
+                        </div>
+                        <div class="text-center">
+                            <a href="{% url 'thawabCompaigns' %}" class="btn text-center"
+                               id="btnBackgroundColor3">{% trans "ابدأ حملة" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+{% endblock %}

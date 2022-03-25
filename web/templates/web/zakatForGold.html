@@ -1,0 +1,1415 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load app_filters %}
+{% load i18n %}
+
+{% block content %}
+
+    <style rel="stylesheet">
+        {#body {#}
+        {#    background-color: #F4F4F4 !important;#}
+        {# }#}
+        {##}
+        {#.btn-orange {#}
+        {#    background-color: #EA694D;#}
+        {#    color: whitesmoke;#}
+        {# }#}
+        {##}
+        {#.dropdown > a {#}
+        {#    text-decoration: none;#}
+        {#    color: white;#}
+        {# }#}
+        {##}
+        {#.dropdown > a:hover {#}
+        {#    text-decoration: none;#}
+        {#    color: white;#}
+        {# }#}
+
+        #language {
+            background-color: transparent;
+            border: none;
+            width: fit-content;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        {# END HEADER: #}
+
+        {# NAVBAR: #}
+        {#        .navbar {#}
+        {#            margin-top: 30px;#}
+        {#            background-color: white !important;#}
+        {#        }#}
+
+        {#.navbar.navbar-default, .navbar button.navbar-toggle {#}
+        {#    border: none;#}
+        {# }#}
+        {##}
+        {#.navbar-brand > img {#}
+        {#    height: 30px;#}
+        {#    width: 70px;#}
+        {#    margin-top: 0;#}
+        {# }#}
+        {##}
+        {#.navbar .navbar-nav {#}
+        {#    display: inline-block;#}
+        {#    float: none;#}
+        {#    vertical-align: top;#}
+        {# }#}
+        {##}
+        {#.navbar .navbar-collapse {#}
+        {#    text-align: center;#}
+        {# }#}
+
+        {# END NAVBAR: #}
+
+
+        {#a {#}
+        {#    text-decoration: none !important;#}
+        {# }#}
+        {##}
+        {#a:hover {#}
+        {#    text-decoration: none !important;#}
+        {#    color: #63A6A5;#}
+        {# }#}
+
+        {#* {#}
+        {#    -webkit-box-sizing: border-box;#}
+        {#    -moz-box-sizing: border-box;#}
+        {#    box-sizing: border-box;#}
+        {# }#}
+
+        {#user agent stylesheet#}
+        {#a:-webkit-any-link {#}
+        {#    color: -webkit-link;#}
+        {#    cursor: pointer;#}
+        {#    text-decoration: underline;#}
+        {# }#}
+        {##}
+        {#.container.text-center > h1 {#}
+        {#    color: #EA694D;#}
+        {#    padding-top: 30px;#}
+        {#    padding-bottom: 30px;#}
+        {# }#}
+
+
+        {# FROM NET: #}
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        {#ul, ol {#}
+        {#    list-style: none;#}
+        {# }#}
+        {##}
+        {#ol, ul {#}
+        {#    margin-top: 0;#}
+        {#    margin-bottom: 10px;#}
+        {# }#}
+        {##}
+        {#ul {#}
+        {#    display: block;#}
+        {#    list-style-type: disc;#}
+        {#    margin-block-start: 1em;#}
+        {#    margin-block-end: 1em;#}
+        {#    margin-inline-start: 0;#}
+        {#    margin-inline-end: 0;#}
+        {#    padding-inline-start: 40px;#}
+        {# }#}
+
+        ul#zakat-calc-tabs li {
+            display: inline-block;
+            margin-right: 15px;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .padding-left-2 {
+            padding-left: 2px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        .zakat-tab.active {
+            background: #63a69f;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #fff;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab {
+            background: #fff;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #313131;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab:hover {
+            background: #63a69f;
+        }
+
+        div {
+            display: block;
+        }
+
+        img {
+            vertical-align: middle;
+            border: 0;
+        {#width: 44px;#}
+        }
+
+        .padding-0-h {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .Input-Transparent {
+            border: none;
+            background: transparent;
+        }
+
+        .padding-less {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+
+        .padding-20-top {
+            padding-top: 20px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .zakat-calc-remove-text-box {
+            color: #ce3173;
+            font-size: 20px;
+        }
+
+        .margin-10-bottom {
+            margin-bottom: 10px !important;
+        }
+
+        .white-color {
+            color: #fff;
+        }
+
+        .margin-15-top {
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+
+        .orange-color {
+            color: #f26a4e;
+        }
+
+        .margin-30-bottom {
+            margin-bottom: 30px;
+        }
+
+        .margin-40-top {
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .padding-0-h {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        :-webkit-any(article, aside, nav, section) h1 {
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+        }
+
+        .white-box {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+
+        .zakat-calc-details .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .form-control option {
+            color: #464a4c;
+            background-color: #fff;
+            border-color: #ccc;
+            box-shadow: none;
+            outline: 0;
+        }
+
+        #calcTab .nav-pills {
+            border-bottom: 2px solid #f26a4e;
+        }
+
+        .nav > li {
+        {#position: relative;#} display: block;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #calcTab .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            color: #fff;
+            background-color: #f26a4e;
+            outline: none;
+        }
+
+        #calcTab .nav-pills > li > a {
+            border-radius: 0;
+            background: #fff;
+        }
+
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: #fff;
+            background-color: #337ab7;
+        }
+
+        {#.nav > li > a {#}
+        {#    padding: 10px 15px;#}
+        {# }#}
+        {##}
+        {#.nav-pills > li > a {#}
+        {#    border-radius: 4px;#}
+        {# }#}
+        {##}
+        {#.nav > li > a {#}
+        {#    position: relative;#}
+        {#    display: block;#}
+        {#    padding: 10px 15px;#}
+        {# }#}
+
+        {#a {#}
+        {#    color: #337ab7;#}
+        {# }#}
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        {##}
+        {#a:-webkit-any-link {#}
+        {#    color: -webkit-link;#}
+        {#    cursor: pointer;#}
+        {#    text-decoration: underline;#}
+        {# }#}
+
+        .padding-30-top {
+            padding-top: 30px !important;
+        }
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .padding-bottom-20 {
+            padding-bottom: 20px;
+        }
+
+        .padding-80-top {
+            padding-top: 80px;
+        }
+
+        .btn-green {
+            color: #fff;
+            background-color: #63a69f;
+            border-color: #63a69f;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+            outline: 0;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .fatwa.white-box {
+            background: #fff;
+            padding: 15px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .bg-gray {
+            background: #f4f4f4;
+            height: 1400px;
+        }
+
+        .padding-50-v {
+            padding-bottom: 50px;
+            padding-top: 100px;
+        }
+
+        {# END NAVPANEL: #}
+
+        {# FOR MODALS: #}
+        .zakat-calc-modal .modal-header {
+            padding: 15px;
+            border-bottom: 0 solid #e5e5e5;
+        }
+
+        .modal-header .close {
+            margin-top: -2px;
+        }
+
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+        }
+
+        .close {
+            opacity: .8;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+            border-radius: 6px;
+        }
+
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .padding-10-v {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+        }
+
+        .btn-orange {
+            color: #fff;
+            background-color: #f26a4e;
+            border-color: #d85d43;
+            width: 100%;
+            padding: 10px 22px;
+        }
+
+        {# END FOR MODALS: #}
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .padding-100-top {
+            padding-top: 100px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .zakat-calc-remove-text-box {
+            color: #ce3173;
+            font-size: 20px;
+        }
+
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
+
+
+    </style>
+
+
+    {# HEADER: #}
+    {#<header class="fund-header navbar-fixed-top">#}
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4">#}
+    {#                <i class="fa fa-envelope" id="forWhiteColor"></i> <span class="pdl5">basaier@basaier.org</span>#}
+    {#            </div>#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-center">#}
+    {#                <div class="dropdown">#}
+    {#                    <a class="dropdown-toggle" type="button" data-toggle="dropdown">En#}
+    {#                        <span class="caret"></span></a>#}
+    {#                    <ul class="dropdown-menu">#}
+    {#                        <li><a href="#">Ar</a></li>#}
+    {#                    </ul>#}
+    {#                </div>#}
+    {#                <select name="language" id="language" class="text-right">#}
+    {#                    <option value="1">En</option>#}
+    {#                    <option value="2">Ar</option>#}
+    {#                </select>#}
+    {#            </div>#}
+    {#            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-right">#}
+    {#                <i class="fa fa-sign-in fa-lg"></i>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</header>#}
+    {# END HEADER: #}
+    {##}
+    {# COLLAPSED NAVBAR: #}
+    {#<nav class="navbar navbar-default navbar-fixed-top">#}
+    {#    <div class="container-fluid">#}
+    {#        <div class="navbar-header">#}
+    {#            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">#}
+    {#                <span class="icon-bar"></span>#}
+    {#                <span class="icon-bar"></span>#}
+    {#                <span class="icon-bar"></span>#}
+    {#            </button>#}
+    {#            <a class="navbar-brand" href="{% url 'index' %}"> <img src="/static/images/logo.png" alt="">#}
+    {#            </a>#}
+    {#        </div>#}
+    {#        <div class="collapse navbar-collapse" id="myNavbar">#}
+    {#            <ul class="nav navbar-nav">#}
+    {#                <li><a href="">About Zakat</a></li>#}
+    {#                <li><a href="#"> Zakat</a></li>#}
+    {#                <li><a href="#">Fatwa</a></li>#}
+    {#                <li><a href="#">Zakat Outputs</a></li>#}
+    {#                <li><a href="#">Donations Ways</a></li>#}
+    {#            </ul>#}
+    {#            <ul class="nav navbar-nav navbar-right">#}
+    {#                <li><a href="#"><span class="fa fa-cart-plus fa-2x"></span></a></li>#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</nav>#}
+    {# END COLLAPSED NAVBAR: #}
+
+    {# MAIN BODY: #}
+    <section class="bg-gray padding-50-v">
+        <div class="container padding-0-h-xs">
+            <div class="row">
+                <h1 class="orange-color text-center margin-30-bottom">
+                    Zakat Calculator
+                </h1>
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 padding-0-h">
+                    <div class="row padding-40-top hidden-xs">
+                        <div class="col-xs-12">
+                            <ul id="zakat-calc-tabs" style="border-bottom:2px solid #63A69F;">
+                                <li class="text-center padding-left-2">
+                                    <a href="{% url 'zakatForMoney' %}">
+                                        <div id="Div_Money" class="zakat-tab">
+                                            <img src="/static/uploads/home-Money-Zakat.png" width="44">
+                                            <h4 style="padding-top:10px;text-align:center">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "مال" %}
+                                                {% else %}
+                                                    {% trans "Money" %}
+                                                {% endif %}</h4>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="text-center">
+                                    <a href="{% url 'zakatForGold' %}">
+                                        <div id="Div_Gold" class="zakat-tab active">
+                                            <img src="/static/uploads/Gold-Zakat-home.png" width="44">
+                                            <h4 style="padding-top:10px;text-align:center;">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "ذهب" %}
+                                                {% else %}
+                                                    {% trans "Gold" %}
+                                                {% endif %}</h4>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- xs layout design -->
+                    <div class="col-xs-12 padding-50-top hidden-lg hidden-md hidden-sm hidden-xs">
+                        <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                            <ul id="zakat-calc-tabs">
+                                <li class="text-center padding-left-2">
+                                    <a href="">
+                                        <div class="zakat-tab text-center">
+                                            <img src="/static/uploads/Money.jpg" width="44">
+                                            <p style="padding-top:10px;text-align:center" class="font-14-en">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "مال" %}
+                                                {% else %}
+                                                    {% trans "Money" %}
+                                                {% endif %}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                            <ul id="zakat-calc-tabs">
+                                <li class="text-center padding-left-2">
+                                    <a href="">
+                                        <div class="zakat-tab text-center">
+                                            <img src="/static/uploads/Gold.jpg" width="44">
+                                            <p style="padding-top:10px;text-align:center">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "ذهب" %}
+                                                {% else %}
+                                                    {% trans "Gold" %}
+                                                {% endif %} </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                            <ul id="zakat-calc-tabs">
+                                <li class="text-center padding-left-2">
+                                    <a href="">
+                                        <div class="zakat-tab text-center">
+                                            <img src="/static/uploads/Animal.jpg" width="44">
+                                            <p style="padding-top:10px;text-align:center"> Cattle </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                            <ul id="zakat-calc-tabs">
+                                <li class="text-center padding-left-2">
+                                    <a href="">
+                                        <div class="zakat-tab text-center">
+                                            <img src="/static/uploads/Stocks.jpg" width="44">
+                                            <p style="padding-top:10px;text-align:center"> Stocks </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="">
+
+                        <div id="tabs" class="col-md-8 col-sm-8 col-xs-12 zakat-calc-details">
+                            <div class="white-box-large">
+
+                                <div class="padding-bottom-20">
+
+
+                                    <div class="clearfix"></div>
+
+
+                                    <div class="margin-15-top">
+                                        {#                                    <div class="col-md-8 col-sm-8 col-xs-12 padding-0-h">#}
+                                        {#                                        <p> {% trans "Gold Price Today, Per Gram" %} </p>#}
+                                        {#                                    </div>#}
+                                        {#                                    <div class="col-md-4 col-sm-4 col-xs-12 padding-less">#}
+                                        {#                                        <p class="orange-color font-english">#}
+                                        {#                                            <input id="Rate"#}
+                                        {#                                                   class="Input-Transparent text-left text-left-xs padding-0-h col-xs-12"#}
+                                        {#                                                   readonly="readonly"#}
+                                        {#                                                   value="{{ getCurrentGoldValue }} {{ getMyCurrency }}">#}
+                                        {#                                        </p>#}
+                                        {#                                    </div>#}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <table style="width: 100%;"
+                                               class="s4-wpTopTable FormStyle">
+                                            <tbody>
+                                            <tr style="font-size: 12pt; color: #000000">
+                                                <td colspan="4"> &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">
+                                                    &nbsp;<strong> Gold
+                                                    Caliber</strong>&nbsp;
+                                                </td>
+                                                <td class="text-center">
+                                                    &nbsp;<strong> Gram
+                                                    Price </strong>&nbsp;
+                                                </td>
+
+                                                <td class="text-center"> &nbsp;&nbsp;<strong>Gold
+                                                    Weight </strong> &nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"> &nbsp;&nbsp;<strong>Zakat
+                                                    Amount {{ getMyCurrency }} </strong>
+                                                    &nbsp;&nbsp;
+                                                </td>
+                                            </tr>
+
+                                            <tr style="font-size:medium; color: #000000">
+                                                <td class="text-center"
+                                                    height="5" width="25%">
+                                                    &nbsp;&nbsp;<strong>18ct</strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5" width="25%">
+                                                    &nbsp;&nbsp;<strong id="gramValueFor18ct">
+                                                </strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5" width="25%">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtw18"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw18"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+
+                                                <td class="text-center"
+                                                    height="5" width="25%">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtp18"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp18"
+                                                           disabled="disabled"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> &nbsp;&nbsp;</td>
+                                            </tr>
+                                            <tr style="font-size:medium; color: #000000">
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong>
+                                                    21ct </strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong id="gramValueFor21ct">
+                                                </strong>&nbsp;&nbsp;
+                                                </td>
+
+                                                <td class="text-center"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtw21"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw21"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+
+
+                                                <td class="text-center"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtp21"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp21"
+                                                           disabled="disabled"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> &nbsp;&nbsp;</td>
+                                            </tr>
+                                            <tr style="font-size: medium; color: #000000">
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong>22ct</strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong id="gramValueFor22ct">
+                                                </strong>&nbsp;&nbsp;
+                                                </td>
+
+                                                <td class="text-center"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtw22"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw22"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+
+
+                                                <td class="text-right"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtp22"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp22"
+                                                           disabled="disabled"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td> &nbsp;&nbsp;</td>
+                                            </tr>
+                                            <tr style="font-size:medium; color: #000000">
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong>24ct</strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5">
+                                                    &nbsp;&nbsp;<strong id="gramValueFor24ct">
+                                                </strong>&nbsp;&nbsp;
+                                                </td>
+                                                <td class="text-center"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtw24"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw24"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+
+
+                                                <td class="text-center"
+                                                    height="5">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$txtp24"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp24"
+                                                           disabled="disabled"
+                                                           class="txtbox form-control"
+                                                           onchange="calculateValueText3();"
+                                                           style="width:100%;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"> &nbsp;&nbsp;</td>
+                                            </tr>
+                                            <tr style="font-size: 11pt; color: #000000">
+                                                <td class="text-left"
+                                                    height="5" colspan="4">
+
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "إجمالي مبلغ الزكاة" %}{% else %}
+                                                        {% trans "Total Amount Of Zakat" %}{% endif %} {{ getMyCurrency }}
+                                                </td>
+                                            </tr>
+                                            <tr style="font-size: 11pt; color: #000000">
+                                                <td class="text-center"
+                                                    height="5" colspan="4">
+                                                    <input name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$amount"
+                                                           type="text"
+                                                           id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_amount"
+                                                           class="form-control"
+                                                           onchange="calculateValueText3();">
+                                                </td>
+                                            </tr>
+                                            <tr style="font-weight: bold; font-size: 12pt; color: #000000">
+                                                <td class="auto-style1">
+                                                    &nbsp;
+                                                </td>
+                                                <td style="text-align: left"
+                                                    class="auto-style2">
+                                                    &nbsp;
+                                                </td>
+                                                <td align="left"
+                                                    class="auto-style1"
+                                                    style="font-size: 12pt; ">
+                                                    &nbsp;
+                                                </td>
+                                                {#                                            <td class="auto-style1"#}
+                                                {#                                                style="text-align: left">#}
+                                                {#                                                <input type="image"#}
+                                                {#                                                       name="ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$ImageButton2"#}
+                                                {#                                                       id="ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_ImageButton2"#}
+                                                {#                                                       src=""#}
+                                                {#                                                       onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$ContentPlaceHolderhome$ContentPlaceHolder1$ImageButton2&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))"#}
+                                                {#                                                       style="border-width:0px;">#}
+                                                {#                                            </td>#}
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="resultNozakat">
+                                        <div class="col-xs-12 margin-10-bottom padding0">
+                                            <div class="col-xs-12 bg-gray-black" style="">
+                                                {#                                                <p class="text-left col-xs-6 white-color padding0">#}
+                                                {#                                                    Total Zakat#}
+                                                {#                                                </p>#}
+                                                <input class="col-xs-6 text-right white-color padding0" type="text"
+                                                       readonly="readonly" id="txt_TotalZakatGold"
+                                                       style="background-color: transparent; border: none;">
+                                            </div>
+                                            <div id="NoGoldZakat" class="col-xs-12 margin-10-top"
+                                                 style="display: none;">
+                                                <p class="text-left padding0 red-light"
+                                                   style="background-color: transparent; border: none;">
+                                                    No Zakat on gold which is owned by less than a quorum of gold, which
+                                                    is
+                                                    equal to 85 gram 24 carat.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {#                                    <div class="row padding-80-top padding-bottom-20">#}
+                                        {#                                        <div class="col-md-4 col-md-offset-4">#}
+                                        {#                                            <button id="btnCaculateGold" class="btn btn-green"#}
+                                        {#                                                    onclick="CaculateGoldClick();" type="button" data-toggle="modal">#}
+                                        {##}
+                                        {#                                                {% get_current_language as LANGUAGE_CODE %}#}
+                                        {#                                                {% if LANGUAGE_CODE == "ar" %}#}
+                                        {#                                                    {% trans "احسب الزكاة" %} {% else %}#}
+                                        {#                                                    {% trans "Calculate Zakat" %} {% endif %}#}
+                                        {#                                            </button>#}
+                                        {#                                        </div>#}
+                                        {#                                    </div>#}
+                                </div>
+
+                                <div class="modal fade " id="CalcAmount" role="dialog">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content zakat-calc-modal">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <p> Total zakat gold </p>
+                                                <p class="orange-color">
+                            <span class="font-english">
+                                <input id="TotalZakatGoldMoney" class="col-xs-12 form-control text-center english-font"
+                                       value="0">
+                            </span> {{ getMyCurrency }}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                                {#                                            <div class="row">#}
+                                                {#                                                <div class="col-md-12 col-sm-12 padding-10-v">#}
+                                                {#                                                    <button type="button" class="btn btn-dark-blue"#}
+                                                {#                                                            id="btnAddToBasketGold" data-dismiss="modal"#}
+                                                {#                                                            onclick="btnAddToBasketGoldClicked(1419, 613, null, 'TotalZakatGoldMoney', 'btnAddToBasketGold', 'Zakat on Gold', null, 596, 1100683,1)">#}
+                                                {#                                                        Add To Basket#}
+                                                {#                                                    </button>#}
+                                                {#                                                </div>#}
+                                                {#                                                <div class="col-md-12 col-sm-12 padding-10-v">#}
+                                                {#                                                    <button type="button" class="btn btn-orange"#}
+                                                {#                                                            id="quickbtnAddToBasketGold" data-dismiss="modal"#}
+                                                {#                                                            onclick="quickbtnAddToBasketGoldClicked(1419, 613, null, 'TotalZakatGoldMoney', 'quickbtnAddToBasketGold', 'Zakat on Gold', null ,596,1100683,1)">#}
+                                                {#                                                        Donate Now#}
+                                                {#                                                    </button>#}
+                                                {#                                                </div>#}
+                                                {#                                            </div>#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="modal fade " id="calc" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content zakat-calc-modal">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <img src="/static/uploads/currentNisabValue.png">
+                                                <br><br>
+                                                <p class="padding-30-h">
+                                                    The Zakat (Islamic Charity) is among the most important acts of
+                                                    worship
+                                                    in Islam, it is indeed its third pillar. Allah the Almighty made it
+                                                    mandatory to give Zakat in a set time and method. We shall not
+                                                    postpone
+                                                    the payment nor add heresies in it. Unfortunately, several Muslims
+                                                    fail
+                                                    to allot this mandatory charity its due importance; they usually
+                                                    procrastinate in performing it or ignore the right way to do so.
+                                                    In this article, we will clarify the method to calculate the Zakat
+                                                    of
+                                                    all sorts of wealth.
+
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                                        <button type="button" class="btn btn-dark-blue"
+                                                                data-dismiss="modal"> Done
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <a href="" class="dark-blue-color visible-xs">
+                                <div class="fatwa white-box">
+                                    <img src="/static/uploads/fatwaBook.png">
+                                    <span class="font-18 padding-10-h font-14-sm">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "فتوى" %}
+                                        {% else %}
+                                            {% trans "Fatwa" %}
+                                        {% endif %}
+                                </span>
+                                </div>
+                            </a>
+                            <div class="fatwa white-box">
+                                <h4>
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "عن الذهب" %}
+                                    {% else %}
+                                        {% trans "For Gold" %}
+                                    {% endif %}
+                                </h4>
+                                <p>
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "اختلف الفقهاء في زكاته فلا تجب فيها الزكاة مهما كان وزنها أو مقدارها ، وهي تجب فيها الزكاة عند وصولها إلى النصاب ، ولا تجب فيها الزكاة مع أنها في المدة المعتادة ، وما يزيد عن المعتاد في الزكاة الزكاة (وهذا مرجح) وأما الذهب المحفوظ والمكسور ، الذي لا ينتفع ، تجب الزكاة سواء كان على الرجال أو النساء" %}
+                                    {% else %}
+                                        {% trans "The fuqaha 'differed concerning his Zakah It is not subject to zakat regardless of its weight or its amount It is subject to zakaah when it reaches the nisaab Is not subject to zakat when it is within the usual period, and more than usual is subject to zakat (this is most likely) As for gold that is saved and broken, and which is not used, it is obligatory to Pay zakaah whether it is on men or women." %}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                <div class="white-box text-center">
+                                    <img src="/static/uploads/currentNisabValue.png">
+                                    <h4 class="orange-color">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "عملة" %}
+                                        {% else %}
+                                            {% trans "Currency" %}
+                                        {% endif %}
+                                    </h4>
+                                    <h4><span class="font-english"
+                                              style="white-space: pre-wrap"> {{ getMyCurrency }} </span>
+                                    </h4>
+                                </div>
+
+                                <a href="" class="dark-blue-color hidden-xs">
+                                    <div class="fatwa white-box">
+                                        <img src="/static/uploads/fatwaBook.png">
+                                        <span class="font-18 padding-10-h font-14-sm">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "فتوى" %}
+                                            {% else %}
+                                                {% trans "Fatwa" %}
+                                            {% endif %}
+                                    </span>
+                                    </div>
+                                </a>
+                                <div class="row">
+                                    <div class="white-box zakat-calc-questions">
+                                        <h4 class="orange-color">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "الأسئلة الأكثر شيوعًا" %}
+                                            {% else %}
+                                                {% trans "Most Common Questions" %}
+                                            {% endif %}
+                                        </h4>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "استعمال التقريب في حساب الزكاة" %}
+                                                    {% else %}
+                                                        {% trans "Using approximation in calculating Zakah" %}
+                                                    {% endif %}
+                                                    <span class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "حكم شراء بيت للفقراء بمال الزكاة" %}
+                                                    {% else %}
+                                                        {% trans "Ruling on buying a house for the poor with Zakah money" %}
+                                                    {% endif %}
+                                                    <span class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "ورثوا الزيتون فهل يخرجون زكاته قبل توزيعه؟" %}
+                                                    {% else %}
+                                                        {% trans "They inherited olives so should they pay its Zakah before distributing them?" %}
+                                                    {% endif %}
+                                                    <span class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "زكاة الحلي التي أهدتها والدتها لابنتها" %}
+                                                    {% else %}
+                                                        {% trans "Zakat on jewelry gifted to a daughter by her mother" %}
+                                                    {% endif %}
+                                                    <span class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "زكاة المال في البنوك" %}
+                                                    {% else %}
+                                                        {% trans "Zakat on money in banks" %}
+                                                    {% endif %}
+                                                    <span
+                                                            class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href=""
+                                                   class="black-color font-12-xs">
+                                                    {% get_current_language as LANGUAGE_CODE %}
+                                                    {% if LANGUAGE_CODE == "ar" %}
+                                                        {% trans "إخراج الزكاة عن الأعمال التي لها معاملات دائنة" %}
+                                                    {% else %}
+                                                        {% trans "Paying Zakah for business which has credit transactions" %}
+                                                    {% endif %}
+
+                                                    <span class="pull-right"><i
+                                                            class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# END MAIN BODY: #}
+
+
+    <!-- Footer -->
+    {#<footer class="page-footer font-small blue-grey lighten-5" style="background-color: lightgray;">#}
+    {#    <!-- Footer Links -->#}
+    {#    <div class="container text-center text-md-left mt-5">#}
+    {##}
+    {#        <!-- Grid row -->#}
+    {#        <div class="row mt-5 dark-grey-text">#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">#}
+    {#                <!-- Content -->#}
+    {#                <div class="">#}
+    {#                    <a href="{% url 'index' %}" class=""><img src="/static/images/logo.png"#}
+    {#                                                              alt=""></a>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">#}
+    {##}
+    {#                <div class="widget widget--footer widget--contact">#}
+    {#                    <div class="">#}
+    {#                        <h4>{% trans "QUICK CONTACT" %}</h4>#}
+    {#                    </div>#}
+    {#                    <div class="widget__text-content text-left">#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-location-arrow"></i></span>#}
+    {#                            <span class="contact-text">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>#}
+    {#                        </div>#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-phone"></i></span>#}
+    {#                            <span class="contact-text">+965 90900055 </span>#}
+    {#                        </div>#}
+    {#                        <div class="contact-way">#}
+    {#                            <span class=" contact-icon"><i class="fa fa-envelope-o"></i></span>#}
+    {#                            <span class="contact-text">basaier@basaier.com</span>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div><!--/.widget-->#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#            <!-- Grid column -->#}
+    {#            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-left">#}
+    {##}
+    {#                <!-- Links -->#}
+    {#                <div class="">#}
+    {#                    <h4>{% trans "FOLLOW US ON" %}</h4>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">#}
+    {#                        <span class=""><i class="fa fa-facebook-square"></i>#}
+    {#                        </span> {% trans "Facebook" %} </a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i#}
+    {#                            class="fa fa-twitter"></i> {% trans "Twitter" %}</a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i#}
+    {#                            class="fa fa-instagram"></i> {% trans "Instagram" %} </a>#}
+    {#                </div>#}
+    {#                <div style="padding-bottom: 15px;">#}
+    {#                    <a id="forBlackColor"#}
+    {#                       href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"#}
+    {#                       target="_blank"><i class="fa fa-youtube"></i> {% trans "Youtube" %}</a>#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#            <!-- Grid column -->#}
+    {##}
+    {#        </div>#}
+    {#        <!-- Grid row -->#}
+    {#    </div>#}
+    {#    <!-- Footer Links -->#}
+    {##}
+    {#    <!-- Copyright -->#}
+    {#    <div class="footer-copyright text-center text-black-50 py-3"#}
+    {#         style="background-color: black; color: white; padding: 10px;">© {% trans "2020 Copyright:" %}#}
+    {#        <a class="dark-grey-text" href="https://mdbootstrap.com/"> {% trans "Basaier" %}</a>#}
+    {#    </div>#}
+    {#    <!-- Copyright -->#}
+    {##}
+    {#</footer>#}
+    {#<!-- Footer -->#}
+    {#<script src="/static/js/jquery-3.0.0.min.js"></script>#}
+    {#<script src="/static/js/bootstrap.min.js"></script>#}
+    {##}
+    {# SCRIPT FOR CALCULATING FOLD VALUE: #}
+    <script type="text/javascript">
+        {#var xmlHttp = new XMLHttpRequest();#}
+        {#var base_currency1 = {{ getMyCurrency }};#}
+        {#var base_currency = toString(base_currency1);#}
+        {#var symbol = 'XAU';#}
+        {#var endpoint = 'latest';#}
+        {#var access_key = '1v1l8rqffzyls39y9z3c2tm4fd08u5gmsdh4wfuh9vrq1v3q98poah5yov2x';#}
+        {#var theUrl = 'https://metals-api.com/api/' + endpoint + '?access_key=' + access_key + '&base=' + base_currency + '&symbols=' + symbol;#}
+        {#xmlHttp.open( "GET", theUrl, false ); // false for synchronous request#}
+        {#xmlHttp.send( null );#}
+        {#console.log(xmlHttp.responseText);#}
+        {#console.log({{ getCurrentGoldValue }});#}
+
+        var goldPricePerOunce = {{ getCurrentGoldValue }};
+        console.log("Price Per Ounce: ", goldPricePerOunce);
+        var totalGramsInPerOunce = 31.1;
+        var pricePerGram;
+        pricePerGram = goldPricePerOunce / totalGramsInPerOunce;
+        console.log("Price Per Gram", pricePerGram);
+        document.getElementById("gramValueFor18ct").innerHTML = (pricePerGram * (18 / 24)).toFixed(3);
+        document.getElementById("gramValueFor21ct").innerHTML = (pricePerGram * (21 / 24)).toFixed(3);
+        document.getElementById("gramValueFor22ct").innerHTML = (pricePerGram * (22 / 24)).toFixed(3);
+        document.getElementById("gramValueFor24ct").innerHTML = (pricePerGram * (24 / 24)).toFixed(3);
+
+        function calculateValueText3() {
+
+            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp21').value = parseFloat(
+                document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw21').value * pricePerGram * (21 / 24) * 0.025).toFixed(3);
+
+            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp22').value = parseFloat(
+                document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw22').value * pricePerGram * (22 / 24) * 0.025).toFixed(3);
+
+            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp24').value = parseFloat(
+                document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw24').value * pricePerGram * (24 / 24) * 0.025).toFixed(3);
+
+            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp18').value = parseFloat(
+                document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw18').value * pricePerGram * (18 / 24) * 0.025).toFixed(3);
+
+            var myFloatNumber18 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp18').value;
+            var myFloatNumber21 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp21').value;
+            var myFloatNumber22 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp22').value;
+            var myFloatNumber24 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp24').value;
+
+            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_amount').value = parseFloat(parseFloat(myFloatNumber18) + parseFloat(myFloatNumber21) + parseFloat(myFloatNumber22) + parseFloat(myFloatNumber24)).toFixed(3);
+
+
+        }
+    </script>
+    {##}
+    {#<script type="text/javascript">#}
+    {#    $(document).ready(function () {#}
+    {#        $("select").searchable({#}
+    {#            maxListSize: 200, // if list size are less than maxListSize, show them all#}
+    {#            maxMultiMatch: 300, // how many matching entries should be displayed#}
+    {#            exactMatch: false, // Exact matching on search#}
+    {#            wildcards: true, // Support for wildcard characters (*, ?)#}
+    {#            ignoreCase: true, // Ignore case sensitivity#}
+    {#            latency: 200, // how many millis to wait until starting search#}
+    {#            warnMultiMatch: 'top {0} matches ...',#}
+    {#            warnNoMatch: 'no matches ...',#}
+    {#            zIndex: 'auto'#}
+    {#        });#}
+    {#    });#}
+    {#</script>#}
+    {# END SCRIPT FOR CALCULATING FOLD VALUE: #}
+
+{% endblock %}

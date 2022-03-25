@@ -1,0 +1,183 @@
+/* -----------------------------------
+** Color Swhicher
+-------------------------------------*/
+.color-shicher-wraper {
+  position: fixed;
+  top: 50%;
+  left: -210px;
+  z-index: 999;
+  -webkit-transform: translateY(-60%);
+  -ms-transform: translateY(-60%);
+  transform: translateY(-60%);
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  transition: .3s;
+}
+.backtop-top-check{
+    @include breakpoint(max_sm){
+        margin-top: -10px;
+    }
+}
+.tobar-fixed-check{
+    @include breakpoint(max_sm){
+        display: none;
+    }
+}
+.color-shicher-wraper{
+    @include breakpoint(max_sm){
+        .btn{
+            font-size: 14px;
+            padding: 7px 10px;
+            min-width: 100px;
+            margin-top: -10px;
+        }
+    }
+}
+.tobar-fixed-check, .backtop-top-check,.removetopbar {
+    input[type="checkbox"]{
+       display: none;
+    }
+    label{
+        position: relative;
+        font-size: 15px;
+        padding-left: 20px;
+        &:before{
+            position: absolute;
+            left:0;
+            top:3px;
+            width: 15px;
+            height: 15px;
+            border:1px solid $border;
+            content: '';
+        }
+    }
+    input:checked + label{
+        &:before{
+            background: $base;
+            border-color: $base;
+        }
+    }
+}
+.toTop-hide{
+    display: none;
+}
+.main-menu-fix-active.main-menu-fixed{
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    z-index: 997;
+    top:0;
+    left:0;
+    #easy-menu > ul > li > a{
+        padding:30px 5px;
+    }
+}
+.hide-topbar{
+    display: none;
+}
+.color-shicher-wraper .setting-button-wrapper button {
+  border-radius: 0 3px 3px 0;
+  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  transition: all .2s;
+  background: white;
+
+}
+
+.color-shicher-wraper .setting-button-wrapper button:focus {
+  outline: 0;
+}
+
+.color-shicher-wraper .setting-button-wrapper button:before {
+
+  display: inline-block;
+  content: "\f185";
+  font-family: 'FontAwesome';
+  color: $black;
+  font-size:20px;
+  -webkit-animation: settingRotate 6s linear infinite;
+  animation: settingRotate 6s linear infinite;
+}
+
+.color-shicher-wraper.show-color {
+  left: 0;
+}
+
+.swhicher-button {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  padding: 20px 10px;
+  border-radius: 0 3px 3px 0;
+  width: 207px;
+}
+
+.swhicher-button button {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  border: 0;
+  margin: 4px 2px;
+  @include breakpoint(max_sm){
+      width: 30px;
+      height: 30px;
+  }
+}
+
+.swhicher-button button:focus {
+  outline: 0;
+}
+
+@-webkit-keyframes settingRotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes settingRotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.yellow-bg{
+    background: $yellow;
+}
+.green-bg{
+    background: $green;
+}
+.cyan-bg{
+    background: $cyan;
+}
+.red-bg{
+    background: $red;
+}
+.purple-bg{
+    background: $purple;
+}
+.pink-bg{
+    background: $pink;
+}
+.gradient-bg{
+    background-image: -webkit-linear-gradient(-45deg, #c1089e 20%, #ff4e00 100%);
+  background-image: linear-gradient(-45deg, #c1089e 20%, #ff4e00 100%);
+}
+.join-us-section{
+    .btn{
+        border-color: $white;
+    }
+}
+/* -----------------------------------
+** End Color Swhicher
+-------------------------------------*/

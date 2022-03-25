@@ -1,0 +1,12 @@
+.img-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container h2 {
+    position: absolute;
+    color: white;
+    font-size: 25px;
+}

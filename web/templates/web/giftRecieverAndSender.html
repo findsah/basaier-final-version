@@ -1,0 +1,99 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="text-center bg-{{ message.tags }} container" id="messageStyle">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <section class="section-padding" id="bgLightGray">
+        <div class="row">
+            <div class="container">
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3"></div>
+                <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 col-xl-6">
+                    <div class="box2">
+                        <div class="forPaddingExtra">
+                            <form action="{% url 'giftRecieverAndSender' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                            <h3 class="toShrink pb-3">{% trans "Gift Reciever Information:" %}</h3>
+                            <div class="form-group pb-3">
+                                <input type="text" placeholder="{% trans "Name Of Reciever" %}" class="form-control" id="recieverName" name="recieverName" required>
+                            </div>
+                            <div class="form-group pb-3">
+{#                                <input min="0" type="number" placeholder="{% trans "Phone Of Reciever" %}" class="form-control" id="recieverPhone" name="recieverPhone" required>#}
+{#                                <input min="0" type="number" placeholder="{% trans "Phone Of Reciever" %}" class="form-control" id="recieverPhone" name="recieverPhone" required>#}
+                                <input id="phone" name="recieverPhone" type="tel"
+                                               class="form-control" required>
+                                        <script src="/static/forPhoneNumber/build/js/intlTelInput.js"></script>
+                                        <script>
+                                            var input = document.querySelector("#phone");
+                                            window.intlTelInput(input, {
+                                                // allowDropdown: false,
+                                                // autoHideDialCode: false,
+                                                // autoPlaceholder: "off",
+                                                // dropdownContainer: document.body,
+                                                // excludeCountries: ["us"],
+                                                // formatOnDisplay: false,
+                                                // geoIpLookup: function(callback) {
+                                                //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                                                //     var countryCode = (resp && resp.country) ? resp.country : "";
+                                                //     callback(countryCode);
+                                                //   });
+                                                // },
+                                                // hiddenInput: "full_number",
+                                                // initialCountry: "auto",
+                                                // localizedCountries: { 'de': 'Deutschland' },
+                                                // nationalMode: false,
+                                                // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+                                                // placeholderNumberType: "MOBILE",
+                                                // preferredCountries: ['cn', 'jp'],
+                                                // separateDialCode: true,
+                                                utilsScript: "/static/forPhoneNumber/build/js/utils.js",
+                                            });
+                                        </script>
+                            </div>
+                            <div class="form-group pb-3">
+                                <textarea placeholder="{% trans "Your Message To Him" %}" class="form-control" id="yourMessageToHim" name="yourMessageToHim"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <div class="forPaddingExtra">
+                            <h3 class="toShrink pb-3">{% trans "Gift Sender Information:" %}</h3>
+                            <div class="form-group pb-3">
+                                <input type="text" placeholder="{% trans "Name Of Sender" %}" class="form-control" id="recieverName" required value="{{ userName }}">
+                            </div>
+                            <div class="form-group pb-3">
+                                <input type="number" min="0" placeholder="{% trans "Phone Of Sender" %}" class="form-control" id="recieverPhone" required>
+                            </div>
+{#                            <div class="form-group">#}
+{#                                <textarea placeholder="{% trans "Your Message To Him" %}" class="form-control" id="recieverName"></textarea>#}
+{#                            </div>#}
+                            <div class="form-group pb-3">
+                                <input type="submit" class="btn btn-block" value="{% trans "NEXT" %}">
+                            </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}

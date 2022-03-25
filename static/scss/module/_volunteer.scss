@@ -1,0 +1,67 @@
+/* -----------------------------------
+** Volunteer
+-------------------------------------*/
+.fund-volunteer{
+    border:1px solid $border;
+    border-radius: 20px;
+    background: $white;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    transition: .3s;
+    margin-top: 66px;
+    &__photo-wrap{
+        margin-top: -66px;
+        margin-bottom:25px;
+    }
+    &__photo{
+        max-width: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        border:4px solid $border;
+        transition: .3s;
+    }
+    &__text-content{
+
+    }
+    &__name{
+        transition: .3s;
+    }
+    P{
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &:hover{
+        box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        border-color: transparent;
+        .fund-volunteer__photo{
+            border-color: $base;
+        }
+        .fund-volunteer__name{
+            color: $base;
+        }
+    }
+}
+.round-social-icons{
+    &>li{
+        padding-right: 3px;
+        padding-left: 3px;
+        &>a{
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            border:1px solid $border;
+            display: block;
+            border-radius: 100%;
+            color: #313131;
+            &:hover{
+                color: $base;
+                border-color: $base;
+            }
+        }
+    }
+}
+/* -----------------------------------
+** End Volunteer
+-------------------------------------*/

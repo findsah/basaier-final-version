@@ -1,0 +1,217 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <style type="text/css">
+        #topPullOnTop {
+            position: absolute;
+            top: 22%;
+            left: 45%;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            #topPullOnTop {
+                top: 12%;
+                left: 47%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 414px) {
+            #topPullOnTop {
+                top: -20%;
+                left: 43%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 411px) {
+            #topPullOnTop {
+                top: -10%;
+                left: 45%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 44%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #topPullOnTop {
+                top: -35%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+
+    <div style="position: relative; background-color: dodgerblue;">
+        <img src="/static/topImages/girlHoldingBaby.jpeg" alt=""
+             style="width: 100%; opacity: 0.6;">
+        <div id="topPullOnTop">
+            <h1 class="text-center" style="color: white;">صدقات</h1>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="container">
+        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div id="mainContent" class="text-center pt-3">
+                <h3 id="logoColorGreen">
+                {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        {% trans "تبرع بصدقتك" %}
+                    {% else %}
+                        {% trans "Donate Your Sadaqah" %}
+                    {% endif %}</h3>
+                <hr id="forBorderLine" class="pt-1 pb-1"/>
+
+                <div class="pt-3 pb-3" id="">
+                    <div style="position: relative;">
+                        <div class="text-center" id="div1">
+                            {#                            <h4 class="text-white2">{% trans "Some Content" %}</h4>#}
+                        </div>
+                        <div id="div2" class="text-center">
+                            {#                            <h4 class="text-white">{% trans "Some Content" %}</h4>#}
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="mainDiv pt-3">
+                    <form class="donate-page-form" id="sadaqahDonation3">
+                        {% csrf_token %}
+                        <div id="FastGeneralDonationAccountDivMain" class="">
+
+                            <div class="text-center-xs margin-10-bottom">
+                                <button class="h15w16"
+                                        onclick="FastDonationAmountSelectCampaignsSadaqah(50,'3')"
+                                        type="button">50
+                                </button>
+                                <button class="h15w16"
+                                        onclick="FastDonationAmountSelectCampaignsSadaqah(100,'3')"
+                                        type="button">
+                                    100
+                                </button>
+                                <button class="h15w16"
+                                        onclick="FastDonationAmountSelectCampaignsSadaqah(300,'3')"
+                                        type="button">
+                                    300
+                                </button>
+                                <button class="h15w16"
+                                        onclick="FastDonationAmountSelectCampaignsSadaqah(500,'3')"
+                                        type="button">
+                                    500
+                                </button>
+                            </div><!-- /.col-lg-8 -->
+                            {% for project in projects %}
+                                <input type="hidden" class="projectId" id="projectId" name="projectId[]"
+                                       value="{{ project.id }}">
+                            {% endfor %}
+                            <div class="text-center">
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-5 col-xl-5"></div>
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <input type="text" style="background-color: transparent;"
+                                               class="form-control rounded text-center"
+                                               id="txtTotalAmountFastAccountCampaigns3"
+                                               name="amount[]"
+                                               onkeypress="return OnlyNumeric(event,this,10);"
+                                               pattern="\d*"
+                                               placeholder="Cost">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-lg-5 col-xl-5"></div>
+                            </div>
+                            <!-- /input-group -->
+                            <div class="margin-10-bottom pt-2">
+                                <input type="submit" class="btn text-center"
+                                       value="{% get_current_language as LANGUAGE_CODE %}{% if LANGUAGE_CODE == "ar" %}
+                                {% trans "يتبرع" %}
+                            {% else %}
+                                {% trans "Donate" %}
+                            {% endif %}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+    </div>
+
+    <br><br>
+
+    <div>
+        <img src="/static/topImages/takingHand.png" alt=""
+             style="width: 100%; height: 336px;"/>
+    </div>
+
+    <br><br>
+
+    <div class="jumbotron3">
+        <div class="container">
+            <div class="text-center">
+                <h3 id="logoColor">{% trans "هي ظلك" %}</h3>
+            </div>
+            <div class="text-justify">
+                <p id="logoColor">{% trans "بهدف التصدّي لتداعيات جائحة فيروس كورونا، أطلقت الأمم المتحدة، اليوم الثلاثاء، نداء لجمع مساعدات بقيمة 35 مليار دولار في العام 2021، مشيرة في تقرير لها حول الأوضاع الطارئة بهدف التصدّي لتداعيات جائحة فيروس كورونا، أطلقت الأمم المتحدة، اليوم الثلاثاء، نداء لجمع مساعدات بقيمة 35 مليار دولار في العام 2021، مشيرة في تقرير لها حول الأوضاع الطارئة في العالم للعام المقبل، إلى أنّ نحو 235 مليونًا في العالم، سيحتاجون إلى نوع من المساعدة الطارئة، أي بزيادة تقريبيّة بنسبة 40%بهدف التصدّي لتداعيات جائحة فيروس كورونا، أطلقت الأمم المتحدة، اليوم الثلاثاء، نداء لجمع مساعدات بقيمة 35 مليار دولار في العام 2021، مشيرة في تقرير لها حول الأوضاع الطارئة في العالم للعام المقبل، إلى أنّ نحو 235 مليونًا في العالم، سيحتاجون إلى نوع من المساعدة الطارئة، أي بزيادة تقريبيّة بنسبة 40%بهدف التصدّي لتداعيات جائحة فيروس كورونا، أطلقت الأمم المتحدة، اليوم الثلاثاء، نداء لجمع مساعدات بقيمة 35 مليار دولار في العام 2021، مشيرة في تقرير لها حول الأوضاع الطارئة في العالم للعام المقبل، إلى أنّ نحو 235 مليونًا في العالم، سيحتاجون إلى نوع من المساعدة الطارئة، أي بزيادة تقريبيّة بنسبة 40%في العالم للعام المقبل، إلى أنّ نحو 235 مليونًا في العالم، سيحتاجون إلى نوع من المساعدة الطارئة، أي بزيادة تقريبيّة بنسبة40" %}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

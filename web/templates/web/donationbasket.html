@@ -1,0 +1,189 @@
+{% extends 'web/navbardark.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == "ar" %}
+        <link rel="stylesheet" href="/static/css/style_ar.css">
+    {% else %}
+        <link rel="stylesheet" href="/static/css/style.css">
+    {% endif %}
+
+    <br><br>
+
+
+
+<div class="container" style="margin-top: 10rem;">
+    <h3 class="pathlink">الرئيسيه / سله التبرعات</h3>
+    <div class="title">
+        <h2 style="color: #1385B2; font-size: 37px;">سله التبرعات</h2>
+        <p style="color: #858585; font-size: 15px;">ادفع بسهوله</p>
+    </div>
+
+        <form class="donate-page-form" method="post" action="{% url 'checkout-as-guest-tap' %}"
+              id="confirmation-form">
+            {% csrf_token %}
+            {% for item in cart %}
+                {% with product=item.product %}
+                    <input type="hidden" name="project_id[]" value="{{ product.id }}">
+                    <input type="hidden" name="amount[]" value="{{ item.price }}">
+                    {% for category in product.category.all %}
+                        {# {% if category.is_hide != True %}#}
+                        <input type="hidden" id="project-category-id"
+                               name="project_category_id[]"
+                               value="{{ category.id }}">
+                        {# {% endif %}#}
+                    {% endfor %}
+                {% endwith %} {# END IF OFR MAIN IF TAG: #}
+            {% endfor %}
+            <input type="hidden" id="donation-input"
+                   class="form-control rounded-8"
+                   step="any"
+                   value="Salem_web@basaier.org"
+                   name="email" size="5" placeholder="Email" style="width: 50%;">
+
+            <div class="row my-5">
+                <div class="col-12 col-md-7 m-auto">
+                    <div class="checkboxDiv">
+                        <div>
+{#                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">#}
+                            <label for="vehicle1" style="margin-left: 2rem;"> Cart Details </label>
+                        </div>
+                        <i style="font-size: 25px; color: red;" class="fa fa-trash"></i>
+                    </div>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <div class="checkboxDiv my-4">
+                                <div style="display: flex; align-items: center;">
+{#                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">#}
+                                    <img src="{% if product.image %} {{ product.image.url }}
+                                {% else %}/static/img/no_image.png{% endif %}" alt="avatar"
+                                         style="width: 2.5rem;height: 2.5rem; border-radius: 50%; margin: 0 1rem;">
+                                    <label for="vehicle1" style="font-size: 12px;"> <span
+                                            style="color: #1488B5;font-size: 16px;">{{ product.name }} </span> </label>
+                                </div>
+                                <div style="padding: 0.5rem 2rem; background-color: #F4F4F4;border-radius: 15px;border: 1px solid lightgray;"> {{ item.price }} </div>
+                            </div>
+                        {% endwith %}
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <h4><span class="red-color">*</span>
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "طريقة الدفع او السداد" %}
+                            {% else %}
+                                {% trans "Payment Method" %}
+                            {% endif %}
+                        </h4>
+                        <div class="input-group__radio-wrap">
+                            <input type="radio" id="payment-method-online" name="payment_method"
+                                   value="Knet" checked>
+                            <label for="payment-method-online"><img src="/static/knet.png" alt=""
+                                                                    class="knetLogo"></label>
+                            <input type="radio" id="payment-method-online" name="payment_method"
+                                   value="CreditCard">
+                            <label for="payment-method-online"><img src="/static/MasterCard.png" alt=""
+                                                                    class="masterCardLogo"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5">
+                    <div class="tafseel">
+                        <h5 style="color: #1488B5; padding: 1rem 0;">تفاصيل التبرع</h5>
+                        <div class="valueDiv">
+                            <p>المبلغ الاجمالي</p>
+                            <p>{{ cart.get_total_price }}</p>
+                        </div>
+                        <input type="submit" class="mybg-eventBtn"
+                               style="background-color: #1488B5; color: #fff; margin: 2rem 0; font-size: 14px;"
+                               value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == 'ar' %} {% trans "تبرع الآن" %} {% else %} {% trans "Donate Now" %} {% endif %}">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    {# END FROM NET: #}
+    <br><br>
+
+    <script type="text/javascript">
+
+
+        function handleClick(e) {
+            if (e.checked) {
+                $("#send-sms-div").show();
+            } else {
+                $("#send-sms-div").hide();
+            }
+        }
+
+        function zakatCalculation(e) {
+            var enteredAmount = $("#zakat").val();
+            var zakat = parseFloat(enteredAmount) / 40;
+            $("#donation-input").val(zakat);
+        }
+
+        function onShareChange(e) {
+            var radioValue = $("input[name='options']:checked").val();
+            console.log(radioValue);
+            if (radioValue) {
+                $("#donation-input").val(Math.trunc(radioValue));
+            }
+
+
+        }
+
+        function onPriceChange(price) {
+
+            if (radioValue) {
+                $("#donation-input").val(Math.trunc(price));
+            }
+
+
+        }
+
+        $(".digit").click(function () {
+            var price = $(this).attr("id");
+            $("#donation-input").val(Math.trunc(price));
+        });
+
+        var radioValue = $("input[name='options']:checked").val();
+        if (radioValue) {
+            $("#donation-input").val(radioValue);
+        }
+
+        $(function () {
+            $("#donation-input").on('change', function () {
+                $("#donation-input").val(Math.trunc($("#donation-input").val()));
+            })
+
+            $("#donation-input").val(Math.trunc($("#donation-input").val()));
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        function selectCountryCode(value) {
+            var countryValue = value;
+            $('#fetchTheSelectedCountryCode').val(countryValue);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function selectCountryCode2(value) {
+            var countryValue = value;
+            $('#fetchTheSelectedCountryCode2').val(countryValue);
+        }
+    </script>
+
+
+{% endblock %}

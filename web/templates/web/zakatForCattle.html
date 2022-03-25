@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load app_filters %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cattle Zakat</title>
+
+    <style rel="stylesheet">
+        body {
+            background-color: #F4F4F4 !important;
+        }
+
+        .btn-orange {
+            background-color: #EA694D;
+            color: whitesmoke;
+        }
+
+        {# HEADER: #}
+        .fund-header {
+            {#background-color: #52616D;#}
+            color: white;
+            {#padding: 5px;#}
+        {#position: sticky;#} width: 100%;
+            top: 0;
+        }
+
+        .dropdown > a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .dropdown > a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+        #language {
+            background-color: transparent;
+            border: none;
+            width: fit-content;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        {# END HEADER: #}
+
+        {# NAVBAR: #}
+        .navbar {
+            margin-top: 30px;
+            background-color: white !important;
+        }
+
+        .navbar.navbar-default, .navbar button.navbar-toggle {
+            border: none;
+        }
+
+        .navbar-brand > img {
+            height: 30px;
+            width: 70px;
+            margin-top: 0;
+        }
+
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
+
+        {# END NAVBAR: #}
+
+
+        a {
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+            color: #63A6A5;
+        }
+
+        .container.text-center > h1 {
+            color: #EA694D;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+
+        {# FROM NET: #}
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        ol, ul {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 40px;
+        }
+
+        ul#zakat-calc-tabs li {
+            display: inline-block;
+            margin-right: 15px;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .padding-left-2 {
+            padding-left: 2px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        .zakat-tab.active {
+            background: #63a69f;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #fff;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab {
+            background: #fff;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #313131;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab:hover {
+            background: #63a69f;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+        }
+
+        img {
+            vertical-align: middle;
+
+            border: 0;
+        {#width: 44px;#}
+
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .orange-color {
+            color: #f26a4e;
+        }
+
+        .margin-30-bottom {
+            margin-bottom: 30px;
+        }
+
+        .margin-40-top {
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        :-webkit-any(article, aside, nav, section) h1 {
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+        }
+
+        .white-box {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .zakat-calc-details .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        #calcTab .nav-pills {
+            border-bottom: 2px solid #f26a4e;
+        }
+
+        .nav > li {
+        {#position: relative;#} display: block;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #calcTab .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            color: #fff;
+            background-color: #f26a4e;
+            outline: none;
+        }
+
+        #calcTab .nav-pills > li > a {
+            border-radius: 0;
+            background: #fff;
+        }
+
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: #fff;
+            background-color: #337ab7;
+        }
+
+        .nav > li > a {
+            padding: 10px 15px;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 4px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        a {
+            color: #337ab7;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .padding-30-top {
+            padding-top: 30px !important;
+        }
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .padding-bottom-20 {
+            padding-bottom: 20px;
+        }
+
+        .padding-80-top {
+            padding-top: 80px;
+        }
+
+        .btn-green {
+            color: #fff;
+            background-color: #63a69f;
+            border-color: #63a69f;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+            outline: 0;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .fatwa.white-box {
+            background: #fff;
+            padding: 15px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .bg-gray {
+            background: #f4f4f4;
+            height: 1400px;
+        }
+
+        .padding-50-v {
+            padding-bottom: 50px;
+            padding-top: 100px;
+        }
+
+        {# END NAVPANEL: #}
+
+        {# FOR MODALS: #}
+        .zakat-calc-modal .modal-header {
+            padding: 15px;
+            border-bottom: 0 solid #e5e5e5;
+        }
+
+        .modal-header .close {
+            margin-top: -2px;
+        }
+
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+        }
+
+        .close {
+            opacity: .8;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+            border-radius: 6px;
+        }
+
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .padding-10-v {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+        }
+
+        .btn-orange {
+            color: #fff;
+            background-color: #f26a4e;
+            border-color: #d85d43;
+            width: 100%;
+            padding: 10px 22px;
+        }
+
+        {# END FOR MODALS: #}
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .padding-100-top {
+            padding-top: 100px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+
+</head>
+<body>
+
+{# HEADER: #}
+<header class="fund-header navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
+                <i class="fa fa-envelope" id="forWhiteColor"></i> <span class="pdl5">basaier@basaier.org</span>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-center">
+                {#                <div class="dropdown">#}
+                {#                    <a class="dropdown-toggle" type="button" data-toggle="dropdown">En#}
+                {#                        <span class="caret"></span></a>#}
+                {#                    <ul class="dropdown-menu">#}
+                {#                        <li><a href="#">Ar</a></li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                <select name="language" id="language" class="text-right">
+                    <option value="1">En</option>
+                    <option value="2">Ar</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-right">
+                <i class="fa fa-sign-in fa-lg"></i>
+            </div>
+        </div>
+    </div>
+</header>
+{# END HEADER: #}
+
+{# COLLAPSED NAVBAR: #}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}"> <img src="/static/images/logo.png" alt="">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="">About Zakat</a></li>
+                <li><a href="#">Calculate Zakat</a></li>
+                <li><a href="#">Fatwa</a></li>
+                <li><a href="#">Zakat Outputs</a></li>
+                <li><a href="#">Donations Ways</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="fa fa-cart-plus fa-2x"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{# END COLLAPSED NAVBAR: #}
+
+
+<section class="bg-gray padding-50-v">
+    <div class="container padding-0-h-xs">
+        <div class="row">
+            <h1 class="orange-color text-center margin-30-bottom margin-40-top">
+                Zakat Calculator
+            </h1>
+            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 padding-0-h">
+                <div class="row padding-40-top hidden-xs">
+                    <div class="col-xs-12">
+                <ul id="zakat-calc-tabs" style="border-bottom:2px solid #63A69F;">
+                    <li class="text-center padding-left-2">
+                        <a href="{% url 'zakatForMoney' %}">
+                            <div id="Div_Money" class="zakat-tab">
+                                <img src="/static/uploads/home-Money-Zakat.png" width="44">
+                                <h4 style="padding-top:10px;text-align:center"> Money</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{% url 'zakatForGold' %}">
+                            <div id="Div_Gold" class="zakat-tab">
+                                <img src="/static/uploads/Gold-Zakat-home.png" width="44">
+                                <h4 style="padding-top:10px;text-align:center;"> Gold</h4>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="text-center">
+                        <a href="{% url 'zakatForCattle' %}">
+                            <div id="Div_Animal" class="zakat-tab active">
+                                <img src="/static/uploads/Animal-Zakat-home.png" width="44">
+                                <h4 style="padding-top:10px;text-align:center"> Cattle </h4>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="text-center">
+                        <a href="{% url 'zakatForStocks' %}">
+                            <div id="Div_Stock" class="zakat-tab">
+                                <img src="/static/uploads/Stocks-Zakat.png" width="44">
+                                <h4 style="padding-top:10px;text-align:center"> Stocks </h4>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                </div>
+
+                <!-- xs layout design -->
+                <div class="col-xs-12 padding-50-top hidden-lg hidden-md hidden-sm hidden-xs">
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="/en/global/zakat/pay-zakat/zakat-calculator-for-money">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/Areas/Zakat/Content/images/zakat/Money-Zakat.png" width="44">
+                                        <p style="padding-top:10px;text-align:center" class="font-14-en"> Money</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="/en/global/zakat/pay-zakat/calculate-zakat-on-gold">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/Areas/Zakat/Content/images/zakat/Gold-Zakat.png" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Gold </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="/en/global/zakat/pay-zakat/calculate-zakat-on-cattle">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/Areas/Zakat/Content/images/zakat/Animal-Zakat.png" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Cattle </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="/en/global/zakat/pay-zakat/calculate-zakat-on-stocks">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/Areas/Zakat/Content/images/zakat/Stock-Zakat.png" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Stocks </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="">
+
+                    <div class="col-md-8 col-sm-8 col-xs-12 zakat-calc-details">
+                        <div class="white-box">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="zakaty-calc-panel">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a href="#" data-toggle="modal" data-target="#Animals">
+                                                    <i class="more-less fa fa-info-circle"></i>
+                                                    Zakat Cattle
+                                                </a>
+                                                <span class="pull-right"><i class="more-less fa fa-plus-circle"
+                                                                            onclick="AddRowAnimal();"></i> </span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="rowAnimalDonationComplete">
+                                    <div class="row margin-15-top" id="rowAnimalDonation_1" indexid="1">
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="form-group">
+                                                <select class="form-control" id="ddlAnimalType_1">
+                                                    <option value="33" typeid="1"> camels</option>
+                                                    <option value="34" typeid="2"> Sheeps</option>
+                                                    <option value="35" typeid="3"> Cattle</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5 col-sm-5 col-xs-8">
+                                            <div class="form-group">
+                                                <input class="form-control" type="tel" id="txtAnimalCount_1"
+                                                       placeholder="Count"
+                                                       onkeypress="return OnlyNumeric(event,this,15);">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-sm-2 col-xs-4 margin-5-top text-right">
+                                            <a href="#" class="zakat-calc-remove-text-box margin-15-right"><i
+                                                    class="fa fa-minus-circle" onclick="RemoveAnimalRow(1);"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+
+
+                            <div class="row padding-bottom-20">
+
+                                <div class="form-group">
+                                    <select class="form-control selectpicker" data-width="100%" id="ddl_Year"
+                                            onchange="ChangeRateAnimal();">
+                                        <option value="0">Choose Year</option>
+                                        <option value="1"> Islamic Year</option>
+                                        <option value="2"> Calendar Year</option>
+                                    </select>
+
+                                </div>
+
+
+                                <div class="clearfix"></div>
+
+
+                                <div class="row margin-15-top">
+                                    <div class="col-md-10 col-sm-8 col-xs-12 padding-0-h">
+                                        <p> The percentage of Zakat according to the year you chose is </p>
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-4 col-xs-12 padding-less">
+                                        <input id="AnimalYearRate" style="display:none;" value="0">
+                                        <p class="orange-color font-english"><input id="AnimalYearRatePercentage"
+                                                                                    class="Input-Transparent padding-0-h text-right text-left-xs col-xs-12"
+                                                                                    readonly="readonly" value="0%"></p>
+                                    </div>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+
+
+                            </div>
+
+
+                            <div class="row padding-20-top">
+                                <div class="row">
+                                    <div class="zakaty-calc-panel">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a href="#" data-toggle="modal" data-target="#Trade">
+                                                    <i class="more-less fa fa-info-circle"></i>
+                                                    Cattle for trading
+                                                </a>
+
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row margin-15-top">
+
+                                    <div class="col-xs-10">
+                                        <div class="form-group">
+                                            <input id="txtProfitFromTrading" typeid="37" class="form-control" type="tel"
+                                                   onkeypress="return OnlyNumeric(event,this,15);"
+                                                   placeholder="Profit from trading">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row padding-20-top">
+                                <div class="row">
+                                    <div class="zakaty-calc-panel">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a href="#" data-toggle="modal" data-target="#Milk">
+                                                    <i class="more-less fa fa-info-circle"></i>
+                                                    Cattle for milk
+                                                </a>
+
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row margin-15-top">
+
+                                    <div class="col-xs-10">
+                                        <div class="form-group">
+                                            <input id="txtProfitFromMilk" typeid="38" class="form-control" type="tel"
+                                                   onkeypress="return OnlyNumeric(event,this,15);"
+                                                   placeholder="Profit from milk">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row padding-20-top">
+                                <div class="row">
+                                    <div class="zakaty-calc-panel">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a href="#" data-toggle="modal" data-target="#Workers">
+                                                    <i class="more-less fa fa-info-circle"></i>
+                                                    Worker Cattle
+                                                </a>
+
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row margin-15-top">
+
+                                    <div class="col-xs-10">
+                                        <div class="form-group">
+                                            <input id="txtProfitFromWork" class="form-control" typeid="39" type="tel"
+                                                   onkeypress="return OnlyNumeric(event,this,15);"
+                                                   placeholder="Profit from work">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row padding-80-top padding-bottom-20">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button class="btn btn-green" type="button" data-toggle="modal"
+                                            id="btnCalcZakatAnimal"
+                                            onclick="OpenAnimalBasket('/en/global/zakat/pay-zakat/get-animal-zakat')">
+                                        Calculate Zakat
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="modal fade " id="CalcAmount" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body bg-gray text-center">
+                                            <div class="max-height-325 scroll padding-10-h margin-right--10">
+                                                <div class="row">
+                                                    <h3> Total Zakat </h3>
+
+                                                    <div id="divZakatAlAnaamAll">
+                                                        <div class="row margin-15-bottom">
+                                                            <div class="col-xs-12 text-left">
+                                                                <div class="checkbox checkbox-primary checkbox-inline">
+                                                                    <input type="checkbox" id="cbZakatAnaam"
+                                                                           value="option1"
+                                                                           onchange="DisbaledDonateAmountAnaam()">
+                                                                    <label for="cbZakatAnaam"> Zakat cattle
+                                                                        (Shepherd) </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+
+                                                        <div id="divAllAnimalBasket">
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+
+
+                                                        <h4> Enter the total amount of zakat cattle </h4>
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <input onkeypress="return OnlyNumeric(event,this,15);"
+                                                                       type="tel" id="txtDonateAnaam" readonly=""
+                                                                       placeholder="Total Amount" class="form-control"
+                                                                       style="text-align:center;"
+                                                                       onchange="FillTotalZakatAmountAnimalZakat()">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="margin-15-top margin-0-bottom">
+
+                                                    <div class="row" id="basketDivCattleForTrading">
+                                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                                            <div class="pull-left checkbox checkbox-success">
+                                                                <input id="cbAnimal_37" type="checkbox" checked=""
+                                                                       onchange="FillTotalZakatAmountAnimalZakat()">
+                                                                <label for="cbAnimal_37"> Cattle for trading </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right text-right padding-20-top">
+                                                            <p class="value orange-color font-size-16"><span
+                                                                    class="english-font" id="lblAmountCattleForTrading"> 0 </span>
+                                                                {{ getMyCurrency }} </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <hr class="margin-0-v">
+                                                    <div class="row" id="basketDivCattleForMilk">
+                                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                                            <div class="pull-left checkbox checkbox-success">
+                                                                <input id="cbAnimal_38" type="checkbox" checked=""
+                                                                       onchange="FillTotalZakatAmountAnimalZakat()">
+                                                                <label for="cbAnimal_38"> Cattle for milk </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right text-right padding-20-top">
+                                                            <p class="value orange-color font-size-16"><span
+                                                                    class="english-font"
+                                                                    id="lblAmountCattleForMilk"> 0 </span> {{ getMyCurrency }} </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="margin-0-v">
+                                                    <div class="row" id="basketDivWorkerCattle">
+                                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                                            <div class="pull-left checkbox checkbox-success">
+                                                                <input id="cbAnimal_39" type="checkbox" checked=""
+                                                                       onchange="FillTotalZakatAmountAnimalZakat()">
+                                                                <label for="cbAnimal_39"> Worker Cattle </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4 pull-right text-right padding-20-top">
+                                                            <p class="value orange-color font-size-16"><span
+                                                                    class="english-font"
+                                                                    id="lblAmountWorkerCattle"> 0 </span> {{ getMyCurrency }} </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <h3> Total Zakat cattle </h3>
+                                                    <p class="value orange-color font-size-24">
+                                                        <input class="col-xs-12 form-control text-center english-font"
+                                                               type="tel" id="totalAmountBasketAnimalZakat" value="0"
+                                                               onkeypress="return OnlyNumeric(event,this,15);">
+                                                        {{ getMyCurrency }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 padding-10-v">
+                                                    <button type="button" class="btn btn-dark-blue" data-dismiss="modal"
+                                                            id="btnAddToBasketAnimal"
+                                                            onclick="btnAddToBasketAnimalClicked(1416, 613, null, 'totalAmountBasketAnimalZakat', 'btnAddToBasketAnimal', 'Zakat Cattle', null, 596, 1100683)">
+                                                        Add To Basket
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 padding-10-v">
+                                                    <button type="button" class="btn btn-orange" data-dismiss="modal"
+                                                            id="quickbtnAddToBasketAnimal"
+                                                            onclick="quickbtnAddToBasketAnimalClicked(1416, 613, null, 'totalAmountBasketAnimalZakat', 'quickbtnAddToBasketAnimal', 'Zakat Cattle', null ,596,1100683)">
+                                                        Donate Now
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade " id="Animals" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                            <br><br>
+                                            <p class="padding-30-h"> Animal cattle: camels, cattle, and sheep. (The
+                                                shepherd's stomach) and subject to zakat according to the tables
+                                                prepared for it </p>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                                    <button type="button" class="btn btn-dark-blue"
+                                                            data-dismiss="modal"> Done
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade " id="Trade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                            <br><br>
+                                            <p class="padding-30-h"> It is not intended for grazing but for trading, and
+                                                this is not subject to zakat on cattle, but it is applicable to them
+                                                (zakaah on trade offerings) </p>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                                    <button type="button" class="btn btn-dark-blue"
+                                                            data-dismiss="modal"> Done
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade " id="Milk" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                            <br><br>
+                                            <p class="padding-30-h"> These cattle are subject to (Zakat exploited) and
+                                                the meaning of these exploited cattle is not the Zakat but Zakat in the
+                                                net of its proceeds milk </p>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                                    <button type="button" class="btn btn-dark-blue"
+                                                            data-dismiss="modal"> Done
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade " id="Workers" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                            <br><br>
+                                            <p class="padding-30-h"> Such as camels and cattle if they are used in
+                                                pregnancy or in tillage and irrigation does not have zakaah because it
+                                                is considered a fixed asset </p>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                                    <button type="button" class="btn btn-dark-blue"
+                                                            data-dismiss="modal"> Done
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <a href="/en/global/zakat/fatwa" class="dark-blue-color visible-xs">
+                            <div class="fatwa white-box">
+                                <img src="/Areas/Zakat/Content/images/zakat/book-icon.png">
+                                <span class="font-18 padding-10-h font-14-sm"> Fatawa </span>
+                            </div>
+                        </a>
+                        <div class="fatwa white-box">
+                            <h4> For Cattle </h4>
+                            <p>
+                                <a target="_blank" href="/en/global/zakat"> Zakat </a> on livestock includes cattle,
+                                camels, and goats ( Sheep are deemed as goats). Zakatable livestock becomes obligatory
+                                only when one owns a specific number of heads in order to reach Nisab.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div id="rowAnimalDonationCompleteTemplate" style="display:none;">
+                        <div class="row margin-15-top" id="Template_rowAnimalDonation_-1" indexid="-1">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="form-group">
+                                    <select class="form-control" id="ddlAnimalType_1">
+                                        <option value="33" typeid="1"> camels</option>
+                                        <option value="34" typeid="2"> Sheeps</option>
+                                        <option value="35" typeid="3"> Cattle</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-sm-5 col-xs-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="txtAnimalCount_1" placeholder="Count">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2 col-xs-4 margin-5-top text-right">
+                                <a href="#" class="zakat-calc-remove-text-box margin-15-right"><i
+                                        class="fa fa-minus-circle" onclick="RemoveAnimalRow(1);"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="TemplateBaketAnimalPart" style="display:none;">
+                        <div class="col-xs-6">
+                            <p class="value font-size-16 text-left padding-10-h"> {AnimalTypeName}</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="value orange-color font-size-16 text-right"> {DonationResult} </p>
+                        </div>
+                    </div>
+
+                    <script>
+                        var AmountCannotBeBlank = "Amount cannot be blank";
+                        var CookieNotEnabled = "Cookie not enabled";
+                        var AnimalValue = 0;
+                        var RowCount = 1;
+
+                        function AddRowAnimal() {
+                            if (!checkentries()) {
+                                alert("You must select the caliber and enter a value in the empty fields");
+                                return
+                            }
+                            RowCount++;
+                            var temphtml = $("#rowAnimalDonationCompleteTemplate").html();
+                            temphtml = temphtml.replace('Template_rowAnimalDonation_-1', 'rowAnimalDonation_' + RowCount);
+                            temphtml = temphtml.replace('ddlAnimalType_1', 'ddlAnimalType_' + RowCount);
+                            temphtml = temphtml.replace('txtAnimalCount_1', 'txtAnimalCount_' + RowCount);
+                            temphtml = temphtml.replace('RemoveAnimalRow(1', 'RemoveAnimalRow(' + RowCount);
+                            temphtml = temphtml.replace('indexid="-1', 'indexid="' + RowCount);
+                            indexid = "1"
+                            $("#rowAnimalDonationComplete").append(temphtml);
+                        }
+
+                        function OnlyNumeric(evt, item, maxLenght) {
+                            evt = (evt) ? evt : window.event;
+                            var charCode = (evt.which) ? evt.which : evt.keyCode;
+                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                return false;
+                            }
+                            var maxleng = $(item).attr('maxlength');
+                            if (maxleng == null || maxleng == undefined || maxleng == '' || maxleng == 0) {
+                                maxleng = maxLenght;
+                            }
+                            var val = $(item).val();
+                            // Trim the field if it has content over the maxlength.
+                            if (maxleng != null && maxleng != undefined && maxleng != '' && maxleng != 0 && val.length > maxleng) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+
+
+                </div>
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+
+
+                            <div class="white-box text-center">
+                                <img src="/Areas/Zakat/Content/images/zakat/focus.png">
+                                <h4 class="orange-color"> Current Nisab Value </h4>
+                                <h4> <span class="font-english" style="white-space: pre-wrap">  Camels: 5 or more
+Cow: 30 or more
+Sheep: 40 and more </span></h4>
+                            </div>
+
+                            <a href="/en/global/zakat/fatwa" class="dark-blue-color hidden-xs">
+                                <div class="fatwa white-box">
+                                    <img src="/Areas/Zakat/Content/images/zakat/book-icon.png">
+                                    <span class="font-18 padding-10-h font-14-sm"> Fatawa </span>
+                                </div>
+                            </a>
+                            <div class="row">
+                                <div class="white-box zakat-calc-questions">
+                                    <h4 class="orange-color"> Most common questions </h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12519-Paying-or-collecting-Zakah"
+                                               class="black-color font-12-xs">Paying or collecting Zakah with credit
+                                                cards<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12488-Paying-Zakah-in-installments"
+                                               class="black-color font-12-xs">Paying Zakah in installments<span
+                                                    class="pull-right"><i class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12274-Calculating-Zakah-on-stocks"
+                                               class="black-color font-12-xs">Calculating Zakah on stocks<span
+                                                    class="pull-right"><i class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12245-Zakah-on-Womens-Golden"
+                                               class="black-color font-12-xs">Zakah on Women's Golden Jewelry<span
+                                                    class="pull-right"><i class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12214-Zakat-on-gold%2C-land-and"
+                                               class="black-color font-12-xs">Zakat on gold, land and stocks <span
+                                                    class="pull-right"><i class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12122-In-debt%2C-supports-her-family%2C"
+                                               class="black-color font-12-xs">In debt, supports her family, wants to pay
+                                                Zakah<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<br><br>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5" style="background-color: lightgray;">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-5 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">
+                <!-- Content -->
+                <div class="">
+                    <a href="{% url 'index' %}" class=""><img src="/static/images/logo.png"
+                                                              alt=""></a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+
+                <div class="widget widget--footer widget--contact">
+                    <div class="">
+                        <h4>{% trans "QUICK CONTACT" %}</h4>
+                    </div>
+                    <div class="widget__text-content text-left">
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-location-arrow"></i></span>
+                            <span class="contact-text">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-phone"></i></span>
+                            <span class="contact-text">+965 90900055 </span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-envelope-o"></i></span>
+                            <span class="contact-text">basaier@basaier.com</span>
+                        </div>
+                    </div>
+                </div><!--/.widget-->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-left">
+
+                <!-- Links -->
+                <div class="">
+                    <h4>{% trans "FOLLOW US ON" %}</h4>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">
+                        <span class=""><i class="fa fa-facebook-square"></i>
+                        </span> Facebook </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i
+                            class="fa fa-twitter"></i> Twitter</a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i
+                            class="fa fa-instagram"></i> Instagram </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor"
+                       href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"
+                       target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3"
+         style="background-color: black; color: white; padding: 10px;">© 2020 Copyright:
+        <a class="dark-grey-text" href="{% url 'index' %}"> Basaier</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- // End Footer  -->
+
+
+<script src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+</html>

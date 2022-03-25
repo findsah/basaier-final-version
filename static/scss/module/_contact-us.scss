@@ -1,0 +1,91 @@
+/* -----------------------------------
+** Contact Us
+-------------------------------------*/
+#mapContainer{
+    height:600px;
+    border:1px solid $border;
+}
+.contact-address{
+    background: $nv;
+    color: $white;
+}
+.main-contact{
+    display: flex;
+    width: 100%;
+    position: relative;
+    //transform: translateY(-50%);
+    margin-top:-20%;
+    margin-bottom: 30px;
+    @include breakpoint(max_sm){
+        margin-top: 0;
+        display: block;
+    }
+    .contact-form{
+        width: 60%;
+        background: $white;
+        box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+        padding:45px 30px;
+        @include breakpoint(max_sm){
+            width: 100%;
+            padding:45px 15px;
+        }
+    }
+    .input-group{
+        margin-bottom: 30px;
+        &__input,&__textarea{
+            background: #f3f3f3;
+            border-color: #f3f3f3;
+            border-radius: 4px !important;
+            box-shadow: none;
+            padding-left: 25px;
+        }
+        &__input{
+            height: 47px;
+        }
+        &__textarea{
+            padding-top: 15px;
+        }
+    }
+    .contact-address{
+        width: 40%;
+        padding:40px 30px;
+        @include breakpoint(max_sm){
+            padding:40px 15px;
+            width: 100%;
+        }
+    }
+}
+.contact-address-item{
+    position: relative;
+    min-height: 60px;
+    margin-bottom: 30px;
+    &:last-child{
+        margin-bottom: 0;
+    }
+    .icon-wrap{
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+        border:1px solid $white;
+        border-radius: 100%;
+        display: inline-block;
+        position: absolute;
+        left:0;
+        top:10px;
+    }
+    .contact-icon{
+
+    }
+    .text-content{
+        padding-left: 75px;
+        line-height: 1.7;
+    }
+    .contact-title{
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+}
+/* -----------------------------------
+** End Contact Us
+-------------------------------------*/

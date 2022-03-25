@@ -1,0 +1,186 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="">
+{#            {% for images in topImagess %}#}
+{#                <img src="/media/{{ images.projectPage }}" alt="" id="aboutUsTopImage">#}
+{#            {% endfor %}#}
+        </div>
+    </div>
+
+{#    {% for project in projects %}#}
+{#        <h4>{{ project.category.first }}</h4>#}
+{#    {% endfor %}#}
+
+    <section class="blog-section section-padding white-bg">
+        <div class="main-content section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <div class="row-eq-rs-height">
+                            {% for projectCategories in charity_categories %}
+                                {% with categoryId=projectCategories.id %}
+                                    <div class="row">
+                                        <h3 class="text-center" id="logoColor">{{ projectCategories.name }}</h3>
+
+                                        {% for project in projects %}
+{#                                            <h1>{{ project.category.first }}</h1>#}
+                                            {% if project.category.first == categoryId %}
+                                                <div class="col-md-4 col-sm-6 col-lg-4 col-xs-12"
+                                                     style="height: 600px;">
+                                                    <div class="our-causes wow fadeInUpSmd" data-wow-duration="1.5s"
+                                                         data-wow-delay=".2s"
+                                                         style="width: 100%; height: 484px; visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
+                                                        <div class="our-causes__image-wrap">
+                                                            <img src="{% project_image_tag project request %}"
+                                                                 style="height: 284px;"
+                                                                 class="our-causes__image" alt="">
+                                                        </div>
+                                                        <div class="our-causes__text-content text-center">
+                                                            {% comment %} {% if request.user.is_authenticated %}
+            <form class="donate-page-form" method="post" action="{% url 'checkout-logged' %}" id="project-{{project.id}}">
+                {% csrf_token %}
+                {% endif %}
+                                {% if request.user.is_authenticated == False %} {% endcomment %}
+
+                                                            <form class="donate-page-form" method="post"
+                                                                  action="{% url 'project-detail' project.id %}"
+                                                                  id="project-{{ project.id }}">
+                                                                {% csrf_token %}
+                                                                {% comment %} {% endif %} {% endcomment %}
+                                                                <h4 class="text-uppercase our-causes__title text-truncate"
+                                                                    id="logoColor"><a
+                                                                        href="{% url 'project-detail' project.id %}">{{ project.get_name }}</a>
+                                                                </h4>
+                                                                <p class="text-truncate">{% if project.isZakat %}
+                                                                    {% trans "Calculate your Zakat" %}{% else %}
+                                                                    {% trans "Enter your donation in" %}{% endif %}
+                                                                    {{ getMyCurrency }}:</p>
+                                                                <div class="number">
+                                                                    <span class="minus">-</span>
+                                                                    <input placeholder="{{ project.suggestedDonation |floatformat }}"
+                                                                           type="number"
+                                                                           step="any" id="price-{{ project.id }}"
+                                                                           value="{{ project.suggestedDonation |floatformat }}"
+                                                                           name="amount[]"
+                                                                           size="5" min="0"
+                                                                            {% if  project.is_defined %}
+                                                                           readonly {% endif %}>
+                                                                    <span class="plus">+</span>
+                                                                </div>
+                                                                <input type="hidden" id="first-price-{{ project.id }}"
+                                                                       value="{{ project.suggestedDonation | intcomma:False }}">
+                                                                {% if project.is_defined == False %}
+                                                                    <p class="text-truncate">{% trans "You can donate any amount" %}</p>
+                                                                {% else %}
+                                                                    <p><br/></p>
+                                                                {% endif %}
+                                                                {% if project.category.all|length > 1 %}
+                                                                    <p>
+                                                                    <div class="radio">
+                                                                        {% for category in project.category.all %}
+                                                                            {% if category.is_hide != True %}
+                                                                                <label>
+                                                                                    <input type="radio"
+                                                                                           class="project_category_id"
+                                                                                           name="project_category_id[]"
+                                                                                           value="{{ category.id }}"
+                                                                                           data-price="{{ category.price | intcomma }}"
+                                                                                           data-value="{{ category.get_name }}"
+                                                                                           required> {{ category.get_name }}
+                                                                                </label>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                    </p>
+                                                                {% else %}
+                                                                    <input type="hidden" class="project_category_id"
+                                                                           name="project_category_id[]"
+                                                                           value="{{ project.category.first.id }}">
+                                                                {% endif %}
+                                                                <p>
+                                                                    <input type="submit" class="btn" value="
+
+                                                                            {% if project.isZakat %}{% trans "Calculate your Zakat" %}{% else %}{% trans "Donet Now" %}{% endif %}"/>
+                                                                    {% comment %} <input type="submit" class="cd-add-to-cart" value="{% trans "Donet Now"%}" /> {% endcomment %}
+                                                                    {% comment %} <a href="#" class="cd-add-to-cart">{% trans "Add To Cart"%}</a> {% endcomment %}
+                                                                </p>
+                                                                <input type="hidden" id="title"
+                                                                       value="{{ project.get_name }}">
+                                                                <input type="hidden" id="image"
+                                                                       value="{% project_image_tag project request %}">
+                                                                <input type="hidden" id="project_id"
+                                                                       value="{{ project.id }}">
+                                                                <input type="hidden" name="project_id[]"
+                                                                       value="{{ project.id }} ">
+                                                            </form>
+                                                        </div>
+                                                    </div><!--/.our-causes-->
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endwith %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+{#                        <aside class="">#}
+                            <!-- <div class="widget widget--category">
+                            <div class="widget__heading">
+                                <h4 class="widget__title">{% trans "Charity Categories"%}</h4>
+                            </div>
+                            <div class="widget__text-content">
+                                <ul>
+{#                                    {% for category in all_categories %}#}
+{#                                    <li><a href="{% url 'charity-category' category.id %}" class="pdr10">#}
+{#                                {{ category.get_name }}</a> <span class="post-count">{{ category.total_project }}</span></li>#}
+{#                                    {% endfor %}#}
+                                    </ul>
+
+                            </div>
+                        </div> -->
+                            <div class="widget">
+                                <div class="widget__heading">
+                                    <h4 class="widget__title" id="logoColor">{% trans "Latest" %} <span
+                                            id="logoColor">{% trans "Charity Categories" %}</span></h4>
+                                </div>
+                                <div class="widget__text-content">
+                                    {% for obj in latest_projects %}
+                                        <div class="widget-latest-causes">
+                                            <div class="widget-latest-causes__image-wrap">
+                                                <a href="{% url 'project-detail' obj.id %}"><img
+                                                        class="widget-latest-causes__thubnail"
+                                                        src="{% project_image_tag obj request %}" width="145" height="93"
+                                                        alt=""></a>
+                                            </div>
+                                            <div class="widget-latest-causes__text-content">
+                                                <h4 class="widget-latest-causes__title" id="logoColor"><a
+                                                        href="{% url 'project-detail' obj.id %}">{{ obj.get_name }}</a>
+                                                </h4>
+                                                <span class="small-text"><i
+                                                        class="fa fa-calendar base-color"></i> {{ obj.created_at | date:"M d, Y" }}</span>
+                                            </div>
+                                        </div><!--/.widget-latest-causes-->
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+{#                        </aside>#}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

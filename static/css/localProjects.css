@@ -1,0 +1,318 @@
+.main {
+    margin: auto;
+    width: 60%;
+    /* border: 3px solid green; */
+    padding: 20px;
+    background-color: #f1efed;
+    /* height: 100%; */
+    margin-top: 60px;
+    border-radius: 10px;
+}
+
+#topPullOnTop {
+    position: absolute;
+    top: 20%;
+    left: 32%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+@media(max-width: 768px){
+    #topPullOnTop {
+        top: 12%;
+        left: 47%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 414px){
+    #topPullOnTop {
+        top: -20%;
+        left: 43%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 411px){
+    #topPullOnTop {
+        top: -10%;
+        left: 45%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 375px){
+    #topPullOnTop {
+        top: -25%;
+        left: 44%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 360px){
+    #topPullOnTop {
+        top: -25%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 320px){
+    #topPullOnTop {
+        top: -35%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+.tabra {
+    color: #8ec56f !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+}
+
+.btn-p {
+    color: #a5a5a5;
+    border: 1px solid #e2dede;
+    background-color: #e2dede;
+    outline: none;
+    width: 20% !important;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 11%;
+    margin-top: 5%;
+}
+
+.btn1 {
+    border: 1px solid #4d5280;
+    color: #4d5280;
+    outline: none;
+    display: inline-block;
+    width: 15%;
+    padding: 6px 6px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5%;
+}
+
+@media (max-width: 671px) {
+    .btn-p {
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 512px) {
+    .btn-p {
+        margin-right: 60%;
+        /*width: 100%;*/
+    }
+
+    .btn1 {
+        width: 100%;
+    }
+
+    .btn-asif {
+        width: 100% !important;
+    }
+}
+
+.akthar {
+    width: 100%;
+    background-color: #e2dede;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5%;
+}
+
+.btn-asif {
+    width: 45%;
+    color: white;
+    outline: none;
+    border: none;
+    background-color: #4d5280;
+
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 5%;
+}
+
+.masharik {
+    margin: auto;
+    /*width: 50%;*/
+    /*padding: 20px;*/
+    /* background-color: #f1efed; */
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+.almashare {
+    color: #4d5280 !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-size: 40px;
+}
+
+/* === card component ======  */
+.card {
+    background-color: #fff;
+    border: none;
+    border-radius: 6px;
+}
+
+.card .card-img {
+    position: relative;
+    padding: 0;
+    /*display: table;*/
+}
+
+.card .card-body {
+    display: table;
+    width: 100%;
+    padding: 12px;
+}
+
+.card .card-body .lead {
+    text-align: right;
+    padding: 0 10px;
+}
+
+.card-price > .card-img:first-child img {
+    border-radius: 6px 6px 0 0;
+}
+
+.card-price .price {
+    text-align: right;
+    color: #4d5280;
+    font-size: 2em;
+    text-transform: uppercase;
+    line-height: 0.7em;
+    margin: 24px 0 16px;
+    padding: 0 10px;
+}
+
+.card-price .details {
+    list-style: none;
+    text-align: right;
+    margin-bottom: 24px;
+    padding: 0 10px;
+}
+
+.no-gutters {
+    background-color: lightgray;
+    height: 170px;
+    border-radius: 10px;
+}
+
+.img-circle {
+    width: 100%;
+    height: 140px !important;
+}
+
+.card-title {
+    font-size: 20px;
+    text-align: right;
+    color: #4d5280;
+}
+
+.card-text {
+    text-align: right;
+    color: #4d5280;
+}
+
+.almazeedBtn {
+    background-color: #4d5280;
+    border-radius: 20px;
+    color: white;
+    outline: none;
+    border: none;
+    float: right;
+    width: 30%;
+    height: 30px;
+    font-size: 18px;
+}
+
+@media (max-width: 991px) {
+    .queryMargin {
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 767px) {
+    .img-circle {
+        margin-top: 10px;
+        height: 100px !important;
+    }
+
+    .no-gutters {
+        height: 230px;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .card-text {
+        font-size: 14px;
+    }
+
+    .almazeedBtn {
+        width: 90%;
+        height: 30px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 560px) {
+    .img-circle {
+        margin-top: 50px !important;
+    }
+
+    .card-title {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 10px;
+    }
+}

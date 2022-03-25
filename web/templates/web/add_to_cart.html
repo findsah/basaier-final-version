@@ -1,0 +1,338 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="text-center bg-{{ message.tags }} container" id="messageStyle">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+
+    {# 1st SECTION HEADING: #}
+    <section class="forPadding">
+        <div class="container">
+            <div class="container">
+                <div class="container">
+                    <div>
+                        <h2 id="logoColor" class="text-center">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "عربة التسوق" %}
+                            {% else %}
+                                {% trans "Cart" %}
+                            {% endif %}
+                        </h2>
+                    </div>
+                    {#                    <div>#}
+                    {#                        <p id="newsDetails">{% trans "Select all items you want to donate for. you can choose from single donations and the periodic donations" %}</p>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </section>
+    {# END 1st SECTION HEADING: #}
+
+    {# 2nd SECTION: #}
+    <section id="bgLightGray" class="forPadding">
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12" id="toHideOnSmall">
+                <div class="col-md-8 col-lg-8 col-xl-8 col-sm-12 col-xs-12">
+
+                    <div class="d-flex box2 forPaddingLess table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><h5 id="newsDetails" class="text-center">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "Image" %}
+                                    {% else %}
+                                        {% trans "صورة" %}
+                                    {% endif %}
+                                </h5></th>
+                                <th><h5 id="newsDetails" class="text-center">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "اسم" %}
+                                    {% else %}
+                                        {% trans "Name" %}
+                                    {% endif %}
+                                </h5></th>
+                                {#                                <th><h5 id="newsDetails" class="text-center">{% trans "Quantity" %}</h5></th>#}
+                                <th><h5 id="newsDetails" class="text-center">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "كمية" %}
+                                    {% else %}
+                                        {% trans "Amount" %}
+                                    {% endif %}
+                                </h5></th>
+                                <th><h5 id="newsDetails" class="text-center">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "تعديل" %}
+                                    {% else %}
+                                        {% trans "Modify" %}
+                                    {% endif %}
+                                </h5></th>
+                                <th><h5 id="newsDetails" class="text-center">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "تقدم" %}
+                                    {% else %}
+                                        {% trans "Proceed" %}
+                                    {% endif %}
+                                </h5></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in cart %}
+                                {% with product=item.product %}
+                                    <tr>
+                                        <td class="text-center">
+                                            <a href="{{ product.get_absolute_url }}">
+                                                <img src="{% if product.image %} {{ product.image.url }}
+                                {% else %}/static/img/no_image.png{% endif %}"
+                                                     style="width: 80px; height: 80px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;">
+                                            </a>
+                                        </td>
+                                        <td class="text-center">
+                                            <span>{{ product.name }}</span>
+                                        </td>
+                                        {#                                        <td class="text-center">#}
+                                        {#                                            <span> {{ item.quantity }} </span>#}
+                                        {#                                        </td>#}
+                                        <td class="text-center">
+                                            <span> {{ item.price }} {{ getMyCurrency }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <form action="{% url 'cart_remove' product.id %}"
+                                                  method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" value="
+{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "إزالة" %}
+                            {% else %}
+                                {% trans "Remove" %}
+                            {% endif %}" class="btn">
+                                            </form>
+                                        </td>
+                                        <td class="text-center">
+                                            {#                                            {% if request.user.is_authenticated == True %}#}
+                                            {#                                                <form class="donate-page-form" method="post"#}
+                                            {#                                                      action="{% url 'project-detail' product.id %}"#}
+                                            {#                                                      id="project-{{ product.id }}">#}
+                                            {#                                                {% csrf_token %}#}
+                                            {#                                            {% else %}#}
+                                            {#                                                <form class="donate-page-form" method="post"#}
+                                            {#                                                      action="{% url 'cart_add' product.id %}"#}
+                                            {#                                                      id="project-{{ product.id }}">#}
+                                            {#                                                {% csrf_token %}#}
+                                            {#                                            {% endif %}#}
+                                            {#                                            {% csrf_token %}#}
+                                            {#                                                <input type="hidden" name="project_id[]" value="{{ product.id }} ">#}
+                                            {#                                                <input type="hidden" name="amount[]" value="{{ item.price }}">#}
+                                            {#                                                <input type="submit" value="{% trans 'Donate' %}" class="btn">#}
+                                            {#                                                </form>#}
+                                            {#                                            <form class="donate-page-form" method="post"#}
+                                            {#                                                  action="{% url 'project-detail' product.id %}"#}
+                                            {#                                                  id="project-{{ product.id }}">#}
+                                            {#                                                {% csrf_token %}#}
+                                            {#                                                <input type="hidden" name="amount[]" value="{{ item.price }}">#}
+                                            {#                                                <input type="submit" value="{% trans 'Donate' %}" class="btn">#}
+                                            {#                                            </form>#}
+
+                                            {# THE SHARE LINKS MODELS: #}
+                                            <div class="modal fade" id="updateCartPrice{{ product.id }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="exampleModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content col-12">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">
+                                                                {% get_current_language as LANGUAGE_CODE %}
+                                                                {% if LANGUAGE_CODE == "ar" %}
+                                                                    {% trans "تحديث سعر" %}
+                                                                {% else %}
+                                                                    {% trans "Update Price" %}
+                                                                {% endif %}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <a href="">
+                                                                <img src="{% if product.image %}
+
+
+
+                                                                    {{ product.image.url }}{% else %}/static/img/no_image.png{% endif %}"
+                                                                     style="width: 80px; height: 80px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;">
+                                                            </a>
+                                                            <div class="">
+                                                                <h3>{{ product.name }}</h3>
+                                                            </div>
+                                                            <form action="{% url 'cart_update' product.id %}"
+                                                                  method="post">
+                                                                {% csrf_token %}
+                                                                <div class="form-group">
+                                                                    <input type="number" min="0" class="form-control"
+                                                                           value="{{ item.price }}"
+                                                                           name="amount[]">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" class="btn text-center" value="
+{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "تحديث" %}
+                            {% else %}
+                                {% trans "Update" %}
+                            {% endif %}">
+                                                                </div>
+                                                            </form>
+                                                            {# END MODAL-BODY: #}
+                                                        </div>
+                                                    </div>
+                                                    {# END THE SHARE LINKS MODELS: #}
+                                                </div>
+                                            </div>
+                                    </div>{# END MODAL: #}
+
+                                    <button type="button" data-toggle="modal"
+                                            data-target="#updateCartPrice{{ product.id }}"
+                                            data-backdrop="static" data-keyboard="false"
+                                            class="btn"><i
+                                            class="fa fa-pencil fa-1x"
+                                            aria-hidden="true"></i>
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "تحديث" %}
+                                        {% else %}
+                                            {% trans "Update" %}
+                                        {% endif %}
+                                    </button>
+                                {% endwith %}
+                            {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+                <div class="text-right">
+                    <div>
+                        {% for item in cart %}
+                            {% if item|length > 1 %}
+                                {% if forloop.first %}
+                                    <a href="{% url 'removeAll' %}"
+                                       class="btn checkoutButton">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "حذف الكل" %}
+                                        {% else %}
+                                            {% trans "Remove All" %}
+                                        {% endif %}</a>
+                                    <a href="{% url 'checkoutDetail' %}" class="btn checkoutButton"
+                                    >
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "الخروج >>" %}
+                                        {% else %}
+                                            {% trans "Checkout >>" %}
+                                        {% endif %}</a>
+                                    {#                                        <input type="submit" class="btn checkoutButton"#}
+                                    {#                                               value="{% trans 'Checkout >>' %}">#}
+
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-xl-3 col-sm-12 col-xs-12">
+                <div class="box2 forPadding">
+                    <div class="text-center">
+                        <h4 id="logoColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "تفاصيل التبرع" %}
+                            {% else %}
+                                {% trans "Donation Details" %}
+                            {% endif %}</h4>
+                        <h3 id="newsDetails">{{ cart.get_total_products }}</h3>
+                        <hr>
+                        <h4 id="logoColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "المبلغ الإجمالي" %}
+                            {% else %}
+                                {% trans "Total Amount" %}
+                            {% endif %}</h4>
+                        <h3 id="newsDetails">{{ cart.get_total_price }} {{ getMyCurrency }}</h3>
+                    </div>
+                </div>
+                <div class="box2 forPadding">
+                    <div class="">
+                        <h3 id="logoColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "أسئلة مكررة" %}
+                            {% else %}
+                                {% trans "Frequently Asked Questions" %}
+                            {% endif %}
+                        </h3>
+                        <hr>
+                        <div>
+                            <h4 id="logoColor">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "ما هو التبرع لمرة واحدة؟" %}
+                                {% else %}
+                                    {% trans "What Is One Time Donation?" %}
+                                {% endif %}
+                            </h4>
+                            <p>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "ستدفع مساهماتك المختارة مرة واحدة فقط." %}
+                                {% else %}
+                                    {% trans "Your selected contributions will only be paid once." %}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div>
+                            <h4 id="logoColor">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "ما هو التبرع المتكرر؟" %}
+                                {% else %}
+                                    {% trans "What Is A Recurrent Donation?" %}
+                                {% endif %}
+                            </h4>
+                            <p>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "التبرعات التي يمكنك جدولتها لتصبح دورية على أساس يومي أو أسبوعي أو شهري من خلال بطاقتك الائتمانية. يمكن أيضًا سداد بعض المشاريع الكبيرة القيمة على مدى عدة أشهر." %}
+                                {% else %}
+                                    {% trans "Donations that you can schedule to become periodic on a daily, weekly or monthly basis through your credit card. Some large value projects can also be repaid over several months." %}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    {# END 2nd SECTION: #}
+
+{% endblock %}

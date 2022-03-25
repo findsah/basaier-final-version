@@ -1,0 +1,298 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/static/css/about_us.css">
+
+    <div style="position: relative; background-color: lightGreen;">
+        <img src="/static/topImages/girlSnow.jpeg" alt=""
+             style="width: 100%; opacity: 0.6;">
+        <div id="topPullOnTop">
+            <h1 class="text-center" style="color: white;">النشرة التعريفية</h1>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="container">
+        <h3 class="kalima">+<br>كلمة رئيس مجلس الإدارة</h3>
+        <p class="kalimaTxt text-justify">
+            سم الله، والحمد لله، والصلاة والسلام على رسول الله وعلى آله وصحبه ومن اتبع هداه وبعد،،، يسرني بالأصالة عن
+            نفسي وبالنيابة عــن زملائي أعضاء
+            مجلـس الإدارة، أن أزف إلى الجميع خبر إشهار جمعية بصائر الخيرية، والذي جاء استكمالًا للجهود الخيرية
+            والإنسانية والاجتماعية والإغاثية داخل الكويت
+            وخارجها.
+        </p>
+        <p class="kalimaTxt text-justify">
+            إن جمعية بصائر الخيرية بقيمها الدينية والإنسانية والاجتماعية تقدم رسالة إنسانية راقية، تعزز التكافل
+            الاجتماعي بين أفراد المجتمع عبر مشاريع اجتماعية موسمية، وتحقيق مبدأ التعاون والتراحم الإنساني بما تقدمه من
+            مشاريع إغاثية للمنكوبين في المناطق المتضررة من الكوارث والحروب، كمشاريع
+            الإيواء والإطعام والكساء والعلاج للنازحين واللاجئين، ودعم المشاريع التعليمية والتربوية، والعناية بالطالب
+            والمعلم والباحث والعالم والمساهمة في التعريف
+            بهم ونشر نتاجهم العلمي لتحسين مستوى الوعي لدى الأفراد والمجتمعات
+        </p>
+        <p class="kalimaTxt text-justify">
+            إن ما تحقق سابقًا عبر الجهود الشخصية للمتطوعين للعمل الإنساني إنما كان بفضل الله ثم بفضل ثقتكم الغالية التي
+            نثمّنها ونقدرها، ثم نعاهدكم على الاستمرار على ما عرفتمونا به من السعي في عمل الخير، وإيصاله إلى مستحقيه داخل
+            وخارج الكويت عبر المؤسسات والهيئات الرسمية والمعتمدة، ونعاهدكم على تطوير هذه الجهود وتحسينها وتقديمها بما
+            يليق بأهل الكويت وأميرها ومكانتها الإنسانية. إننا اليوم نترجم أولى خطواتنا في جمعية بصائر الخيرية بإصدار
+            نشرتنا التعريفية الأولى؛ لتكون قاعدة ننطلق منها إلى ما هو أكبر منها، سائلين المولى -تبارك وتعالى- أن يوفقنا
+            ويوفقكم إلى ما يحبه ويرضاه من الأقوال والأعمال.
+        </p>
+        <p class="kalimaTxt">د. محمد ضاوي العصيمي</p>
+
+        <ul class="timeline">
+            <li style="margin-bottom: 100px;">
+                <!-- <a class="" onclick="expandFirst()"></a> -->
+                <a class="timeline-circle blink" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+            </li>
+            <li class="timeline-inverted collapse"  id="collapseExample">
+                <div class="timeline-badge"></div>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title" style="margin-left: 60%;">التأسيس</h4>
+                    <hr style="border: 1px solid #939598; width: 20%; margin-right: 30%; margin-bottom: 0px;">
+                    <div style="
+                    height: 15px;
+                    margin-left: 69%;
+                    margin-top: -9px;
+                    width: 15px;
+                    border-radius: 20px;
+                    background-color: #939598;
+                    "></div>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-body">
+                        <p>
+                            أشهرت جمعية بصائر الخيرية في دولة الكويت كإحدى الجمعيات الخيرية من قِبَل وزارة الشئون
+                            الاجتماعية، بموجب القرار الوزاري رقم 109 لسنة 2017م، وفقًا لأحكام القانون رقم 24 لسنة 1962م
+                            في شأن الأندية وجمعيات النفع العام، وتعنى بنشر الوعي الديني والثقافي والفكر الوسطي المعتدل
+                            داخل وخارج الكويت، وتعمل على تحقيق التكافل الاجتماعي بين أفراد المجتمع وتقديم المساعدات
+                            الإنسانية والإغاثية للمحتاجين والمنكوبين، وتنفيذ المشاريع الخيرية والتنموية داخل وخارج
+                            الكويت، وتوجيه الشباب إلى العمل التطوعي.
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+            <div class="timeline">
+                <li>
+                    <a class="timeline-badge blink" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2"></a>
+                </li>
+            </div>
+
+            <li class="collapse" style="margin-top: 70px;" id="collapseExample2">
+                <!-- <div class=""></div> -->
+
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title" style="margin-left: 33%;">الرؤية</h4>
+                        <hr style="border: 1px solid #939598; width: 20%; margin-left: 29.7%;">
+                        <div style="
+                        height: 15px;
+                        margin-left: 29%;
+                        margin-top: -30px;
+                        width: 15px;
+                        border-radius: 20px;
+                        background-color: #939598;
+                        "></div>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-body">
+                            <p>مؤسسة خيرية عالمية تعنى بجوانب التنمية التعليمية، والتربوية، والاجتماعية، والإغاثية في
+                                مجالاتها المتعددة؛ لخدمة وتطوير الإنسانية.</p>
+                        </div>
+                    </div>
+            </li>
+
+            <div class="timeline">
+                <li>
+                    <a class="timeline-badge blink" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample2"></a>
+                </li>
+            </div>
+
+            <li class="timeline-inverted collapse" style="margin-top: 70px;" id="collapseExample3">
+                <!-- <div class="timeline-badge" style="background-color: #6C6B86 !important;"></div> -->
+                <div class="timeline-heading">
+                    <h4 class="timeline-title" style="margin-left: 60%;">الرسالة</h4>
+                    <hr style="border: 1px solid #939598; width: 20%; margin-right: 30%;">
+                    <div style="
+                    height: 15px;
+                    margin-left: 69%;
+                    margin-top: -30px;
+                    width: 15px;
+                    border-radius: 20px;
+                    background-color: #939598;
+                    "></div>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-body">
+                        <p>تعليمية: إثراء التحصيل العلمي وتوسعة المهارات التحصيلية للطالب، وزيادة خبرات المعلم وفق أعلى
+                            المعايير الأكاديمية. تربوية: إيصال الخير للأجيال الناشئة، وإعداد وتأهيل الباحثين والعلماء
+                            ونشر نتاجهم العلمي.
+                        </p>
+                        <p>
+                            اجتماعية: تعزيز التكافل الاجتماعي والتعاون الإنساني، وتفعيل مبدأ الشراكة مع الجهات أو
+                            المؤسسات ذات الاهتمام المشترك.
+                        </p>
+                        <p>
+                            إغاثية: تقديم المساعدات الإغاثية والطارئة والموسمية للحالات الفقيرة والمتضررة.
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+
+            <div class="timeline">
+                    <li>
+                        <a class="timeline-badge blink" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample2"></a>
+                    </li>
+            </div>
+
+            <li style="margin-top: 70px;" class="collapse" id="collapseExample4">
+                <div class="timeline-badge" style="background-color: #4C517F !important;"></div>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title" style="margin-left: 33%;">القيم</h4>
+                    <hr style="border: 1px solid #939598; width: 20%; margin-left: 29.7%;">
+                    <div style="
+                    height: 15px;
+                    margin-left: 29%;
+                    margin-top: -30px;
+                    width: 15px;
+                    border-radius: 20px;
+                    background-color: #939598;
+                    "></div>
+                </div>
+                <div class="timeline-panel" style="width: 20% !important; display: block !important; margin-left: 26%;">
+                    <div class="timeline-body">
+                        <p>1. الشفافية والعلنية.<br>
+                            2. الإخلاص في العمل.<br>
+                            3. العمل المؤسسي.<br>
+                            4. التخصص.<br>
+                            5. التطوع.<br></p>
+                    </div>
+                </div>
+            </li>
+
+            <div class="timeline">
+                    <li>
+                        <a class="timeline-badge blink" data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample2"></a>
+                    </li>
+            </div>
+
+            <li class="timeline-inverted collapse" style="margin-top: 70px;" id="collapseExample5">
+                <div class="timeline-badge" style="background-color: #40446B !important;"></div>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title" style="margin-left: 55%;">الأهداف الاستراتيجية</h4>
+                    <hr style="border: 1px solid #939598; width: 20%; margin-right: 30%;">
+                    <div style="
+                    height: 15px;
+                    margin-left: 69%;
+                    margin-top: -30px;
+                    width: 15px;
+                    border-radius: 20px;
+                    background-color: #939598;
+                    "></div>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-body">
+                        <p>
+                            1. الإسهام في القطاع التعليمي، من خلال الدعم والمشاركة في المؤسسات والمشاريع التعليمية.<br>
+                            2. المشاركة في تقديم الدعم الإنساني والاجتماعي عبر مشاريع نوعية.<br>
+                            3. العمل على تطوير وتنمية الموارد المالية والإدارية والتقنية للجمعية؛ لدعم برامجها ومشاريعها
+                            بشتى أشكالها وصورها.<br>
+                            4. السعي لتنظيم العلاقات بين الجمعية والجهات المناظرة؛ للاستفادة من الخبرات، والارتقاء
+                            بأنشطة الجمعية.
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+            <div class="timeline">
+                    <li>
+                        <a class="timeline-badge blink" data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample2"></a>
+                    </li>
+            </div>
+
+            <li class="collapse" style="margin-top: 70px;" id="collapseExample6">
+                <div class="timeline-badge" style="background-color: #323551 !important;"></div>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title" style="margin-left: 33%;">طموحنا</h4>
+                    <hr style="border: 1px solid #939598; width: 20%; margin-left: 29.7%;">
+                    <div style="
+                    height: 15px;
+                    margin-left: 29%;
+                    margin-top: -30px;
+                    width: 15px;
+                    border-radius: 20px;
+                    background-color: #939598;
+                    "></div>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-body">
+                        <p>- جمعية رائدة في العمل الخيري والإنساني داخل الكويت وخارجها.<br>
+                            - تواصل دائم وفعال مع أهل الخير، ومع الفئات المستهدفة.
+                            - مشاريع تنموية دائمة، تخدم فئات المجتمع الأضعف.
+                            - شراكات بناءة مع المؤسسات الحكومية والأهلية.
+                            - استجابة عاجلة وحاضرة لنداءات الاستغاثة.
+                            - بيئة مؤسسية مهنية، تتصف بالخبرة والمسئولية والإبداع
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li style="margin-top: 50px; margin-bottom: -28px;" id="seventhList">
+                <div class="timeline-circle"></div>
+            </li>
+        </ul>
+
+    </div>
+
+    <section id="team" class="pb-5">
+        <div class="container">
+            <h5 class="section-title h1">+<br>أعضاء مجلس الإدارة</h5>
+            <div class="row">
+                <!-- Team member -->
+                {% for data in boardOfDirectory %}
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="frontside">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <p><img class="img-fluid"
+                                        src="/static/{{ data.image }}"
+                                        alt="card image"></p>
+                                <h4 class="card-title">{{ data.name }}</h4>
+                                <p class="card-text">{{ data.post }}</p>
+                                {# SOCIAL LINKS: #}
+                                    <div class="text-center" id="paddingTop">
+                                        <a href="{{ data.instagramLink }}"> <i class="fa fa-instagram toCircleIcons"
+                                                                               id="logoColor"></i> </a>
+
+                                        <a href="{{ data.facebookLink }}"> <i
+                                                class="fa fa-facebook toCircleIconsFacebook" id="logoColor"></i> </a>
+                                        <a href="{{ data.twitterLink }}"> <i class="fa fa-twitter toCircleIcons"
+                                                                             id="logoColor"></i> </a>
+
+                                    </div>
+                                    {# ENDSOCIAL LINKS: #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- ./Team member -->
+            </div>
+
+            <h3 class="kalima">+<br>الخاتمة</h3>
+            <p class="kalimaTxt text-center">
+                كانت هذه أول إطلالة عليكم من خلال جمعية بصائر الخيرية..<br>
+                آملين من الله أن تنال إعجابكم..<br>
+                ونحن على ثقة كبيرة بأن القادم أجمل.. بكم ومعكم.<br>
+                نستودعكم الله إلى موعد قريب...
+            </p>
+        </div>
+    </section>
+
+{% endblock %}

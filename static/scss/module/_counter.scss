@@ -1,0 +1,69 @@
+/* -----------------------------------
+** Counter
+-------------------------------------*/
+.counter-item{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:before{
+        border-top: 1px solid $white;
+        border-left: 1px solid $white;
+        border-right: 0;
+        border-bottom:0;
+        border-radius: 100%;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left:0;
+        top:0;
+        transform: rotate(45deg);
+    }
+    &__count-wrap{
+        position: absolute;
+        left: 0;
+        right:0;
+        margin-left: auto;
+        margin-right: auto;
+        bottom:-0;
+        font-size: 30px;
+        font-family: $rb;
+        font-weight: 700;
+    }
+    &__icon-wrap{
+        position: relative;
+        top:45%;
+        transform: translateY(-50%);
+    }
+    &__icon{
+        margin-bottom: 20px;
+    }
+    &__label{
+        display: block;
+        color: #a8a8a8;
+    }
+}
+.counter-section{
+    //background-image:url('../images/about/counter-bg.jpg');
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    &:before{
+        position: absolute;
+        left:0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background: rgba(0,0,0,0.9);
+    }
+}
+/* -----------------------------------
+** End Counter
+-------------------------------------*/

@@ -1,0 +1,323 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load project_image %}
+{% load app_filters %}
+{% block content %}
+
+
+    <div class="main-content section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" id="project">
+                    <div class="causes-details-wrap">
+                        <div class="causes-details-top">
+
+                            {% if request.user.is_authenticated %}
+                                <!--<form class="donate-page-form" method="post" action="{% url 'checkout-logged' %}" id="confirmation-form">-->
+                                <form class="donate-page-form" method="post" action="{% url 'checkout-as-guest-tap' %}"
+                                      id="confirmation-form">
+                                {% csrf_token %}
+                            {% elif request.user.is_authenticated == False %}
+                                <form class="donate-page-form" method="post" action="{% url 'checkout-as-guest-tap' %}"
+                                      id="confirmation-form">
+                                {% csrf_token %}
+                            {% endif %}
+                            <div class="">
+                                {% if request.user_agent.is_mobile %}
+                                    <img src="{% project_image_tag project request %}" height="250" width="100%" alt="">
+                                {% else %}
+                                    <img src="{% project_image_tag project request %}" height="500" width="100%" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="causes-details-top__text-content">
+                                <h3 class="causes-details__title text-uppercase">{{ project.get_name }}</h3>
+{#                                {% csrf_token %}#}
+                                {% if project.is_target_amount %}
+                                    <br/>
+                                    <div class="col-md-12">
+                                        <div class="progress" style="overflow: visible;
+  margin-bottom: 26px;
+  height: 12px;">
+                                            <div class="progress-bar" role="progressbar"
+                                                 aria-valuenow="{{ project.fund_percent | intcomma:False }}"
+                                                 aria-valuemin="0" aria-valuemax="100"
+                                                 style="width: {{ project.fund_percent | intcomma:False }}%; background-color: #8ec670;
+                                                         position: relative;
+                                                         border-radius: 4px;
+                                                         float:{% if LANGUAGE_CODE == "ar" %} right; {% else %} left; {% endif %}">
+                                                 <span style="background-color: #8ec670;
+                  position: absolute;
+                  bottom: -20px;
+                  font-size: 10px;
+                  line-height: 10px;
+                  padding: 2px 3px 2px 4px;
+                  {% if LANGUAGE_CODE == "ar" %} left: -1.4em; {% else %} right: -1.4em; {% endif %}
+                  border-radius: 2px;
+                  ">{{ project.fund_percent | intcomma:False }}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if project.is_target_amount %}
+                                        <div class="progress-result">
+                                            <p>{% trans "Funded" %}: <span
+                                                    class="base-color">{{ project.total_funded  | floatformat:"0" | intcomma }}</span>
+                                                <span class="pdl15 pdr15">/</span>
+                                                {% trans "Target" %}: <span
+                                                        class="base-color">{{ project.total_amount | floatformat:"0" | intcomma }}</span>
+                                                <span class="pdl15 pdr15">/</span>
+                                                {% trans "Remaining" %}: <span
+                                                        class="base-color">{{ project.remaining | floatformat:"0" | intcomma }}</span>
+                                                {{ getMyCurrency }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+
+                                {% if not project.is_closed %}
+                                    <p>
+                                        <input type="hidden" id="first-price" value="
+                                                {% if amount %}{{ amount | intcomma:False }}{% else %}{{ project.suggestedDonation | intcomma:False }}{% endif %}">
+                                    </p>
+                                    <input type="hidden" name="project_id[]" value="{{ project.id }} ">
+
+                                    <div class="row">
+                                        <div class="col-md-6 pdb10">
+                                            <h4>{% trans "Please select your Sacrifice" %}</h4>
+
+                                            <select class="form-control input-group__input" name="sacrifice"
+                                                    id="sacrifice">
+                                                {% for sacrifice in sacrifices %}
+                                                    <option value="{{ sacrifice.id }}"
+                                                            data-price="{{ sacrifice.price }}"
+                                                            data-availability="{{ sacrifice.availability }}">{{ sacrifice.get_name }}</option>
+
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <h4>{% if project.isZakat %} {% trans "Your Zakat is" %} {% else %}
+                                        {% trans "Enter your donation in" %} {{ getMyCurrency }} {% endif %}</h4>
+                                    <p>
+                                        <input type="number" min="0" id="donation-input" class="form-control input-group__input"
+                                               style="width: 80%;" step="any" min="1" id="price" value="
+                                                {% if amount is not None and project.isZakat is True %}{{ amount|zakat }}{% elif amount is not None and project.isZakat is not True %}{{ amount | intcomma:False }}{% else %}{{ project.suggestedDonation | intcomma:False }}{% endif %}"
+                                               data-defined="{{ project.is_defined }}" name="amount[]" size="5"
+                                                {% if  project.is_defined %} readonly {% endif %}
+                                                {% if project.isZakat %} readonly {% endif %} readonly>
+
+                                    <div class="row ">
+                                        <div class="col-md-6 pdb10">
+                                            <h4>{% trans "How many sacrifice do you want?" %}</h4>
+
+                                            <select id="quantity" class="form-control input-group__input"
+                                                    name="quantity">
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                                <option value=4>4</option>
+                                                <option value=5>5</option>
+                                                <option value=6>6</option>
+                                                <option value=7>7</option>
+                                                <option value=8>8</option>
+                                                <option value=9>9</option>
+                                                <option value=10>10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="project_category_id" name="project_category_id[]"
+                                           value="{{ project.category.first.id }}">
+
+                                    <h4>{% trans "Email" %}</h4>
+                                    <p id="email">
+                                        <div class="email">
+                                    <p><input type="email" placeholder="" class="form-control input-group__input"
+                                              style="width: 80%;" value="" name="email" size="5"></p>
+                                    </div>
+                                    </p>
+
+                                    {% if not project.isZakat %}
+                                        <p>
+                                            <input type="checkbox" id="donate-as-gift-input"
+                                                   onClick="handleClick(this);">
+                                            <label>{% trans "Donate as Gift" %}</label>
+                                        </p>
+                                    {% endif %}
+
+                                    <div id="send-sms-div" hidden>
+                                        <h4>{% trans "Send SMS" %}</h4>
+                                        <p id="numberOfPhones">
+                                            <div class="phones">
+                                        <p><input type='text' placeholder='إسمك' class='form-control input-group__input'
+                                                  style='width: 80%;' name='fullname' size='5'></p>
+                                        <p><input type="phone" placeholder="+96598765432 رقم هاتف المُهدى إليه مثال"
+                                                  class="form-control input-group__input" style="width: 80%;" value=""
+                                                  name="phones[]" size="5"></p>
+
+                                    </div>
+                                    </p>
+                                    <p>
+                                        <textarea name="message" class="form-control input-group__input"
+                                                                  style="width: 80%;" readonly>
+                                                            تم التبرع لك من خلال جمعية بصائر الخيرية.
+                                        </textarea>
+                                    </p>
+                                    </div>
+                                    <div class="row pdb30">
+                                        <div class="col-md-6 pdb10">
+                                            <h4><span class="red-color">*</span> {% trans "Payment Mathod" %}</h4>
+                                            <div class="input-group__radio-wrap">
+                                                <input type="radio" id="payment-method-online" name="payment_method"
+                                                       value="Knet" checked>
+                                                <label for="payment-method-online">KNET</label>
+                                                <input type="radio" id="payment-method-online" name="payment_method"
+                                                       value="CreditCard">
+                                                <label for="payment-method-online">Credit Card</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <input type="submit" class="btn" value="{% trans "Donate Now" %}">
+                                    </p>
+                                {% endif %}
+                            </form>
+
+                        <!-- AddToAny BEGIN -->
+                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                            <a class="a2a_button_copy_link"></a>
+                            <a class="a2a_button_twitter"></a>
+                            <a class="a2a_button_facebook"></a>
+                            <a class="a2a_button_telegram"></a>
+                            <a class="a2a_button_whatsapp"></a>
+                        </div>
+                        <script async src="https://static.addtoany.com/menu/page.js"></script>
+                        <!-- AddToAny END -->
+                        <p>{{ project.get_detail | safe }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="col-md-4">
+            <aside class="sidebar">
+                <div class="widget">
+                    <div class="widget__heading">
+                        <h4 class="widget__title">{% trans "Latest" %} <span
+                                class="base-color">{% trans "Charity Projects" %}</span></h4>
+                    </div>
+                    <div class="widget__text-content">
+                        {% for obj in latest_projects %}
+                            <div class="widget-latest-causes">
+                                <div class="widget-latest-causes__image-wrap">
+                                    <a href="{% url 'project-detail' obj.id %}"><img
+                                            class="widget-latest-causes__thubnail"
+                                            src="{% project_image_tag obj request %}" width="145" height="93"
+                                            alt=""></a>
+                                </div>
+                                <div class="widget-latest-causes__text-content">
+                                    <h4 class="widget-latest-causes__title"><a
+                                            href="{% url 'project-detail' obj.id %}">{{ obj.get_name }}</a></h4>
+                                </div>
+                            </div><!--/.widget-latest-causes-->
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+    </div>
+{#    </div>#}
+{#    </div>#}
+
+    <div class="modal fade" id="donate-as-gift-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Donate as Gift</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>{% trans "Your name" %}</h4>
+                    <p id="your-name">
+                        <div class="email">
+                    <p><input type="email" placeholder="{% trans 'user@basaier.com' %}"
+                              class="form-control input-group__input" style="width: 80%;" value="" name="your-name"
+                              size="5"></p>
+                </div>
+                </p>
+                <h4>{% trans "Friend Phone" %}</h4>
+                <p id="friend-phone">
+                    <div class="phone">
+                <p><input type="phone" placeholder="+96598765432 رقم هاتف المُهدى إليه مثال"
+                          class="form-control input-group__input" style="width: 80%;" value="" name="friend-phone"
+                          size="5"></p>
+            </div>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="submitForm(this);">{% trans "Donate" %}</button>
+        </div>
+    </div>
+{#    </div>#}
+{#    </div>#}
+
+    <script>
+
+        // var sacrifices = {{sacrifices_json|safe}};
+
+
+        function handleClick(e) {
+            if (e.checked) {
+                $("#send-sms-div").show();
+            } else {
+                $("#send-sms-div").hide();
+            }
+        }
+
+
+        $("#sacrifice").on('change', function () {
+            var price = parseInt($(this).children(':selected').data('price'));
+            var availability = parseInt($("#sacrifice").children(':selected').data('availability'));
+            var qty = parseInt($("#quantity").children(':selected').val());
+            if (availability >= qty) {
+                $("#donation-input").val(parseFloat(price * qty).toFixed(3));
+            } else {
+                alert("The availability is " + availability)
+                $("#donation-input").val(parseFloat(0).toFixed(3));
+            }
+        });
+
+        $("#quantity").on('change', function () {
+            var qty = parseInt($(this).children(':selected').val());
+            var price = parseInt($("#sacrifice").children(':selected').data('price'));
+            var availability = parseInt($("#sacrifice").children(':selected').data('availability'));
+            if (availability >= qty) {
+                $("#donation-input").val(parseFloat(price * qty).toFixed(3));
+            } else {
+                alert("The availability is " + availability)
+                $("#donation-input").val(parseFloat(0).toFixed(3));
+            }
+        });
+        var qty = parseInt($("#quantity").children(':selected').val());
+        var price = parseInt($("#sacrifice").children(':selected').data('price'));
+        $("#donation-input").val(parseFloat(price * qty).toFixed(3));
+
+        // function submitForm(e) {
+        //
+        //     var qty = parseInt($("#quantity").children(':selected').val());
+        //     var price = parseInt($("#sacrifice").children(':selected').data('price'));
+        //     var availability = parseInt($("#sacrifice").children(':selected').data('availability'));
+        //     if (availability >= qty) {
+        //     }else {
+        //         alert("The availability is "+availability)
+        //     }
+        //
+        // }
+
+    </script>
+
+{% endblock %}

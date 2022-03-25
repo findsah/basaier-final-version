@@ -1,0 +1,357 @@
+@import "variables.scss"; // variable.less
+/*      All Global css
+----------------------------*/
+body{
+    font-family: $open;
+    font-size: 14px;
+    font-weight: 400;
+    color: $bcolor;
+}
+
+ul,ol{
+    margin: 0;
+    padding: 0;
+}
+ul,ol{
+    list-style: none;
+}
+a{
+    -webkit-transition:all 0.3s ease 0s;
+    -moz-transition:all 0.3s ease 0s;
+    -o-transition:all 0.3s ease 0s;
+    -ms-transition:all 0.3s ease 0s;
+    transition:all 0.3s ease 0s;
+    font-weight: 400;
+    color: $bcolor;
+    &:hover,&:focus,&.active{
+        text-decoration: none;
+        outline: none;
+        color:$base;
+    }
+}
+input{
+    -webkit-transition:all 0.3s ease 0s;
+    -moz-transition:all 0.3s ease 0s;
+    -o-transition:all 0.3s ease 0s;
+    -ms-transition:all 0.3s ease 0s;
+    transition:all 0.3s ease 0s;
+}
+
+label {
+	font-weight: normal;
+}
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="url"],
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="time"],
+input[type="text"],
+.form-control,textarea,textarea.form-control{
+
+    &:focus{
+        box-shadow: none;
+        outline: 0;
+        border-color: $base;
+    }
+}
+input[type="submit"]{
+    &:focus{
+        outline: 0;
+    }
+}
+/*  Heading Tag
+-------------------*/
+h1,h2,h3,h4,h5,h6{
+    color: #243a4f;
+    font-weight: 700;
+    font-family: $rb;
+    a{
+        color: inherit;
+        font-weight: inherit;
+    }
+}
+h1{
+    font-size: 60px;
+    line-height: 60px;
+}
+h2{
+    font-size: 42px;
+    line-height: 55px;
+    font-weight: 700;
+    margin: 0;
+}
+h3{
+    font-size: 24px;
+    margin-top: 0;
+    font-weight: 600;
+}
+h4{
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+h5{
+    font-size: 14px;
+    line-height: 24px;
+}
+img{
+    max-width: 100%;
+}
+.all-text-white{
+    *{
+        color: $white;
+    }
+
+    .btn{
+        color: $white;
+        border-color: $border;
+        &:hover{
+            border-color: $base;
+            background: $base;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.img-round{
+    border-radius: 10px;
+}
+.disinb{
+    display: inline-block;
+}
+.fix{
+    overflow: hidden;
+}
+p{
+    font-family: $open;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.clear{
+    clear: both;
+}
+.section-padding{
+    padding-top:87px;
+    padding-bottom: 70px;
+    @include breakpoint(max_sm){
+        padding-top: 65px;
+        padding-bottom: 50px;
+    }
+}
+.section-heading.text-center{
+    p{
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.section-heading{
+    padding-bottom: 7px;
+
+}
+.section-title{
+    font-size: 42px;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-bottom: 5px;
+    @include breakpoint(max_sm){
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 14px;
+    }
+    &--small{
+        font-size: 30px;
+    }
+}
+.section-sub-title{
+    font-size: 16px;
+}
+.heading-label-four{
+    font-size: 18px;
+    font-weight: 600;
+}
+.section-heading.md-padding{
+    padding-bottom: 40px;
+}
+.section-heading.sm-padding{
+    padding-bottom: 20px;
+}
+.section-heading-separator{
+    width: 163px;
+    background: $border;
+    height: 1px;
+    margin:30px auto;
+    position: relative;
+    &:before{
+        position: absolute;
+        top:-8px;
+        left:0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background: $white;
+        border:1px solid $border;
+        content: '';
+        width:15px;
+        height: 15px;
+        border-radius: 100%;
+    }
+    &:after{
+        position: absolute;
+        top:-5px;
+        left:0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background:$base;
+        content: '';
+        width:9px;
+        height: 9px;
+        border-radius: 100%;
+    }
+    &--small{
+        width:95px;
+        margin:17px auto;
+    }
+    &--left-align{
+        width:90px;
+        margin-left: 0;
+        margin-top:12px;
+        &:before{
+            margin-left: 0;
+        }
+        &:after{
+            margin-left: 0;
+            left:3px;
+        }
+    }
+}
+.max-width-620{
+    max-width: 620px;
+}
+.max-width-470{
+    max-width: 470px;
+}
+.max-width-800{
+    max-width: 800px;
+}
+.over-x-hidden{
+    overflow-x: hidden;
+}
+
+.base-color{
+    color:$base;
+}
+
+.base-bg{
+    background: $base;
+    color: $white;
+    h1,h2,h3,h4,h5,h6,a,p,span{
+        color: $white;
+    }
+    .base-color{
+        color: $base;
+    }
+    .nv-color{
+        color: $nv;
+    }
+}
+.red-color{
+    color: #ff0000;
+}
+.small-text{
+    font-size: 12px;
+}
+.ash-white-bg{
+    background: $ash-white;
+}
+.nv-color{
+    color: $nv;
+}
+.text-mute{
+    color: #c1c1c1;
+}
+hr{
+    border-color: $border;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?ume250');
+  src:  url('../fonts/icomoon.eot?ume250#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?ume250') format('truetype'),
+    url('../fonts/icomoon.woff?ume250') format('woff'),
+    url('../fonts/icomoon.svg?ume250#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-icomooon"], [class*=" icon-icomooon"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icomooon-brain:before {
+  content: "\e900";
+}
+.icon-icomooon-close:before {
+  content: "\e901";
+}
+.icon-icomooon-contract:before {
+  content: "\e902";
+}
+.icon-icomooon-ecology:before {
+  content: "\e903";
+}
+.icon-icomooon-magnifying-glass-browser:before {
+  content: "\e904";
+}
+.icon-icomooon-maps-and-flags:before {
+  content: "\e905";
+}
+.icon-icomooon-message:before {
+  content: "\e906";
+}
+.icon-icomooon-play-button:before {
+  content: "\e907";
+}
+.icon-icomooon-play-button-two:before {
+  content: "\e908";
+}
+.icon-icomooon-quotations-button:before {
+  content: "\e909";
+}
+.icon-icomooon-quotes:before {
+  content: "\e90a";
+}
+.icon-icomooon-seo:before {
+  content: "\e90b";
+}
+.icon-icomooon-telephone-auricular-with-cable:before {
+  content: "\e90c";
+}

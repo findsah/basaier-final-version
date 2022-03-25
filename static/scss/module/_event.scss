@@ -1,0 +1,301 @@
+/* -----------------------------------
+** Events
+-------------------------------------*/
+.upcomming-event{
+    position: relative;
+    min-height: 170px;
+    margin-bottom: 30px;
+    @include breakpoint(max_xs){
+        text-align: center;
+    }
+    &__image-wrap{
+        width: 170px;
+        position: absolute;
+        left:0;
+        top:0;
+        border-radius: 10px;
+        overflow: hidden;
+        @include breakpoint(max_xs){
+            position: relative;
+            width: 190px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    &__image{
+        @include breakpoint(max_xs){
+            // object-fit: cover;
+            width:100%;
+        }
+    }
+    &__date{
+        position: absolute;
+        bottom:0;
+        width: 100%;
+        background: rgba(10, 170, 160, .80);
+        font-size: 24px;
+        text-align: center;
+        color: $white;
+        text-transform: uppercase;
+        padding:5px;
+    }
+    &__text-content{
+        padding-left: 195px;
+        padding-top: 15px;
+        @include breakpoint(max_xs){
+            padding-left:0;
+        }
+    }
+    &__title{
+        margin-bottom: 3px;
+    }
+    &__meta-info{
+        padding-bottom: 8px;
+    }
+    &__time{
+        padding-right: 15px;
+        i{
+            padding-right: 15px;
+        }
+    }
+    &__place{
+        i{
+            padding-right: 15px;
+        }
+    }
+    p{
+
+    }
+}
+.upcomming-event-section {
+    @include breakpoint(max_xs){
+        //text-align: center;
+    }
+    .section-heading{
+        @include breakpoint(max_xs){
+            text-align: center;
+            .section-heading-separator{
+                margin-left: auto;
+                margin-right: auto;
+                width: 163px;
+                &:before{
+                    margin-left: auto;
+
+                }
+                &::after{
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
+.fund-event{
+    display: flex;
+    width: 100%;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    margin-bottom: 76px;
+    margin-top: 47px;
+    &:last-child{
+        margin-bottom: 45px;
+    }
+    &__date{
+        min-width: 82px;
+        max-width: 82px;
+        text-align: center;
+        padding-top: 18px;
+    }
+    &__day{
+        font-size: 36px;
+        font-weight: 700;
+        display: block;
+    }
+    &__main{
+
+    }
+    &__image-content{
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 25px;
+    }
+    &__image-wrap{
+        width: 230px;
+    }
+    &__image{
+        margin-top: -32px;
+        border-radius: 12px;
+    }
+    &__text-content{
+        padding-left: 20px;
+        margin-bottom: -10px;
+    }
+    &__title{
+        margin-bottom: 14px;
+    }
+    &__time{
+        padding-bottom: 4px;
+    }
+    &__address{
+        padding-bottom: 4px;
+    }
+    &__ticket-price{
+    }
+    &__icon{
+        width: 24px;
+    }
+}
+.fund-pagination{
+    display: flex;
+    a{
+        height: 40px;
+        display: inline-block;
+        width: 40px;
+        line-height: 38px;
+        text-align: center;
+        border:1px solid $border;
+        border-radius: 100%;
+        color: $nv;
+        margin-right: 15px;
+        &.active{
+            border-color: transparent;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        &.next{
+            width: auto;
+            border:0;
+            text-decoration: underline;
+            &:hover{
+                color: $base;
+            }
+        }
+    }
+}
+.event-detial-wrap{
+    padding:0 30px 30px 30px;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+    @include breakpoint(max_sm){
+        padding:0 15px 30px 15px;
+    }
+}
+.event-detail-meta{
+    &__title{
+        width: 190px;
+        display: inline-block;
+        @include breakpoint(max_sm){
+            display: block;
+        }
+    }
+    .icon{
+        width: 28px;
+    }
+    .desc{
+        @include breakpoint(max_sm){
+            padding-left: 30px;
+        }
+    }
+    li{
+        margin-bottom: 10px;
+    }
+}
+.event-details-counter-wrap{
+    position: relative;
+    background:url('../images/events/event-details2.jpg');
+    background-size: cover;
+    background-position: center center;
+    padding:35px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    overflow: hidden;
+    @include breakpoint(max_xs){
+        padding:15px;
+        text-align: center;
+        display: block;
+    }
+    .event-counter{
+        width: 330px;
+        box-shadow: none;
+        @include breakpoint(max_xs){
+            width:250px;
+        }
+        .countdown-amount{
+            color: $white;
+        }
+        .countdown-period {
+            color: $base;
+        }
+    }
+    &>div{
+        position: relative;
+
+    }
+    &:before{
+        position: absolute;
+        left: 0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background: rgba(0,0,0,0.85);
+    }
+}
+.event-shedule{
+    position: relative;
+    display: flex;
+    width: 100%;
+    &__time{
+        min-width:135px;
+        border-right:1px solid $border;
+        padding-top: 12px;
+        @include breakpoint(max_xs){
+            min-width:90px;
+            padding-right: 5px;
+
+        }
+    }
+    &__text-content{
+        padding-top:0;
+        padding-left: 34px;
+        position: relative;
+        p{
+            margin-bottom: 12px;
+        }
+        &:before{
+            position: absolute;
+            left:-6px;
+            top:15px;
+            width:11px;
+            height: 11px;
+            border-radius: 100%;
+            background: $border;
+            content: '';
+        }
+    }
+    &__title{
+        margin-bottom: 10px;
+    }
+}
+.event-details-location-wrap{
+    .location-text-content{
+        .loc-icon{
+            display: inline-block;
+            width: 25px;
+
+        }
+        ul{
+            li{
+                padding-bottom:10px;
+                color: $nv;
+            }
+        }
+    }
+    #mapContainer{
+        height: 250px;
+        border-radius: 15px;
+        border:0;
+    }
+}
+/* -----------------------------------
+** End Events
+-------------------------------------*/

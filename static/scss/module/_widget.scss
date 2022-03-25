@@ -1,0 +1,272 @@
+/* -----------------------------------
+** Widget
+-------------------------------------*/
+.widget{
+    margin-bottom: 30px;
+    &:not(.widget--footer){
+        margin-bottom: 94px;
+        &:last-child{
+            margin-bottom: 30px;
+        }
+    }
+    &__heading{
+        position: relative;
+        padding-bottom: 4px;
+        margin-bottom: 25px;
+        &:after{
+            background: $border;
+            width: 62px;
+            height: 1px;
+            content: '';
+            position: absolute;
+            bottom:0;
+            left:15px;
+        }
+    }
+    &__title{
+        &:after{
+            position: absolute;
+            bottom:-5px;
+            left:3px;
+            background:$base;
+            content: '';
+            width:9px;
+            height: 9px;
+            border-radius: 100%;
+            z-index: 2;
+        }
+        &:before{
+            position: absolute;
+            bottom:-8px;
+            left:0;
+            border:1px solid $border;
+            content: '';
+            width:15px;
+            height: 15px;
+            border-radius: 100%;
+            z-index: 2;
+        }
+    }
+    &__text-content{
+        //@extend .section-heading-separator;
+    }
+    &--userfull-link{
+        .widget__text-content{
+            &>ul{
+                &>li{
+                    padding-bottom: 7px;
+                    position: relative;
+                    padding-left: 11px;
+                    &:before{
+                        position: absolute;
+                        width: 7px;
+                        height: 1px;
+                        top:10px;
+                        left:0;
+                        content: '';
+                        background: $white;
+                    }
+                }
+            }
+        }
+    }
+    &--contact{
+        .contact-way{
+            position: relative;
+            padding-bottom: 11px;
+        }
+        .contact-icon{
+            position: absolute;
+            left:0;
+            top:0;
+            width:23px;
+            height: 23px;
+            display: inline-block;
+            line-height: 23px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .contact-text{
+            padding-left: 37px;
+            padding-top: 3px;
+            display: block;
+        }
+    }
+}
+.copyright-text{
+    padding: 10px 0;
+}
+.search-form{
+    position: relative;
+    &__input{
+        background: #f3f3f3;
+        border:0;
+        height: 42px;
+        padding-left: 20px;
+        padding-right: 45px;
+        box-shadow: none;
+        border-radius: 5px;
+    }
+    &__submit{
+        background: transparent;
+        border:0;
+        position: absolute;
+        right:0;
+        height: 32px;
+        top:5px;
+        width: 45px;
+        text-align: center;
+        border-left: 1px solid $border;
+        &:focus{
+            outline: 0;
+        }
+    }
+}
+.upcomming-event-carousel{
+    margin-left: -5px;
+    margin-right: -5px;
+    max-width: 400px;
+    a{
+        display: inline-block;
+    }
+    &__item{
+
+        border-radius: 0 0 5px 5px;
+        margin:0 5px 10px 5px;
+    }
+    .image{
+        position: relative;
+        .event-thumbnail{
+            border-radius: 5px 5px 0 0;
+            width: 100%;
+        }
+    }
+    &__title{
+        position: absolute;
+        width: 270px;
+        margin:0 auto;
+        padding:5px 10px;
+        background: rgba(0,0,0,0.5);
+        color: $white;
+        top:50%;
+        transform: translateY(-50%);
+        left:0;
+        font-weight: 400;
+        text-transform: uppercase;
+        right:0;
+    }
+}
+.event-counter{
+    height: 70px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+.event-counter{
+    .countdown-amount {
+      font-size: 22px;
+      font-weight: 700;
+      color: $nv;
+      display: block;
+      margin: 3px 2px 2px 2px;
+      padding: 4px 8px;
+      position: relative;
+      text-align: center;
+      &:before {
+        height: 26px;
+        width: 1px;
+        background: #ebebeb;
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 19px;
+      }
+
+    }
+    .countdown-section{
+        &:first-child{
+            .countdown-amount{
+                &:before{
+                    display: none;
+                }
+            }
+        }
+    }
+    .countdown-row {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      margin-left: 5px;
+      .countdown-amount {
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+      }
+      .countdown-period {
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+    }
+}
+.widget-latest-causes{
+    min-height: 93px;
+    position: relative;
+    margin-bottom: 30px;
+    &__image-wrap{
+        position: absolute;
+        left:0;
+        top:0;
+        width: 140px;
+    }
+    &__thumbnail{
+        border-radius: 5px;
+    }
+    &__text-content{
+        padding-left: 155px;
+        padding-top: 5px;
+    }
+    &__title{
+        margin-bottom: 7px;
+    }
+    &__admin{
+        margin-bottom: 10px;
+    }
+    &__admin-icon{
+        padding-right: 10px;
+    }
+    &__time{
+
+    }
+}
+.widget--category{
+    ul{
+        li{
+            border-bottom: 1px solid $border;
+            padding:5px 0;
+            a{
+                padding-top:5px;
+                padding-bottom:5px;
+                display: inline-block;
+            }
+            .post-count{
+                &:before{
+                    content: '('
+                }
+                &:after{
+                    content: ')'
+                }
+            }
+        }
+    }
+}
+.widget--tags{
+    a{
+        display: inline-block;
+        border:1px solid $border;
+        padding:4px 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+    }
+}
+/* -----------------------------------
+** End Widget
+-------------------------------------*/

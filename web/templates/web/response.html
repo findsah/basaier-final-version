@@ -1,0 +1,18 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+    <section class="blog-section section-padding white-bg">
+        <div class="main-content section-padding">
+            <div class="container">
+                <div class="col-md-offset-3">
+                    <div class="main-contact">
+                        <h4>{% trans "The donation amount is higher than the remaining project amount." %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

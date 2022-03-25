@@ -1,0 +1,264 @@
+#topPullOnTop {
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+@media(max-width: 768px){
+    #topPullOnTop {
+        top: 12%;
+        left: 47%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 414px){
+    #topPullOnTop {
+        top: -20%;
+        left: 43%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 411px){
+    #topPullOnTop {
+        top: -10%;
+        left: 45%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 375px){
+    #topPullOnTop {
+        top: -25%;
+        left: 44%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 360px){
+    #topPullOnTop {
+        top: -25%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 320px){
+    #topPullOnTop {
+        top: -35%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+.jumbotron-main {
+    display: flex;
+    justify-content: center;
+    /*margin-top: 20px;*/
+    /*background-image: url("img.jpg");*/
+    background-repeat: no-repeat;
+    color: white !important;
+    font-size: 50px;
+}
+.main-section {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    background-color: #f1efed;
+    margin-top: 60px;
+    border-radius: 10px;
+}
+.tabra {
+    color: #8ec56f !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+}
+@media (max-width: 512px) {
+    .btn-makfoleen {
+        width: 100% !important;
+    }
+}
+.kafala {
+    width: 100%;
+    background-color: #e2dede;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 5%;
+}
+.btn-makfoleen {
+    width: 100%;
+    color: white;
+    outline: none;
+    border: none;
+    background-color: #4d5280;
+
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 5%;
+}
+
+.kafalat-yateem {
+    /*color: #8ec56f !important;*/
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 40px;
+}
+.kafalat-yateem-txt {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+    font-size: 16px;
+}
+
+.jumbotron-middle {
+    display: block;
+    text-align: center;
+    background-color: #F1EFED !important;
+}
+
+section {
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+section .section-title {
+    text-align: center;
+    color: #8EC56F;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+#team .card {
+    border: none;
+}
+
+.frontside .card .card-body img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #939a9c;
+}
+.teamHr1 {
+    position: absolute;
+    border: 1px solid #939a9c;
+    z-index: -1;
+    width: 60%;
+    margin-left: 11%;
+    margin-top: 75px;
+    font-weight: bold;
+}
+@media (max-width: 766px) {
+    .teamHr1 {
+        display: none;
+    }
+}
+.orphan-filters {
+    margin: auto;
+    width: 70%;
+    padding: 20px 0;
+    background-color: #8EC56F;
+    /*margin-top: 60px;*/
+    border-radius: 6px;
+}
+.filters {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #8e9696;
+}
+.filters-days {
+    width: 23%;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #8e9696;
+    margin-bottom: 3%;
+}
+
+.card-box {
+    background: #f3eeee;
+    border-radius: 8px 8px 25px 25px;
+    position: relative;
+    margin-bottom: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+
+    box-shadow: 0px 2px 5px 0px #ccc;
+}
+
+.card-title h2 {
+    padding-top: 5%;
+    padding-right: 5%;
+    color: #8e9696;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-align: right;
+}
+.card-body1 {
+    color: #707070;
+    background-color: #DAD6DD;
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 15px;
+}
+.card-body2 {
+    color: #707070;
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 15px;
+}
+.card-footer > .card-btn {
+    width: 28%;
+    height: 34px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin: 10px 0 25px 8px;
+}

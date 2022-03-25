@@ -1,0 +1,214 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+    <style>
+        {#.jumbotron-main {#}
+        {#    display: flex;#}
+        {#    justify-content: center;#}
+        {#    margin-top: 20px;#}
+        {#    background-image: url("img.jpg");#}
+        {#    background-repeat: no-repeat;#}
+        {#    color: white !important;#}
+        {#    font-size: 50px;#}
+        {# }#}
+
+        #topPullOnTop {
+            position: absolute;
+            top: 30%;
+            left: 43%;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            #topPullOnTop {
+                top: 12%;
+                left: 47%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 414px) {
+            #topPullOnTop {
+                top: -20%;
+                left: 43%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 411px) {
+            #topPullOnTop {
+                top: -10%;
+                left: 45%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 44%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #topPullOnTop {
+                top: -35%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+
+        .kafalat-yateem {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 0px !important;
+            margin-bottom: 20px !important;
+            font-size: 40px;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            {#border: 1px solid grey;#}
+            {#border-radius: 12px;#}
+            {#width: 65%;#}
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        .tabrkat {
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid grey;
+            border-radius: 12px;
+            width: 65%;
+            text-align: right;
+        }
+
+        .inner {
+            padding: 20px;
+        }
+
+        .amlia {
+            text-align: center;
+        }
+
+        .amlia-label {
+            font-size: 20px;
+        }
+    </style>
+
+
+    <!-- <div class="jumbotron jumbotron-main">تبرعاتكم</div> -->
+
+    <div style="position: relative; background-color: lightGreen;">
+        <img src="/static/topImages/invoice.jpeg" alt=""
+             style="width: 100%; opacity: 0.6;">
+        <div id="topPullOnTop">
+            <h1 class="text-center" style="color: white;">{% trans "تبرعاتكم" %}</h1>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="container" style="margin-top: 40px;">
+        <h3 class="kafalat-yateem" style="color: #4D5280; text-align: center;">+<br/>
+            <h3 id="logoColor" style="text-align: center !important;"> {% trans "المعلومات التبرع" %}  </h3> <br/>
+            <h3 style="text-align: center !important;"
+                id="logoColorGreen"> {% trans "تـبـــــرع الآن" %}  </h3> </h3>
+    <div style="margin: auto; text-align: right; width: 40%; border: 1px solid gray; border-radius: 16px !important;">
+        <table class="center">
+            <tr>
+                <th id="newsDetails" style="text-align: right;">{% trans "تــــبــــرع" %}</th>
+                <th id="newsDetails" style="text-align: right;">{% trans "السعر" %}</th>
+                <th id="newsDetails" style="text-align: right;">{% trans "المجموع" %}</th>
+            </tr>
+            {% for donate in donates %}
+                <tr>
+                    <td style="text-align: right;"><span id="logoColor"> {{ donate.project.get_name }}</span>: <span
+                            id="logoColorGreen">{{ donate.category.get_name }}</span></td>
+                    <td id="logoColor" style="text-align: right;">{{ donate.amount }}</td>
+                    <td id="logoColor" style="text-align: right;">{{ donate.amount }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+    <div class="container" style="margin-top: 40px;">
+        <h3 class="kafalat-yateem" id="logoColor">+<br/>
+            <h3 id="logoColor" style="text-align: center !important;"> {% trans "الملخص التبرعات" %} </h3>
+        </h3>
+        <div class="tabrkat">
+            <div class="inner">
+                <label for="tareka">{% trans "طريقة الدفع" %}:</label>
+                <hr>
+                <label for="tareka" style="color: #4D5280; margin: 0 35%;"> KD {{ amount }} </label> <span style="color: #4D5280;"> {% trans "المجموع" %}: </span>
+                <hr>
+                <label for="tareka" style="color: #4D5280; margin-right: 35%;"> KD {% for donate in donates %}
+                    {{ donate.amount }} {% endfor %}</label> <span style="color: #4D5280;"> {% trans "الإجمالي" %}: </span>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 40px;">
+        <h3 class="kafalat-yateem" id="logoColor">+<br/>{% trans "تفاصيل عملية الدفع " %}</h3>
+        <div class="amlia">
+            <label for="tareka" class="amlia-label" id="newsDetails"> {{ db_id }} :{% trans "رقم الطلب" %}</label><br><br>
+            <label for="tareka" class="amlia-label" id="newsDetails"> {{ payment_id }} :{% trans "رقم العملية" %}</label><br><br>
+            <label for="tareka" class="amlia-label" id="newsDetails"> {{ merchant_track_id }} :{% trans "مرجع البنك" %}</label><br><br>
+            <label for="tareka" class="amlia-label" id="newsDetails"> {{ payment_id }} :{% trans "مرجع الدفع" %}</label><br><br>
+            <label for="tareka" class="amlia-label" id="newsDetails"> {{ merchant_track_id }} :{% trans "مرجع الجمعية" %}</label><br>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text-center">
+            {% if success %}
+                <h3 class="text-success" id="logoColor">
+                    {% trans "Your payment was successfull. Thanks for the purchase." %}
+                </h3>
+            {% else %}
+                <h3 class="text-danger" id="logoColor">
+                    {% trans "Payment failed. Transaction cancelled and amount refunded." %}
+                </h3>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

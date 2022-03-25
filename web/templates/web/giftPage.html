@@ -1,0 +1,214 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    {# FIRST SECTION IMAGE: #}
+    <section class="QC_inner-banner gift-landing-banner">
+        <div class="container">
+            <div class="col-xs-12">
+                <p class="QC_h1 bold text-center white-color margin-100-top margin-30-top-xs">
+                    <img src="/static/uploads/Hedaya.png">
+
+                </p>
+                <p class="QC_h3 bold text-center white-color margin-30-top-xs">
+                    Thinking of a way to express your love to someone?
+                </p>
+                <p class="col-xs-12 col-md-6 col-md-offset-3 text-center font-20 white-color">
+                    Send Gifts to Those You Hold Dear, and Express Your Love to Them
+                </p>
+                <div class="col-xs-12 col-md-4 col-md-offset-4 text-center margin-20-top ">
+                    <a onclick="smoothScroll(document.getElementById('speedgift'))"
+                       class="rounded-8 QC_white-border-btn text-center padding-40-bottom">
+                        <i class="margin-10-h">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23.24" height="21.759"
+                                 viewBox="0 0 23.24 21.759">
+                                <path id="Path_12252" data-name="Path 12252"
+                                      d="M21.787,38.409h-4.6A5.644,5.644,0,0,0,18,37.76a3.039,3.039,0,0,0,0-4.273,3.071,3.071,0,0,0-4.26,0c-.629.632-2.3,3.2-2.07,4.922h-.1c.229-1.718-1.441-4.291-2.07-4.922a3.071,3.071,0,0,0-4.26,0,3.04,3.04,0,0,0,0,4.273,5.748,5.748,0,0,0,.812.649h-4.6A1.455,1.455,0,0,0,0,39.862v3.631a.727.727,0,0,0,.726.726h.726v8.715A1.455,1.455,0,0,0,2.9,54.387h17.43a1.455,1.455,0,0,0,1.452-1.452V44.219h.726a.727.727,0,0,0,.726-.726V39.862A1.455,1.455,0,0,0,21.787,38.409Zm-8.631-.048c-.337-.35.636-2.866,1.615-3.851a1.565,1.565,0,1,1,2.2,2.225,7.142,7.142,0,0,1-3.546,1.673A.477.477,0,0,1,13.157,38.362ZM6.267,36.736a1.584,1.584,0,0,1,0-2.225,1.548,1.548,0,0,1,2.2,0c.979.985,1.952,3.5,1.614,3.851a.479.479,0,0,1-.269.048A7.142,7.142,0,0,1,6.267,36.736ZM1.452,39.862h9.441v2.9H1.452ZM2.9,44.219h7.989v8.715H2.9Zm17.43,8.715H12.346V44.219h7.989Zm1.452-10.167H12.346v-2.9h9.441Z"
+                                      transform="translate(0 -32.628)" fill="#ffffff"></path>
+                            </svg>
+                        </i>
+                        Select a Project
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {# END FIRST SECTION IMAGE: #}
+
+    {# GIFT LOVE 2ND SECTION: #}
+    <section>
+        <div class="container">
+            <div class="col-xs-12 col-md-8 col-md-offset-2 margin-50-bottom">
+                <p class="QC_h1 QC_secondary-color text-center margin-30-bottom">
+                    Gift Love, Give Happiness
+                </p>
+                <p class="text-center margin-30-bottom color-gray-dark">
+                    How beautiful it is to extend the effect of a gift, whatever the occasion is. A joy of giving is
+                    indeed a gift for the giver, a Happiness to the receiver and for those who benefit from it, it is a
+                    hope and a life!. Give happiness with gifts that are impactful: Helps a widow, teaches a child,
+                    waters a village, and spreads good. Choose from integrated charitable projects, or contribute to an
+                    ongoing charity, and surprise those you care about with a gift that they do not expect, Perhaps the
+                    most urgent thing they need on the occasion of marriage, healing, graduation, or a new baby.
+                </p>
+            </div>
+            <div class="col-xs-12 text-center">
+            </div>
+            <div class="col-md-8 col-md-offset-2 padding-none padding-50-bottom border-bottom-gray-laight">
+                <div class="col-md-3 col-sm-3 col-xs-6 padding-0-v m text-center margin-20-bottom">
+                    <div class="col-xs-12 padding-none QC_box-shadow-4 rounded-16  bg-white margin-20-bottom height-120">
+                        <img src="/static/uploads/Married.svg">
+                    </div>
+                    <div class="QC_h5 QC_secondary-color">Wedding/ Marriage Anniversary</div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 padding-0-v m text-center margin-20-bottom">
+                    <div class="col-xs-12 padding-none QC_box-shadow-4 rounded-16  bg-white margin-20-bottom height-120 ">
+                        <img src="/static/uploads/NewBornEvent.svg">
+                    </div>
+                    <div class="QC_h5 QC_secondary-color">Born</div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 padding-0-v m text-center margin-20-bottom">
+                    <div class="col-xs-12 padding-none QC_box-shadow-4 rounded-16  bg-white margin-20-bottom height-120 ">
+                        <img src="/static/uploads/graduate.svg" width="60">
+                    </div>
+                    <div class="QC_h5 QC_secondary-color">Graduation</div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6 padding-0-v m text-center margin-20-bottom">
+                    <div class="col-xs-12 padding-none QC_box-shadow-4 rounded-16  bg-white margin-20-bottom height-120">
+                        <img src="/static/uploads/leaf.svg" width="60">
+                    </div>
+                    <div class="QC_h5 QC_secondary-color">Healing</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    {# END GIFT LOVE 2ND SECTION: #}
+
+    {# GIFT A PROJECT 3RD SECTION: #}
+    <section class="QC_padding-section QC_gray-bg-extra-plus" id="speedgift">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 margin-30-bottom padding-none-xs">
+                    <p class="QC_h1 text-center margin-30-bottom" id="logoColor">
+                        Gift a Project
+                    </p>
+                    <div class="col-xs-12 padding-20-top">
+                        <div class="col-md-6 col-sm-6 col-xs-12 padding-0-v margin-60-bottom padding-none-xs">
+                            <div class="col-xs-12 QC_box-shadow-4 rounded-8 padding-20-bottom bg-white"
+                                 style="height: 335px;">
+                                <!-- image -->
+                                <div class="col-xs-12 padding-15-v">
+                                    <img src="/static/uploads/sendproject.svg">
+                                    <p class="font-16 QC_secondary-color  margin-20-v bold"> Send Project as gift</p>
+                                    <p style="height: 57px;">
+                                        Build a Mosque or Dig a well and send it as a Gift to your beloved ones
+                                    </p>
+                                    <a href="{% url 'giftProjectPage' %}"
+                                       class=" rounded QC_primary-border-btn text-center margin-15-top padding-30-h">Send
+                                        Project As Gift</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 padding-0-v margin-60-bottom padding-none-xs">
+                            <div class="col-xs-12  QC_box-shadow-4 rounded-8 padding-20-bottom bg-white"
+                                 style="height: 335px;">
+                                <!-- image -->
+                                <div class="col-xs-12 padding-15-v">
+                                    <img src="/static/uploads/Send contribution.svg">
+                                    <p class="font-16 QC_secondary-color  margin-20-v bold"> Send contribution as
+                                        gift</p>
+                                    <p style="height: 57px;">
+                                        <!-- Added new Resource. Please check if needed-->
+
+                                        Gift a charity that fits your budget and helps us complete projects that awaits
+                                        contributions
+                                    </p>
+                                    <a href="{% url 'giftSendGift' %}"
+                                       class="rounded QC_primary-border-btn text-center margin-15-top padding-30-h">Send
+                                        a gift</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {# END GIFT A PROJECT 3RD SECTION: #}
+
+    {# HOW TO SEND A GIFT 4RTH SECTION: #}
+    <section class="QC_padding-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2 margin-30-bottom">
+
+                    <p class="QC_h1 text-center margin-30-bottom" id="logoColor">
+                        How to Send a Gift ?
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-4 col-sm- 4 col-xs-12 padding-0-v margin-20-bottom">
+                <div class="col-xs-12 padding-none border-box rounded-16 padding-20-bottom gift-height">
+                    <!-- .media -->
+                    <p class="QC_h4 text-center margin-30-bottom margin-40-top" id="logoColor">
+                        Select a Project
+                    </p>
+                    <!-- image -->
+                    <div class="text-center">
+                        <img src="/static/uploads/Group 4485.svg">
+                    </div>
+                    <div class="col-xs-12 text-center margin-30-top padding-20-bottom">
+                        All you need to do is to choose a project of your preference. We can select from a wide range of
+                        charitable fields including but not limited to education, health, water, and income generating
+                        projects.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm- 4 col-xs-12 padding-0-v margin-20-bottom">
+                <div class="col-xs-12 padding-none border-box rounded-16 padding-20-bottom gift-height">
+                    <!-- .media -->
+                    <p class="QC_h4 text-center margin-30-bottom margin-40-top" id="logoColor">
+                        Fill in the Form
+                    </p>
+                    <!-- image -->
+                    <div class="text-center">
+                        <img src="/static/uploads/Group 4547.svg">
+                    </div>
+                    <div class="col-xs-12 text-center margin-30-top padding-20-bottom">
+                        It takes less than 2 minutes to submit your details and the details of that special someone whom
+                        you are sending the gift. However, please consider taking more time while drafting them a
+                        message, and remember that when words come out from the heart, they always hold more meaning.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm- 4 col-xs-12 padding-0-v margin-20-bottom">
+                <div class="col-xs-12 padding-none border-box rounded-16 padding-20-bottom gift-height">
+                    <!-- .media -->
+                    <p class="QC_h4 text-center margin-30-bottom margin-40-top" id="logoColor">
+                        Donate
+                    </p>
+                    <!-- image -->
+                    <div class="text-center">
+                        <img src="/static/uploads/Group 4486.svg">
+                    </div>
+                    <div class="col-xs-12 text-center margin-30-top padding-20-bottom">
+                        Choose the donation amount for any of the fields you have chosen and complete the donation
+                        process and you will send a message to the person dear to your heart and tell him your gift.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {# END HOW TO SEND A GIFT 4RTH SECTION: #}
+
+
+{% endblock %}

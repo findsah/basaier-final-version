@@ -1,0 +1,3873 @@
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CJYD2GTVX"></script>
+    {# GEOLOCATION API TO GET CURRENCY VALUE: #}
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    {# GEOLOCATION API TO GET CURRENCY VALUE: #}
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+
+        gtag('config', 'G-8CJYD2GTVX');
+
+    </script>
+
+    <!-- Facebook Pixel Code -->
+
+    <script>
+
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1993893774111809');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+
+                   src="https://www.facebook.com/tr?id=1993893774111809&ev=PageView&noscript=1"
+
+    /></noscript>
+
+    <!-- End Facebook Pixel Code -—>
+
+
+    <!-- Snap Pixel Code -->
+
+    <script type='text/javascript'>
+
+        (function (e, t, n) {
+            if (e.snaptr) return;
+            var a = e.snaptr = function () {
+                a.handleRequest ? a.handleRequest.apply(a, arguments) : a.queue.push(arguments)
+            };
+
+            a.queue = [];
+            var s = 'script';
+            r = t.createElement(s);
+            r.async = !0;
+
+            r.src = n;
+            var u = t.getElementsByTagName(s)[0];
+
+            u.parentNode.insertBefore(r, u);
+        })(window, document,
+
+            'https://sc-static.net/scevent.min.js');
+
+
+        snaptr('init', 'cd5fac92-3f29-400a-8284-674338f57553', {
+
+            'user_email': '__INSERT_USER_EMAIL__'
+
+        });
+
+
+        snaptr('track', 'PAGE_VIEW');
+
+
+    </script>
+
+    <!-- End Snap Pixel Code -->
+
+
+    {#<-- Twitter universal website tag code —>#}
+
+    <script>
+
+        !function (e, t, n, s, u, a) {
+            e.twq || (s = e.twq = function () {
+                s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+
+            }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = '//static.ads-twitter.com/uwt.js',
+
+                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+
+        // Insert Twitter Pixel ID and Standard Event data below
+
+        twq('init', 'o5uhb');
+
+        twq('track', 'PageView');
+
+    </script>
+
+    <!-- End Twitter universal website tag code -->
+
+
+    <!-- Google Tag Manager -->
+    <script type="text/javascript">(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KKV9QPX');</script>
+    <!-- End Google Tag Manager -->
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ================= Favicon ================== -->
+    <!-- Google Font -->
+    <!--<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900%7COpen+Sans:300,400,600,700,800" rel="stylesheet">-->
+
+    {#    {% comment %} <!-- Font awesome -->#}
+    {#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> {% endcomment %}#}
+
+    <!-- Font Awesome css-->
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- Bootsrap css-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Magnific Popup-->
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/static/css/select2.min.css">
+    <!-- REVOLUTION SLIDER STYLES -->
+    <link rel="stylesheet" type="text/css" href="/static/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/navigation.css">
+    <!-- Animate css-->
+    <link rel="stylesheet" href="/static/css/animate.css">
+
+    {# LINKS FOR PHONE NUMBER FIELDS STYLE: #}
+    <link rel="stylesheet" href="/static/forPhoneNumber/build/css/intlTelInput.css">
+    <link rel="stylesheet" href="/static/forPhoneNumber/build/css/demo.css">
+    {# END LINKS FOR PHONE NUMBER FIELDS STYLE: #}
+
+    <!-- Style-->
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == "ar" %}
+        <link rel="stylesheet" href="/static/css/style_ar.css">
+    {% else %}
+        <link rel="stylesheet" href="/static/css/style.css">
+    {% endif %}
+    <link rel="stylesheet" href="/static/cart/css/style.css">
+    <!-- Color Swhicher css-->
+    <link data-style="color-style" rel="stylesheet" href="/static/css/color-blue.css">
+    <!-- Modernizr-->
+    <script src="/static/js/modernizr-2.8.3.min.js"></script>
+
+    {% if project %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ project.get_name }}"/>
+        <meta property="og:title" content="{{ project.get_name }}"/>
+        <meta property="og:description" content="{{ project.get_detail | striptags | nbsp }}"/>
+        <meta property="og:image" content="{{ project.get_image_url }}"/>
+        <title>{{ project.get_name }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}
+
+    {% if obj %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:type" content="{{ obj.get_title }}"/>
+        <meta property="og:title" content="{{ obj.get_title }}"/>
+        <meta property="og:description" content="{{ obj.get_content | striptags }}"/>
+        <meta property="og:image" content="{{ obj.get_image_url }}"/>
+        <title>{{ obj.get_title }}</title>
+    {% else %}
+        <title>جمعية بصائر الخيرية</title>
+
+    {% endif %}
+
+    {% if session_id %}
+        <script src="https://ap-gateway.mastercard.com/checkout/version/48/checkout.js"
+                data-error="errorCallback"
+                data-cancel="cancelCallback"
+                data-complete="completeCallback"
+                data-beforeRedirect="Checkout.saveFormFields"
+                data-afterRedirect="Checkout.restoreFormFields">
+        </script>
+        <script type="text/javascript">
+            errorCallback = "https://basaier.org/en";
+            {#var getvalue = geoplugin_currencyCode();#}
+            {#console.log("VALUE AT LINE 263 OF JS OF TAP-COMPANY:", getvalue);#}
+
+            function cancelCallback() {
+                window.history.back();
+            }
+
+            completeCallback = "{% url 'creditcard-success' %}";
+            Checkout.configure({
+                merchant: "{{merchant}}",
+                session: {
+                    id: "{{session_id}}"
+                },
+                order: {
+                    amount: function () {
+                        return '{{amount}}'.replace(/,([^,]*)$/, ".$1");
+                    },
+                    {#currency: getvalue,#}
+                    currency: 'KWD',
+                    description: 'Donation',
+                    id: '{{transaction_id}}'
+                },
+                interaction: {
+                    merchant: {
+                        name: 'Basaier Charity',
+                        address: {
+                            line1: 'Firdos block 8 Rashed Awad Al Shanfa Street',
+                            line2: 'Jada 3 House No.41'
+                        }
+                    }
+                }
+            });
+            Checkout.showLightbox();
+        </script>
+    {% endif %}
+    <style>
+        .all_digit {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 13px;
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.08);
+        {#border: 1px solid #cccccc;#} border-radius: 15px;
+        }
+
+        .all_digit .digit {
+            width: 20%;
+            border: 1px solid gray;
+            background: #8CA4CA;
+            border-radius: 3px;
+            margin: 5px 5px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 25px;
+            cursor: pointer;
+            height: 31px;
+        }
+
+        .all_digit .digit:hover {
+            border: 1px solid blue;
+            background: black;
+            border-radius: 3px;
+            color: white;
+        }
+    </style>
+</head>
+<div class="preloader">
+    <div class="loader-inner ball-scale-multiple">
+    </div>
+</div>
+<!--/.preloader-->
+
+<header class="fund-header">
+    <div class="top-bar" style="background-color: #8DA4CA; color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12" style="color: white;">
+                    <span class="fa fa-envelope" style="color: white;"></span>
+                    <span>basaier@basaier.org</span> |
+                    <span class="fa fa-phone" style="color: white;"></span>
+                    <span>+965 90900055</span>
+
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 text-center" id="toAlignLeft">
+                    <a href="{% url 'zakat' %}" style="color: white !important;">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == 'ar' %}
+                            {% trans 'احسب الزكاة' %}
+                        {% else %}
+                            {% trans 'Calculate Zakat' %}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 text-right" id="toAlignLeft">
+                    <a href="https://www.instagram.com/basaier_kw/"><span class="fa fa-instagram"
+                                                                          style="color: white; border: 1px solid white; padding: 2%; border-radius: 50%;">
+                    </span>
+                    </a>
+                    <a href="https://twitter.com/basaier_kw">
+                        <span class="fa fa-twitter"
+                              style="color: white; border: 1px solid white; padding: 2%; border-radius: 50%;"></span></a>
+
+
+                    <a href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber">
+                        <span class="fa fa-linkedin"
+                              style="color: white; border: 1px solid white; padding: 2% 2.5%; border-radius: 50%;"></span>
+                    </a>
+
+
+                    <a href="https://www.facebook.com/basaier.organaization">
+                        <span class="fa fa-facebook"
+                              style="color: white; border: 1px solid white; padding: 2% 3%; border-radius: 50%;"></span>
+                    </a>
+
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'ar' %}<a href="{% url 'to-english' %}" style="color: white !important;">
+                        English {% else %} <a
+                            href="{% url 'to-arabic' %}" style="color: white !important;">العربية</a> {% endif %} |
+                    <a href="{% url 'cart_detail' %}" style="position: static;" class="loginMenuLi">
+                        {#                        <div>#}
+                        <i class="fa fa-shopping-cart margin-0-h"
+                           style="font-size: 22px; height: 34px; color: #fff;"></i>
+                        {#                        </div>#}
+                        <span id="basketIconCountDivFinal" class="badge english-font">{{ totalProjectsInCart }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{# SIDE NAV BAR: #}
+<nav class="mobile-background-nav">
+    <div class="mobile-inner">
+        <span class="mobile-menu-close"><i class="icon-icomooon-close"></i></span>
+        <ul class="menu-accordion">
+            <li><a href="{% url 'index' %}" class="has-submenu">{% trans "Home" %}</a></li>
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="{% url 'about-us' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% else %}
+                    <a href="{% url 'about-us' %}" class="has-submenu">{% trans "About Us" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% endif %}
+                <ul class="dropdown">
+                    <div><h5 id="aboutCharity"><a
+                            href="{% url 'about-us' %}">  {% trans "About Basaier Chairty >>" %} </a>
+                    </h5></div>
+                    <ol>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'news' %}" id="olATag">  {% trans "الاخبار" %} </a></li>
+                        {% else %}
+                            <li><a href="{% url 'news' %}" id="olATag">  {% trans "News" %} </a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "تواصل معنا" %} </a></li>
+                        {% else %}
+                            <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "Contact Us" %} </a></li>
+                        {% endif %}
+                    </ol>
+                </ul>
+            </li>
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="" class="has-submenu">{% trans "مبادرات" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% else %}
+                    <a href="" class="has-submenu">{% trans "Initiatives" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% endif %}
+                <ul class="dropdown">
+                    <ol>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'thawab' %}" id="olATag">  {% trans " ثواب" %} </a></li>
+                        {% else %}
+                            <li><a href="{% url 'thawab' %}" id="olATag">  {% trans "Thawab" %} </a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'gift' %}" id="olATag">  {% trans "هدية" %} </a></li>
+                        {% else %}
+                            <li><a href="{% url 'gift' %}" id="olATag">  {% trans "Gift" %} </a></li>
+                        {% endif %}
+                    </ol>
+                </ul>
+            </li>
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="" class="has-submenu">{% trans "الصدقات" %} <i
+                            class="fa fa-angle-down"></i> </a>
+                {% else %}
+                    <a href="" class="has-submenu">{% trans "Sadaqah" %} <i
+                            class="fa fa-angle-down"></i> </a>
+                {% endif %}
+                <ul class="dropdown">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <li><a href="{% url 'giftSendSadaqa' %}">{% trans "هي ظلك" %}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'giftSendSadaqa' %}">{% trans "Your Shadow" %}</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+
+            {#            <li><a href="{% url 'news' %}" class="has-submenu">{% trans "News" %}<i class="fa fa-angle-down"></i></a>#}
+            {#                <ul class="dropdown">#}
+            {#                    {% for category in categories %}#}
+            {#                        <li><a href="{% url 'news-category' category.id %}">{{ category.get_name }}</a></li>#}
+            {#                    {% endfor %}#}
+            {#                </ul>#}
+            {#            </li>#}
+            {#            <li><a href="{% url 'projectsAccordingToCategories' %}" class="has-submenu">{% trans "Projects" %}<i#}
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="" class="has-submenu">{% trans "المشاريع" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% else %}
+                    <a href="" class="has-submenu">{% trans "Projects" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% endif %}
+                <ul class="dropdown">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <li><a href="{% url 'localProjects' %}">{% trans "المشاريع الداخلية" %}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'localProjects' %}">{% trans "Internal Projects" %}</a></li>
+                    {% endif %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <li><a href="{% url 'foreignProjects' %}">{% trans "المشاريع الخارجية" %}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'foreignProjects' %}">{% trans "External Projects" %}</a></li>
+                    {% endif %}
+                    {% for category in charity_categories %}
+                        {% include "web/category_tree.html" %}
+                    {% endfor %}
+                </ul>
+            </li>
+
+            {#            <li>#}
+            {#                <a href="{% url 'masjid' %}" class="btn hidden-xs hidden-sm">{% trans "MASJID" %}</a>#}
+            {#            </li>#}
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="{% url 'science-center' %}" class="has-submenu">{% trans "المركز العلمي" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% else %}
+                    <a href="{% url 'science-center' %}" class="has-submenu">{% trans "Science Center" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% endif %}
+                <ul class="dropdown">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <li><a href="{% url 'science-center-category' 1 %}">{% trans "مركز العلوم رجال" %}</a>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'science-center-category' 1 %}">{% trans "Science Center Men" %}</a>
+                        </li>
+                    {% endif %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <li>
+                            <a href="{% url 'science-center-category' 2 %}">{% trans "مركز العلوم النسائي" %}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'science-center-category' 2 %}">{% trans "Science Center Women" %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+
+            {#            <li><a href="{% url 'contact-us' %}">{% trans "Contact" %}</a></li>#}
+
+            <li>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    <a href="" class="has-submenu">{% trans "الكفالات" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% else %}
+                    <a href="" class="has-submenu">{% trans "Sponsorship" %}<i
+                            class="fa fa-angle-down"></i></a>
+                {% endif %}
+                <ul class="dropdown">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        {% for categories in sponsorCategories %}
+                            <li><a href="{% url 'sponsorshipPage' categories.id %}">{{ categories.category }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        {% for categories in sponsorCategories %}
+                            <li><a href="{% url 'sponsorshipPage' categories.id %}">{{ categories.categoryEn }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </li>
+
+            {% if request.user.is_authenticated %}
+                <li>
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <a href="{% url 'profile' %}" class="has-submenu">{% trans "الملف الشخصي" %}<i
+                                class="fa fa-angle-down"></i></a>
+                    {% else %}
+                        <a href="{% url 'profile' %}" class="has-submenu">{% trans "Profile" %}<i
+                                class="fa fa-angle-down"></i></a>
+                    {% endif %}
+                    <ul class="dropdown">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'allProjects' %}"> <i class="fa fa-list" aria-hidden="true"></i>
+                                {% trans "كل المشاريع" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'allProjects' %}"> <i class="fa fa-list" aria-hidden="true"></i>
+                                {% trans "All Projects" %}</a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                                                      aria-hidden="true"></i>
+                                {% trans "أضف مشروع" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                                                      aria-hidden="true"></i>
+                                {% trans "Post A Project" %}</a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'privateCompaigns' %}"> <i class="fa fa-tasks"
+                                                                           aria-hidden="true"></i>
+                                {% trans "شركات خاصة" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'privateCompaigns' %}"> <i class="fa fa-tasks"
+                                                                           aria-hidden="true"></i>
+                                {% trans "Private Compaigns" %}</a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'publicCompaigns' %}"> <i class="fa fa-tasks"
+                                                                          aria-hidden="true"></i>
+                                {% trans "شركات عامة" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'publicCompaigns' %}"> <i class="fa fa-tasks"
+                                                                          aria-hidden="true"></i>
+                                {% trans "Public Compaigns" %}</a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i>
+                                {% trans "الملف الشخصي" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i>
+                                {% trans "Profile" %}</a></li>
+                        {% endif %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'changePassword' %}" class="pdr10"> <i class="fa fa-key"
+                                                                                       aria-hidden="true"></i>
+                                {% trans "تغيير كلمة المرور" %}</a>
+                            </li>
+                        {% else %}
+                            <li><a href="{% url 'changePassword' %}" class="pdr10"> <i class="fa fa-key"
+                                                                                       aria-hidden="true"></i>
+                                {% trans "Change Password" %}</a>
+                            </li>
+                        {% endif %}
+                        <li class="divider"></li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <li><a href="{% url 'logout' %}" class="pdr10"> <i class="fa fa-sign-out"
+                                                                               aria-hidden="true"></i>
+                                {% trans "تسجيل خروج" %}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'logout' %}" class="pdr10"> <i class="fa fa-sign-out"
+                                                                               aria-hidden="true"></i>
+                                {% trans "Logout" %}</a></li>
+                        {% endif %}
+                    </ul>
+                    {% else %}
+                    <a href="" class="btn hidden-xs hidden-sm"></a>
+                </li>
+            {% endif %}
+
+            <li>{% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ar' %}<a href="{% url 'to-english' %}">English</a> {% else %} <a
+                        href="{% url 'to-arabic' %}">العربية</a> {% endif %}</li>
+        </ul>
+    </div>
+</nav>
+{# END OF SIDE NAVBAR: #}
+
+{# TOP NAV BAR: #}
+<div class="main-menu-area">
+    <div class="container">
+        <div class="menu-logo">
+            <div class="logo">
+                <a href="{% url 'index' %}" class="logo-index"><img src="/static/images/logo.png" alt=""
+                                                                    style="width: 160px; height: 130px;"/></a>
+            </div>
+            <nav id="easy-menu" class="ml-auto mr-auto">
+                <ul class="menu-list" style="margin-bottom: 0;">
+
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="{% url 'about-us' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% else %}
+                            <a href="{% url 'about-us' %}" class="has-submenu">{% trans "About Us" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% endif %}
+                        <ul class="dropdown">
+                            <ol>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'news' %}" id="olATag">  {% trans "الاخبار" %} </a></li>
+                                {% else %}
+                                    <li><a href="{% url 'news' %}" id="olATag">  {% trans "News" %} </a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "تواصل معنا" %} </a>
+                                    </li>
+                                {% else %}
+                                    <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "Contact Us" %} </a>
+                                    </li>
+                                {% endif %}
+                            </ol>
+                        </ul>
+                    </li>
+
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="" class="has-submenu">{% trans "مبادرات" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% else %}
+                            <a href="" class="has-submenu">{% trans "Initiatives" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% endif %}
+                        <ul class="dropdown"
+                            style="-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
+                            <ol>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'thawab' %}" id="olATag">  {% trans " ثواب" %} </a></li>
+                                {% else %}
+                                    <li><a href="{% url 'thawab' %}" id="olATag">  {% trans "Thawab" %} </a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'gift' %}" id="olATag">  {% trans "هدية" %} </a></li>
+                                {% else %}
+                                    <li><a href="{% url 'gift' %}" id="olATag">  {% trans "Gift" %} </a></li>
+                                {% endif %}
+                            </ol>
+                        </ul>
+                    </li>
+
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="" class="has-submenu">{% trans "الصدقات" %} <i
+                                    class="fa fa-angle-down"></i> </a>
+                        {% else %}
+                            <a href="" class="has-submenu">{% trans "Sadaqah" %} <i
+                                    class="fa fa-angle-down"></i> </a>
+                        {% endif %}
+                        <ul class="dropdown">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <li><a href="{% url 'giftSendSadaqa' %}">{% trans "هي ظلك" %}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'giftSendSadaqa' %}">{% trans "Your Shadow" %}</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="" class="has-submenu">{% trans "المشاريع" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% else %}
+                            <a href="" class="has-submenu">{% trans "Projects" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% endif %}
+                        <ul class="dropdown">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <li><a href="{% url 'localProjects' %}">{% trans "المشاريع الداخلية" %}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'localProjects' %}">{% trans "Internal Projects" %}</a></li>
+                            {% endif %}
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <li><a href="{% url 'foreignProjects' %}">{% trans "المشاريع الخارجية" %}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'foreignProjects' %}">{% trans "External Projects" %}</a></li>
+                            {% endif %}
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="{% url 'science-center' %}" class="has-submenu">{% trans "المركز العلمي" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% else %}
+                            <a href="{% url 'science-center' %}" class="has-submenu">{% trans "Science Center" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% endif %}
+                        <ul class="dropdown">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <li><a href="{% url 'science-center-category' 1 %}">{% trans "مركز العلوم رجال" %}</a>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'science-center-category' 1 %}">{% trans "Science Center Men" %}</a>
+                                </li>
+                            {% endif %}
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <li>
+                                    <a href="{% url 'science-center-category' 2 %}">{% trans "مركز العلوم النسائي" %}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'science-center-category' 2 %}">{% trans "Science Center Women" %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+
+                    <li>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <a href="" class="has-submenu">{% trans "الكفالات" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% else %}
+                            <a href="" class="has-submenu">{% trans "Sponsorship" %}<i
+                                    class="fa fa-angle-down"></i></a>
+                        {% endif %}
+                        <ul class="dropdown">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% for categories in sponsorCategories %}
+                                    <li>
+                                        <a href="{% url 'sponsorshipPage' categories.id %}">{{ categories.category }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                {% for categories in sponsorCategories %}
+                                    <li>
+                                        <a href="{% url 'sponsorshipPage' categories.id %}">{{ categories.categoryEn }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                <a href="{% url 'profile' %}" class="has-submenu">{% trans "الملف الشخصي" %}<i
+                                        class="fa fa-angle-down"></i></a>
+                            {% else %}
+                                <a href="{% url 'profile' %}" class="has-submenu">{% trans "Profile" %}<i
+                                        class="fa fa-angle-down"></i></a>
+                            {% endif %}
+                            <ul class="dropdown">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'allProjects' %}"> <i class="fa fa-list" aria-hidden="true"></i>
+                                        {% trans "كل المشاريع" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'allProjects' %}"> <i class="fa fa-list" aria-hidden="true"></i>
+                                        {% trans "All Projects" %}</a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                                                              aria-hidden="true"></i>
+                                        {% trans "أضف مشروع" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                                                              aria-hidden="true"></i>
+                                        {% trans "Post A Project" %}</a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'privateCompaigns' %}"> <i class="fa fa-tasks"
+                                                                                   aria-hidden="true"></i>
+                                        {% trans "شركات خاصة" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'privateCompaigns' %}"> <i class="fa fa-tasks"
+                                                                                   aria-hidden="true"></i>
+                                        {% trans "Private Compaigns" %}</a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'publicCompaigns' %}"> <i class="fa fa-tasks"
+                                                                                  aria-hidden="true"></i>
+                                        {% trans "شركات عامة" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'publicCompaigns' %}"> <i class="fa fa-tasks"
+                                                                                  aria-hidden="true"></i>
+                                        {% trans "Public Compaigns" %}</a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i>
+                                        {% trans "الملف الشخصي" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i>
+                                        {% trans "Profile" %}</a></li>
+                                {% endif %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'changePassword' %}" class="pdr10"> <i class="fa fa-key"
+                                                                                               aria-hidden="true"></i>
+                                        {% trans "تغيير كلمة المرور" %}</a>
+                                    </li>
+                                {% else %}
+                                    <li><a href="{% url 'changePassword' %}" class="pdr10"> <i class="fa fa-key"
+                                                                                               aria-hidden="true"></i>
+                                        {% trans "Change Password" %}</a>
+                                    </li>
+                                {% endif %}
+                                <li class="divider"></li>
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    <li><a href="{% url 'logout' %}" class="pdr10"> <i class="fa fa-sign-out"
+                                                                                       aria-hidden="true"></i>
+                                        {% trans "تسجيل خروج" %}</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'logout' %}" class="pdr10"> <i class="fa fa-sign-out"
+                                                                                       aria-hidden="true"></i>
+                                        {% trans "Logout" %}</a></li>
+                                {% endif %}
+                            </ul>
+                            {% else %}
+                            <a href=""></a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav><!--#easy-menu-->
+            <div class="" style="padding-right: 10px;">
+                {% if request.user.is_authenticated %} {% else %}
+                    <a href="{% url 'login' %}" class="btn hidden-xs hidden-sm loginInButtonColorAndBorder"> <i
+                            class="fa fa-sign-in"
+                            aria-hidden="true"></i>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "تسجيل الدخول" %}
+                        {% else %}
+                            {% trans "Login" %}
+                        {% endif %}
+                    </a>
+                {% endif %}
+                <a href="#" class="hidden-lg hidden-md" id="humbarger-icon"><i class="fa fa-bars"></i> </a>
+            </div>
+        </div>
+    </div>
+</div>
+{# END OF TOP NAVBAR: #}
+
+{# COLLAPSED SIDEPANEL: #}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% if LANGUAGE_CODE == "ar" %}
+    <div style="direction: rtl !important;">
+        <div id="mySidepanel" class="sidepanel affix"
+             style="-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px; position: fixed; direction: rtl !important;">
+            <div id="" role="tabpanel" class="col-xs-12 padding-none" style="">
+                <div id="FastDonationTabss" role="tabpanel" class="col-xs-12 padding-none"
+                     style="padding: 10px; background: #F5F2F2;">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs col-xs-12 padding-less" role="tablist">
+                        <li style="width: 33%;" role="presentation" class="col-xs-3 padding-none active"
+                            id="liFastDonationCampaigns1">
+                            <a href="#FastDonationTabCampaigns1"
+                               class="border-radius0 text-center col-xs-12 padding-none"
+                               style="outline: 0;" aria-controls="FastDonationSponsorshipTab" role="tab"
+                               data-toggle="tab" aria-expanded="true">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "المشاريع" %}
+                                {% else %}
+                                    {% trans "Projects" %}
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li style="width: 33%; margin: 0 1px;" role="presentation" class="col-xs-3 padding-none"
+                            id="liFastDonationSadaka1">
+                            <a href="#FastDonationTabSadaka1" class="border-radius0 text-center col-xs-12 padding-none"
+                               style="outline: 0;" aria-controls="FastDonationSponsorshipTab" role="tab"
+                               data-toggle="tab" aria-expanded="false">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "صدقة" %}
+                                {% else %}
+                                    {% trans "Sadaqah" %}
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li style="width: 33%;" role="presentation" class="col-xs-3 padding-none"
+                            id="liFastDonationSponsorships1">
+                            <a href="#FastDonationTabSponsorships1"
+                               class="border-radius0 text-center col-xs-12 padding-none" style="outline: 0;"
+                               aria-controls="FastDonationSponsorshipTab" role="tab"
+                               data-toggle="tab">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == "ar" %}
+                                    {% trans "الرعايات" %}
+                                {% else %}
+                                    {% trans "Sponsorships" %}
+                                {% endif %}
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom" style="">
+                        <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20 active"
+                             id="FastDonationTabCampaigns1" style="background-color: #F5F2F2;">
+                            <div>
+
+                                <form id="forQuickDonateProjectForm">
+                                    <div id="FastGeneralDonationAccountDivMain"
+                                         class="col-xs-12 padding-none padding-15-v">
+                                        <div class="col-xs-12 padding-15-v2">
+                                            <select class="col-xs-12 form-control rounded" id="projectCategory"
+                                                    name="project_category_id[]" onchange="onchangehit(this.value)">
+                                                <option></option>
+                                                {% for data in charity_categories %}
+                                                    <option value="{{ data.pk }}"
+                                                            name="project_category_id[]">{{ data.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 padding-15-v2">
+                                            <select id="projectsAccordingToCategory" name="projectsAccordingToCategory"
+                                                    class="col-xs-12 form-control rounded">
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-9 padding-15-v2 text-center-xs margin-10-bottom">
+                                            <button class="QC_secondary-border-btn padding-15-h QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectCampaigns(50,'1')" type="button">50
+                                            </button>
+                                            <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectCampaigns(100,'1')" type="button">
+                                                100
+                                            </button>
+                                            <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectCampaigns(300,'1')" type="button">
+                                                300
+                                            </button>
+                                            <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectCampaigns(500,'1')" type="button">
+                                                500
+                                            </button>
+                                        </div><!-- /.col-lg-8 -->
+
+                                        <div class="col-xs-12 col-sm-3 col-sm-offset-0">
+                                            <input type="number" min="0" class="form-control rounded text-center"
+                                                   id="txtTotalAmountFastAccountCampaigns1"
+                                                   name="amount[]"
+                                                   onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
+                                                   placeholder="Cost">
+                                        </div>
+                                        <!-- /input-group -->
+                                        <div class="col-xs-12 margin-10-bottom">
+                                            <input type="submit" class="btn btn-block" value="
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "يتبرع" %}
+                            {% else %}
+                                {% trans "Donate" %}
+                            {% endif %}">
+                                        </div>
+                                    </div>
+                                </form>
+                                {# END FORM OF PROJECT QUICK DONATE: #}
+                                {#                            </form>#}
+                                <div class="col-xs-12 padding-less" style="padding-top: 15px; padding-bottom: 5px;">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane col-xs-12 padding-none"
+                             id="FastDonationTabSadaka1">
+                            <div>
+                                <div id="FastDonationAccountDivMain" class="col-xs-12 padding-none">
+                                    <div class="col-xs-12 padding-none">
+                                        <div class="col-xs-12 margin-0-bottom">
+                                            <div id="DivDailyDDL1">
+                                                <form class="donate-page-form" id="sadaqahDonation">
+                                                    {% csrf_token %}
+                                                    {% for project in projectsSadaqah %}
+                                                        {% if forloop.first %}
+                                                            {#                                            {% if project.is_sadaqah %}#}
+                                                            <h3>{{ project.name }}</h3>
+                                                            <input type="hidden" id="projectId"
+                                                                   value="{{ project.id }}">
+
+                                                            {#                                                <input type="hidden" value="{{ project.name }}">#}
+                                                            {#                                            {% endif %}#}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 padding-none">
+                                        <div class="col-xs-9 padding-none-right float-left">
+                                            <!-- /input-group -->
+                                            <div class="input-group col-xs-12 padding-none" id="marginTop">
+                                                <button class="QC_fixed-amount-btn"
+                                                        onclick="FastDonationAmountSelectSadaqa(50,'1')" type="button">
+                                                    50
+                                                </button>
+                                                <button class="QC_fixed-amount-btn"
+                                                        onclick="FastDonationAmountSelectSadaqa(100,'1')" type="button">
+                                                    100
+                                                </button>
+                                                <button class="QC_fixed-amount-btn"
+                                                        onclick="FastDonationAmountSelectSadaqa(300,'1')" type="button">
+                                                    300
+                                                </button>
+                                                <button class="QC_fixed-amount-btn"
+                                                        onclick="FastDonationAmountSelectSadaqa(500,'1')" type="button">
+                                                    500
+                                                </button>
+                                            </div>
+                                        </div><!-- /.col-lg-8 -->
+                                        <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12 col-sm-12 padding-none-left float-left pb-3">
+                                            <div class="col-xs-12 padding-none">
+                                                <div class="col-xs-12 padding-none">
+                                                    <input type="number" min="0"
+                                                           class="col-xs-12 form-control text-center english-font padding-none"
+                                                           id="txtTotalAmountFastAccountSadaqa1"
+                                                           name="amount[]"
+                                                           onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
+                                                           placeholder="{{ getMyCurrency }}">
+                                                </div>
+                                            </div><!-- /input-group -->
+                                        </div><!-- /.col-lg-4 -->
+                                    </div>
+
+                                    <div class="col-xs-12 margin-10-bottom">
+                                        <input type="submit" class="btn btn-block"
+                                               value="{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "يتبرع" %}
+                            {% else %}
+                                {% trans "Donate" %}
+                            {% endif %}">
+                                    </div>
+                                    </form>
+
+                                    <div class="col-xs-12 padding-less"
+                                         style="padding-top: 25px; padding-bottom: 17px;">
+                                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20"
+                             id="FastDonationTabSponsorships1">
+
+                            <div>
+                                <div id="FastDonationSpoonsorshipDivMain">
+                                    <div class="col-xs-12 padding-less padding-10-v">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less ">
+                                            <select class="form-control col-xs-12 rounded-8"
+                                                    id="categorySponsorShipFastDonation"
+                                                    name="project_category_id[]"
+                                                    onchange="onHitSponsorFunction(this.value)">
+                                                <option></option>
+                                                {% for data in sponsorCategories %}
+                                                    <option value="{{ data.pk }}">{{ data.category }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                        {#                                        <form id="sponsorshipProjectsFromQuickDonate">#}
+                                        {#                                            {% csrf_token %}#}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less">
+                                            <select class="form-control col-xs-12 rounded-8"
+                                                    id="showProjectSponsorShipFastDonation"
+                                                    name="project_id[]">
+                                            </select>
+                                        </div>
+                                        <input onclick="pageRedirect()" type="submit"
+                                               value="{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "كفيل" %}
+                            {% else %}
+                                {% trans "Sponsor" %}
+                            {% endif %}"
+                                               id="project_id"
+                                               class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less text-center btn btn-block sponsorProjectId">
+                                        {#                                        </form>#}
+                                        {#                                    <span class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 padding-less margin-10-v">#}
+                                        {#                                        <a href="{% url 'createTokenView' project.id %}" class="text-center btn btn-block">{% trans "Sponsor" %}</a>#}
+                                        {#                                    </span>#}
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12 padding-less"
+                                     style="padding-top: 25px; padding-bottom: 17px;">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="z-index: 2 !important; margin-top: 10%; direction: rtl !important;" class="affix">
+            <div style="position: relative;">
+                <button class="openbtn" onclick="openNav()" style="direction: rtl !important;">
+                    <div class="fa fa-clock-o fa-2x text-center" style="direction: rtl !important;"></div>
+                    <div class="text-center" style="direction: rtl !important;">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "تبرع بسرعة" %}
+                        {% else %}
+                            {% trans "Quick Donate" %}
+                        {% endif %}
+                    </div>
+                    <div id="toFixProperOpenTabButtonQuickDonate" style="direction: rtl !important;"><i
+                            class="fa fa-caret-right" style="padding-top: 90%"></i>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div id="mySidepanel" class="sidepanel affix"
+         style="-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px; position: fixed;">
+        <div id="" role="tabpanel" class="col-xs-12 padding-none" style="">
+            <div id="FastDonationTabss" role="tabpanel" class="col-xs-12 padding-none"
+                 style="padding: 10px; background: #F5F2F2;">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs col-xs-12 padding-less" role="tablist">
+                    <li style="width: 33%;" role="presentation" class="col-xs-3 padding-none active"
+                        id="liFastDonationCampaigns1">
+                        <a href="#FastDonationTabCampaigns1" class="border-radius0 text-center col-xs-12 padding-none"
+                           style="outline: 0;" aria-controls="FastDonationSponsorshipTab" role="tab"
+                           data-toggle="tab" aria-expanded="true">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "المشاريع" %}
+                            {% else %}
+                                {% trans "Projects" %}
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li style="width: 33%; margin: 0 1px;" role="presentation" class="col-xs-3 padding-none"
+                        id="liFastDonationSadaka1">
+                        <a href="#FastDonationTabSadaka1" class="border-radius0 text-center col-xs-12 padding-none"
+                           style="outline: 0;" aria-controls="FastDonationSponsorshipTab" role="tab"
+                           data-toggle="tab" aria-expanded="false">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "صدقة" %}
+                            {% else %}
+                                {% trans "Sadaqah" %}
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li style="width: 33%;" role="presentation" class="col-xs-3 padding-none"
+                        id="liFastDonationSponsorships1">
+                        <a href="#FastDonationTabSponsorships1"
+                           class="border-radius0 text-center col-xs-12 padding-none" style="outline: 0;"
+                           aria-controls="FastDonationSponsorshipTab" role="tab"
+                           data-toggle="tab">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "الرعايات" %}
+                            {% else %}
+                                {% trans "Sponsorships" %}
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom" style="">
+                    <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20 active"
+                         id="FastDonationTabCampaigns1" style="background-color: #F5F2F2;">
+                        <div>
+
+                            <form id="forQuickDonateProjectForm">
+                                <div id="FastGeneralDonationAccountDivMain" class="col-xs-12 padding-none padding-15-v">
+                                    <div class="col-xs-12 padding-15-v2">
+                                        <select class="col-xs-12 form-control rounded" id="projectCategory"
+                                                name="project_category_id[]" onchange="onchangehit(this.value)">
+                                            <option></option>
+                                            {% for data in charity_categories %}
+                                                <option value="{{ data.pk }}"
+                                                        name="project_category_id[]">{{ data.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-12 padding-15-v2">
+                                        <select id="projectsAccordingToCategory" name="projectsAccordingToCategory"
+                                                class="col-xs-12 form-control rounded">
+                                        </select>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9 padding-15-v2 text-center-xs margin-10-bottom">
+                                        <button class="QC_secondary-border-btn padding-15-h QC_fixed-amount-btn"
+                                                onclick="FastDonationAmountSelectCampaigns(50,'1')" type="button">50
+                                        </button>
+                                        <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                onclick="FastDonationAmountSelectCampaigns(100,'1')" type="button">100
+                                        </button>
+                                        <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                onclick="FastDonationAmountSelectCampaigns(300,'1')" type="button">300
+                                        </button>
+                                        <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
+                                                onclick="FastDonationAmountSelectCampaigns(500,'1')" type="button">500
+                                        </button>
+                                    </div><!-- /.col-lg-8 -->
+
+                                    <div class="col-xs-12 col-sm-3 col-sm-offset-0">
+                                        <input type="number" min="0" class="form-control rounded text-center"
+                                               id="txtTotalAmountFastAccountCampaigns1"
+                                               name="amount[]"
+                                               onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
+                                               placeholder="Cost">
+                                    </div>
+                                    <!-- /input-group -->
+                                    <div class="col-xs-12 margin-10-bottom">
+                                        <input type="submit" class="btn btn-block" value="{% trans "Donate" %}">
+                                    </div>
+                                </div>
+                            </form>
+                            {# END FORM OF PROJECT QUICK DONATE: #}
+                            {#                            </form>#}
+                            <div class="col-xs-12 padding-less" style="padding-top: 15px; padding-bottom: 5px;">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane col-xs-12 padding-none"
+                         id="FastDonationTabSadaka1">
+                        <div>
+                            <div id="FastDonationAccountDivMain" class="col-xs-12 padding-none">
+                                <div class="col-xs-12 padding-none">
+                                    <div class="col-xs-12 margin-0-bottom">
+                                        <div id="DivDailyDDL1">
+                                            <form class="donate-page-form" id="sadaqahDonation">
+                                                {% csrf_token %}
+                                                {% for project in projectsSadaqah %}
+                                                    {% if forloop.first %}
+                                                        {#                                            {% if project.is_sadaqah %}#}
+                                                        <h3>{{ project.name }}</h3>
+                                                        <input type="hidden" id="projectId" value="{{ project.id }}">
+
+                                                        {#                                                <input type="hidden" value="{{ project.name }}">#}
+                                                        {#                                            {% endif %}#}
+                                                    {% endif %}
+                                                {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 padding-none">
+                                    <div class="col-xs-9 padding-none-right float-left">
+                                        <!-- /input-group -->
+                                        <div class="input-group col-xs-12 padding-none" id="marginTop">
+                                            <button class="QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectSadaqa(50,'1')" type="button">50
+                                            </button>
+                                            <button class="QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectSadaqa(100,'1')" type="button">100
+                                            </button>
+                                            <button class="QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectSadaqa(300,'1')" type="button">300
+                                            </button>
+                                            <button class="QC_fixed-amount-btn"
+                                                    onclick="FastDonationAmountSelectSadaqa(500,'1')" type="button">500
+                                            </button>
+                                        </div>
+                                    </div><!-- /.col-lg-8 -->
+                                    <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12 col-sm-12 padding-none-left float-left pb-3">
+                                        <div class="col-xs-12 padding-none">
+                                            <div class="col-xs-12 padding-none">
+                                                <input type="number" min="0"
+                                                       class="col-xs-12 form-control text-center english-font padding-none"
+                                                       id="txtTotalAmountFastAccountSadaqa1"
+                                                       name="amount[]"
+                                                       onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
+                                                       placeholder="{{ getMyCurrency }}">
+                                            </div>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-4 -->
+                                </div>
+
+                                <div class="col-xs-12 margin-10-bottom">
+                                    <input type="submit" class="btn btn-block"
+                                           value="
+{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "يتبرع" %}
+                            {% else %}
+                                {% trans "Donate" %}
+                            {% endif %}">
+                                </div>
+                                </form>
+
+                                <div class="col-xs-12 padding-less"
+                                     style="padding-top: 25px; padding-bottom: 17px;">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20"
+                         id="FastDonationTabSponsorships1">
+
+                        <div>
+                            <div id="FastDonationSpoonsorshipDivMain">
+                                <div class="col-xs-12 padding-less padding-10-v">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less ">
+                                        <select class="form-control col-xs-12 rounded-8"
+                                                id="categorySponsorShipFastDonation"
+                                                name="project_category_id[]"
+                                                onchange="onHitSponsorFunction(this.value)">
+                                            <option></option>
+                                            {% for data in sponsorCategories %}
+                                                <option value="{{ data.pk }}">{{ data.category }}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                    {#                                    <form id="sponsorshipProjectsFromQuickDonate">#}
+                                    {#                                        {% csrf_token %}#}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less">
+                                        <select class="form-control col-xs-12 rounded-8"
+                                                id="showProjectSponsorShipFastDonation"
+                                                name="project_id[]">
+                                        </select>
+                                    </div>
+                                    <input onclick="pageRedirect()" type="submit"
+                                           value="{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "كفيل" %}
+                            {% else %}
+                                {% trans "Sponsor" %}
+                            {% endif %}"
+                                           id="project_id"
+                                           class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less text-center btn btn-block sponsorProjectId">
+                                    {#                                    </form>#}
+                                    {#                                    <span class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 padding-less margin-10-v">#}
+                                    {#                                        <a href="{% url 'createTokenView' project.id %}" class="text-center btn btn-block">{% trans "Sponsor" %}</a>#}
+                                    {#                                    </span>#}
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 padding-less"
+                                 style="padding-top: 25px; padding-bottom: 17px;">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="z-index: 2 !important; margin-top: 10%;" class="affix">
+        <div style="position: relative;">
+            <button class="openbtn" onclick="openNav()">
+                <div class="fa fa-clock-o fa-2x text-center"></div>
+                <div class="text-center">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        {% trans "تبرع بسرعة" %}
+                    {% else %}
+                        {% trans "Quick Donate" %}
+                    {% endif %}
+                </div>
+                <div id="toFixProperOpenTabButtonQuickDonate"><i class="fa fa-caret-right" style="padding-top: 90%"></i>
+                </div>
+            </button>
+
+        </div>
+    </div>
+{% endif %}
+{#    <div style="z-index: 1000 !important; margin-top: 10%;" class="affix">#}
+{#        <button class="openbtn" onclick="openNav()">☰ Quick Donate <span class="fa fa-heartbeat"></span></button>#}
+{#    </div>#}
+
+{# END COLLAPSED SIDEPANEL: #}
+
+{% block content %}
+{% endblock %}
+
+
+{# THE SHARE LINKS MODELS: #}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content col-12">
+            <div class="modal-header">
+                <h5 class="modal-title">Share</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-container1 d-flex">
+                    <div class="smd"><i class="img-thumbnail2 fa fa-twitter fa-2x"
+                                        style="color:#4c6ef5;background-color: aliceblue;"></i> <br>
+                        <a href="https://twitter.com/share?text={{ user.username }}&url={{ request.build_absolute_uri }}">Twitter</a>
+                    </div>
+                    <div class="smd"><i class="img-thumbnail2 fa fa-facebook fa-2x"
+                                        style="color: #3b5998;background-color: #eceff5;"></i>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}&t=title">Facebook</a>
+                    </div>
+                    <div class="smd"><i class="img-thumbnail2 fa fa-telegram fa-2x"
+                                        style="color: #FF5700;background-color: #fdd9ce;"></i>
+                        <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text=Basaier">Telegram</a>
+                    </div>
+                    <div class="smd"><i class="img-thumbnail2 fa fa-whatsapp fa-2x"
+                                        style="color: #7bb32e;background-color: #d8d8d8;"></i>
+                        <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}"
+                           data-action="share/whatsapp/share">Whatsapp</a>
+                    </div>
+
+                    <div class="smd"><i class="img-thumbnail2 fa fa-linkedin fa-2x"
+                                        style="background-color: #4c6ef5;"></i>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"><label style="font-weight: 600">Page Link <span
+                    class="message"></span></label><br/>
+                <div class="row"><input class="form-control" type="url"
+                                        placeholder="{{ request.build_absolute_uri }}" id="myInput"
+                                        aria-describedby="inputGroup-sizing-default" style="height: 40px;"
+                                        value="{{ request.build_absolute_uri }}">
+                    {#                    <button class="cpy" onclick="myFunction()"><i class="fa fa-clone fa-1x"#}
+                    {#                                                                  style="margin-top: 1%; padding: 3px;"></i>#}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#<script type="text/javascript">#}
+{#    function myFunction() {#}
+{#        $(".message").text("link copied");#}
+{#    }#}
+{#</script>#}
+{# END THE SHARE LINKS MODELS: #}
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5 pt-5">
+
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4 col-xs-4 mb-4 text-justify">
+            <div class="text-center footerFontSizeReduce">
+                <h3 id="whiteColor" class="footerFontSizeReduce">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        {% trans "تواصل معنا" %}
+                    {% else %}
+                        {% trans "Contact Us" %}
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="pt-5">
+                <div id="linksFooter" class="footerFontSizeReduce">
+                    <span class="contact-icon footerFontSizeReduce"><i class="fa fa-phone"></i></span>
+                    <span class="contact-text footerFontSizeReduce">+965 90900055 </span>
+                </div>
+                <div id="linksFooter" class="footerFontSizeReduce">
+                    <span class="contact-icon footerFontSizeReduce"><i class="fa fa-envelope-o"></i></span>
+                    <span class="contact-text footerFontSizeReduce">basaier@basaier.com</span>
+                </div>
+                <div id="linksFooter2" class="footerFontSizeReduce">
+                    <span class="contact-icon"><i class="fa fa-location-arrow footerFontSizeReduce"></i></span>
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        <span class="contact-text footerFontSizeReduce">{% trans "الفردوس قطعة 8 شارع راشد عوض الشنفه جده 3 منزل رقم 41" %}</span>
+                    {% else %}
+                        <span class="contact-text footerFontSizeReduce">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>
+                    {% endif %}
+                </div>
+                <div id="linksFooter">
+                    <div style="padding-bottom: 15px;">
+                        <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">
+                        <span class=""><i class="fa fa-facebook-square fa-1x footerFontSizeReduce"></i>
+                        </span> </a>
+                        <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i
+                                class="fa fa-twitter fa-1x footerFontSizeReduce"></i> </a>
+                        <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i
+                                class="fa fa-instagram fa-1x footerFontSizeReduce"></i> </a>
+                        <a id="forBlackColor"
+                           href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"
+                           target="_blank"><i class="fa fa-youtube fa-1x footerFontSizeReduce"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4 col-xs-4 mb-4 text-left">
+            <div class="text-center">
+                <h3 id="whiteColor" class="footerFontSizeReduce">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "ar" %}
+                        {% trans "التنقل" %}
+                    {% else %}
+                        {% trans "Navigate" %}
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="pt-5">
+                {#                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>#}
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-left">
+                    <div><a href="{% url 'index' %}" class="text-left pb-5 footerFontSizeReduce"
+                            id="whiteColor">{% trans "Home" %}</a></div>
+                    <div>
+                        <a href="{% url 'about-us' %}" class="text-left pb-5 footerFontSizeReduce"
+                           id="whiteColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "تواصل معنا" %}
+                            {% else %}
+                                {% trans "About Us" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'thawab' %}" class="text-left pb-5 footerFontSizeReduce"
+                           id="whiteColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "ثواب" %}
+                            {% else %}
+                                {% trans "Thawab" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div>
+                        <a href="{% url 'gift' %}" class="text-left pb-5 footerFontSizeReduce" id="whiteColor">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "هدية" %}
+                            {% else %}
+                                {% trans "Gift" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div><a href="{% url 'giftSendSadaqa' %}" class="text-left pb-5 footerFontSizeReduce"
+                            id="whiteColor">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "هي ظلك" %}
+                        {% else %}
+                            {% trans "Your Shadow" %}
+                        {% endif %}
+                    </a></div>
+                    {#                <li><a href="" class="has-submenu">{% trans "Projects" %}<i#}
+                    {#                        class="fa fa-angle-down"></i></a>#}
+                    {#                    <ul class="dropdown">#}
+                    {#                        {% for category in charity_categories %}#}
+                    {#                            {% include "web/category_tree.html" %}#}
+                    {#                        {% endfor %}#}
+                    {#                    </ul>#}
+                    {#                </li>#}
+
+                    <div><a href="{% url 'science-center-category' 1 %}" class="text-left pb-5 footerFontSizeReduce"
+                            id="whiteColor">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "مركز العلوم رجال" %}
+                        {% else %}
+                            {% trans "Science Center Men" %}
+                        {% endif %}
+                    </a></div>
+                    <div><a href="{% url 'science-center-category' 2 %}" class="text-left pb-5 footerFontSizeReduce"
+                            id="whiteColor">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "مركز العلوم النسائي" %}
+                        {% else %}
+                            {% trans "Science Center Women" %}
+                        {% endif %}
+                    </a></div>
+                </div>
+                {#                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>#}
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4 col-xs-4 mb-4">
+
+            <div class="widget widget--footer widget--contact">
+                <div class="text-right">
+                    <img src="/static/whiteLogo.png" alt="" id="whiteLogo">
+                </div>
+                <div class="widget__text-content text-jusitfy pt-2">
+                    <div class="contact-way text-right footerFontSizeReduce">
+                        <p id="whiteColor">تحقيق مبدأ التعاون والتراحم الإنساني بما تقدمه من مشاريع إغاثية للمنكوبين في
+                            المناطق المتضررة من الكوارث والحروب، كمشاريع الإيواء والإطعام والكساء والعلاج للنازحين
+                            واللاجئين، ودعم المشاريع التعليمية والتربوية، والعناية بالطالب والمعلم والباحث والعالم</p>
+                    </div>
+                </div>
+            </div><!--/.widget-->
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+             style="padding: 10px; background-color: #4D5280 !important; color: white; border-top: 2px solid white;">©
+            2020
+            Copyright:
+            <a style="color: white;" href="https://mdbootstrap.com/"> {% trans "Basaier" %}</a>
+        </div>
+        <!-- Copyright -->
+
+    </div>
+
+</footer>
+<!-- End Footer  -->
+
+
+<!-- == jQuery Libraries == -->
+<script src="/static/js/jquery-2.2.4.min.js"></script>
+{#<script src="{% static "cart/js/jquery-3.0.0.min.js" %}"></script>#}
+
+<!-- == Bootsrap js File == -->
+<script src="/static/js/bootstrap.min.js"></script>
+<!-- == mixitup == -->
+<script src="/static/js/mixitup.min.js"></script>
+<!-- == Select 2 == -->
+<script src="/static/js/select2.min.js"></script>
+<!-- == Color box == -->
+<script src="/static/js/jquery.colorbox-min.js"></script>
+{#<script src="{% static 'js/revolution/extensions/revolution.extension.slideanims.min.js' %}"></script>#}
+<!-- == Slick == -->
+<script src="/static/js/slick.min.js"></script>
+<!-- == Image Lazy Load == -->
+<script src="/static/js/jquery.lazy.min.js"></script>
+<!-- == Wow js == -->
+<script src="/static/js/wow.min.js"></script>
+<!-- == Revolution Slider JS == -->
+<script src="/static/js/revolution/jquery.themepunch.tools.min.js"></script>
+<script src="/static/js/revolution/jquery.themepunch.revolution.min.js"></script>
+{#<script src="{% static "js/revolution/extensions/revolution.extension.actions.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.layeranimation.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.navigation.min.js" %}"></script>#}
+{#<script src="{% static "js/revolution/extensions/revolution.extension.slideanims.min.js" %}"></script>#}
+<script src="/static/js/revolution-active.js"></script>
+<!-- == custom Js File == -->
+<script src="/static/js/custom.js"></script>
+
+<script src="/static/cart/js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBjaOVpxq-vyWE7EOrUjmYsDdxRSrlar08"></script>
+<script src="/static/js/jquery.mapit.min.js"></script>
+<script src="/static/js/map-init.js"></script>
+
+<script type="text/javascript">
+    {# SCRIPT FOR COUNTER TYPE INPUT: #}
+    $(document).ready(function () {
+        $('.minus').click(function () {
+            var $input = $(this).parent().find('input');
+            var count = parseInt($input.val()) - 1;
+            count = count < 1 ? 1 : count;
+            $input.val(count);
+            $input.change();
+            return false;
+        });
+        $('.plus').click(function () {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
+        });
+    });
+
+    function openNav() {
+        {#if (window.matchMedia("(max-width: 415px)")){#}
+        {#document.getElementById("mySidepanel").style.width = "300px";#}
+        {# }else{#}
+        document.getElementById("mySidepanel").style.width = "400px";
+        {# }#}
+    }
+
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+
+    {# END SCRIPT FOR COUNTER TYPE INTPUT: #}
+</script>
+
+{# FOR SIDEPANEL: #}
+<script type="text/javascript">
+    function openNav() {
+        {#if (window.matchMedia("(max-width: 415px)")){#}
+        {#document.getElementById("mySidepanel").style.width = "300px";#}
+        {# }else{#}
+        document.getElementById("mySidepanel").style.width = "400px";
+        {# }#}
+    }
+
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>
+{# END FOR SIDE PANEL: #}
+
+<script type="text/javascript">
+
+    {# FROM NET TAB-PANEL: #}
+    $(document).ready($(function () {
+        InitFatstDonationProjects('1', '');
+    }));
+
+    function InitFatstDonationProjects(PagePrefixVal, SelectedTypeId) {
+        if (SelectedTypeId != null && SelectedTypeId != '') {
+            $('#ddlFastDonationProjectType' + PagePrefixVal).val(SelectedTypeId);
+            $('#ddlFastDonationProjectType' + PagePrefixVal).attr("disabled", 'disabled');
+            SelectProjectSub(PagePrefixVal);
+        } else {
+            SelectProjectSub(PagePrefixVal);
+        }
+    }
+
+    function SelectProjectSub(PagePrefixVal) {
+        var ProjectTypeId = $('#ddlFastDonationProjectType' + PagePrefixVal).val();
+        if (ProjectTypeId != null && ProjectTypeId != undefined && ProjectTypeId != '') {
+            $.ajax({
+                url: '/en/global/donation/getfastprojectsubtypes',
+                dataType: 'json',
+                async: false,
+                data: {
+                    ProjectTypeId: ProjectTypeId
+                },
+                success: function (result) {
+                    var listB = $('#ProjectSubTypesDDL' + PagePrefixVal);
+                    listB.empty();
+
+                    $.each(result, function (index, item) {
+                        listB.append(
+                            $('<option/>', {
+                                value: item.ProjectTypeId,
+                                text: item.ProjectTypeName
+                            })
+                        );
+                    });
+                    //alert(result.length);
+                    if (result.length == 2) {
+                        $('#ProjectSubTypesDDL' + PagePrefixVal + ' option:eq(1)').attr("selected", "selected").prop('selected', true);
+                        $('#ProjectSubTypesDDL' + PagePrefixVal).change();
+                    }
+                }
+            });
+        }
+    }
+
+
+    function SelectPriceList(PagePrefixVal) {
+        var ProjectTypeId = $('#ddlFastDonationProjectType' + PagePrefixVal).val();
+        var SubTypeId = $('#ProjectSubTypesDDL' + PagePrefixVal).val();
+        $.ajax({
+            url: '/en/global/donation/getfastprojectprices',
+            dataType: 'json',
+            async: false,
+            data: {
+                ProjectTypeId: ProjectTypeId,
+                SubTypeId: SubTypeId
+            },
+            success: function (result) {
+                var listB = $('#PriceListDDL' + PagePrefixVal);
+                listB.empty();
+                $.each(result, function (index, item) {
+                    listB.append(
+                        $('<option/>', {
+                            value: item.Cost,
+                            text: item.Title
+                        })
+                    );
+                });
+                //alert(result.length == 1)
+                if (result.length == 2) {
+                    $('#PriceListDDL' + PagePrefixVal + ' option:eq(1)').attr("selected", "selected").prop('selected', true);
+                    $('#PriceListDDL' + PagePrefixVal).change();
+                }
+
+            }
+        });
+    }
+
+    function SelectCountryFastDonationProject(PagePrefixVal) {
+        var ProjectTypeId = $('#ddlFastDonationProjectType' + PagePrefixVal).val();
+        var SubTypeId = $('#ProjectSubTypesDDL' + PagePrefixVal).val();
+        var Amount = $('#PriceListDDL' + PagePrefixVal).val();
+        $.ajax({
+            url: '/en/global/donation/getfastprojectcountries',
+            dataType: 'json',
+            async: false,
+            data: {
+                Amount: Amount,
+                ProjectTypeId: ProjectTypeId,
+                SubTypeId: SubTypeId
+            },
+            success: function (result) {
+                var listB = $('#DonationItemsCountryHorizontalDDL' + PagePrefixVal);
+                listB.empty();
+                $.each(result, function (index, item) {
+
+                    listB.append(
+                        $('<option/>', {
+                            value: item.CountryID,
+                            text: item.CountryName
+                        })
+                    );
+                });
+                if (result.length == 2) {
+                    $('#DonationItemsCountryHorizontalDDL' + PagePrefixVal + ' option:eq(1)').attr("selected", "selected").prop('selected', true);
+                }
+            }
+        });
+    }
+
+
+    function quickbtnAddToBasketFastDonationProjects(PagePrefixVal) {
+        AddToBasketFastDonationProjects(PagePrefixVal, 'Donate Now', 1);
+        MoveToPaymentObj("/en/global/donation/checkout");
+    }
+
+    function AddToBasketFastDonationProjects(PagePrefixVal, eventAction, Is_DonateNow) {
+        var ProjectTypeId = $('#ddlFastDonationProjectType' + PagePrefixVal).val();
+        var SubTypeId = $('#ProjectSubTypesDDL' + PagePrefixVal).val();
+        var AmountFastDonation = $('#PriceListDDL' + PagePrefixVal).val();
+        var CountryId = $('#DonationItemsCountryHorizontalDDL' + PagePrefixVal).val();
+        $.ajax({
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                url: '/ar/cart_add',
+            {% else %}
+                url: '/en/cart_add',
+            {% endif %}
+            dataType: 'json',
+            async: false,
+            data: {
+                Amount: AmountFastDonation,
+                ProjectTypeId: ProjectTypeId,
+                SubTypeId: SubTypeId,
+                CountryId: CountryId
+            },
+            success: function (result) {
+                btnTemplateAddToBasketClicked(result.TemplateId, result.CountryId, result.AccountTypeId, 1, "", result.Cost, 0, false, null, null, null, Is_DonateNow);
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+
+    $(document).ready($(function () {
+        $("#ddlMainAccountFastdonationSadaqaDaily" + "1").val(1428);
+        $("#txtTotalAmountFastAccountSadaqa1,#txtTotalAmountFastAccountSadaqa2").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }));
+
+    function FastDonationAmountSelectSadaqa(amount, PagePrefixSeleect) {
+        $("#txtTotalAmountFastAccountSadaqa" + PagePrefixSeleect).val(amount);
+        $(".btnsearch").removeClass("Active");
+        $(this).addClass("Active");
+    }
+
+    function quickbtnSadaqatAddToBasketFastDonationSadaqa(PagePrefixValue) {
+        AddToBasketFastDonationAccountSadaqa(PagePrefixValue, 'Donate Now');
+        var url = window.location.href;
+        if (url.indexOf('zakat') != -1)
+            MoveToPaymentObj("/en/global/zakat/zakat-check-out/zakat-check-out-basket");
+        else
+            MoveToPaymentObj("/en/global/donation/checkout");
+    }
+
+    function ChangeDDL(PagePrefixValue) {
+        var IsRecurrent = false;
+        if ($('#rbMonthlyDonation' + PagePrefixValue).is(':checked'))
+            IsRecurrent = true;
+        if (IsRecurrent == true) {
+            $("#DivMonthlyDDL" + PagePrefixValue).show();
+            $("#DivDailyDDL" + PagePrefixValue).hide();
+        } else {
+            $("#DivMonthlyDDL" + PagePrefixValue).hide();
+            $("#DivDailyDDL" + PagePrefixValue).show();
+        }
+    }
+
+    function AddToBasketFastDonationAccountSadaqa(PagePrefixValue, eventAction) {
+        var AmountFastDonation = $("#txtTotalAmountFastAccountSadaqa" + PagePrefixValue).val();
+        var accountFastDonation = $("#ddlMainAccountFastdonationSadaqaDaily" + PagePrefixValue).val();
+        var IsRecurrent = false;
+        var getvalue = geoplugin_currencyCode();
+        if ($('#rbMonthlyDonation' + PagePrefixValue).is(':checked')) {
+            IsRecurrent = true;
+            accountFastDonation = $("#ddlMainAccountFastdonationSadaqaMonthly" + PagePrefixValue).val();
+        }
+        if (AmountFastDonation == null || AmountFastDonation == undefined || AmountFastDonation == '') {
+            alert("Amount cannot be blank");
+            return;
+        }
+        if (parseFloat(AmountFastDonation) <= 9 && IsRecurrent == true) {
+            alert("Donation amount should be greater than 10 " + getvalue);
+            return;
+        }
+        $.ajax({
+            url: "/en/global/donation/addtobasket",
+            traditional: false,
+            async: false,
+            cache: false,
+            type: "POST",
+            data: {
+                PaidThroughId: 3,
+                IsNew: true,
+                PaidForId: accountFastDonation,
+                CountryId: '613',
+                Months: 1,
+                Amount: AmountFastDonation,
+                IsRegular: true,
+                Count: 1,
+                CampaignId: null,
+                ProjectName: '',
+                InNameOfType: '',
+                InNameOf: '',
+                IsFurnishingCost: false,
+                MotivatorId: null,
+                IsRecurrent: IsRecurrent,
+                LateMonths: 0,
+                Remarks: '',
+                NeedsId: null,
+                DonorId: -1,
+                DonorTypeId: 1,
+                SponsorshipBeginDate: null,
+                AccountTypeId: accountFastDonation,
+                SponsorshipPaymentTypeId: null,
+                ParentId: null,
+                functionRequestName: 'AddToBasketFastDonationAccount'
+            }
+        }).success(function (result) {
+            if (result) {
+                if (parseInt(result.ItemId) > 0) {
+                    addedtobasket.push(result.ItemId);
+                    showBasketAnimation(result);
+                    GTM_FastDonationDonateButton(eventAction, result.name, 3, result.id, result.price, result.brand, result.category, result.ProjectTypeName, result.ProjectSubTypeName, result.CountryName, result.PriceRange, result.quantity, result.CategoryId);
+                } else {
+                    showBasketAnimation(result);
+                }
+            }
+        }).error(function (result) {
+            addedtobasket = [];
+            showBasketAnimation(result);
+        });
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready($(function () {
+
+
+        $("#txtTotalAmountFastAccountCampaigns1,#txtTotalAmountFastAccountCampaigns2").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }));
+
+    function FastDonationAmountSelectCampaigns(amount, PagePrefixSeleect) {
+        $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
+        $(".btnsearch").removeClass("Active");
+        $(this).addClass("Active");
+    }
+
+    function quickbtnSadaqatAddToBasketFastDonationCampaigns(PagePrefixValue) {
+        AddToBasketFastDonationAccountCampaigns(PagePrefixValue, 'Donate Now');
+        MoveToPaymentObj("/en/global/donation/checkout");
+    }
+
+    {#function SelectCampaignCountry() {//#}
+    {#var campaignId = $('#projectCategory' + PagePrefixVal).val();#}
+    {#    $.ajax({#}
+    {#        type: 'POST',#}
+    {#dataType: 'json',#}
+    {#        url: '/getValuesAccordingToSelectedCategory',#}
+    {#        async: false,#}
+    {#        data: {#}
+    {#            campaignId: 8,#}
+    {#        },#}
+    {#        success: function (result) {#}
+    {#            var listB = $('#projectsAccordingToCategory' + PagePrefixVal);#}
+    {#            listB.empty();#}
+    {#            $.each(result, function (index, item) {#}
+    {##}
+    {#                listB.append(#}
+    {#                    $('<option/>', {#}
+    {#                        value: item.id,#}
+    {#                        text: item.name,#}
+    {#                    })#}
+    {#                );#}
+    {#            });#}
+    {#if (result.length == 2) {#}
+    {#    $('#ddlFastDonationCountriesList_' + PagePrefixVal + ' option:eq(1)').attr("selected", "selected").prop('selected', true);#}
+    {# }#}
+    {#        }#}
+    {#    });#}
+    {# }#}
+
+    function AddToBasketFastDonationAccountCampaigns(PagePrefixValue, eventAction) {
+        var AmountFastDonation = $("#txtTotalAmountFastAccountCampaigns" + PagePrefixValue).val();
+        var campaignId = $("#ddlFastDonationCampaignsList" + PagePrefixValue).val();
+        var countryId = $("#ddlFastDonationCountriesList_" + PagePrefixValue).val();
+
+        var defaultAccountId = 0;
+        var defaultCountryId = 0;
+        var IsRecurrent = false;
+        //if ($('#rbMonthlyDonationCampaigns' + PagePrefixValue).is(':checked'))
+        //    IsRecurrent = true;
+
+        if (AmountFastDonation == null || AmountFastDonation == undefined || AmountFastDonation == '') {
+            alert("Amount cannot be blank");
+            return;
+        }
+
+        if (campaignId == null || campaignId == undefined || campaignId == '') {
+            alert("Campaign cannot be blank.");
+            return;
+        }
+
+        if (countryId == null || countryId == undefined || countryId == '') {
+            alert("Country cannot be blank");
+            return;
+        }
+
+        $.ajax({
+            url: '/en/global/donation/campaigndefaultaccountandcountry',
+            dataType: 'json',
+            async: false,
+            data: {
+                CampaignId: campaignId
+            },
+            success: function (result) {
+                if (result.defaultAccountId != null && result.defaultAccountId != undefined && result.defaultAccountId != '') {
+                    defaultAccountId = result.defaultAccountId;
+                    //alert(campaignId + 'tttt');
+                }
+                if (result.defaultCountryId != null && result.defaultCountryId != undefined && result.defaultCountryId != '') {
+                    defaultCountryId = result.defaultCountryId;
+                }
+            }
+        });
+        //alert(defaultAccountId);
+        $.ajax({
+            url: "/en/global/donation/addtobasket",
+            traditional: true,
+            async: false,
+            type: "POST",
+            data: {
+                PaidThroughId: 3,
+                IsNew: true,
+                PaidForId: defaultAccountId,
+                CountryId: countryId,
+                Months: 1,
+                Amount: AmountFastDonation,
+                IsRegular: true,
+                Count: 1,
+                CampaignId: campaignId,
+                ProjectName: '',
+                InNameOfType: '',
+                InNameOf: '',
+                IsFurnishingCost: false,
+                MotivatorId: null,
+                IsRecurrent: IsRecurrent,
+                LateMonths: 0,
+                Remarks: '',
+                NeedsId: null,
+                DonorId: -1,
+                DonorTypeId: 1,
+                SponsorshipBeginDate: null,
+                AccountTypeId: defaultAccountId,
+                SponsorshipPaymentTypeId: null,
+                ParentId: null,
+                functionRequestName: ''
+            }
+        }).done(function (result) {
+            if (result) {
+                if (parseInt(result.ItemId) > 0) {
+                    addedtobasket.push(result.ItemId);
+                    showBasketAnimation(result);
+
+                    //addToBasketGA(result.name, result.id, result.price, result.brand, result.category, result.variant, result.quantity)
+                    GTM_FastDonationDonateButton(eventAction, result.name, 2, result.id, result.price, result.brand, result.category, result.ProjectTypeName, result.ProjectSubTypeName, result.CountryName, result.PriceRange, result.quantity, campaignId);
+                } else {
+                    showBasketAnimation(result);
+                }
+            }
+        }).error(function (result) {
+            addedtobasket = [];
+            showBasketAnimation(result);
+        });
+        //return globalResult;
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready($(function () {
+
+
+        $("#txtTotalAmountFastAccountCampaigns1,#txtTotalAmountFastAccountCampaigns2").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }));
+
+    function FastDonationAmountSelectCampaigns(amount, PagePrefixSeleect) {
+        $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
+        $(".btnsearch").removeClass("Active");
+        $(this).addClass("Active");
+    }
+
+    function quickbtnSadaqatAddToBasketFastDonationCampaigns(PagePrefixValue) {
+        AddToBasketFastDonationAccountCampaigns(PagePrefixValue, 'Donate Now');
+        MoveToPaymentObj("/en/global/donation/checkout");
+    }
+
+    function SelectCampaignCountry(PagePrefixVal) {//
+        var campaignId = $('#ddlFastDonationCampaignsList' + PagePrefixVal).val();
+        $.ajax({
+            url: '/en/global/donation/getcountriesbycampignid',
+            dataType: 'json',
+            async: false,
+            data: {
+                campaignId: campaignId,
+            },
+            success: function (result) {
+                var listB = $('#ddlFastDonationCountriesList_' + PagePrefixVal);
+                listB.empty();
+                $.each(result, function (index, item) {
+
+                    listB.append(
+                        $('<option/>', {
+                            value: item.CountryId,
+                            text: item.CountryName
+                        })
+                    );
+                });
+                if (result.length == 2) {
+                    $('#ddlFastDonationCountriesList_' + PagePrefixVal + ' option:eq(1)').attr("selected", "selected").prop('selected', true);
+                }
+            }
+        });
+    }
+
+    function AddToBasketFastDonationAccountCampaigns(PagePrefixValue, eventAction) {
+        var AmountFastDonation = $("#txtTotalAmountFastAccountCampaigns" + PagePrefixValue).val();
+        var campaignId = $("#ddlFastDonationCampaignsList" + PagePrefixValue).val();
+        var countryId = $("#ddlFastDonationCountriesList_" + PagePrefixValue).val();
+
+        var defaultAccountId = 0;
+        var defaultCountryId = 0;
+        var IsRecurrent = false;
+        //if ($('#rbMonthlyDonationCampaigns' + PagePrefixValue).is(':checked'))
+        //    IsRecurrent = true;
+
+        if (AmountFastDonation == null || AmountFastDonation == undefined || AmountFastDonation == '') {
+            alert("Amount cannot be blank");
+            return;
+        }
+
+        if (campaignId == null || campaignId == undefined || campaignId == '') {
+            alert("Campaign cannot be blank.");
+            return;
+        }
+
+        if (countryId == null || countryId == undefined || countryId == '') {
+            alert("Country cannot be blank");
+            return;
+        }
+
+        $.ajax({
+            url: '/en/global/donation/campaigndefaultaccountandcountry',
+            dataType: 'json',
+            async: false,
+            data: {
+                CampaignId: campaignId
+            },
+            success: function (result) {
+                if (result.defaultAccountId != null && result.defaultAccountId != undefined && result.defaultAccountId != '') {
+                    defaultAccountId = result.defaultAccountId;
+                    //alert(campaignId + 'tttt');
+                }
+                if (result.defaultCountryId != null && result.defaultCountryId != undefined && result.defaultCountryId != '') {
+                    defaultCountryId = result.defaultCountryId;
+                }
+            }
+        });
+        //alert(defaultAccountId);
+        $.ajax({
+            url: "/en/global/donation/addtobasket",
+            traditional: true,
+            async: false,
+            type: "POST",
+            data: {
+                PaidThroughId: 3,
+                IsNew: true,
+                PaidForId: defaultAccountId,
+                CountryId: countryId,
+                Months: 1,
+                Amount: AmountFastDonation,
+                IsRegular: true,
+                Count: 1,
+                CampaignId: campaignId,
+                ProjectName: '',
+                InNameOfType: '',
+                InNameOf: '',
+                IsFurnishingCost: false,
+                MotivatorId: null,
+                IsRecurrent: IsRecurrent,
+                LateMonths: 0,
+                Remarks: '',
+                NeedsId: null,
+                DonorId: -1,
+                DonorTypeId: 1,
+                SponsorshipBeginDate: null,
+                AccountTypeId: defaultAccountId,
+                SponsorshipPaymentTypeId: null,
+                ParentId: null,
+                functionRequestName: ''
+            }
+        }).done(function (result) {
+            if (result) {
+                if (parseInt(result.ItemId) > 0) {
+                    addedtobasket.push(result.ItemId);
+                    showBasketAnimation(result);
+
+                    //addToBasketGA(result.name, result.id, result.price, result.brand, result.category, result.variant, result.quantity)
+                    GTM_FastDonationDonateButton(eventAction, result.name, 2, result.id, result.price, result.brand, result.category, result.ProjectTypeName, result.ProjectSubTypeName, result.CountryName, result.PriceRange, result.quantity, campaignId);
+                } else {
+                    showBasketAnimation(result);
+                }
+            }
+        }).error(function (result) {
+            addedtobasket = [];
+            showBasketAnimation(result);
+        });
+        //return globalResult;
+    }
+
+</script>
+<script type="text/javascript">
+
+    function FillSponsorshipAmountDDL(PagePrefixVal) {
+        var categoryId = $("#ddlCategorySponsorShipFastDonation" + PagePrefixVal).val();
+        if (categoryId == null || categoryId == undefined || categoryId == '') {
+            categoryId = 1;
+        }
+        $.ajax({
+            url: "/en/global/donation/getsponsorshipamountavailable",
+            traditional: true,
+            async: false,
+            data: {
+                categoryId: categoryId
+            }
+        }).done(function (result) {
+            if (result) {
+                if (result.list != null) {
+                    var listddlAmountFastDonation = $('#ddlAmountFastDonation' + PagePrefixVal);
+                    listddlAmountFastDonation.empty();
+                    listddlAmountFastDonation.append(new Option('Cost', '-1'));
+                    var FisrtAmount = '';
+                    for (var i = 0; i < result.list.length; i++) {
+                        if (FisrtAmount == '')
+                            FisrtAmount = result.list[i].Amount;
+                        listddlAmountFastDonation.append($('<option/>', {
+                            value: result.list[i].Amount,
+                            text: result.list[i].Amount
+                        }));
+
+                    }
+                    if (FisrtAmount == '')
+                        FisrtAmount = '-1';
+                    listddlAmountFastDonation.val(FisrtAmount);
+                    FillSponsorshipCountDDL(PagePrefixVal);
+                }
+            }
+        }).error(function (result) {
+        });
+    }
+
+    function FillSponsorshipCountDDL(PagePrefixVal) {
+        var monthlyAmount = $("#ddlAmountFastDonation" + PagePrefixVal).val();
+        var categoryId = $("#ddlCategorySponsorShipFastDonation" + PagePrefixVal).val();
+        if (categoryId == null || categoryId == undefined || categoryId == '') {
+            categoryId = 1;
+        }
+        if (monthlyAmount != null && monthlyAmount != '') {
+            $.ajax({
+                url: "/en/global/donation/getsponsorshipcount",
+                traditional: true,
+                async: false,
+                data: {
+                    monthlyAmount: monthlyAmount,
+                    categoryId: categoryId
+                }
+            }).done(function (result) {
+                if (result) {
+                    if (parseInt(result.SponsoredCount) > -1) {
+                        var listddlCountFastDonation = $('#ddlCountFastDonation' + PagePrefixVal);
+                        listddlCountFastDonation.empty();
+                        var maxCount = 20;
+                        if (parseInt(result.SponsoredCount) < 20) {
+                            maxCount = parseInt(result.SponsoredCount);
+                        }
+                        listddlCountFastDonation.append(new Option('Sponsored Count', '-1'));
+                        for (var ii = 1; ii <= maxCount; ii++) {
+                            listddlCountFastDonation.append(new Option(ii, ii));
+                        }
+                        if (parseInt(result.SponsoredCount) == 0) {
+                            listddlCountFastDonation.val("-1");
+                        } else {
+                            listddlCountFastDonation.val("1");
+                        }
+                        FillSponsorshipTotalAmount(PagePrefixVal);
+                    }
+                }
+            }).error(function (result) {
+            });
+        }
+    }
+
+    function FillDdlCount(PagePrefixVal) {
+        var list = $("#ddlCountFastDonation" + PagePrefixVal);
+        for (var i = 1; i <= 20; i++) {
+            list.append(new Option(i, i));
+        }
+    }
+
+    function FillSponsorshipTotalAmount(PagePrefixVal) {
+        var AmountFastDonation = $("#ddlAmountFastDonation" + PagePrefixVal).val();
+        var CounttFastDonation = $("#ddlCountFastDonation" + PagePrefixVal).val();
+        if (AmountFastDonation != null && AmountFastDonation != '' && CounttFastDonation != null && CounttFastDonation != '' && CounttFastDonation != '-1') {
+            var tot = parseFloat(AmountFastDonation) * parseFloat(CounttFastDonation);
+            $("#txtTotalAmountFastSponsorship" + PagePrefixVal).val(tot);
+        } else {
+            $("#txtTotalAmountFastSponsorship" + PagePrefixVal).val('');
+        }
+    }
+
+    function quickbtnNonSponsoredAddToBasketFastDonation(PagePrefixVal) {
+        var MobilePay = $('input:radio[name=PaymentWayFastDonation]:checked').val();
+        if (MobilePay != null && MobilePay != undefined && MobilePay == 'Bank') {
+            window.location = "/en/global/donorprofile/createstandingorderbybank";
+        } else {
+            AddToBasketFastDonationSponsorship(PagePrefixVal, 'Donate Now');
+            if (MobilePay != null && MobilePay != undefined && MobilePay != '') {
+                MoveToPaymentObj("/en/global/donation/checkout", MobilePay);
+            } else {
+                MoveToPaymentObj("/en/global/donation/checkout");
+            }
+        }
+    }
+
+    {#function AddToBasketFastDonationSponsorship(PagePrefixVal, eventAction) {#}
+    {#    var MobilePay = $('input:radio[name=PaymentWayFastDonation]:checked').val();#}
+    {#    if (MobilePay == 'Bank') {#}
+    {#        window.location = "/en/global/donorprofile/createstandingorderbybank";#}
+    {#    } else {#}
+    {#        var categoryId = $("#ddlCategorySponsorShipFastDonation" + PagePrefixVal).val();#}
+    {#        if (categoryId == null || categoryId == undefined || categoryId == '') {#}
+    {#            categoryId = 1;#}
+    {#        }#}
+    {#        var AmountFastDonation = $("#ddlAmountFastDonation" + PagePrefixVal).val();#}
+    {#        var CounttFastDonation = $("#ddlCountFastDonation" + PagePrefixVal).val();#}
+    {#        if (AmountFastDonation == null || AmountFastDonation == undefined || AmountFastDonation == '') {#}
+    {#            alert("Please insert sponsorship amount");#}
+    {#            return;#}
+    {#        }#}
+    {#        if (CounttFastDonation == null || CounttFastDonation == undefined || CounttFastDonation == '' || CounttFastDonation == '-1') {#}
+    {#            alert("Please choose sponsorship count ");#}
+    {#            return;#}
+    {#        }#}
+    {#        $.ajax({#}
+    {#            url: "/en/global/donation/addtobasketfastdonationsponsorship",#}
+    {#            traditional: true,#}
+    {#            async: false,#}
+    {#            type: "POST",#}
+    {#            data: {#}
+    {#                AmountFastDonation: AmountFastDonation,#}
+    {#                CounttFastDonation: CounttFastDonation,#}
+    {#                categoryId: categoryId#}
+    {#            }#}
+    {#        }).done(function (result) {#}
+    {#            if (result) {#}
+    {#                if (result[0] != null && result[0].ItemId != null && parseInt(result[0].ItemId) > 0) {#}
+    {#                    showBasketAnimation(result[0]);#}
+    {#                    for (i = 0; i < CounttFastDonation; i++) {#}
+    {#                        addedtobasket.push(result[i].ItemId);#}
+    {#                        if (result[i] != null && result[i] != undefined) {#}
+    {#                            GTM_FastDonationDonateButton(eventAction, result[i].name, 1, result[i].id, result[i].price, result[i].brand, result[i].category, result[i].ProjectTypeName, result[i].ProjectSubTypeName, result[i].CountryName, result[i].PriceRange, 1, result[i].CategoryId);#}
+    {#                        }#}
+    {#                    }#}
+    {#                } else if (result[0] != null && result[0].ItemId == 0 && result[0].ErrorMessage != null && result[0].ErrorMessage != '') {#}
+    {#                    alert(result[0].ErrorMessage);#}
+    {#                } else {#}
+    {#                    showBasketAnimation(result);#}
+    {#                }#}
+    {#            }#}
+    {#        }).error(function (result) {#}
+    {#            addedtobasket = [];#}
+    {#            showBasketAnimation(result);#}
+    {#        });#}
+    {#    }#}
+    {# }#}
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#fastDonationId").show();
+        FastDonateBtnShowHideEvent();
+    });
+
+    $.fn.fadeSlideRight = function (margin, speed, fn) {
+        return $(this).animate({
+            'margin-right': margin
+        }, speed || 400, function () {
+            $.isFunction(fn) && fn.call(this);
+        });
+    };
+
+    $.fn.fadeSlideLeft = function (margin, speed, fn) {
+        return $(this).animate({
+            'margin-right': margin
+        }, speed || 400, function () {
+            $.isFunction(fn) && fn.call(this);
+        });
+    };
+
+    $.fn.fadeSlideRightEn = function (margin, speed, fn) {
+        return $(this).animate({
+            'margin-left': margin
+        }, speed || 400, function () {
+            $.isFunction(fn) && fn.call(this);
+        });
+    };
+
+    $.fn.fadeSlideLeftEn = function (margin, speed, fn) {
+        return $(this).animate({
+            'margin-left': margin
+        }, speed || 400, function () {
+            $.isFunction(fn) && fn.call(this);
+        });
+    };
+
+    function FastDonateBtnShowHideEvent() {
+        if ("2" == "1") {
+            if ($("#fastDonationId").css('marginRight') == "0px") {
+
+                $("#donateButtonArrow").fadeSlideLeft('120px', 650);
+                $("#donateButton").fadeSlideLeft('42px');
+                $("#fastDonationId").fadeSlideRight('-400px', 350)
+            } else {
+                $("#donateButtonArrow").fadeSlideRight('0px', 250);
+                $("#donateButton").fadeSlideRight('-150px', 550);
+                $("#fastDonationId").fadeSlideLeft('0', 200);
+            }
+        } else {
+            if ($("#fastDonationId").css('marginLeft') != "-415px") {
+                $("#donateButtonArrow").fadeSlideRightEn('120px', 650);
+                $("#donateButton").fadeSlideRightEn('42px');
+                $("#fastDonationId").fadeSlideLeftEn('-415px', 350)
+            } else {
+                $("#donateButtonArrow").fadeSlideLeftEn('0px', 250);
+                $("#donateButton").fadeSlideLeftEn('-150px', 550);
+                $("#fastDonationId").fadeSlideRightEn('-15px', 200);
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        FastDonateBtnShowHideEvent();
+        $('#FastDonationTabss a').click(function (e) {
+            $(this).tab('show');
+        });
+        $("#FastDonationTabCampaigns1").addClass("active");
+        $("#liFastDonationCampaigns1").addClass("active");
+
+
+    });
+</script>
+{#<script type="text/javascript">#}
+{#    $(document).ready(function () {#}
+{#        $("#ExpertRequestBtn").click(function () {#}
+{#            var aj = $(this).attr("ajax");#}
+{#            jQuery.facebox({ajax: aj});#}
+{#        });#}
+{#    })#}
+{#</script>#}
+{#<script type="text/javascript">#}
+
+{#function FastDonateMobileClickNewDonation() {#}
+{#    var ajaxUrl = $("#btnFastDonateMobile").attr("ajax");#}
+{#    jQuery.facebox({ajax: ajaxUrl});#}
+{#    $("#FastDonationTabSadaka2").addClass("active");#}
+{#    $("#liFastDonationSadaka2").addClass("active");#}
+{#    setTimeout(function () {#}
+{#        $("#FastDonationTabSadaka2").addClass("active");#}
+{#        $("#liFastDonationSadaka2").addClass("active");#}
+{#    }, 500);#}
+{#    setTimeout(function () {#}
+{#        $("#FastDonationTabSadaka2").addClass("active");#}
+{#        $("#liFastDonationSadaka2").addClass("active");#}
+{#    }, 800);#}
+{# }#}
+{#</script>#}
+
+<script type="text/javascript">
+
+    $(function () {
+        if (window.innerWidth < 992) {
+            $("#FastDonationForMobile").show();
+        } else {
+            $("#FastDonationForMobile").hide();
+        }
+    })
+</script>
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        $(".gallerythumbinner").click(function () {
+
+            $.fancybox({
+                'padding': 0,
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'title': this.title,
+                'width': 640,
+                'height': 385,
+                'href': this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+                'type': 'swf',
+                'swf': {
+                    'wmode': 'transparent',
+                    'allowfullscreen': 'true'
+                }
+            });
+
+            return false;
+        });
+    });
+
+</script>
+
+
+{# FOR SHOWING PROJECTS: ACCORDING TO THEIR CATEGORIES: #}
+<script type="text/javascript">
+    function onchangehit(value) {
+        {#console.log(value);#}
+        categoryId = value;
+        $("#projectsAccordingToCategory option").each(function () {
+            $(this).remove();
+        });
+        $.ajax({
+            url: "/getValuesAccordingToSelectedCategory",
+            type: "GET",
+            async: true,
+            {#dataType: "json",#}
+            data: {
+                categoryId: categoryId,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (json) {
+                {#console.log(json);#}
+                for (var i = 0; i <= json.length; i++) {
+                    var obj = json[i];
+                    {#console.log(obj.id);#}
+                    {#console.log(obj.name);#}
+                    $('#projectsAccordingToCategory').append($('<option>',
+                        {
+                            value: obj.id,
+                            text: obj.name,
+                        }));
+                }
+            },
+            failure: function () {
+                alert('Got an error dude');
+            }
+        });
+    }
+</script>
+{# END FOR SHOWING THE PROJECTS: ACCORDING TO THEIR CATEGORIES: #}
+
+{# FOR SHOWING SPONSORSHIP PROJECTS: ACCORDING TO THEIR CATEGORIES: #}
+<script type="text/javascript">
+    function onHitSponsorFunction(value) {
+        {#console.log(value);#}
+        categoryId1 = value;
+        $("#showProjectSponsorShipFastDonation option").each(function () {
+            $(this).remove();
+        });
+        $.ajax({
+            url: "/getSponsoshipValuesAccordingToSelectedCategory",
+            type: "GET",
+            async: true,
+            {#dataType: "json",#}
+            data: {
+                categoryId1: categoryId1,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (json) {
+                {#console.log(json);#}
+                for (var i = 0; i <= json.length; i++) {
+                    var obj = json[i];
+                    {#console.log(obj.id);#}
+                    {#console.log(obj.name);#}
+                    $('#showProjectSponsorShipFastDonation').append($('<option>',
+                        {
+                            value: obj.id,
+                            text: obj.name,
+                        }));
+                }
+            },
+            failure: function () {
+                alert('Got an error dude');
+            }
+        });
+    }
+</script>
+{# END FOR SHOWING THE SPONSORSHIP: ACCORDING TO THEIR CATEGORIES: #}
+
+{# FOR REDIRECTING TO PARTICULAR SPONSORSHIP PROJECT: ACCORDING TO THEIR CATEGORIES: #}
+<script type="text/javascript">
+    function pageRedirect() {
+        projectId = $('#showProjectSponsorShipFastDonation').val();
+        if (projectId == null) {
+            window.alert('Please Select The Category');
+        } else {
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                console.log("/ar/sponsorshipProjectsFromQuickDonate/" + projectId);
+                window.location.href = "/ar/sponsorshipProjectsFromQuickDonate/" + projectId;
+            {% else %}
+                console.log("/ar/sponsorshipProjectsFromQuickDonate/" + projectId);
+                window.location.href = "/en/sponsorshipProjectsFromQuickDonate/" + projectId;
+            {% endif %}
+        }
+    }
+</script>
+{# END FOR REDIRECTING TO PARTICULAR  SPONSORSHIP PROJECT: ACCORDING TO THEIR CATEGORIES: #}
+
+
+{# ADD TO CART: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.sub').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_" + post_id).value;
+        var amount = document.getElementById("amount_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART: #}
+
+{# ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartProjectOfGiftSendGiftPage').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+
+
+{# ADD TO CART QUICK DONATE PROJECTS: #}
+<script type="text/javascript">
+    $(document).on('submit', '#forQuickDonateProjectForm', function (e) {
+        e.preventDefault();
+        var frm = $('#addCartForm');
+        var project_id = $('#projectsAccordingToCategory').val();
+        var amount = $('#txtTotalAmountFastAccountCampaigns1').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {# var project_category_id = $('.project_category_id').val(); #}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    console.log(amount);
+                    console.log(project_id);
+                    alert("Cart Added");
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART QUICK DONATE PROJECTS: #}
+
+
+{# ADD TO CART SADAQAH PROJECTS: #}
+<script type="text/javascript">
+    $(document).on('submit', '#sadaqahDonation', function (e) {
+        e.preventDefault();
+        {#var frm = $('#addCartForm');#}
+        {#var form = document.getElementById("addCartForm");#}
+        var project_id = $('#projectId').val();
+        var amount = $('#txtTotalAmountFastAccountSadaqa1').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {#var project_category_id = $('.project_category_id').val();#}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                {#data: frm.serialize(),#}
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    {#console.log(amount);#}
+                    {#console.log(project_id);#}
+                    alert("Cart Added");
+                    {#form.reset();#}entById("addCartForm").reset();
+                    {# THIS reset() FUNCTION IS USED TO RESET THE VALUES INSIDE THE FORM INPUT FIELDS: #}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART SADAQAH PROJECTS: #}
+
+{# LOCALPROJECTS: #}
+<script type="text/javascript">
+    function FastDonationAmountSelectCampaignsThis(amount, PagePrefixSeleect) {
+        $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
+        $(this).addClass("Active");
+    }
+</script>
+
+
+<script type="text/javascript">
+    function onchangehit2(value) {
+        {#console.log(value);#}
+        categoryId = value;
+        $("#projectsAccordingToCategory2 option").each(function () {
+            $(this).remove();
+        });
+        $.ajax({
+            url: "/getValuesAccordingToSelectedCategory",
+            type: "GET",
+            async: true,
+            {#dataType: "json",#}
+            data: {
+                categoryId: categoryId,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (json) {
+                {#console.log(json);#}
+                for (var i = 0; i <= json.length; i++) {
+                    var obj = json[i];
+                    {#console.log(obj.id);#}
+                    {#console.log(obj.name);#}
+                    $('#projectsAccordingToCategory2').append($('<option>',
+                        {
+                            value: obj.id,
+                            text: obj.name,
+                        }));
+                }
+            },
+            failure: function () {
+                alert('Got an error dude');
+            }
+        });
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(document).on('submit', '#forQuickDonateProjectForm2', function (e) {
+        e.preventDefault();
+        var frm = $('#addCartForm');
+        var project_id = $('#projectsAccordingToCategory2').val();
+        var amount = $('#txtTotalAmountFastAccountCampaigns2').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {# var project_category_id = $('.project_category_id').val(); #}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    console.log(amount);
+                    console.log(project_id);
+                    alert("Cart Added");
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('.sub3').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_" + post_id).value;
+        var amount = document.getElementById("amount_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+
+{# END LOCALPROJECTS: #}
+
+{# FOREIGN PROJECTS ADD TO CART #}
+<script type="text/javascript">
+    $('.sub2').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_" + post_id).value;
+        var amount = document.getElementById("amount_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END FOREIGN PROJECTS ADD TO CART #}
+
+{# YOUR SHADOW #}
+<script type="text/javascript">
+    function FastDonationAmountSelectCampaignsSadaqah(amount, PagePrefixSeleect) {
+        $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
+        $(this).addClass("Active");
+    }
+</script>
+<script type="text/javascript">
+    $(document).on('submit', '#sadaqahDonation3', function (e) {
+        e.preventDefault();
+        {#var frm = $('#addCartForm');#}
+        {#var form = document.getElementById("addCartForm");#}
+        var project_id = $('#projectId').val();
+        var amount = $('#txtTotalAmountFastAccountCampaigns3').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {#var project_category_id = $('.project_category_id').val();#}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                {#data: frm.serialize(),#}
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    {#console.log(amount);#}
+                    {#console.log(project_id);#}
+                    alert("Cart Added");
+                    {# THIS reset() FUNCTION IS USED TO RESET THE VALUES INSIDE THE FORM INPUT FIELDS: #}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# YOUR SHADOW #}
+
+
+{# PROJECTS OF PARTICULAR CATEGORY: #}
+
+<script type="text/javascript">
+    $('.projectsOfParticularCategory').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_" + post_id).value;
+        var amount = document.getElementById("amount_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END PROJECTS OF PARTICULAR CATEGORY: #}
+
+{# SPONSORORPHAN.HTML #}
+
+<script type="text/javascript">
+    function onHitSponsorFunction2(value) {
+        {#console.log(value);#}
+        categoryId1 = value;
+        $("#showProjectSponsorShipFastDonation2 option").each(function () {
+            $(this).remove();
+        });
+        $.ajax({
+            url: "/getSponsoshipValuesAccordingToSelectedCategory",
+            type: "GET",
+            async: true,
+            {#dataType: "json",#}
+            data: {
+                categoryId1: categoryId1,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (json) {
+                {#console.log(json);#}
+                for (var i = 0; i <= json.length; i++) {
+                    var obj = json[i];
+                    {#console.log(obj.id);#}
+                    {#console.log(obj.name);#}
+                    $('#showProjectSponsorShipFastDonation2').append($('<option>',
+                        {
+                            value: obj.id,
+                            text: obj.name,
+                        }));
+                }
+            },
+            failure: function () {
+                alert('Got an error dude');
+            }
+        });
+    }
+</script>
+{# END SPONSORORPHAN.HTML #}
+
+{# GIFTPROJECT PAGE: #}
+<script type="text/javascript">
+    $('.giftProjectPage').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project1_id_" + post_id).value;
+        var amount = document.getElementById("amount1_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END GIFTPROJECT PAGE: #}
+
+{# GIFT NEW PAGE: #}
+<script type="text/javascript">
+    $('.giftNewPage2').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project2_id_" + post_id).value;
+        var amount = document.getElementById("amount2_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('.giftNewPage3').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project3_id_" + post_id).value;
+        var amount = document.getElementById("amount3_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('.giftNewPage4').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project4_id_" + post_id).value;
+        var amount = document.getElementById("amount4_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('.giftNewPage5').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project5_id_" + post_id).value;
+        var amount = document.getElementById("amount5_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END GIFT NEW PAGE: #}
+
+{# THAWAB CONTRIBUTION: #}
+<script type="text/javascript">
+    $('.thawabContribution').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_thawab_" + post_id).value;
+        var amount = document.getElementById("amount_thawab_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END THAWAB CONTRIBUTION: #}
+
+{# thawabProjects: #}
+<script type="text/javascript">
+    $('.thawabProjects').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("project_id_thawabProjects_" + post_id).value;
+        var amount = document.getElementById("amount_thawabProjects_" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END thawabProjects: #}
+
+
+{# SCRIPT TO KEEP VALUE EVEN ON THE PAGE REFRESH: #}
+<script type="text/javascript">
+    document.getElementById("user_name").value = getSavedValue("user_name");    // set the value to this input
+    document.getElementById("email").value = getSavedValue("email");   // set the value to this input
+    document.getElementById("password").value = getSavedValue("password");   // set the value to this input
+    /* Here you can add more inputs to set value. if it's saved */
+
+    //Save the value function - save it to localStorage as (ID, VALUE)
+    function saveValue(e) {
+        var id = e.id;  // get the sender's id to save it .
+        var val = e.value; // get the value.
+        localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override .
+    }
+
+    //get the saved value function - return the value of "v" from localStorage.
+    function getSavedValue(v) {
+        if (!localStorage.getItem(v)) {
+            return "";// You can change this to your defualt value.
+        }
+        return localStorage.getItem(v);
+    }
+</script>
+{# SCRIPT TO KEEP VALUE EVEN ON THE PAGE REFRESH: #}
+
+{# TO SET VALUE OF GETCURRENCY VIEWS.PY: #}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var getvalue = geoplugin_currencyCode();
+        console.log("ON LOAD", getvalue);
+        var getvalueStr = getvalue.toString();
+        console.log("STRING", getvalueStr);
+        $.ajax({
+            type: 'GET',
+            url: 'getCurrency',
+            async: true,
+            data: {
+                getvalueStr: getvalueStr,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+
+            {#context: document.body,#}
+            success: function (e) {
+            },
+            error: (error) => {
+                console.log(JSON.stringify(error));
+            }
+        });
+    });
+</script>
+{# TO SET VALUE OF GETCURRENCY VIEWS.PY: #}
+
+
+{# ADD TO CART THE ZAKAT: #}
+<script type="text/javascript">
+    $(document).on('submit', '#forZakatMoneyProjectForm', function (e) {
+        e.preventDefault();
+        var frm = $('#forZakatMoneyProjectForm');
+        var project_id = $('#project_id').val();
+        var amount = $('#amount').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {# var project_category_id = $('.project_category_id').val(); #}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {# project_category_id: project_category_id, #}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    console.log(amount);
+                    console.log(project_id);
+                    frm[0].reset();
+                    alert("Cart Added");
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART THE ZAKAT: #}
+
+{# ADD TO CART THE ZAKAT: #}
+<script type="text/javascript">
+    $(document).on('submit', '#forZakatGoldProjectForm', function (e) {
+        e.preventDefault();
+        var frm = $('#forZakatGoldProjectForm');
+        var project_id = $('#project_id1').val();
+        var amount = $('#amount1').val();
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            {# var project_category_id = $('.project_category_id').val(); #}
+            console.log({project_id, amount});
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {# project_category_id: project_category_id, #}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    console.log(amount);
+                    console.log(project_id);
+                    frm[0].reset();
+                    alert("Cart Added");
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART THE ZAKAT: #}
+
+{# GENERATE ACTIVATION CODE: IN CREATE COMPAIGN OF PARTICULAR CATEGORY PAGE: #}
+<script type="text/javascript">
+    function generateActivationCode() {
+        var phoneNumberOfUser = $('.fetchPhoneNumberOfTheUser').val();
+        console.log("PHONE NUMBER OF USER:", phoneNumberOfUser);
+        $.ajax({
+            type: 'POST',
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                url: '/ar/generateActivationCode',
+            {% else %}
+                url: '/en/generateActivationCode',
+            {% endif %}
+            async: true,
+            data: {
+                phoneNumberOfUser: phoneNumberOfUser,
+                {# project_category_id: project_category_id, #}
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function () {
+                {#console.log(amount);#}
+                {#console.log(project_id);#}
+                {#frm[0].reset();#}
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    alert("تم إرسال الرمز");
+                {% else %}
+                    alert("Code Has Been Sent");
+                {% endif %}
+            },
+            error: function () {
+                alert("Something went wrong!");
+            },
+        });
+    }
+</script>
+{# GENERATE ACTIVATION CODE: IN CREATE COMPAIGN OF PARTICULAR CATEGORY PAGE: #}
+
+{##}
+{# SCRIPT FOR CALCULATING GOLD VALUE: #}
+{#<script type="text/javascript">#}
+{##}
+{#    var goldPricePerOunce = {{ getCurrentGoldValue }};#}
+{#    console.log("Price Per Ounce: ", goldPricePerOunce);#}
+{#    var totalGramsInPerOunce = 31.1;#}
+{#    var pricePerGram;#}
+{#    pricePerGram = goldPricePerOunce / totalGramsInPerOunce;#}
+{#    console.log("Price Per Gram", pricePerGram);#}
+{#    document.getElementById("gramValueFor18ct").innerHTML = (pricePerGram * (18 / 24)).toFixed(3);#}
+{#    document.getElementById("gramValueFor21ct").innerHTML = (pricePerGram * (21 / 24)).toFixed(3);#}
+{#    document.getElementById("gramValueFor22ct").innerHTML = (pricePerGram * (22 / 24)).toFixed(3);#}
+{#    document.getElementById("gramValueFor24ct").innerHTML = (pricePerGram * (24 / 24)).toFixed(3);#}
+{##}
+{#    function calculateValueText3() {#}
+{##}
+{#        document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp21').value = parseFloat(#}
+{#            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw21').value * pricePerGram * (21 / 24) * 0.025).toFixed(3);#}
+{##}
+{#        document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp22').value = parseFloat(#}
+{#            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw22').value * pricePerGram * (22 / 24) * 0.025).toFixed(3);#}
+{##}
+{#        document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp24').value = parseFloat(#}
+{#            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw24').value * pricePerGram * (24 / 24) * 0.025).toFixed(3);#}
+{##}
+{#        document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp18').value = parseFloat(#}
+{#            document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtw18').value * pricePerGram * (18 / 24) * 0.025).toFixed(3);#}
+{##}
+{#        var myFloatNumber18 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp18').value;#}
+{#        var myFloatNumber21 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp21').value;#}
+{#        var myFloatNumber22 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp22').value;#}
+{#        var myFloatNumber24 = document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_txtp24').value;#}
+{##}
+{#        document.getElementById('ctl00_ctl00_ContentPlaceHolderhome_ContentPlaceHolder1_amount').value = parseFloat(parseFloat(myFloatNumber18) + parseFloat(myFloatNumber21) + parseFloat(myFloatNumber22) + parseFloat(myFloatNumber24)).toFixed(3);#}
+{##}
+{##}
+{#    }#}
+{#</script>#}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("select").searchable({
+            maxListSize: 200, // if list size are less than maxListSize, show them all
+            maxMultiMatch: 300, // how many matching entries should be displayed
+            exactMatch: false, // Exact matching on search
+            wildcards: true, // Support for wildcard characters (*, ?)
+            ignoreCase: true, // Ignore case sensitivity
+            latency: 200, // how many millis to wait until starting search
+            warnMultiMatch: 'top {0} matches ...',
+            warnNoMatch: 'no matches ...',
+            zIndex: 'auto'
+        });
+    });
+</script>
+{# END SCRIPT FOR CALCULATING GOLD VALUE: #}
+
+
+<script type="text/javascript">
+
+    var AmountCannotBeBlank = "Amount cannot be blank";
+    var CookieNotEnabled = "Cookie not enabled";
+
+    function CalcZakatMoneyDetails() {
+        var sumCalval = 0;
+        var sumCaldiffval = 0;
+        $('input[name^="CalSumval"]').each(function () {
+            sumCalval += +$(this).val();
+        });
+        $('input[name^="Caldiffval"]').each(function () {
+            sumCaldiffval += +$(this).val();
+        });
+
+        var arr = [];
+        $("[id*=txt_]").each(function () {
+            var id = $(this).attr("Item");
+            if ($("#txt_" + id) != null) {
+                var ZakkaAccountsId = id;
+                // var ZakkaAccountsId = $('#ddlGoldRate_' + id + '>option[value=' + $('#ddlGoldRate_' + id).val() + ']').attr("TypeId");
+                var Value = $("#txt_" + id).val();
+                var CurrencyId = 1;
+                if (ZakkaAccountsId != null && ZakkaAccountsId != undefined && ZakkaAccountsId > 0 && Value != null && Value != undefined && Value > 0) {
+                    var obj = {
+                        ZakkaAccountsId: ZakkaAccountsId,
+                        Value: Value,
+                        CurrencyId: CurrencyId,
+                        YearTypeId: $('#ddl_YearZakatMoney').val()
+                    };
+                    arr.push(obj);
+                }
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+
+
+    function CalZakatMoneyFast(ZakatGoldPrice, ExchangeRate) {
+        var AmountZakat = $("#txtAmountZakatMoney").val();
+        if (AmountZakat == null || AmountZakat == undefined || AmountZakat == '') {
+            AmountZakat = 0;
+        }
+        {#var GoldPrice2 = parseFloat(ZakatGoldPrice * 85).toFixed(2);#}
+        {#if ($('#ddl_YearZakatMoney').val() == "0") {#}
+        {#    alert('Please select year');#}
+        {#    $("#CalculateZakatMoney").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } #}
+        {#if (parseFloat(AmountZakat) < parseFloat(GoldPrice2)) {#}
+        {#    alert('The amount is less than the value of a quorum' + ' ' + GoldPrice2 + ' ' + "QAR");#}
+        {#    $("#CalculateZakatMoney").attr("role", "").attr("data-target", "");#}
+        {#    return;#}
+        {# } else { #}
+        $('#TotalZakatMoney').val(parseFloat(AmountZakat * $('#txtRateZakatMoney').val()).toFixed(2));
+        $("#CalculateZakatMoney").attr("role", "dialog").attr("data-target", "#CalcZakatMoneyAmount");
+        {# } #}
+    }
+
+    function OnlyNumeric(evt, item, maxLenght) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        var maxleng = $(item).attr('maxlength');
+        if (maxleng == null || maxleng == undefined || maxleng == '' || maxleng == 0) {
+            maxleng = maxLenght;
+        }
+        var val = $(item).val();
+        // Trim the field if it has content over the maxlength.
+        if (maxleng != null && maxleng != undefined && maxleng != '' && maxleng != 0 && val.length > maxleng) {
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<script type="text/javascript">
+    function selectCountryCode(value) {
+        var countryValue = value;
+        $('#fetchTheSelectedCountryCode').val(countryValue);
+    }
+</script>
+
+<script type="text/javascript">
+    function selectCountryCode2(value) {
+        var countryValue = value;
+        $('#fetchTheSelectedCountryCode2').val(countryValue);
+    }
+</script>
+
+</body>
+
+</html>

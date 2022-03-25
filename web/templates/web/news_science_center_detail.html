@@ -1,0 +1,129 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+
+{% block content %}
+
+    <div class="main-content section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="causes-details-wrap">
+                        <div class="causes-details-top">
+                            <div class="causes-details-image mb10">
+                                <img src="{{ obj.get_image_url }}" height="600" width="100%" alt="">
+                            </div>
+                            <div class="causes-details-top__text-content">
+                                <h3 class="causes-details__title text-uppercase">{{ obj.get_title }}</h3>
+                                <span data-toggle="collapse" data-target="#read0" id="logoColor">
+                        {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "قراءة الوصف" %}
+                                    {% else %}
+                                        {% trans "Read Description" %}
+                                    {% endif %}
+                                </span>
+                                <p id="read0" class="collapse">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {{ obj.content }}
+                                    {% else %}
+                                        {{ obj.contentEn }}
+                                    {% endif %}
+                                </p>
+                                {#                                <ul class="list-inline round-social-icons mb30">#}
+                                <h3 id="logoColor">
+                                    <a href="{{ obj.meetingLink }}">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "رابط البرنامج التعليمي على الويب" %}
+                                        {% else %}
+                                            {% trans "Webinar Link" %}
+                                        {% endif %}
+                                    </a>
+                                </h3>
+                                <br>
+                                {#                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+                                {#                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+                                {#                                </ul>#}
+                                <span class="small-text"><i
+                                        class="fa fa-calendar base-color"></i> {{ obj.created_at | date:"M d, Y" }}</span>
+
+
+                                <p>{{ obj.get_content | safe }}</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="col-md-4">
+                    <aside class="sidebar">
+                        <div class="widget widget--category">
+                            <div class="widget__heading">
+                                <h4 class="widget__title">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "فئات الأخبار" %}
+                                    {% else %}
+                                        {% trans "News Categories" %}
+                                    {% endif %}
+                                </h4>
+                            </div>
+                            <div class="widget__text-content">
+                                <ul>
+                                    {% for category in science_categories %}
+                                        <li><a href="#" class="pdr10">{{ category.get_name }}</a><span
+                                                class="post-count">{{ category.total_news }}</span></li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget__heading">
+                                <h4 class="widget__title">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "أحدث" %}
+                                    {% else %}
+                                        {% trans "Latest" %}
+                                    {% endif %}
+                                    <span
+                                            class="base-color">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if LANGUAGE_CODE == "ar" %}
+                                            {% trans "أخبار" %}
+                                        {% else %}
+                                            {% trans "News" %}
+                                        {% endif %}
+                                        </span></h4>
+                            </div>
+                            <div class="widget__text-content">
+                                {% for obj in news %}
+                                    <div class="widget-latest-causes">
+                                        <div class="widget-latest-causes__image-wrap">
+                                            <a href="{% url 'news-detail' obj.id %}"><img
+                                                    class="widget-latest-causes__thubnail" src="{{ obj.get_image_url }}"
+                                                    width="145" height="93" alt=""></a>
+                                        </div>
+                                        <div class="widget-latest-causes__text-content">
+                                            <h4 class="widget-latest-causes__title"><a
+                                                    href="{% url 'news-detail' obj.id %}">{{ obj.get_title }}</a></h4>
+                                            <span class="small-text"><i
+                                                    class="fa fa-calendar base-color"></i> {{ obj.created_at | date:"M d, Y" }}</span>
+                                        </div>
+                                    </div><!--/.widget-latest-causes-->                            </div>
+                                {% endfor %}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+        </div>
+
+    </div>{% endblock %}

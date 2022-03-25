@@ -1,0 +1,32 @@
+/* -----------------------------------
+** Join Us
+-------------------------------------*/
+.join-us-section{
+    background-color: $base;
+    // background: url('../images/join-us-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+
+}
+.join-us{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 45px;
+    padding-bottom: 18px;
+    @include breakpoint(max_xs){
+        display: block;
+        text-align: center;
+    }
+    &__text-content{
+
+    }
+    &__title{
+        margin-bottom: 10px;
+    }
+
+}
+/* -----------------------------------
+** End Join Us
+-------------------------------------*/

@@ -1,0 +1,141 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load projects_user %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="text-center bg-{{ message.tags }} container" id="messageStyle">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {# 1ST SECTION: #}
+    <section class="section-padding" id="bgLightGray">
+        <div class="container margin-50-v">
+            <img id="Loading" src="/static/loaderGIF/ajax-loader.gif" style="display: none;">
+            <div class="col-xs-12 text-center">
+                <img src="/static/uploads/Special-project.png">
+                <p class="QC_h1 col-xs-12 margin-20-top" id="logoColor">
+                    <strong>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "ar" %}
+                            {% trans "المساهمة في مشروع" %}
+                        {% else %}
+                            {% trans "Contribute To A Project" %}
+                        {% endif %}
+                    </strong>
+                </p>
+                {#                <p class="col-xs-12 text-center font-16">#}
+                {#                    {% trans "Dedicate your love and let it touch the hearts of thousands. Choose a charitable project through Thawab and donate its value on behalf of someone you hold dear." %}#}
+                {#                </p>#}
+            </div>
+        </div>
+    </section>
+    {# END 1ST SECTION: #}
+
+    {# 2ND SECTION SHOW PROJECTS: #}
+    <section class="section-padding">
+        <div class="container">
+            {% for project in projects %}
+                {% if project.is_share == True %}
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-xl-3" id="marginBottom">
+                        {#                        <div class="box2 shareIconOnImage">#}
+                        <div class="box2">
+                            <div class="row text-center" id="forHeight">
+                                <p>{{ project.name | truncatechars:18 }}</p>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-lg-4 forPadding2">
+                                <div><img src="{% project_image_tag project request %}" alt="" class="imageRounded">
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-6 col-xs-12 col-lg-8 col-lg-8 forPadding3">
+                                <div>
+                                    <span id="newsDetails" class="text-left">Name:</span>
+                                    <span id="logoColor"
+                                          class="text-right lessFontSize"
+                                          style="padding-right: 4%;">{{ project.name | truncatechars:15 }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row forPadding2">
+                                    <div class="">
+                                        <span id="newsDetails" class="text-left">{% trans "Cost:" %}</span>
+                                        <span id="newsDetails" class=""
+                                              style="float: right !important;">{{ project.total_amount|floatformat:0 }}</span>
+                                    </div>
+                                </div>
+                                {#                                <div class="row forPadding2">#}
+                                {#                                    <div class="progress">#}
+                                {#                                        <div class="progress-bar progress-bar-success progress-bar-striped text-dark"#}
+                                {#                                             role="progressbar"#}
+                                {#                                             aria-valuenow="{{ project.fund_percent | intcomma:False }}"#}
+                                {#                                             aria-valuemin="0" aria-valuemax="100"#}
+                                {#                                             style="width: {{ project.fund_percent | intcomma:False }}%;">#}
+                                {#                                            {{ project.fund_percent | intcomma:False }}%#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+
+                                {% if project.suggestedDonation >= 1 %}
+                                    <hr>
+                                    <div class="row" style="padding: 3%;">
+                                        <div class="col-md-8 col-lg-8 col-xl-8 col-sm-8 col-xs-8">
+                                            {#                                            <input type="checkbox" value="{{ project.suggestedDonation|floatformat:0 }}">#}
+                                            <span class="font-we#forHeightight-bold">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                                {% if LANGUAGE_CODE == "ar" %}
+                                                    {% trans "التبرع المقترح" %}
+                                                {% else %}
+                                                    {% trans "Suggested Donation" %}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 col-xs-1 col sm-1"></div>
+                                        <div class="col-md-2 col-lg-2 col-xl-2 col-sm-2 col-xs-2">
+                                            <span id="logoColor"
+                                                  class="text-right">{{ project.suggestedDonation|floatformat:0 }}</span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <div class="row forPadding2">
+                                    <form>
+                                        <input type="hidden" id="project_id_thawabProjects_{{ project.id }}"
+                                               value="{{ project.id }}">
+                                        <input type="number" placeholder="{{ project.remaining|floatformat:0 }}"
+                                               class="text-center text-left2 contribute2"
+                                               id="amount_thawabProjects_{{ project.id }}">
+                                        <span data-toggle="modal" data-target="#exampleModal"
+                                              data-backdrop="static" data-keyboard="false" id=""><img
+                                                style="margin: 5% 8%;"
+                                                src="/static/shareIcon.jpeg" alt="">
+                                        </span>
+                                        <a class="text-center text-right3 thawabProjects" projectId="{{ project.id }}">
+                                            {% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "يتبرع" %}
+                                            {% else %}
+                                                {% trans "Donate" %}
+                                            {% endif %}
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {# END 2ND SECTION SHOW PROJECTS: #}
+
+
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+
+    {# TOP IMAGE: #}
+    <section>
+        <div class="row">
+            {#  CAROUSEL START:  #}
+            <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    {% for project in sponsorProjects %}
+                        {% if forloop.first %}
+                            <li style="margin: 10px 0;" data-target="#carouselExampleIndicators"
+                                data-slide-to="{{ forloop.counter0 }}"
+                                class="active"></li>
+                        {% else %}
+                            <li style="margin: 10px 0;" data-target="#carouselExampleIndicators"
+                                data-slide-to="{{ forloop.counter0 }}"></li>
+
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    {% for project in sponsorProjects %}
+                        <div {% if forloop.first %} class="item active" {% else %} class="item" {% endif %}>
+                            <div>
+                                <img src="/static/{{ project.image }}"
+                                     alt="{{ project.image }}"
+                                     style="width: 100%; height: 627px;">
+                                <div class="carousel-content">
+                                    <div>
+                                        <div><h2
+                                                class="text-white"> {{ project.category.get }} {% trans "Sponsorship" %} </h2>
+                                        </div>
+                                        <div><a href="{% url 'allSponsorshipProjects' sponsorCategoryId %}"
+                                                class="btn">{% trans "See All" %}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left slide-control" href="#myCarousel3" data-slide="prev">
+                    <span class="fa fa-angle-left" id="logoColor"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right slide-control" href="#myCarousel3" data-slide="next">
+                    <span class="fa fa-angle-right" id="logoColor"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {#  CAROUSEL END:  #}
+        </div>
+    </section>
+    {# END TOP IMAGE: #}
+
+    {# FIRST INTRODUCTORY PARAGRAPH: #}
+    <section class="section-padding">
+        {% for data in sponsorshipsPageContent %}
+            <div class="row">
+                <div class="container">
+                    <div class="text-center col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12"><h1 id="logoColor"
+                                                                                                   class="resizeMediaQuery"> {{ data.category.get }} {% trans "Sponsorship" %} </h1>
+                    </div>
+                    <div class="text-justify col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <p id="newsDetails"> {{ data.firstParagraphIntroduction }} </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    {# END FIRST INTRODUCTORY PARAGRAPH: #}
+
+
+
+    {# SHOW PROJECTS: #}
+    <section class="section-padding" id="bgLightGray">
+        <div class="row">
+            <div class="container">
+                {% for data in sponsorProjects %}
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-xl-4">
+{#                        <div id="orphanCard" class="box shareIconOnImage">#}
+                        <div id="orphanCard" class="box">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-4">
+                                    <div><img src="{{ data.get_profile_pic_url }}" alt=""></div>
+                                </div>
+                                <div class="col-md-8 col-sm-12 col-xs-12 col-lg-8 col-lg-8">
+                                    <div id="logoColor"> {{ data.name }} </div>
+                                    <div> {{ data.age }} </div>
+                                    <div> {{ data.gender }} </div>
+                                    <div> {{ data.location }} </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h4 class="text-center"> 250 {{ getMyCurrency }} Deducted Automatically</h4>
+                            </div>
+                            <div class="row">
+                                <div class="text-center" id="orphanDonation">
+{#                                    <button type="button" data-toggle="modal" data-target="#exampleModal"#}
+{#                                        data-backdrop="static" data-keyboard="false" class="btn"><i#}
+{#                                        class="fa fa-share-alt fa-1x" aria-hidden="true"></i>{% trans " Share" %}#}
+{#                                </button>#}
+                                    <span data-toggle="modal" data-target="#exampleModal"
+                                              data-backdrop="static" data-keyboard="false" id=""><img style="position: absolute;"
+                                                src="/static/shareIcon.jpeg" alt="">
+                                        </span>
+                                    <a href="" class="text-center btn">{% trans "Donation" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# END OF FIRST ROW: #}
+        <div class="row section-padding">
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'allSponsorshipProjects' sponsorCategoryId %}" class="btn">{% trans "See All" %}</a>
+            </div>
+        </div>
+    </section>
+    {# END SHOW PROJECTS: #}
+
+    <br><br>
+
+
+{% endblock %}

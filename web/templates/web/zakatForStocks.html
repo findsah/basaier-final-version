@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load i18n %}
+    {% load humanize %}
+    {% load app_filters %}
+    <meta charset="UTF-8">
+    <title>Zakat Stocks</title>
+
+    <style rel="stylesheet">
+        body {
+            background-color: #F4F4F4 !important;
+        }
+
+        .btn-orange {
+            background-color: #EA694D;
+            color: whitesmoke;
+        }
+
+        {# HEADER: #}
+        .fund-header {
+            {#background-color: #52616D;#}
+            color: white;
+            {#padding: 5px;#}
+        {#position: sticky;#} width: 100%;
+            top: 0;
+        }
+
+        .dropdown > a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .dropdown > a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+        #language {
+            background-color: transparent;
+            border: none;
+            width: fit-content;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        {# END HEADER: #}
+
+        {# NAVBAR: #}
+        .navbar {
+            margin-top: 30px;
+            background-color: white !important;
+        }
+
+        .navbar.navbar-default, .navbar button.navbar-toggle {
+            border: none;
+        }
+
+        .navbar-brand > img {
+            height: 30px;
+            width: 70px;
+            margin-top: 0;
+        }
+
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
+
+        {# END NAVBAR: #}
+
+
+        a {
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+            color: #63A6A5;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .container.text-center > h1 {
+            color: #EA694D;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+
+        {# FROM NET: #}
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        ol, ul {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 40px;
+        }
+
+        ul#zakat-calc-tabs li {
+            display: inline-block;
+            margin-right: 15px;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .padding-left-2 {
+            padding-left: 2px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #zakat-calc-tabs {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+        }
+
+        .zakat-tab.active {
+            background: #63a69f;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #fff;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab {
+            background: #fff;
+            padding: 10px 0 5px 0;
+            border-radius: 10px 10px 0 0;
+            color: #313131;
+            width: 112px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        }
+
+        .zakat-tab:hover {
+            background: #63a69f;
+        }
+
+        div {
+            display: block;
+        }
+
+        img {
+            vertical-align: middle;
+            border: 0;
+        {#width: 44px;#}
+        }
+
+        .padding-0-h {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .Input-Transparent {
+            border: none;
+            background: transparent;
+        }
+
+        .padding-less {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+
+        .padding-20-top {
+            padding-top: 20px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .zakat-calc-remove-text-box {
+            color: #ce3173;
+            font-size: 20px;
+        }
+
+        .margin-10-bottom {
+            margin-bottom: 10px !important;
+        }
+
+        .white-color {
+            color: #fff;
+        }
+
+        .margin-15-top {
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+
+        .orange-color {
+            color: #f26a4e;
+        }
+
+        .margin-30-bottom {
+            margin-bottom: 30px;
+        }
+
+        .margin-40-top {
+            margin-bottom: 0;
+            margin-top: 40px;
+        }
+
+        .padding-0-h {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        :-webkit-any(article, aside, nav, section) h1 {
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+        }
+
+        .white-box {
+            background: #fff;
+            padding: 30px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+
+        .zakat-calc-details .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .white-box-large {
+            background: #fff;
+            padding: 50px 15px 0 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .form-control option {
+            color: #464a4c;
+            background-color: #fff;
+            border-color: #ccc;
+            box-shadow: none;
+            outline: 0;
+        }
+
+        #calcTab .nav-pills {
+            border-bottom: 2px solid #f26a4e;
+        }
+
+        .nav > li {
+        {#position: relative;#} display: block;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #calcTab .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            color: #fff;
+            background-color: #f26a4e;
+            outline: none;
+        }
+
+        #calcTab .nav-pills > li > a {
+            border-radius: 0;
+            background: #fff;
+        }
+
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: #fff;
+            background-color: #337ab7;
+        }
+
+        .nav > li > a {
+            padding: 10px 15px;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 4px;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        a {
+            color: #337ab7;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .padding-30-top {
+            padding-top: 30px !important;
+        }
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .padding-bottom-20 {
+            padding-bottom: 20px;
+        }
+
+        .padding-80-top {
+            padding-top: 80px;
+        }
+
+        .btn-green {
+            color: #fff;
+            background-color: #63a69f;
+            border-color: #63a69f;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+            outline: 0;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .fatwa.white-box {
+            background: #fff;
+            padding: 15px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+        }
+
+        .bg-gray {
+            background: #f4f4f4;
+            height: 1400px;
+        }
+
+        .padding-50-v {
+            padding-bottom: 50px;
+            padding-top: 100px;
+        }
+
+        {# END NAVPANEL: #}
+
+        {# FOR MODALS: #}
+        .zakat-calc-modal .modal-header {
+            padding: 15px;
+            border-bottom: 0 solid #e5e5e5;
+        }
+
+        .modal-header .close {
+            margin-top: -2px;
+        }
+
+        button.close {
+            -webkit-appearance: none;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+        }
+
+        .close {
+            opacity: .8;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+        }
+
+        .zakat-calc-modal .modal-footer {
+            padding: 0 15px 15px 15px;
+            border-top: 0 solid #e5e5e5;
+            border-radius: 6px;
+        }
+
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .padding-10-v {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+            font-size: 14px !important;
+            padding: 10px 22px;
+        }
+
+        .btn-dark-blue {
+            color: #fff;
+            background-color: #52616d;
+            border-color: #52616d;
+            width: 100%;
+        }
+
+        .btn-orange {
+            color: #fff;
+            background-color: #f26a4e;
+            border-color: #d85d43;
+            width: 100%;
+            padding: 10px 22px;
+        }
+
+        {# END FOR MODALS: #}
+
+        .tab-content > .active {
+            display: block;
+        }
+
+        .tab-content > .tab-pane {
+            display: none;
+        }
+
+        .padding-100-top {
+            padding-top: 100px;
+        }
+
+        .zakaty-calc-panel {
+            margin-bottom: 20px;
+            background-color: #52616d;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .zakaty-calc-panel > .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .zakat-calc-remove-text-box {
+            color: #ce3173;
+            font-size: 20px;
+        }
+
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 28px;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            display: block;
+            padding-left: 8px;
+            padding-right: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .select2-container--default .select2-selection--single {
+            height: 40px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 5px;
+            right: 2px;
+            width: 25px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #444;
+            line-height: 28px;
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            display: block;
+            padding-left: 8px;
+            padding-right: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 5px;
+            right: 2px;
+            width: 25px;
+        }
+
+        .select2-selection__arrow {
+            right: 3px;
+            left: auto;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+            border-color: transparent transparent #888 transparent;
+            border-width: 0 4px 5px 4px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            border-color: #888 transparent transparent transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+            height: 0;
+            left: 50%;
+            margin-left: -4px;
+            margin-top: -2px;
+            position: absolute;
+            top: 50%;
+            width: 0;
+        }
+
+        b, strong {
+            font-weight: 700;
+        }
+
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+        }
+
+        .select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .select2-container--default .select2-selection--single {
+            height: 40px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 28px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="/static/js/jquery-2.2.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+</head>
+<body style="padding-top: 80px;">
+
+{# HEADER: #}
+<header class="fund-header navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
+                <i class="fa fa-envelope" id="forWhiteColor"></i> <span class="pdl5">basaier@basaier.org</span>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-center">
+                {#                <div class="dropdown">#}
+                {#                    <a class="dropdown-toggle" type="button" data-toggle="dropdown">En#}
+                {#                        <span class="caret"></span></a>#}
+                {#                    <ul class="dropdown-menu">#}
+                {#                        <li><a href="#">Ar</a></li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                <select name="language" id="language" class="text-right">
+                    <option value="1">En</option>
+                    <option value="2">Ar</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-right">
+                <i class="fa fa-sign-in fa-lg"></i>
+            </div>
+        </div>
+    </div>
+</header>
+{# END HEADER: #}
+
+{# COLLAPSED NAVBAR: #}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}"> <img src="/static/images/logo.png" alt="">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="">About Zakat</a></li>
+                <li><a href="#">Calculate Zakat</a></li>
+                <li><a href="#">Fatwa</a></li>
+                <li><a href="#">Zakat Outputs</a></li>
+                <li><a href="#">Donations Ways</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="fa fa-cart-plus fa-2x"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{# END COLLAPSED NAVBAR: #}
+
+{# MAIN BODY: #}
+<section class="bg-gray padding-50-v">
+    <div class="container padding-0-h-xs">
+        <div class="row">
+            <h1 class="orange-color text-center margin-30-bottom margin-40-top">
+                Zakat Calculator
+            </h1>
+            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 padding-0-h">
+                <div class="row padding-40-top hidden-xs">
+                    <div class="col-xs-12">
+                        <ul id="zakat-calc-tabs" style="border-bottom:2px solid #63A69F;">
+                            <li class="text-center padding-left-2">
+                                <a href="{% url 'zakatForMoney' %}">
+                                    <div id="Div_Money" class="zakat-tab">
+                                        <img src="/static/uploads/home-Money-Zakat.png" width="44">
+                                        <h4 style="padding-top:10px;text-align:center"> Money</h4>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="text-center">
+                                <a href="{% url 'zakatForGold' %}">
+                                    <div id="Div_Gold" class="zakat-tab">
+                                        <img src="/static/uploads/Gold-Zakat-home.png" width="44">
+                                        <h4 style="padding-top:10px;text-align:center;"> Gold</h4>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="text-center">
+                                <a href="{% url 'zakatForCattle' %}">
+                                    <div id="Div_Animal" class="zakat-tab">
+                                        <img src="/static/uploads/Animal-Zakat-home.png" width="44">
+                                        <h4 style="padding-top:10px;text-align:center"> Cattle </h4>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="text-center">
+                                <a href="{% url 'zakatForStocks' %}">
+                                    <div id="Div_Stock" class="zakat-tab active">
+                                        <img src="/static/uploads/Stocks-Zakat.png" width="44">
+                                        <h4 style="padding-top:10px;text-align:center"> Stocks </h4>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- xs layout design -->
+                <div class="col-xs-12 padding-50-top hidden-lg hidden-md hidden-sm hidden-xs">
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/static/uploads/Money.jpg" width="44">
+                                        <p style="padding-top:10px;text-align:center" class="font-14-en"> Money</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/static/uploads/Gold.jpg" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Gold </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/static/uploads/Animal.jpg" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Cattle </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-xs-6 padding-less">
+                        <ul id="zakat-calc-tabs">
+                            <li class="text-center padding-left-2">
+                                <a href="">
+                                    <div class="zakat-tab text-center">
+                                        <img src="/static/uploads/Stocks.jpg" width="44">
+                                        <p style="padding-top:10px;text-align:center"> Stocks </p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="col-md-8 col-sm-8 col-xs-12 zakat-calc-details">
+                        <div class="white-box">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <select id="StockType" class="form-control selectpicker"
+                                                onchange="SetSearchBoxValue();">
+                                            <option value="0"> Select shares type</option>
+                                            <option value="1"> Fixed shares</option>
+                                            <option value="2"> Profits purification</option>
+                                            <option value="3"> Speculative shares</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <select id="SearchBox" style="text-transform: uppercase;"
+                                                class="col-xs-12  text-left select2-hidden-accessible form-control"
+                                                onchange="GetZakkatStock()" tabindex="-1" aria-hidden="true">
+                                            <option value="0" selected="selected" class="form-control">Search with
+                                                company name or code
+                                            </option>
+                                            <option text="AHCS أعمال                                                                                                                                                                                                                                                                                                        - بورصة قطر"
+                                                    value="6740">AHCS أعمال - بورصة قطر
+                                            </option>
+                                            <option text="BRES بروة العقارية                                                                                                                                                                                                                                                                                                - بورصة قطر"
+                                                    value="6741">BRES بروة العقارية - بورصة قطر
+                                            </option>
+                                            <option text="DBIS دلالة للوساطة                                                                                                                                                                                                                                                                                                - بورصة قطر"
+                                                    value="6742">DBIS دلالة للوساطة - بورصة قطر
+                                            </option>
+                                            <option text="ERES ازدان العقارية                                                                                                                                                                                                                                                                                               - بورصة قطر"
+                                                    value="6743">ERES ازدان العقارية - بورصة قطر
+                                            </option>
+                                            <option text="GISS الخليج الدولية للخدمات                                                                                                                                                                                                                                                                                       - بورصة قطر"
+                                                    value="6744">GISS الخليج الدولية للخدمات - بورصة قطر
+                                            </option>
+                                            <option text="GWCS مخازن                                                                                                                                                                                                                                                                                                        - بورصة قطر"
+                                                    value="6745">GWCS مخازن - بورصة قطر
+                                            </option>
+                                            <option text="IHGS المجموعة الاسلامية القابضة                                                                                                                                                                                                                                                                                   - بورصة قطر"
+                                                    value="6746">IHGS المجموعة الاسلامية القابضة - بورصة قطر
+                                            </option>
+                                            <option text="IQCD صناعات قطر                                                                                                                                                                                                                                                                                                   - بورصة قطر"
+                                                    value="6747">IQCD صناعات قطر - بورصة قطر
+                                            </option>
+                                            <option text="QIGD مجموعة المستثمرين القطريين                                                                                                                                                                                                                                                                                   - بورصة قطر"
+                                                    value="6748">QIGD مجموعة المستثمرين القطريين - بورصة قطر
+                                            </option>
+                                            <option text="MARK مصرف الريان                                                                                                                                                                                                                                                                                                  - بورصة قطر"
+                                                    value="6749">MARK مصرف الريان - بورصة قطر
+                                            </option>
+                                            <option text="MCCS المناعي                                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6750">MCCS المناعي - بورصة قطر
+                                            </option>
+                                            <option text="MCGS الرعاية الطبية                                                                                                                                                                                                                                                                                               - بورصة قطر"
+                                                    value="6751">MCGS الرعاية الطبية - بورصة قطر
+                                            </option>
+                                            <option text="MERS الميرة                                                                                                                                                                                                                                                                                                       - بورصة قطر"
+                                                    value="6752">MERS الميرة - بورصة قطر
+                                            </option>
+                                            <option text="MRDS مزايا قطر                                                                                                                                                                                                                                                                                                    - بورصة قطر"
+                                                    value="6753">MRDS مزايا قطر - بورصة قطر
+                                            </option>
+                                            <option text="NLCS الإجارة القابضة                                                                                                                                                                                                                                                                                              - بورصة قطر"
+                                                    value="6754">NLCS الإجارة القابضة - بورصة قطر
+                                            </option>
+                                            <option text="QEWS كهرماء                                                                                                                                                                                                                                                                                                       - بورصة قطر"
+                                                    value="6755">QEWS كهرماء - بورصة قطر
+                                            </option>
+                                            <option text="QFLS وقود                                                                                                                                                                                                                                                                                                         - بورصة قطر"
+                                                    value="6756">QFLS وقود - بورصة قطر
+                                            </option>
+                                            <option text="QGMD الطبية                                                                                                                                                                                                                                                                                                       - بورصة قطر"
+                                                    value="6757">QGMD الطبية - بورصة قطر
+                                            </option>
+                                            <option text="QGTS ناقلات                                                                                                                                                                                                                                                                                                       - بورصة قطر"
+                                                    value="6758">QGTS ناقلات - بورصة قطر
+                                            </option>
+                                            <option text="QIBK مصرف قطر الاسلامي                                                                                                                                                                                                                                                                                            - بورصة قطر"
+                                                    value="6759">QIBK مصرف قطر الاسلامي - بورصة قطر
+                                            </option>
+                                            <option text="QIIK بنك قطر الدولي الاسلامي                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6760">QIIK بنك قطر الدولي الاسلامي - بورصة قطر
+                                            </option>
+                                            <option text="QIMD تحويلية                                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6761">QIMD تحويلية - بورصة قطر
+                                            </option>
+                                            <option text="QISI الاسلامية للتأمين                                                                                                                                                                                                                                                                                            - بورصة قطر"
+                                                    value="6762">QISI الاسلامية للتأمين - بورصة قطر
+                                            </option>
+                                            <option text="WDAM مواشي (ودام الغذائية                                                                                                                                                                                                                                                                                         - بورصة قطر"
+                                                    value="6763">WDAM مواشي (ودام الغذائية - بورصة قطر
+                                            </option>
+                                            <option text="QNCD وطنية للأسمنت                                                                                                                                                                                                                                                                                                - بورصة قطر"
+                                                    value="6764">QNCD وطنية للأسمنت - بورصة قطر
+                                            </option>
+                                            <option text="QNNS الملاحة القطرية                                                                                                                                                                                                                                                                                              - بورصة قطر"
+                                                    value="6765">QNNS الملاحة القطرية - بورصة قطر
+                                            </option>
+                                            <option text="QOIS قطر وعمان                                                                                                                                                                                                                                                                                                    - بورصة قطر"
+                                                    value="6766">QOIS قطر وعمان - بورصة قطر
+                                            </option>
+                                            <option text="ORDS ooredoo                                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6767">ORDS ooredoo - بورصة قطر
+                                            </option>
+                                            <option text="SIIS السلام العالمية                                                                                                                                                                                                                                                                                              - بورصة قطر"
+                                                    value="6768">SIIS السلام العالمية - بورصة قطر
+                                            </option>
+                                            <option text="UDCD المتحدة للتنمية                                                                                                                                                                                                                                                                                              - بورصة قطر"
+                                                    value="6769">UDCD المتحدة للتنمية - بورصة قطر
+                                            </option>
+                                            <option text="VFQS فودافون                                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6770">VFQS فودافون - بورصة قطر
+                                            </option>
+                                            <option text="ZHCD زاد القابضة                                                                                                                                                                                                                                                                                                  - بورصة قطر"
+                                                    value="6771">ZHCD زاد القابضة - بورصة قطر
+                                            </option>
+                                            <option text="--- الخور والذخيرة                                                                                                                                                                                                                                                                                               - بورصة قطر"
+                                                    value="6772">--- الخور والذخيرة - بورصة قطر
+                                            </option>
+                                            <option text="AKHI الخليج التكافلي                                                                                                                                                                                                                                                                                              - بورصة قطر"
+                                                    value="6773">AKHI الخليج التكافلي - بورصة قطر
+                                            </option>
+                                            <option text="QFBQ بنك قطر الأول                                                                                                                                                                                                                                                                                                - بورصة قطر"
+                                                    value="6774">QFBQ بنك قطر الأول - بورصة قطر
+                                            </option>
+                                            <option text="MPHC ميسيعيد                                                                                                                                                                                                                                                                                                      - بورصة قطر"
+                                                    value="6775">MPHC ميسيعيد - بورصة قطر
+                                            </option>
+                                            <option text="--- قامكو                                                                                                                                                                                                                                                                                                        - بورصة قطر"
+                                                    value="6777">--- قامكو - بورصة قطر
+                                            </option>
+                                            <option text="QFMD زاد القابضة (المطاحن)                                                                                                                                                                                                                                                                                        - بورصة قطر"
+                                                    value="6778">QFMD زاد القابضة (المطاحن) - بورصة قطر
+                                            </option>
+                                            <option text="IGRD مجموعة الاستثمار القابضة                                                                                                                                                                                                                                                                                     - بورصة قطر"
+                                                    value="6779">IGRD مجموعة الاستثمار القابضة - بورصة قطر
+                                            </option>
+                                        </select>
+                                        <span
+                                            class="select2 select2-container select2-container--default select2-container--below"
+                                            dir="ltr" style="width: 543px;"><span class="selection"><span
+                                            class="select2-selection select2-selection--single" role="combobox"
+                                            aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                            aria-labelledby="select2-SearchBox-container"><span
+                                            class="select2-selection__rendered" id="select2-SearchBox-container"
+                                            title="MPHC ميسيعيد                                                                                                                                                                                                                                                                                                      - بورصة قطر">MPHC ميسيعيد                                                                                                                                                                                                                                                                                                      - بورصة قطر</span><span
+                                            class="select2-selection__arrow" role="presentation"><b
+                                            role="presentation"></b></span></span></span><span class="dropdown-wrapper"
+                                                                                               aria-hidden="true"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="StockInfo" style="display: block;">
+                                <div class="col-md-8 col-sm-8 col-xs-6">
+                                    <p><label id="lbl_rate">Zakat ratio</label></p>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-6 pull-right text-right">
+                                    <input id="ZakatStock" style="display:none;" value="0">
+                                    <p class="orange-color font-english">
+                                        <input id="ZakatStockPercentageValue"
+                                               style="border: none;background:transparent;max-width:100px;"
+                                               class="text-right" readonly="readonly" value="0%">
+                                        <span id="CurrenyCode"></span>
+                                    </p>
+                                </div>
+                                <input id="EXCHANGE" style="display:none;" readonly="readonly">
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-12">
+                                    <input id="StockNum" class="form-control" type="tel" placeholder="Number of shares"
+                                           onchange="SetProfitValue()" onkeypress="return OnlyNumeric(event,this,15);"
+                                           item="42">
+                                </div>
+                            </div>
+                            <div id="Div_Profit" class="row form-group" style="display: block;">
+                                <div class="col-xs-12">
+                                    <input id="Profit" class="form-control" type="tel"
+                                           placeholder="Profit purification (Enter profit amount)" item="43"
+                                           onkeypress="return OnlyNumeric(event,this,15);">
+                                </div>
+                                <div class="col-sm-1 col-xs-2 margin-5-top text-right pull-right">
+                                    <a href="#" class="zakat-calc-info-text-box margin-15-right info-blue-over-text"
+                                       data-toggle="modal" data-target="#ProfitInfo"><i class="fa fa-info-circle "
+                                                                                        aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-6">
+                                    <p>Purification percentage</p>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-6 pull-right text-right">
+                                    <input id="ZakatCleanStock" style="display:none;" value="0">
+                                    <p class="orange-color font-english">
+                                        <input id="ZakatStockPercentage"
+                                               style="border: none;background:transparent;max-width:100px;"
+                                               class="text-right" readonly="readonly" value="0%">
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="Year" style="display: none;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="form-control selectpicker" data-width="100%" id="ddl_StockYear"
+                                                onchange="ChangeRate();">
+                                            <option value="0">Choose Year</option>
+                                            <option value="1"> Islamic Year</option>
+                                            <option value="2"> Calendar Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <p> The percentage of Zakat according to the year you chose is</p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12 pull-left text-left">
+                                    <input id="Rate" style="display:none;" value="0">
+                                    <p class="orange-color font-english"><input id="RatePercentage"
+                                                                                style="border: none;background:transparent;"
+                                                                                readonly="readonly" value="0%"></p>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3">
+                                    <button onclick="AddStock()" class="btn btn-orange" type="button"><i
+                                            class="fa fa-plus-circle" aria-hidden="true"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="StockList" class="row padding-20-top">
+                                <input id="ZakatStockAmount_67755" readonly="readonly" style="display:none;"><input
+                                    id="EXCHANGE_67755" readonly="readonly" style="display:none;"><input
+                                    id="ZakatCleanAmount_67755" readonly="readonly" style="display:none;"></div>
+                            <div class="row padding-80-top padding-bottom-20">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button id="btn_CalcZakatStock" class="btn btn-green" type="button"
+                                            data-toggle="modal" role="dialog" data-target="#ZakatStockDetails">
+                                        Calculate Zakat
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="ZakatStockDetails" role="dialog" style="display: none;">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content zakat-calc-modal">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                        </div>
+                                        <div class="modal-body bg-gray text-center">
+                                            <div class="row">
+                                                <h3>Total Zakat </h3>
+                                                <div id="Div_Details"></div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <h3> Total Zakat </h3>
+                                                    <p class="value orange-color font-size-24">
+                                                        <input id="TotalZakatStock"
+                                                               class="col-xs-12 form-control text-center english-font"
+                                                               readonly="readonly" value="0"> {{getMyCurrency }}
+                                                    </p>
+                                                </div>
+                                                <input id="TotalZakatWithoutProfit" readonly="readonly"
+                                                       class="english-font" style="display:none;">
+                                                <input id="TotalZakatProfit" readonly="readonly" class="english-font"
+                                                       style="display:none;">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 padding-10-v">
+                                                    <button id="btnAddToBasketZakatStock"
+                                                            onclick="btnAddToBasketZakatStockClicked(1415, 613, null, 'TotalZakatStock', 'btnAddToBasketZakatStock', 'Fixed Shares Stock', null, 596, 1100683 ,1,'TotalZakatProfit','' )"
+                                                            type="button" class="btn btn-dark-blue"
+                                                            data-dismiss="modal"> Add To Basket
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 padding-10-v">
+                                                    <button id="quickbtnAddToBasketZakatStock"
+                                                            onclick="quickbtnAddToBasketZakatStockClicked(1415, 613, null, 'TotalZakatStock', 'quickbtnAddToBasketZakatStock', 'Fixed Shares Stock', null ,596,1100683 ,1,'TotalZakatProfit' )"
+                                                            type="button" class="btn btn-orange" data-dismiss="modal">
+                                                        Donate Now
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/en/global/zakat/fatwa" class="dark-blue-color visible-xs">
+                            <div class="fatwa white-box">
+                                <img src="/Areas/Zakat/Content/images/zakat/book-icon.png">
+                                <span class="font-18 padding-10-h font-14-sm"> Fatawa </span>
+                            </div>
+                        </a>
+
+                        <div class="fatwa white-box">
+                            <h4> For Stocks </h4>
+                            <p>
+                                If the shares have been purchase with the intention of capital gain, then Zakat shall be
+                                calculate of the prevailing market of the shares. If the shares have been purchase for
+                                the purpose of annual dividends and not with the intention of resale, then it is
+                                permissible to <a target="_blank" href="/en/global/zakat/pay-zakat">Pay Zakat </a>only
+                                for the money and stock components of the company concerned.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="ProfitInfo" role="dialog" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content zakat-calc-modal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <img src="/Areas/Zakat/Content/images/zakat/info-sign.png">
+                                    <p> Purification of profits </p>
+                                    <div>
+                                        The profit is obtained through the sale and purchase operations, and this
+                                        percentage is fixed in the attached table under the title (percentage of profit
+                                        clearance) , And are calculated as follows: Profit value achieved x Percentage
+                                        of profit purge.
+
+                                        If the profit is in the form of free shares then the value of each free share
+                                        shall be calculated on the basis of the nominal value of ten riyals and a half.
+
+                                        The second method is to purify the same arrow annually. We mentioned this method
+                                        in the attached table (the value of the arrow purification) and is calculated in
+                                        the light of the following equation: Number of shares x Filter percentage of the
+                                        stock.
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                            <button type="button" class="btn btn-dark-blue" data-dismiss="modal"> تم
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="/Areas/Zakat/Content/js/jquery-1.10.2.js"></script>
+                    <link href="/Areas/Zakat/Content/css/select2.css" rel="stylesheet">
+                    <script>
+                        var AllCompanies = [];
+                        var TotalZakatStock = 0;
+                        var TotalZakatWithoutProfit = 0;
+                        var TotalZakatProfit = 0;
+                        var AmountCannotBeBlank = "Amount cannot be blank";
+                        var CookieNotEnabled = "Cookie not enabled";
+                        $(document).ready(function () {
+                            $('#StockInfo').hide();
+                            $('#Div_Profit').hide();
+                            $('#Year').hide();
+
+                        });
+
+                        function ChangeRate() {
+
+
+                            var year = $('#ddl_StockYear').val();
+                            if (year == "1") {
+                                $('#Rate').val("0.025");
+                                $('#RatePercentage').val("0.025%");
+                            }
+                            if (year == "2") {
+                                $('#Rate').val("0.02575");
+                                $('#RatePercentage').val("0.02575%");
+                            }
+                            if (year == "0") {
+                                $('#Rate').val("0");
+                                $('#RatePercentage').val("0%");
+                            }
+                        }
+
+                        function CalcZakatStockAmount(ID, CompanyName, StockAmount, TotalClean, StockType, CompanyId, StockCurrentPrice) {
+
+                            $("#btn_CalcZakatStock").attr("role", "dialog").attr("data-target", "#ZakatStockDetails");
+
+                            var row = '';
+                            row += '<div id="DivDetails_' + ID + '"><div class="row">' +
+                                '<div class="col-xs-12 text-left">' +
+                                '<div class="checkbox checkbox-success checkbox-inline">' +
+                                '<input type="checkbox"  name="checkbox_' + ID + '" id="checkAll_' + ID + '" value="option1" rel="0"  checked="" onclick="CheckAll(' + ID + ')">' +
+                                '<label for="checkAll_' + ID + '">' + CompanyName + ' </label>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+
+                            if (StockType != 2) {
+                                row += '<div class="row padding-25-left">' +
+                                    '<div class="col-md-7 col-sm-7 col-xs-7">' +
+                                    '<div class="pull-left checkbox checkbox-success">' +
+                                    '<input id="Z_Checkbox_' + ID + '" name="checkbox_' + ID + '" type="checkbox" checked="" rel="' + StockAmount + '" onchange="recalculate()" Ref="Stock" CompanyId="' + CompanyId + '" StockCurrentPrice="' + StockCurrentPrice + '">' +
+                                    '<label for="Z_Checkbox_' + ID + '"> Zakat </label>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="col-md-5 col-sm-5 col-xs-5 pull-right text-right padding-20-top">' +
+                                    '<p class="value orange-color font-size-16"> <span  class="english-font"> ' + StockAmount + ' </span> ر.ق </p>' +
+                                    '</div>';
+                            }
+
+                            if (TotalClean > 0) {
+                                row += '<div class="col-md-7 col-sm-7 col-xs-7">' +
+                                    '<div class="pull-left checkbox checkbox-success">' +
+                                    '<input id="C_Checkbox_' + ID + '" type="checkbox" name="checkbox_' + ID + '" checked="" rel="' + TotalClean + '"  onchange="recalculate()" Ref="Profit" st="' + StockType + '" CompanyId="' + CompanyId + '">' +
+                                    '<label for="C_Checkbox_' + ID + '"> تنقية الأرباح </label>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="col-md-5 col-sm-5 col-xs-5 pull-right text-right padding-5-top">' +
+                                    '<p class="value orange-color font-size-16"> <span  class="english-font"> ' + TotalClean + ' </span> ر.ق </p>' +
+                                    '</div>';
+                            }
+
+                            row += '</div>' +
+                                '<hr class="margin-15-v gray-border" /></div>';
+
+
+                            $('#Div_Details').append(row);
+                        }
+
+
+                        function CheckAll(ID) {
+                            if ($("#checkAll_" + ID + "").is(':checked')) {
+                                $("#DivDetails_" + ID + " input[name=checkbox_" + ID + "]").each(function () {
+                                    $(this).prop("checked", true);
+                                });
+
+                            } else {
+                                $("#DivDetails_" + ID + " input[name=checkbox_" + ID + "]").each(function () {
+                                    $(this).prop("checked", false);
+                                });
+                            }
+                            recalculate();
+                        }
+
+
+                        function recalculate() {
+                            var sum = 0;
+                            var SumStock = 0;
+                            var SumProfit = 0;
+                            var Ref = "";
+
+                            $("input[type=checkbox]:checked").each(function () {
+                                Ref = $(this).attr("Ref");
+                                if (Ref == "Stock") {
+                                    SumStock += parseFloat($(this).attr("rel"));
+                                }
+                                if (Ref == "Profit") {
+                                    SumProfit += parseFloat($(this).attr("rel"));
+                                }
+                                sum += parseFloat($(this).attr("rel"));
+                            });
+                            var result = Math.round((sum / parseFloat('1.00000')), 2)
+                            var StockResult = Math.round((SumStock / parseFloat('1.00000')), 2)
+                            var ProfitResult = Math.round((SumProfit / parseFloat('1.00000')), 2)
+                            $("#TotalZakatStock").val(result);
+                            $("#TotalZakatWithoutProfit").val(StockResult);
+                            $("#TotalZakatProfit").val(ProfitResult);
+                        }
+
+
+                        function AddStock() {
+                            if ($('#ddl_StockYear').val() == "0" && $('#StockType').val() == 3) {
+                                alert('Please select year');
+                                $('#StockNum').val('');
+                                $('#Profit').val('');
+                                return;
+                            }
+                            var TotalClean = 0;
+                            if (AllCompanies.length > 0) {
+                                for (var m = 0; m < AllCompanies.length; m++) {
+                                    if ($('#StockType').val() != 2) {
+                                        if (AllCompanies[m] == $('#SearchBox').val() + $('#StockNum').val()) {
+                                            alert("لا يمكن  اضافة نفس الشركة");
+                                            return;
+                                        }
+                                    }
+
+                                    if ($('#StockType').val() == 2) {
+                                        if (AllCompanies[m] == $('#SearchBox').val() + $('#Profit').val()) {
+                                            alert("لا يمكن  اضافة نفس الشركة");
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                            if ($('#StockType').val() == 0) {
+                                alert('يرجى اختيار نوع السهم');
+                                return;
+                            }
+                            if ($('#SearchBox').val() == null || $('#SearchBox').val() == "0") {
+                                alert('يرجى اختيارالشركة');
+                                return;
+                            }
+                            if ($('#StockNum').val() == "" && $('#StockType').val() != 2) {
+                                alert('يرجى ادخال عدد الاسهم');
+                                return;
+                            }
+                            if ($('#Profit').val() == "" && $('#StockType').val() == 2) {
+                                alert('يرجى ادخال قيمة الربح');
+                                return;
+                            }
+                            var row = '';
+                            row += '<div id="Div_' + $('#SearchBox').val() + ($('#StockNum').val()) + '" class="row">' +
+                                '<div class="col-xs-10">' +
+                                '<div class="stocks-panel">' +
+                                '<div class="" role="tab" id="headingOne">' +
+                                '<h4 class="panel-title">' +
+                                '' + $('#select2-SearchBox-container').text() + '' +
+                                '</h4>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-xs-2 margin-5-top text-right">' +
+                                '<a  class="zakat-calc-remove-text-box margin-15-right" onclick="RemoveStock(' + $('#SearchBox').val() + ($('#StockNum').val()) + ')"><i class="fa fa-minus-circle"></i></a>' +
+                                '</div>' +
+                                '</div>' +
+                                '<input id="ZakatStockAmount_' + $('#SearchBox').val() + ($('#StockNum').val()) + '" readonly="readonly" style="display:none;"/>' +
+                                '<input id="EXCHANGE_' + $('#SearchBox').val() + ($('#StockNum').val()) + '" readonly="readonly" style="display:none;"/>' +
+                                '<input id="ZakatCleanAmount_' + $('#SearchBox').val() + ($('#StockNum').val()) + '" readonly="readonly" style="display:none;"/>';
+
+                            $('#StockList').append(row);
+                            $('#EXCHANGE_' + $('#SearchBox').val() + ($('#StockNum').val())).val($('#EXCHANGE').val());
+                            var ZakatStockAmountCalc = $('#StockNum').val() * $('#ZakatStock').val() * $('#EXCHANGE_' + $('#SearchBox').val() + ($('#StockNum').val())).val();
+                            if ($('#StockType').val() == 1) {
+                                $('#ZakatStockAmount_' + $('#SearchBox').val() + ($('#StockNum').val())).val(parseFloat(ZakatStockAmountCalc).toFixed(2));
+                            }
+                            if ($('#StockType').val() == 3) {
+                                $('#ZakatStockAmount_' + $('#SearchBox').val() + ($('#StockNum').val())).val(parseFloat(ZakatStockAmountCalc * $('#Rate').val()).toFixed(2));
+                            }
+
+
+                            //var ZakatStockSpeculationAmount = $('#ZakatStockSpeculation_' + ID + '').val() * $('#StockSpeculationNum_' + ID + '').val() * $('#SpeculationEXCHANGE_' + ID + '').val() * 0.02575;
+                            //$('#ZakatStockSpeculationAmount_' + ID + '').val(Math.round(ZakatStockSpeculationAmount));
+
+
+                            if ($('#StockType').val() != 2) {
+                                AllCompanies.push($('#SearchBox').val() + ($('#StockNum').val()));
+                            }
+                            if ($('#StockType').val() == 2) {
+                                AllCompanies.push($('#SearchBox').val() + ($('#Profit').val()));
+                            }
+
+                            if ($('#Profit').val() != "" && $('#Profit').val() != 0) {
+                                TotalClean = $('#Profit').val() * $('#ZakatCleanStock').val();
+                                $('#ZakatCleanAmount_' + $('#SearchBox').val() + ($('#StockNum').val())).val(TotalClean);
+                                TotalZakatProfit += TotalClean;
+
+                            }
+
+                            if ($('#StockType').val() != 2) {
+                                TotalZakatStock += parseFloat($('#ZakatStockAmount_' + $('#SearchBox').val() + $('#StockNum').val()).val()) + TotalClean;
+                                TotalZakatWithoutProfit += parseFloat($('#ZakatStockAmount_' + $('#SearchBox').val() + $('#StockNum').val()).val())
+                            }
+                            if ($('#StockType').val() == 2) {
+                                TotalZakatStock += TotalClean;
+
+                            }
+                            var result = Math.round((parseFloat(TotalZakatStock) / parseFloat('1.00000')), 2)
+                            var StockResult = Math.round((parseFloat(TotalZakatWithoutProfit) / parseFloat('1.00000')), 2)
+                            var ProfitResult = Math.round((parseFloat(TotalZakatProfit) / parseFloat('1.00000')), 2)
+                            $("#TotalZakatStock").val(result);
+                            $("#TotalZakatProfit").val(ProfitResult);
+                            $("#TotalZakatWithoutProfit").val(StockResult);
+                            CalcZakatStockAmount($('#SearchBox').val() + $('#StockNum').val(), $('#select2-SearchBox-container').text(), $('#ZakatStockAmount_' + $('#SearchBox').val() + $('#StockNum').val()).val(), TotalClean.toFixed(2), $('#StockType').val(), $('#SearchBox').val(), $('#ZakatStock').val());
+                            var arr = [];
+                            $("[id*=StockNum]").each(function () {
+                                var id = $(this).attr("item");
+                                var CompanyId = $('#SearchBox').val();
+                                var StockCurrentPrice = parseFloat($('#ZakatStock').val());
+                                if ($("#StockNum") != null) {
+                                    var ZakkaAccountsId = id;
+
+                                    var Value = $("#StockNum").val();
+                                    var CleanValue = $("#Profit").val();
+                                    if (ZakkaAccountsId != null && ZakkaAccountsId != undefined && ZakkaAccountsId > 0 && Value != null && Value != undefined && Value > 0) {
+                                        var obj = {
+                                            ZakkaAccountsId: ZakkaAccountsId,
+                                            Value: Value,
+                                            CurrencyId: 1,
+                                            CompanyId: CompanyId,
+                                            StockCurrentPrice: StockCurrentPrice,
+                                            YearTypeId: $('#ddl_StockYear').val()
+                                        };
+                                        arr.push(obj);
+                                    }
+                                    if (ZakkaAccountsId != null && ZakkaAccountsId != undefined && ZakkaAccountsId > 0 && CleanValue != null && CleanValue != undefined && CleanValue > 0) {
+                                        var obj = {
+                                            ZakkaAccountsId: ZakkaAccountsId,
+                                            Value: CleanValue,
+                                            CurrencyId: 1,
+                                            CompanyId: CompanyId,
+                                            StockCurrentPrice: StockCurrentPrice,
+                                            YearTypeId: $('#ddl_StockYear').val()
+                                        };
+                                        arr.push(obj);
+                                    }
+                                }
+                            });
+                            ZakatDonationDeatilsInsert(arr);
+                        }
+
+                        function RemoveStock(ID) {
+                            $("#Div_" + ID).remove();
+                            $("#DivDetails_" + ID).remove();
+                            AllCompanies.splice(AllCompanies.indexOf(ID), 1);
+                            TotalZakatStock = TotalZakatStock - $('#ZakatStockAmount_' + ID).val() - $('#ZakatCleanAmount_' + ID).val();
+                            var result = Math.round((parseFloat(TotalZakatStock) / parseFloat('1.00000')), 2)
+                            $("#TotalZakatStock").val(result);
+                        }
+
+                        function SetProfitValue() {
+                            $.ajax({
+                                url: '/en/global/zakat/pay-zakat/draw-zakkat-stock',
+                                type: "POST",
+                                dataType: "json",
+                                data: {ID: $('#SearchBox').val()},
+                                success: function (data) {
+                                    var row = '';
+                                    if (data.Zakat.length > 0) {
+                                        if (data.Zakat[0]["CleansingRate"] > 0) {
+                                            //if(data.Zakat[0]["Profit"] > 0 && data.Zakat[0]["Profit"]!=null && data.Zakat[0]["Profit"]!=""){
+                                            //    $('#Profit').val(Math.round(data.Zakat[0]["Profit"] * $('#StockNum').val()).toFixed(2));
+                                            //}
+                                        }
+                                    }
+                                }
+                            })
+                        }
+
+                        function GetZakkatStock() {
+                            $('#StockNum').val("");
+                            $('#Profit').val("");
+                            var StockType = $('#StockType').val();
+                            $.ajax({
+                                url: '/en/global/zakat/pay-zakat/draw-zakkat-stock',
+                                type: "POST",
+                                dataType: "json",
+                                data: {ID: $('#SearchBox').val()},
+                                success: function (data) {
+                                    var row = '';
+                                    if (data.Zakat.length > 0) {
+                                        if (data.Zakat[0]["CompanyCode"] == null) {
+                                            data.Zakat[0]["CompanyCode"] = "---";
+                                        }
+                                        $('#StockInfo').show();
+                                        $('#EXCHANGE').val("" + data.Zakat[0]["EXCHANGE"] + "");
+                                        if (data.Zakat[0]["CleansingRate"] > 0) {
+                                            $('#ZakatCleanStock').val(data.Zakat[0]["CleansingRate"]);
+                                            $('#ZakatStockPercentage').val(data.Zakat[0]["CleansingRate"] + "%");
+                                            $('#Div_Profit').show();
+                                        } else {
+                                            $('#ZakatCleanStock').val(0);
+                                            $('#ZakatStockPercentage').val("0%");
+                                            $('#Div_Profit').hide();
+                                        }
+                                        if (StockType == 1) {
+                                            $('#ZakatStock').val("" + data.Zakat[0]["ZakatStock"] + "");
+                                            $('#ZakatStockPercentageValue').val("" + data.Zakat[0]["ZakatStock"]);
+                                            $('#lbl_rate').html("Zakat ratio");
+                                            $('#ZakatStockPercentageValue').show();
+                                            $('#StockNum').show();
+                                        }
+                                        if (StockType == 2) {
+                                            $('#ZakatCleanStock').val(data.Zakat[0]["CleansingRate"]);
+                                            $('#ZakatStockPercentage').val(data.Zakat[0]["CleansingRate"] + "%");
+                                            $('#Div_Profit').show();
+                                            $('#ZakatStockPercentageValue').hide();
+                                            $('#StockNum').hide();
+                                            $('#StockInfo').hide();
+                                        }
+                                        if (StockType == 3) {
+                                            $('#ZakatStock').val("" + data.Zakat[0]["StockCurrentPrice"] + "");
+                                            $('#ZakatStockPercentageValue').val("" + data.Zakat[0]["StockCurrentPrice"]);
+                                            $('#lbl_rate').html("سعر عرض السهم");
+                                            $('#CurrenyCode').html("" + data.Zakat[0]["CurrencyCode"] + "");
+                                            $('#ZakatStockPercentageValue').show();
+                                            $('#Profit').val("");
+                                            $('#Div_Profit').hide();
+                                        }
+                                    }
+                                }
+                            })
+                        }
+
+                        function SetSearchBoxValue() {
+                            var StockType = $('#StockType').val();
+                            $('#SearchBox').find('option').remove().end();
+                            if (StockType == "1") {
+                                $("#StockNum").attr("item", "42");
+                                $("#Profit").attr("item", "43");
+                                $('#Year').hide();
+                                $('#StockNum').show();
+                            }
+                            if (StockType == "2") {
+                                $('#Year').hide();
+                                $('#StockNum').hide();
+                                $("#Profit").attr("item", "44");
+                                $('#Div_Profit').show();
+                                $('#StockInfo').hide();
+                            }
+                            if (StockType == "3") {
+                                $('#Profit').val("");
+                                $('#Div_Profit').hide();
+                                $("#StockNum").attr("item", "41")
+                                $('#Year').show();
+                                $('#StockNum').show();
+                            }
+                            $.ajax({
+                                url: '/en/global/zakat/pay-zakat/get-search-box-data',
+                                type: "POST",
+                                dataType: "json",
+                                data: {Type: StockType},
+                                success: function (data) {
+                                    var options = '';
+                                    options += '<option value="0" selected="selected">Search with company name or code</option>'
+                                    for (var i = 0; i < data.Zakat.length; i++) {
+                                        if (data.Zakat[i]["CompanyCode"] == null) {
+                                            data.Zakat[i]["CompanyCode"] = "---";
+                                        }
+                                        options += '<option text="' + data.Zakat[i]["CompanyCode"] + ' ' + data.Zakat[i]["CompanyName"] + ' - ' + data.Zakat[i]["MarketName"] + '" value="' + data.Zakat[i]["ID"] + '">' + data.Zakat[i]["CompanyCode"] + ' ' + data.Zakat[i]["CompanyName"] + ' - ' + data.Zakat[i]["MarketName"] + '</option>';
+                                        document.getElementById('SearchBox').innerHTML = options;
+                                    }
+                                    $("#SearchBox").select2();
+                                }
+                            })
+                        }
+
+                        function OnlyNumeric(evt, item, maxLenght) {
+                            evt = (evt) ? evt : window.event;
+                            var charCode = (evt.which) ? evt.which : evt.keyCode;
+                            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                                return false;
+                            }
+                            var maxleng = $(item).attr('maxlength');
+                            if (maxleng == null || maxleng == undefined || maxleng == '' || maxleng == 0) {
+                                maxleng = maxLenght;
+                            }
+                            var val = $(item).val();
+                            // Trim the field if it has content over the maxlength.
+                            if (maxleng != null && maxleng != undefined && maxleng != '' && maxleng != 0 && val.length > maxleng) {
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+
+                </div>
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+
+
+                            <div class="white-box text-center">
+                                <img src="/static/uploads/currentNisabValue.png">
+                                <h4 class="orange-color"> Current Nisab Value </h4>
+                                <h4><span class="font-english"
+                                          style="white-space: pre-wrap">  One or more shares </span></h4>
+                            </div>
+
+                            <a href="" class="dark-blue-color hidden-xs">
+                                <div class="fatwa white-box">
+                                    <img src="/static/uploads/fatwaBook.png">
+                                    <span class="font-18 padding-10-h font-14-sm"> Fatawa </span>
+                                </div>
+                            </a>
+                            <div class="row">
+                                <div class="white-box zakat-calc-questions">
+                                    <h4 class="orange-color"> Most common questions </h4>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12383-Paying-the-wages-of-workers"
+                                               class="black-color font-12-xs">Paying the wages of workers who are not
+                                                needed from Zakah<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12304-Zakat-on-advance-rent-payment"
+                                               class="black-color font-12-xs">Zakat on advance rent payment of a
+                                                house<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12302-Calculating-Zakat-on"
+                                               class="black-color font-12-xs">Calculating Zakat on investment properties
+                                                <span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12202-Adding-gold-and-silver"
+                                               class="black-color font-12-xs">Adding gold and silver together for
+                                                Zakah<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12188-When-debt-is-deducted-from"
+                                               class="black-color font-12-xs">When debt is deducted from Zakah owed on
+                                                gold, silver and cash<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="/en/global/zakat/fatwa/details?Sid=12132-Paying-Zakah-on-scholarship"
+                                               class="black-color font-12-xs">Paying Zakah on scholarship received every
+                                                three months<span class="pull-right"><i
+                                                        class="more-less fa fa-angle-right fa-lg"></i></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# END MAIN BODY: #}
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5" style="background-color: lightgray;">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-5 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">
+                <!-- Content -->
+                <div class="">
+                    <a href="{% url 'index' %}" class=""><img src="/static/images/logo.png"
+                                                              alt=""></a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+
+                <div class="widget widget--footer widget--contact">
+                    <div class="">
+                        <h4>{% trans "QUICK CONTACT" %}</h4>
+                    </div>
+                    <div class="widget__text-content text-left">
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-location-arrow"></i></span>
+                            <span class="contact-text">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-phone"></i></span>
+                            <span class="contact-text">+965 90900055 </span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-envelope-o"></i></span>
+                            <span class="contact-text">basaier@basaier.com</span>
+                        </div>
+                    </div>
+                </div><!--/.widget-->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-left">
+
+                <!-- Links -->
+                <div class="">
+                    <h4>{% trans "FOLLOW US ON" %}</h4>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">
+                        <span class=""><i class="fa fa-facebook-square"></i>
+                        </span> Facebook </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i
+                            class="fa fa-twitter"></i> Twitter</a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i
+                            class="fa fa-instagram"></i> Instagram </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor"
+                       href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"
+                       target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3"
+         style="background-color: black; color: white; padding: 10px;">© 2020 Copyright:
+        <a class="dark-grey-text" href="https://mdbootstrap.com/"> Basaier</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- // End Footer  -->
+
+</body>
+</html>

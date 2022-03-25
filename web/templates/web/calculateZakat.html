@@ -1,0 +1,586 @@
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style rel="stylesheet">
+        #main {
+            /* Ensure that #main is an offset container */
+            position: relative;
+        }
+
+        #main img {
+            /* Position the image at 0,0 */
+            position: relative;
+            left: 0;
+            margin-top: 100px;
+        }
+
+        #main > .floatingDiv {
+            /* Position the div at 16,16 (middle of the 32x32 image */
+            position: absolute;
+            left: 100px;
+            top: 3px;
+            bottom: 3px;
+            background-color: #FFFFFF;
+            padding: 1px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            width: 250px;
+            margin-top: 100px;
+        {#height: 100%;#} border-color: transparent;
+        }
+
+        .floatingDiv > .col-4 > h4 {
+            margin-top: 0;
+            background-color: #F4F4F4;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #52616D;
+        }
+
+        .floatingDiv > .col-4 > div > h4 {
+            color: #52616D;
+        }
+
+        .floatingDiv > .col-4 > #inputDiv, #buttonDiv {
+            padding: 11px;
+        }
+
+        .floatingDiv > .col-4 > div > p {
+            padding: 11px;
+            color: #52616D;
+        }
+
+        .btn-orange {
+            background-color: #EA694D;
+            color: whitesmoke;
+        }
+
+        {# HEADER: #}
+        .fund-header {
+            background-color: #52616D;
+            color: white;
+            padding: 5px;
+        {#position: sticky;#} width: 100%;
+            top: 0;
+        }
+
+        .dropdown > a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .dropdown > a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+        .dropdown-menu {
+            width: 10px !important;
+        }
+
+        {# END HEADER: #}
+
+        {# NAVBAR: #}
+        .navbar {
+            margin-top: 30px;
+            background-color: white !important;
+        }
+
+        .navbar.navbar-default, .navbar button.navbar-toggle {
+            border: none;
+        }
+
+        .navbar-brand > img {
+            height: 30px;
+            width: 70px;
+            margin-top: 0;
+        }
+
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+        }
+
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
+
+        {# END NAVBAR: #}
+
+        {# ANOTHER CAROUSEL: #}
+        .container {
+        {#margin-top: 20px;#}
+        }
+
+        /* Carousel Styles */
+        {#.carousel-indicators .active {#}
+        {#    background-color: #2980b9;#}
+        {# } #}
+
+        .carousel-inner img {
+            width: 100%;
+            height: 300px
+        }
+
+        .carousel-control {
+            width: 0;
+        }
+
+        .carousel-control.left,
+        .carousel-control.right {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            background-image: none;
+            background-repeat: no-repeat;
+            text-shadow: none;
+        }
+
+        .carousel-control.left span {
+            padding: 5px;
+        }
+
+        .carousel-control.right span {
+            padding: 5px;
+        }
+
+        .carousel-control .fa-angle-left,
+        .carousel-control .fa-angle-right,
+        .carousel-control .icon-prev,
+        .carousel-control .icon-next {
+            position: absolute;
+            top: 55%;
+            z-index: 5;
+            display: inline-block;
+        }
+
+        {#.carousel-control .fa-angle-left,#}
+        {#.carousel-control .icon-prev {#}
+        {#    left: 0;#}
+        {# } #}
+        {##}
+        {#.carousel-control .fa-angle-right,#}
+        {#.carousel-control .icon-next {#}
+        {#    right: 0;#}
+        {# } #}
+
+        .carousel-control.left span,
+        .carousel-control.right span {
+            background-color: #000;
+            padding-left: 10%;
+            padding-right: 10%;
+            opacity: .5;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        .carousel-control.left span:hover,
+        .carousel-control.right span:hover {
+            opacity: .7;
+            filter: alpha(opacity=70);
+        }
+
+        {# END ANOTHER CAROUSEL: #}
+
+        {# CONTAINER FOR 4 ICONS:  #}
+        #bgWallpaperZakat {
+            background-image: url("/static/uploads/pattern2.jpg");
+            background-repeat: no-repeat;
+            width: 100%;
+            background-size: 100% 100%;
+            height: auto;
+        }
+
+        #zakatIcons {
+            background-color: whitesmoke;
+            margin: 50px 20px;
+            padding: 30px 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        #language {
+            background-color: transparent;
+            border: none;
+            width: fit-content;
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        #btnTransparent {
+            background-color: transparent;
+            border-color: #63A69F;
+            color: #63A69F;
+        }
+
+        #btnTransparent:hover {
+            background-color: #63A69F;
+            color: white;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+            color: #63A6A5;
+        }
+
+        {# END CONTAINER FOR 4 ICONS:  #}
+
+        {# ABOUT ZAKAT: #}
+        #aboutZakatMainDiv {
+            height: 300px;
+        }
+
+        #aboutZakatMainDiv > .container {
+            padding: 50px;
+        }
+
+        #aboutZakat {
+            color: #EA694D;
+        }
+
+        {# END ABOUT ZAKAT: #}
+
+
+    </style>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+{# HEADER: #}
+<header class="fund-header navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4">
+                <i class="fa fa-envelope" id="forWhiteColor"></i> <span class="pdl5">basaier@basaier.org</span>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-center">
+                {#                <div class="dropdown">#}
+                {#                    <a class="dropdown-toggle" type="button" data-toggle="dropdown">En#}
+                {#                        <span class="caret"></span></a>#}
+                {#                    <ul class="dropdown-menu">#}
+                {#                        <li><a href="#">Ar</a></li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                <select name="language" id="language" class="text-right">
+                    <option value="1">En</option>
+                    <option value="2">Ar</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4 text-right">
+                <i class="fa fa-sign-in fa-lg"></i>
+            </div>
+        </div>
+    </div>
+</header>
+{# END HEADER: #}
+
+{# COLLAPSED NAVBAR: #}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}"> <img src="/static/images/logo.png" alt="">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="">About Zakat</a></li>
+                <li><a href="#">Calculate Zakat</a></li>
+                <li><a href="#">Fatwa</a></li>
+                <li><a href="#">Zakat Outputs</a></li>
+                <li><a href="#">Donations Ways</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'cart_detail' %}"><span class="fa fa-cart-plus fa-2x"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{# END COLLAPSED NAVBAR: #}
+
+
+{# ANOTHER CAROUSEL: #}
+<div class="">
+    <!-- Carousel -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div id='main'>
+                    <img src='/static/uploads/Money.jpg'>
+                    <div class="floatingDiv">
+                        <div class="col-4">
+                            <h4>Money Zakat</h4>
+                            <div><p class="text-center">If You Know How Much Your Zakaah Is, Pay Now:</p></div>
+                            <div id="inputDiv">
+                                <input type="number" min="0" placeholder="The Value Of Zakaah {{ getMyCurrency }}"
+                                       class="form-control"></div>
+                            <div id="buttonDiv">
+                                <button class="btn btn-block btn-orange">Pay You Zakat</button>
+                            </div>
+                            <div><h4 class="text-center">Or Calculate Zakat Now</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div id='main'>
+                    <img src='/static/uploads/Gold.jpg'>
+                    <div class="floatingDiv">
+                        <div class="col-4">
+                            <h4>Gold Zakat</h4>
+                            <div><p class="text-center">If You Know How Much Your Zakaah Is, Pay Now:</p></div>
+                            <div id="inputDiv">
+                                <input type="number" min="0" placeholder="The Value Of Zakaah {{ getMyCurrency }}"
+                                       class="form-control"></div>
+                            <div id="buttonDiv">
+                                <button class="btn btn-block btn-orange">Pay You Zakat</button>
+                            </div>
+                            <div><h4 class="text-center">Or Calculate Zakat Now</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div id='main'>
+                    <img src='/static/uploads/Stocks.jpg'>
+                    <div class="floatingDiv">
+                        <div class="col-4">
+                            <h4>Stocks Zakat</h4>
+                            <div><p class="text-center">If You Know How Much Your Zakaah Is, Pay Now:</p></div>
+                            <div id="inputDiv">
+                                <input type="number" min="0" placeholder="The Value Of Zakaah {{ getMyCurrency }}"
+                                       class="form-control"></div>
+                            <div id="buttonDiv">
+                                <button class="btn btn-block btn-orange">Pay You Zakat</button>
+                            </div>
+                            <div><h4 class="text-center">Or Calculate Zakat Now</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div id='main'>
+                    <img src='/static/uploads/Animal.jpg'>
+                    <div class="floatingDiv">
+                        <div class="col-4">
+                            <h4>Camel Zakat</h4>
+                            <div><p class="text-center">If You Know How Much Your Zakaah Is, Pay Now:</p></div>
+                            <div id="inputDiv">
+                                <input type="number" min="0" placeholder="The Value Of Zakaah {{ getMyCurrency }}"
+                                       class="form-control"></div>
+                            <div id="buttonDiv">
+                                <button class="btn btn-block btn-orange">Pay You Zakat</button>
+                            </div>
+                            <div><h4 class="text-center">Or Calculate Zakat Now</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="fa fa-angle-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="fa fa-angle-right" style="color: white;"></span>
+        </a>
+    </div><!-- /carousel -->
+</div>
+{# END ANOTHER CAROUSEL: #}
+
+{# CONTAINER 4 ICONS: #}
+<div>
+    <div class="container" id="bgWallpaperZakat">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+{#                <div class="text-center" id="zakatIcons">#}
+{#                    <a href="{% url 'zakatForCattle' %}">#}
+{#                        <img src="/media/uploads/Animal-Zakat-home.png" alt="" class="img-circle">#}
+{#                        <h3>Cattle</h3>#}
+{#                        <button class="btn" id="btnTransparent">Calculate Zakat</button>#}
+{#                    </a>#}
+{#                </div>#}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center" id="zakatIcons">
+                    <a href="{% url 'zakatForMoney' %}">
+                        <img src="/static/uploads/home-Money-Zakat.png" alt="" class="img-circle">
+                        <h3>Money</h3>
+                        <button class="btn" id="btnTransparent">Calculate Zakat</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="text-center" id="zakatIcons">
+                    <a href="{% url 'zakatForGold' %}">
+                        <img src="/static/uploads/Gold-Zakat-home.png" alt="" class="img-circle">
+                        <h3>Gold</h3>
+                        <button class="btn" id="btnTransparent">Calculate Zakat</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+{#                <div class="text-center" id="zakatIcons">#}
+{#                    <a href="{% url 'zakatForStocks' %}">#}
+{#                        <img src="/media/uploads/Stocks-Zakat.png" alt="" class="img-circle">#}
+{#                        <h3>Stocks</h3>#}
+{#                        <button class="btn" id="btnTransparent">Calculate Zakat</button>#}
+{#                    </a>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+</div>
+{# END CONTAINER 4 ICONS: #}
+
+
+{# ABOUT ZAKAT: #}
+<div class="container-fluid" id="aboutZakatMainDiv">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
+                <div><h1 id="aboutZakat">About Zakat</h1></div>
+                <div><p class="text-muted">Zakat is a crucial pillar of Islam. It is a major teaching that raises
+                    awareness about the importance of helping those most vulnerable. Zakat is the manifestation of
+                    ultimate selfishness, generosity, and social reformation. it is a cleansing process of the heart
+                    from greed and misery. Zakat is not just a charitable act; it is rather a duty where every Muslim
+                    has to give from their yearly earnings to the poor.</p></div>
+                <div>
+                    <button class="btn" id="btnTransparent">More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{# END ABOUT ZAKAT: #}
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5" style="background-color: lightgray;">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-5 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-3 mb-4">
+                <!-- Content -->
+                <div class="">
+                    <a href="{% url 'index' %}" class=""><img src="/static/images/logo.png"
+                                                              alt=""></a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+
+                <div class="widget widget--footer widget--contact">
+                    <div class="">
+                        <h4>{% trans "QUICK CONTACT" %}</h4>
+                    </div>
+                    <div class="widget__text-content text-left">
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-location-arrow"></i></span>
+                            <span class="contact-text">{% trans "Firdos block 8 Rashed Awad Al Shanfa Street Jada 3 House No.41" %}</span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-phone"></i></span>
+                            <span class="contact-text">+965 90900055 </span>
+                        </div>
+                        <div class="contact-way">
+                            <span class=" contact-icon"><i class="fa fa-envelope-o"></i></span>
+                            <span class="contact-text">basaier@basaier.com</span>
+                        </div>
+                    </div>
+                </div><!--/.widget-->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-left">
+
+                <!-- Links -->
+                <div class="">
+                    <h4>{% trans "FOLLOW US ON" %}</h4>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">
+                        <span class=""><i class="fa fa-facebook-square"></i>
+                        </span> Facebook </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i
+                            class="fa fa-twitter"></i> Twitter</a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor" href="https://www.instagram.com/basaier_kw/" target="_blank"><i
+                            class="fa fa-instagram"></i> Instagram </a>
+                </div>
+                <div style="padding-bottom: 15px;">
+                    <a id="forBlackColor"
+                       href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw?view_as=subscriber"
+                       target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3"
+         style="background-color: black; color: white; padding: 10px;">© 2020 Copyright:
+        <a class="dark-grey-text" href="https://mdbootstrap.com/"> Basaier</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<!-- // End Footer  -->
+
+</body>
+</html>

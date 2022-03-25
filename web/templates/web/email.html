@@ -1,0 +1,312 @@
+{% load humanize %}
+{% load i18n %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<br>
+<br>
+<br>
+<br>
+<style>
+        {#.jumbotron-main {#}
+        {#    display: flex;#}
+        {#    justify-content: center;#}
+        {#    margin-top: 20px;#}
+        {#    background-image: url("img.jpg");#}
+        {#    background-repeat: no-repeat;#}
+        {#    color: white !important;#}
+        {#    font-size: 50px;#}
+        {# }#}
+
+        #topPullOnTop {
+            position: absolute;
+            top: 20%;
+            left: 32%;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            #topPullOnTop {
+                top: 12%;
+                left: 47%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 414px) {
+            #topPullOnTop {
+                top: -20%;
+                left: 43%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 411px) {
+            #topPullOnTop {
+                top: -10%;
+                left: 45%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 44%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            #topPullOnTop {
+                top: -25%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #topPullOnTop {
+                top: -35%;
+                left: 48%;
+            }
+
+            #topPullOnTop > h1 {
+                font-size: 20px;
+            }
+        }
+
+        .kafalat-yateem {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 0px !important;
+            margin-bottom: 20px !important;
+            font-size: 40px;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid grey;
+            border-radius: 16px;
+            width: 65%;
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+
+        .tabrkat {
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid grey;
+            {#border-radius: 12px;#}
+            {#width: 65%;#}
+            text-align: right;
+        }
+
+        .inner {
+            padding: 20px;
+        }
+
+        .amlia {
+            text-align: center;
+        }
+
+        .amlia-label {
+            font-size: 20px;
+        }
+    </style>
+
+
+    <!-- <div class="jumbotron jumbotron-main">تبرعاتكم</div> -->
+
+{#    <div style="position: relative; background-color: lightGreen;">#}
+{#        <img src="/static/topImages/invoice.jpeg" alt=""#}
+{#             style="width: 100%; height: 304px; opacity: 0.6;">#}
+{#        <div id="topPullOnTop">#}
+{#            <h1 class="text-center" style="color: white;">{% trans "تبرعاتكم" %}</h1>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    <br><br>#}
+
+    <div class="container" style="width: 50%; margin-top: 40px; margin-left: 25%;">
+        <h3 class="kafalat-yateem" style="color: #4D5280; text-align: center;">+<br/> <h3 style="color: #4D5280; text-align: center;"> {% trans "المعلومات التبرع" %}  </h3> <br/> <h3
+                style="color: #8EC56F; text-align: center;"> {% trans "تـبـــــرع الآن" %}   </h3></h3>
+        <table class="center" style="border-radius: 16px; border: 1px solid grey; text-align: right;">
+            <tr>
+                <th style="color: #A29C9C;"> {% trans "تــــبــــرع" %}</th>
+                <th style="color: #A29C9C;">{% trans "السعر" %}</th>
+                <th style="color: #A29C9C;">{% trans "المجموع" %}</th>
+            </tr>
+            {% for donate in donates %}
+                <tr>
+                    <td><h3 style="color: #4D5280;"> {{ donate.project.get_name }}</h3>: <h3
+                            style="color: #8EC56F;">{{ donate.category.get_name }}</h3></td>
+                    <td style="color: #4D5280;">{{ donate.amount }}</td>
+                    <td style="color: #4D5280;">{{ donate.amount }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="container" style="margin-top: 40px; width: 65%; margin-left: 18%;">
+        <h3 class="kafalat-yateem" style="color: #4D5280; text-align: center;">+<br/> <h3 style="color: #4D5280; text-align: center;"> {% trans "الملخص التبرعات" %} </h3>
+        </h3>
+        <div class="tabrkat" style="border-radius: 16px; border: 1px solid grey; margin-left: auto; margin-right: auto;">
+            <div class="inner">
+                <label for="tareka">{% trans "طريقة الدفع" %}:</label>
+                <hr>
+                <label for="tareka" style="color: #4D5280; margin: 0 35%;"> KD {{ amount }} </label> <span style="color: #4D5280;"> {% trans "المجموع" %}: </span>
+                <hr>
+                <label for="tareka" style="color: #4D5280; margin-right: 35%;"> KD {% for donate in donates %}
+                    {{ donate.amount }} {% endfor %}</label> <span style="color: #4D5280;"> {% trans "الإجمالي" %}: </span>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 40px;">
+        <h3 class="kafalat-yateem" style="color: #4D5280;">+<br/>{% trans "تفاصيل عملية الدفع " %}</h3>
+        <div class="amlia">
+            <label for="tareka" class="amlia-label" style="color: #A29C9C;"> {{ db_id }} :{% trans "رقم الطلب" %}</label><br><br>
+            <label for="tareka" class="amlia-label" style="color: #A29C9C;"> {{ payment_id }} :{% trans "رقم العملية" %}</label><br><br>
+            <label for="tareka" class="amlia-label" style="color: #A29C9C;"> {{ merchant_track_id }} :{% trans "مرجع البنك" %}</label><br><br>
+            <label for="tareka" class="amlia-label" style="color: #A29C9C;"> {{ payment_id }} :{% trans "مرجع الدفع" %}</label><br><br>
+            <label for="tareka" class="amlia-label" style="color: #A29C9C;"> {{ merchant_track_id }} :{% trans "مرجع الجمعية" %}</label><br>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text-center">
+            {% if success %}
+                <h3 class="text-success" style="color: #4D5280; text-align: center;">
+                    {% trans "Your payment was successfull. Thanks for the purchase." %}
+                </h3>
+            {% else %}
+                <h3 class="text-danger" style="color: #4D5280; text-align: center;">
+                    {% trans "Payment failed. Transaction cancelled and amount refunded." %}
+                </h3>
+            {% endif %}
+        </div>
+    </div>
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">#}
+{#            <div class="row">#}
+{#                <div class="col-xs-6 col-sm-6 col-md-6">#}
+{##}
+{#                </div>#}
+{#                <div class="col-xs-6 col-sm-6 col-md-6 text-right">#}
+{#                    <p>#}
+{#                        <em>{% trans "Date" %}: {% now "jS F Y H:i" %}</em>#}
+{#                    </p>#}
+{#                    <p>#}
+{#                        <em>{% trans "Receipt" %} #: {{db_id}}</em>#}
+{#                    </p>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="text-center">#}
+{#                    <h1>{% trans "Receipt" %}</h1>#}
+{#                </div>#}
+{#                </span>#}
+{#                <table class="table table-hover">#}
+{#                    <thead>#}
+{#                        <tr>#}
+{#                            <th></th>#}
+{#                            <th></th>#}
+{#                        </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                        <tr>#}
+{#                            <td class="col-md-6">#}
+{#                                <em>{% trans "Reference ID" %}</em>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                            <td class="col-md-6 text-right">{{reference_id}}</td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td class="col-md-6">#}
+{#                                <em>{% trans "Payment ID" %}</em>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                            <td class="col-md-6 text-right">{{payment_id}}</td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td class="col-md-6">#}
+{#                                <em>{% trans "Merchant Track ID" %}</em>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                            <td class="col-md-6 text-right">{{merchant_track_id}}</td>#}
+{#                        </tr>#}
+{#                            {% for donate in donates %}#}
+{#                        <tr>#}
+{#                            <td class="col-md-6">#}
+{##}
+{#                                <h4>#}
+{#                                    <strong>{{ donate.project.get_name}} </strong>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                            <td class="col-md-6 text-right text-danger">#}
+{#                                <h4>#}
+{#                                    <strong>KW {{donate.amount}}</strong>#}
+{#                                </h4>#}
+{#                            </td>#}
+{##}
+{#                        </tr>#}
+{#                                                {% endfor %}#}
+{##}
+{#                                            <tr>#}
+{#                            <td class="col-md-6">#}
+{##}
+{#                                <h4>#}
+{#                                    <strong>{% trans "total Amount:" %} </strong>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                            <td class="col-md-6 text-right text-danger">#}
+{#                                <h4>#}
+{#                                    <strong>KW {{amount}}</strong>#}
+{#                                </h4>#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                    </tbody>#}
+{#                </table>#}
+{#                <div class="text-center">#}
+{#                <div class="text-center">#}
+{#                    {% if success %}#}
+{#                    <label class="text-success">#}
+{#                        {% trans "Your payment was successfull. Thanks for the purchase." %}#}
+{#                    </label>#}
+{#                    {% else %}#}
+{#                    <label class="text-danger">#}
+{#                        {% trans "Payment failed. Transaction cancelled and amount refunded." %}#}
+{#                    </label>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                </td>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}

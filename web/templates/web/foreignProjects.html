@@ -1,0 +1,178 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="/static/css/localProjects.css">
+
+    <div style="position: relative; background-color: dodgerblue;">
+        <img src="/static/topImages/womenTeaching.jpeg" alt=""
+             style="width: 100%; opacity: 0.6;">
+        <div id="topPullOnTop">
+            <h1 class="text-center" style="color: white;">المشاريع الخارجية</h1>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="main">
+        <hr style="border: 1px solid #dcd8d7; width: 50%;"/>
+        <div class="row">
+            <form id="forQuickDonateProjectForm2">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    {#                <button onclick="FastDonationAmountSelectCampaigns(50,'1')" type="button" class="btn-p">القيمة</button>#}
+                    <input type="number" min="0" class="btn-p rounded text-center"
+                           id="txtTotalAmountFastAccountCampaigns2"
+                           name="amount[]"
+                           onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
+                           placeholder="Cost" style="color: black;">
+                    <button onclick="FastDonationAmountSelectCampaignsThis(500,'2')" type="button" class="btn1">500
+                    </button>
+                    <button onclick="FastDonationAmountSelectCampaignsThis(300,'2')" type="button" class="btn1">300
+                    </button>
+                    <button onclick="FastDonationAmountSelectCampaignsThis(100,'2')" type="button" class="btn1">100
+                    </button>
+                    <button onclick="FastDonationAmountSelectCampaignsThis(50,'2')" type="button" class="btn1">50
+                    </button>
+                    <br>
+                    <input type="submit" class="btn-asif" value="{% trans "أضف" %}">
+                    <input type="submit" class="btn-asif" style="background-color: #8DA4CA !important;"
+                           value="{% trans "تبرع" %}">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <select id="projectCategory" name="project_category_id[]" class="akthar"
+                            onchange="onchangehit2(this.value)">
+                        <option></option>
+                        {% for data in charity_categories %}
+                            <option value="{{ data.pk }}"
+                                    name="project_category_id[]">{{ data.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <select id="projectsAccordingToCategory2" name="projectsAccordingToCategory" class="akthar">
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container masharik">
+        <h3 class="almashare">+<br>المشاريع</h3>
+        <h6 class="tabra" style="margin-bottom: 30px !important; font-size: 18px;">تـبـــــرع الآن</h6>
+
+        <div class="row">
+            {% for project in localProjects %}
+                <div class="col-sm-4">
+                    <div class="card card-price">
+                        <div class="card-img">
+                            <a href="{% url 'project-detail' project.id %}">
+                                <img src="{% project_image_tag project request %}" style="width: 100%; height: 250px;"
+                                     class="">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="price"><a
+                                    href="{% url 'project-detail' project.id %}">{{ project.get_name|truncatechars:15 }}</a>
+                                <hr style="border: 1px solid green; width: 10%; margin-left: 90%;">
+                            </div>
+                            <form action="">
+                                <input type="hidden" class="project_id"
+                                       name="project_id[]" value="{{ project.id }}"
+                                       id="project_id_{{ project.id }}">
+                                <div class="lead">
+                                    <div class="number">
+                                        <input class="text-center amount"
+                                               placeholder="{{ project.suggestedDonation|floatformat }}" type="number"
+                                               step="any"
+                                               name="amount[]"
+                                               size="5" id="amount_{{ project.id }}">
+                                    </div>
+                                </div>
+                                <span data-toggle="collapse" data-target="#read{{ project.id }}" id="logoColor">
+                        {% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == "ar" %}
+                                        {% trans "قراءة الوصف" %}
+                                    {% else %}
+                                        {% trans "Read Description" %}
+                                    {% endif %}
+                                </span>
+                                <p id="read{{ project.id }}" class="collapse">{{ project.detail }}</p>
+                                <hr style="border: 1px solid #CBC6C6;">
+                                <span style="padding: 1px 10px; margin-right: 2%;" aria-hidden="true"
+                                      data-toggle="modal" data-target="#exampleModal"
+                                      data-backdrop="static" data-keyboard="false">
+                                    <img src="/static/shareIcon.jpeg" alt="">
+                                    <img src="/media/{{ project.countryFlag }}"
+                                         style="width: 62px; height: 34px;
+                                                 {% get_current_language as LANGUAGE_CODE %}{% if LANGUAGE_CODE == "ar" %}margin-right: 5%;{% endif %}"
+                                         alt="">
+                                </span>
+                                <button class="sub2" projectId="{{ project.id }}" style="
+                            background-color: #4D5280;
+                             border-radius: 20px;
+                             color: white;
+                             outline: none;
+                             border: none;
+                             float: right;
+                             width: 50%;
+                             height: 40px;
+                             font-size: 18px;
+                             ">{% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == "ar" %}
+                                {% trans "يتبرع" %}
+                            {% else %}
+                                {% trans "Donate" %}
+                            {% endif %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <div class="container masharik" style="background-color: #f1efed !important; ">
+        <h3 class="almashare">+<br>آخر التحديثات</h3>
+        <h6 class="tabra" style="margin-bottom: 30px !important; font-size: 18px;">المشاريع المنفّذة</h6>
+
+        <div class="row">
+            {% for project in localProjects2 %}
+                {% if project.has_reached_target %}
+                    <div class="col-md-6" style="margin-bottom: 3%;">
+                        <div class="no-gutters">
+                            <div class="col-xs-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a
+                                            href="{% url 'project-detail' project.id %}">{{ project.get_name }}</a></h5>
+                                    <p class="card-text"> {{ project.detail|truncatechars:70 }} </p>
+                                    <a href="{% url 'project-detail' project.id %}" style="
+                        background-color: #4D5280;
+                         border-radius: 20px;
+                         color: white;
+                         outline: none;
+                         border: none;
+                         float: right;
+                         width: 50%;
+                         height: 40px;
+                         font-size: 18px;
+                         ">{% trans "Detail" %}</a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="padding: 15px 10px;">
+                                <img src="{% project_image_tag project request %}" class="img-circle">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

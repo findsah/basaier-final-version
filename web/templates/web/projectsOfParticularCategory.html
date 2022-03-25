@@ -1,0 +1,119 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+
+    <section class="blog-section section-padding white-bg">
+        <div class="main-content section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-xl-12">
+                        <div class="row-eq-rs-height">
+                            <div class="row">
+                                <h3 id="logoColor" class="text-center">{{ categoryName1 }}</h3>
+                                <br>
+                                {% for project in categoryOfProjects %}
+                                    <div class="col-md-6 col-sm-6 col-lg-4 col-xs-12" style="height: 600px;">
+                                        <div class="our-causes__text-content wow fadeInUpSmd" data-wow-duration="1.5s"
+                                             data-wow-delay=".2s"
+                                             style="width: 100%; height: 484px; visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
+                                            <div class="">
+                                                <img src="{% project_image_tag project request %}"
+                                                     style="height: 284px;"
+                                                     class="our-causes__text-content-image" alt="">
+                                            </div>
+                                            <div class="text-center">
+                                                {% if request.user.is_authenticated == True %}
+                                                    <form class="donate-page-form">
+                                                    {#                                      action="{% url 'project-detail' project.id %}" id="project-{{ project.id }}">#}
+                                                    {% csrf_token %}
+                                                {% else %}
+                                                    <form class="donate-page-form" method="post"
+                                                          action="{% url 'cart_add' %}"
+                                                          id="project-{{ project.id }}">
+                                                    {% csrf_token %}
+                                                {% endif %}
+                                                {% csrf_token %}
+                                                <h4 class="text-uppercase our-causes__title text-truncate"
+                                                    id="logoColor"><a
+                                                        href="{% url 'project-detail' project.id %}">{{ project.get_name }}</a>
+                                                </h4>
+{#                                                <p>{% if project.isZakat %}{% trans "Calculate your Zakat" %}{% else %}#}
+{#                                                    {% trans "Enter your donation in" %}{% endif %} {{ getMyCurrency }}:</p>#}
+                                                <div class="number">
+                                                    <input class="text-center"
+                                                            {% if project.is_defined %} value="{{ project.suggestedDonation|floatformat }} {% endif %}"
+                                                           type="number" min="0"
+                                                           step="any" id="amount_{{ project.id }}"
+                                                           name="amount[]"
+                                                           size="5">
+                                                </div>
+                                                {% if project.is_defined == False %}
+                                                    <p style="margin-bottom: 0 !important;">{% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "يمكنك التبرع بأي مبلغ" %}
+                                            {% else %}
+                                                {% trans "You can donate any amount" %}
+                                            {% endif %}</p>
+                                                {% else %}
+                                                    <p style="margin-bottom: 0 !important;"><br/></p>
+                                                {% endif %}
+                                                {% if project.category.all|length > 1 %}
+                                                    <p>
+                                                    <div class="radio">
+                                                        {% for category in project.category.all %}
+                                                            {% if category.is_hide != True %}
+                                                                <label>
+                                                                    <input type="radio" class="project_category_id"
+                                                                           name="project_category_id[]"
+                                                                           value="{{ category.id }}"
+                                                                           data-price="{{ category.price | intcomma }}"
+                                                                           data-value="{{ category.get_name }}"
+                                                                           required> {{ category.get_name }}
+                                                                </label>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                    </p>
+                                                {% else %}
+                                                    <input type="hidden" class="project_category_id"
+                                                           name="project_category_id[]"
+                                                           value="{{ project.category.first.id }}">
+                                                {% endif %}
+                                                <div style="padding-bottom: 3%;">
+
+                                        <span data-toggle="modal" data-target="#exampleModal"
+                                              data-backdrop="static" data-keyboard="false" id="shareIconHomePage"><img
+                                                src="/static/shareIcon.jpeg" alt=""> </span>
+                                                    <input type="submit" class="btn projectsOfParticularCategory"
+                                                           projectId="{{ project.id }}"
+                                                           value="{% get_current_language as LANGUAGE_CODE %}
+                                            {% if LANGUAGE_CODE == "ar" %}
+                                                {% trans "تبرع الآن" %}
+                                            {% else %}
+                                                {% trans "Donate Now" %}
+                                            {% endif %}"/>
+                                                </div>
+                                                <input type="hidden" id="project_id_{{ project.id }}"
+                                                       value="{{ project.id }}">
+                                                </form>
+
+                                            </div>
+                                        </div><!--/.our-causes-->
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

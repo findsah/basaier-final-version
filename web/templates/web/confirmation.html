@@ -1,0 +1,109 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+<div class="main-content section-padding">
+        <div class="container">
+            {% if request.user.is_authenticated %}
+            <form class="donate-page-form" method="post" action="{{ route }}/" id="confirmation-form">
+                {% csrf_token %}
+                {% endif %}
+                {% if request.user.is_authenticated == False %}
+
+                <form class="donate-page-form" method="post" action="{{ route }}/" id="confirmation-form">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <input type="hidden" name="login_email" value="{{ login_email }}">
+                    <input type="hidden" name="login_password" value="{{ login_password }}">
+                    <input type="hidden" name="register_email" value="{{ register_email }}">
+                    <input type="hidden" name="register_password" value="{{ register_password }}">
+                    <input type="hidden" name="register_confirm_password" value="{{ register_confirm_password }}">
+                    <input type="hidden" name="register_name" value="{{ register_name }}">
+                    <input type="hidden" name="register_phone" value="{{ register_phone }}">
+
+                    {% csrf_token %}
+
+                <div id="guest">
+                <div class="row pdt30">
+                    <div class="col-md-12">
+                        <h4 class="nv-color text-uppercase">{% trans "Confirmation Payment"%}</h4>
+                    </div>
+                </div>
+                <div class="row donate-detail-form">
+
+
+                </div>
+                </div>
+                {% endif %}
+            <h4 class="donate-page-title text-uppercase">{% trans "Donations" %}</h4>
+                {% for project in projects %}
+                    <input type="hidden" name="project_category_id[]" value="{{ project.project_category_id }}">
+                    <input type="hidden" name="project_id[]" value="{{ project.id }}">
+
+                <div class="row pdb20">
+                    <div class="col-md-3 pdb10">
+                            <span>{{ forloop.counter }}-
+                        {% for project_detail in projects_detail %}
+                            {% if project_detail.id == project.id %}
+                                {{ project_detail.get_name }} :
+                                {% for project_category in project_detail.category.all %}
+                                    {% if project_category.id == project.project_category_id %}
+                                        {{ project_category.get_name }}
+                                    {% endif %}
+                                    {% endfor %}
+                            </span>
+                            {% endif %}
+                            {% endfor %}
+
+                    </div>
+                    <div class="col-md-2 pdb10">
+                        <span>{% trans "Donation Amount"%}: </span>
+                        <input min="0" type="number" step="any" max="500" class="form-control input-group__input" name="amount[]" value="{{ project.amount }}" readonly>
+                    </div>
+
+
+                </div>
+
+                {% endfor %}
+
+                <div class="row pdb30">
+                    <div class="col-md-3 pdb10">
+                        <span>{% trans "Payment Mathod"%} <span class="red-color">*</span> </span>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+
+                            {% if payment_method == "Knet" %}
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="input-group__radio-wrap">
+                                    <input type="radio" id="payment-method-online" name="payment_method" value="Knet" checked>
+                                    <label for="payment-method-online">KNET</label>
+                                </div>
+                            </div>
+
+                            {% else %}
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="input-group__radio-wrap">
+                                    <input type="radio" id="payment-method-offline" name="payment_method" value="Visa" checked>
+                                    <label for="payment-method-offline">VISA / Mastercard</label>
+                                </div>
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="submit" class="btn" id="pay-now" value="{% trans "Pay"%}">
+                        </div>
+                    </div>
+                </div>
+            <!-- </form> -->
+        </div>
+    </div>
+{% endblock %}

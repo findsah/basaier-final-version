@@ -1,0 +1,152 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+
+{% block content %}
+    <div class="row">
+        {% for data in projects %}
+            <div class="bgImage">
+                <img
+                        {% if forloop.first %}
+                            src="/static/{{ data.image }}"
+                        {% else %}
+                            src=""
+                        {% endif %} alt="" style="width: 100%; height: 374px;">
+                <div>
+                    <h2>{{ data.name }}</h2>
+{#                    <h2>{{ data.category.all }}</h2>#}
+                    <div>
+                        <a href="{% url 'project-detail' data.id %}"> {% if data.isZakat %}{% trans "Calculate your Zakat" %}{% else %}{% trans "Donet Fast" %}{% endif %} </a>
+                        <a href=""> Sponsor A Project </a>
+                        <a href=""> Contribute To A Project </a>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <section id="sectionOfMasjid">
+        <div class="container"> {# START CONTAINER: #}
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                    <div class="text-center"><h2 id="logoColor">{{ data.name }}</h2></div>
+                    <div class="text-justify">
+                        <p id="newsDetails" class="text-justify">{{ data.detail }}</p>
+                    </div>
+        {% endfor %}
+                {% for masjidData in masjidPageData %}
+                    <div id="sectionOfMasjid">
+                        <div class="text-center"><h2 id="logoColor"> {{ masjidData.secondHeading }} </h2></div>
+                        <div class="text-center"><h2 id="logoColor"> {{ masjidData.donorInfluence }} </h2></div>
+
+                        <div class="col-md-2 col-sm-0 col-xs-0 col-lg-2"></div>
+                        {% for images in imagesOfInfluencer %}
+                            <div class="col-md-4 col-sm-6 col-xs-6 col-lg-4 text-center">
+                                <div><img src="/static/{{ images.donorInfluenceImage }}" alt=""
+                                          style="width: 150px; height: 150px;"></div>
+                                <div><p class="text-justify forPadding"
+                                        id="newsDetails"> {{ images.donorInfluenceDetails }} </p></div>
+                            </div>
+                        {% endfor %}
+                        <div class="col-md-2 col-sm-0 col-xs-0 col-lg-2"></div>
+
+                    </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+        {# END OF CONTAINER: #}
+    </section>
+
+    {# VIDEO SECTION: #}
+    <section id="bgLightGray" class="forMargin">
+        <div>
+            <div class="container">
+                {% for masjidData in masjidPageData %}
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+                        <div><h3 class="text-justify" id="logoColor"> {{ masjidData.sideHeadingOfVideo }} </h3></div>
+                        <div>
+                            <p class="text-justify" id="newsDetails">{{ masjidData.sideDetailOfVideo }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-6">
+                        <video controls>
+                            <source src="/static/{{ masjidData.sideVideo }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    {# END VIDEO SECTION: #}
+
+    {# FLAG SECTION: #}
+    <section id="sectionOfMasjid">
+        <div class="container">
+
+            <div class="forPadding">
+                <h2 class="text-center" id="logoColor">{% trans "Countries We Support" %}</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" id="flagsDiv">
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-6">
+                        <div>
+                            <img src="/static/uploads/flagOfKuwait.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        {# END OF CONTAINER: #}
+    </section>
+    {# END FLAG SECTION: #}
+
+{% endblock %}

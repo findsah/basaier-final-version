@@ -1,0 +1,69 @@
+/* -----------------------------------
+** Donate
+-------------------------------------*/
+.input-group--border-radius{
+    .input-group__input{
+        background: #f3f3f3;
+        border-color: #f3f3f3;
+        border-radius: 20px !important;
+        box-shadow: none;
+        height: 41px;
+        padding-left: 30px;
+    }
+}
+.donate-page-form{
+    .input-group{
+        .input-group__select{
+            background: #f3f3f3;
+            border-color: #f3f3f3;
+            border-radius: 20px !important;
+            box-shadow: none;
+            height: 41px;
+            padding-left: 30px;
+        }
+    }
+    .donate-detail-form .input-group__input{
+        background: #f3f3f3;
+        border-color: #f3f3f3;
+        border-radius: 7px;
+        box-shadow: none;
+        height: 41px;
+        padding-left: 30px;
+    }
+    .input-group__radio-wrap{
+        padding-bottom: 6px;
+    }
+    .input-group__textarea{
+        background: #f3f3f3;
+        border-color: #f3f3f3;
+        border-radius: 7px !important;
+        min-height: 185px;
+        padding-top: 15px;
+        padding-left: 25px;
+        box-shadow: none;
+    }
+    .select2-container .select2-selection--single{
+        background: #f3f3f3;
+        border-color: #f3f3f3;
+        border-radius: 20px !important;
+        box-shadow: none;
+        height: 41px;
+        padding-left: 15px;
+    }
+    .select2-container{
+        &:focus{
+            outline: none !important;
+        }
+        *{
+            &:focus{
+                outline: none !important;
+            }
+        }
+    }
+    input[type=checkbox]{
+        margin-top: 0;
+    }
+}
+/* -----------------------------------
+** End Donate
+-------------------------------------*/

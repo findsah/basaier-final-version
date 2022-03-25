@@ -1,0 +1,114 @@
+/* -----------------------------------
+** Footer
+-------------------------------------*/
+.main-footer{
+    // background: url('../images/footer/footer-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    &:before{
+        position: absolute;
+        width:100%;
+        height: 100%;
+        left:0;
+        top:0;
+        content: '';
+        background: rgba(0,0,0,0.9);
+    }
+    &__top{
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+.footer-logo{
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.newsletter-form{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    &__input{
+        height: 41px;
+        border:1px solid $base;
+        border-radius: 5px 0 0 5px;
+        background: transparent;
+        padding-left: 20px;
+    }
+    &__submit{
+        width: 100px;
+        min-width: 100px;
+        border-radius: 0 5px 5px 0;
+        font-weight: 500;
+    }
+}
+.copyright-area{
+    background: #2c2c2c;
+}
+.widget--footer{
+    @include breakpoint(max_sm){
+        text-align: center;
+        .widget__heading:after,.widget__title:before, .widget__title:after{
+            margin-left: auto;
+            margin-right: auto;
+            left:0;
+            right: 0;
+        }
+        .widget__text-content > ul > li:before{
+            //display: none;
+        }
+        .widget__text-content{
+            display: inline-block;
+        }
+    }
+}
+.widget--contact{
+    @include breakpoint(max_sm){
+        .contact-way{
+            //display: inline-block;
+        }
+    }
+}
+.footer-menu{
+    float: right;
+    padding: 5px 0 5px 0;
+    @include breakpoint(max_sm){
+        float: none;
+    }
+    li{
+        display: inline-block;
+        position: relative;
+        padding-bottom:5px;
+        @include breakpoint(max_lg){
+            padding-left: 8px;
+            padding-right: 8px;
+            font-size: 13px;
+            &:first-child{
+                padding-left: 0;
+            }
+            &:last-child{
+                padding-right: 0;
+            }
+        }
+        &:before{
+            content: '|';
+            padding-left: 22px;
+            padding-right: 22px;
+            @include breakpoint(max_lg){
+                display: none;
+            }
+
+        }
+        &:first-child{
+            &:before{
+                display: none;
+            }
+        }
+    }
+}
+/* -----------------------------------
+** End Feature
+-------------------------------------*/

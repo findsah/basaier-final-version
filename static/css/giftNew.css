@@ -1,0 +1,257 @@
+#topPullOnTop {
+    position: absolute;
+    top: 26%;
+    left: 45%;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+@media(max-width: 768px){
+    #topPullOnTop {
+        top: 12%;
+        left: 47%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 414px){
+    #topPullOnTop {
+        top: -20%;
+        left: 43%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 411px){
+    #topPullOnTop {
+        top: -10%;
+        left: 45%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 375px){
+    #topPullOnTop {
+        top: -25%;
+        left: 44%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 360px){
+    #topPullOnTop {
+        top: -25%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 320px){
+    #topPullOnTop {
+        top: -35%;
+        left: 48%;
+    }
+    #topPullOnTop > h1 {
+        font-size: 20px;
+    }
+}
+#team .card {
+    border: none;
+}
+
+.frontside .card .card-body img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* border: 3px solid #939a9c; */
+}
+.teamHr1 {
+    position: absolute;
+    border: 1px solid #939a9c;
+    z-index: -1;
+    width: 60%;
+    margin-left: 11%;
+    margin-top: 75px;
+    font-weight: bold;
+}
+@media (max-width: 766px) {
+    .teamHr1 {
+        display: none;
+    }
+}
+.orphan-filters {
+    margin: auto;
+    width: 70%;
+    padding: 20px 0;
+    background-color: #8EC56F;
+    /*margin-top: 60px;*/
+    border-radius: 6px;
+}
+.filters {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #8e9696;
+}
+.filters-days {
+    width: 23%;
+    outline: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #8e9696;
+    margin-bottom: 3%;
+}
+
+.card-box {
+    background: #f3eeee;
+    border-radius: 8px 8px 25px 25px;
+    position: relative;
+    margin-bottom: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px 0px #ccc;
+}
+
+.card-title h2 {
+    padding-top: 5%;
+    padding-right: 5%;
+    color: #8e9696;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-align: right;
+}
+.card-body1 {
+    color: #707070;
+    background-color: #DAD6DD;
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 15px;
+}
+.card-body2 {
+    color: #707070;
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 15px;
+}
+.card-footer > .card-btn {
+    width: 28%;
+    height: 34px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin: 10px 0 25px 8px;
+}
+
+.section3BgGrey {
+    background-color: #EEE8E8;
+    padding: 30px 0;
+}
+
+.innerDivOfGift {
+    height: auto;
+    background-color: #F7F7F7;
+    -webkit-box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68); 
+    box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-bottom: 3%;
+}
+/*@media(max-width: 1024px){*/
+/*    .innerDivOfGift {*/
+/*        height: auto;*/
+/*    }*/
+/*}*/
+
+/*@media(max-width: 412px){*/
+/*    .innerDivOfGift {*/
+/*        height: auto;*/
+/*    }*/
+/*}*/
+
+.innerDivOfGift > .imgDiv > img {
+    margin-top: 5%;
+}
+
+.innerDivOfGift > .formDiv {
+    margin-top: 15%;
+}
+
+.innerDivOfGift > .formDiv > form > .form-group > .inputField {
+    width: 70% !important;
+    margin-bottom: 3%;
+    height: 34px;
+    border: 2px solid #4E5281;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.innerDivOfGift > .formDiv > form > .form-group > .form-group > .inputWithInsideIcon {
+    width: 70% !important;
+    margin-bottom: 3%;
+    height: 34px;
+    border: 2px solid #4E5281;
+    border-radius: 10px;
+    background-color: transparent;
+    position: relative;
+}
+
+.innerDivOfGift > .formDiv > form > .form-group > .form-group > .thatInsideIcon{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 30%;
+    margin-top: 2%;
+}
+
+.section4 {
+    padding: 30px 0;
+}
+
+.innerDivOfSection4 {
+    height: auto;
+    background-color: #F7F7F7;
+    -webkit-box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68); 
+    box-shadow: 1px 6px 12px 0px rgba(0,0,0,0.68);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-bottom: 3%;
+}
+
+.innerDivOfSection4 > .imgDiv > img{
+    margin-top: 5%;
+}
+
+.innerDivOfSection4 > .divButton > a {
+    background-color: #4E5281;
+    color: white;
+    margin-bottom: 3%;
+}
+
+.innerDivOfSection4 > .divH3 > h3 {
+    padding: 0 10%;
+}

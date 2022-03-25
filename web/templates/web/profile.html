@@ -1,0 +1,116 @@
+{% extends 'web/master.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load projects_user %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+
+    <section class="blog-section section-padding ash-white-bg">
+        <div class="main-content section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row row-eq-rs-height">
+                            {% for project in projects %}
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="our-causes__text-content our-causes wow fadeInUpSmd" data-wow-duration="1.5s"
+                                         data-wow-delay=".2s"
+                                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
+                                        <div class="our-causes__image-wrap">
+                                            <img src="{% project_image_tag project request %}"
+                                                 class="our-causes__image" alt="" style="height: 275px; width: 100%; border-top-left-radius: 16px; border-top-right-radius: 15px;">
+                                            {% if project.is_target_amount %}
+                                                <div class="our-causes__percentage base-bg">
+                                                    <div class="our-causes__rised">
+                                                        {% trans "Funded" %} - <span
+                                                            style="color: white;"> {{ project |usersFund:request.user | intcomma:False }} {{ getMyCurrency }}</span>
+                                                    </div>
+                                                    <div class="our-causes__goal">
+                                                        <span class="nv-color">{% trans "Target" %} - </span>
+                                                        <span> {{ project.total_amount | intcomma:False }} {{ getMyCurrency }}</span>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="text-center">
+                                            {% if project.is_target_amount %}
+                                                <div class="progress-item">
+                                                    <div class="progress-bg">
+                                                        <div id="progress-one" class="progress-rate base-bg"
+                                                             data-value="{{ project |usersFund:request.user | intcomma:False }}"
+                                                             style="width: {{ project |usersFund:request.user | intcomma:False }}%;">
+                                                        </div>
+                                                    </div>
+                                                    <span class="progress-percent">{{ project |usersFund:request.user | intcomma:False }}%</span>
+                                                </div><!--/.progress-item-->
+                                            {% endif %}
+                                            <h4 class="text-uppercase our-causes__title"><a
+                                                    href="{% url 'project-detail' project.id %}">{{ project.get_name }}</a>
+                                            </h4>
+                                            <p>{% trans "your donation is" %} {{ project |usersFund:request.user | intcomma:False }}
+                                                {{ getMyCurrency }}</p>
+                                        </div>
+                                    </div><!--/.our-causes-->
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <aside class="sidebar">
+                            <div class="widget widget--category">
+                                <div class="widget__heading">
+                                    <h4 class="widget__title">{% trans "Hello" %} {{ request.user.username }}</h4>
+                                </div>
+                                <div class="widget__text-content">
+                                    <ul>
+                                        <li><a href="{% url 'changePassword' %}"
+                                               class="pdr10">{% trans "Change Password" %}</a></li>
+
+{#                                        <li><a href="" class="pdr10">{% trans "My Donation Projects" %}</a></li>#}
+
+                                        <li><a href="{% url 'logout' %}" class="pdr10">{% trans "logout" %}</a></li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <div class="widget__heading">
+                                    <h4 class="widget__title">{% trans "Latest" %} <span
+                                            class="base-color">{% trans "Charity Projects" %}</span></h4>
+                                </div>
+                                <div class="widget__text-content">
+                                    {% for obj in latest_projects %}
+                                        <div class="widget-latest-causes">
+                                            <div class="widget-latest-causes__image-wrap">
+                                                <a href="{% url 'project-detail' obj.id %}"><img
+                                                        class="widget-latest-causes__thubnail"
+                                                        src="{{ obj.get_image_url }}" width="145" height="93"
+                                                        alt=""></a>
+                                            </div>
+                                            <div class="widget-latest-causes__text-content">
+                                                <h4 class="widget-latest-causes__title"><a
+                                                        href="{% url 'project-detail' obj.id %}">{{ obj.get_name|truncatechars:10 }}</a>
+                                                </h4>
+                                                <span class="small-text"><i
+                                                        class="fa fa-calendar base-color"></i> {{ obj.created_at | date:"M d, Y" }}</span>
+                                            </div>
+                                        </div><!--/.widget-latest-causes-->
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

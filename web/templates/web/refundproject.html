@@ -1,0 +1,155 @@
+{% extends 'web/navbardark.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 10rem;">
+    <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
+    <div class="title">
+        <h2 style="color: #1385B2; font-size: 37px;">اهداء تبرع</h2>
+        <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصه بصائر</p>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 28rem;">
+        <ol class="carousel-indicators" style="bottom: 65px !important">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row justify-content-between">
+                    <div class="col-md-5">
+                        <img class="d-block w-100" style="height: 15rem;" src="/static/images/background.png" alt="First slide">
+                    </div>
+                    <div class="col-md-6" style="font-size: 25px;">
+                        أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات
+                        يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب
+                        من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه
+                        بحاجه الي كفاله سنويه أيتام
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row justify-content-between">
+                    <div class="col-md-5">
+                        <img class="d-block w-100" style="height: 15rem;" src="/static/images/sea.png" alt="First slide">
+                    </div>
+                    <div class="col-md-6" style="font-size: 25px;">
+                        أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات
+                        يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب
+                        من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه
+                        بحاجه الي كفاله سنويه أيتام
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row justify-content-between">
+                    <div class="col-md-5">
+                        <img class="d-block w-100" style="height: 15rem;" src="/static/images/bgstyled.png" alt="First slide">
+                    </div>
+                    <div class="col-md-6" style="font-size: 25px;">
+                        أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات
+                        يعانون بعد وفاه اب من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب
+                        من ، الظروف الصعبه بحاجه الي كفاله سنويه أيتام ويتيمات يعانون بعد وفاه اب من ، الظروف الصعبه
+                        بحاجه الي كفاله سنويه أيتام
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="range">
+                <div class="field">
+                    <input type="range" min="0" max="100" value="50" steps="1">
+                </div>
+                <div class="sliderValue">
+                    <span>50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12 d-flex justify-content-between" style="font-size : 25px">
+            <div class="d-flex">
+                <span class="description">تم جمع</span>
+                <span class="price_indicator mx-2">45,555</span>
+            </div>
+            <div class="d-flex">
+                <span class="description">المتبقي</span>
+                <span class="price_indicator mx-2">30,323</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row my-5">
+        <div class="col-6 text-right">
+            <span class="donate">قيمه التبرع</span>
+        </div>
+        <div class="col-6 text-center">
+            <span class="share">تبرع بالنشر</span>
+        </div>
+    </div>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-4">
+            <div class="zakat_input d-flex justify-content-between">
+                <span for="dinar">مبلغ النقد</span>
+                <input type="text" class="input_field" placeholder="دينار كويتي">
+            </div>
+            <div class="d-flex justify-content-center my-3">
+                <button class="donate_now">تبرع الان</button>
+                <button class="add_to_cart">تبرع الان</button>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="d-flex">
+                <i class="social_icon mx-2 fa fa-twitter" aria-hidden="true"></i>
+                <i class="social_icon mx-2 fa fa-facebook-square" aria-hidden="true"></i>
+                <i class="social_icon mx-2 fa fa-instagram" aria-hidden="true"></i>
+                <i class="social_icon mx-2 fa fa-youtube-square" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="firstSection">
+        <div class="firstSectionTitle">
+            <span style="font-weight: bold;">تقارير المشروع</span>
+        </div>
+        <div class="row firstSectionCard">
+            <div class="col-md-3">
+                <div class="firstSectionCard1">
+                    <p class="firstSectionCard1P"> مشروع برد عليهم</p>
+                    <img src="./images/cardimg1.png" alt="cardimg" style="width: 100%; height: 234px;">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="firstSectionCard1">
+                    <p class="firstSectionCard1P"> مشروع برد عليهم</p>
+                    <img src="./images/cardimg2.png" alt="cardimg" style="width: 100%; height: 234px;">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="firstSectionCard1">
+                    <p class="firstSectionCard1P"> مشروع برد عليهم</p>
+                    <img src="./images/cardimg3.png" alt="cardimg" style="width: 100%; height: 234px;">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="firstSectionCard1">
+                    <p class="firstSectionCard1P"> مشروع برد عليهم</p>
+                    <img src="./images/cardimg4.png" alt="cardimg" style="width: 100%; height: 234px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

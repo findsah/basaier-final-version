@@ -1,0 +1,54 @@
+@mixin breakpoint($class) {
+    @if $class == min_llg {
+        @media (min-width: 1200px) { @content; }
+    }
+    @else if $class == max_lg {
+        @media (max-width: 1199px) { @content; }
+    }
+    @else if $class == max_md {
+        @media (max-width: 991px) { @content; }
+    }
+    @else if $class == max_sm {
+        @media (max-width: 767px) { @content; }
+    }
+    @else if $class == max_xs {
+        @media (max-width: 480px) { @content; }
+    }
+    // @else if $class == xxs {
+    //     @media (max-width: 480px) { @content; }
+    // }
+    @else if $class == min_md {
+        @media (min-width: 992px) { @content; }
+    }
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+@media (max-width: 480px) {
+    .col-xxs-12{
+        width: 100%;
+    }
+}
+@media (max-width: 991px) {
+    .row-eq-rs-height{
+        display: -webkit-flex;
+    	display: -ms-flexbox;
+    	display: flex;
+    	-webkit-flex-wrap: wrap;
+    	-ms-flex-wrap: wrap;
+    	flex-wrap: wrap;
+    	-moz-box-pack: center;
+    	-webkit-justify-content: center;
+    	-ms-flex-pack: center;
+    	justify-content: center ;
+    }
+    .text-sm-center{
+        text-align: center;
+    }
+
+}
+@media (max-width: 767px) {
+    .text-xs-center{
+        text-align: center;
+    }
+}

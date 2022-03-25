@@ -1,0 +1,12 @@
+<li>
+    <a href="{% url 'projectsOfParticularCategory' category.id %}">{{ category.get_name }}</a>
+    {% if category.has_children %}
+        <ul class="dropdown">
+            {% for child in category.children_objects %}
+                {%with category=child template_name="web/category_tree.html" %}
+                    {%include template_name%}
+                {%endwith%}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
