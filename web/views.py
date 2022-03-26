@@ -671,7 +671,7 @@ class ProjectDetail(TemplateView):
             project = get_object_or_404(Project, slug=kwargs['slug'])
         else:
             project = get_object_or_404(Project, pk=kwargs['id'])
-
+        id = kwargs['id']
         # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
         #     return redirect("/")
 
@@ -680,7 +680,8 @@ class ProjectDetail(TemplateView):
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('order')
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+            is_closed=False, is_hidden=False).order_by('order')[:6]
+        projects = Project.objects.filter(pk=id)
         cart_projects, projects_selected = get_cart(request)
         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
@@ -702,6 +703,7 @@ class ProjectDetail(TemplateView):
                        'charity_categories': charity_categories,
                        'latest_projects': latest_projects,
                        'project': project,
+                       'projects': projects,
                        'sponsorCategories': sponsorCategories,
                        'cart_projects': cart_projects,
                        'projects_selected': projects_selected,

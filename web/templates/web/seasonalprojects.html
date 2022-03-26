@@ -6,7 +6,6 @@
 {% load project_image %}
 
 {% block content %}
-
     {% if searched %}
         {% for project in searched_project %}
             <!-- <div style="margin-top: 200px;">
@@ -45,7 +44,7 @@
                                                         style="color: #fff; background-color: #1385B2;">اهداء
                                                 </button>
 
-                                                <a href="/refundproject">
+                                                <a href="{% url 'project-detail' project.id %}">
                                                     <button class="firstSectionCard2btns"
                                                             style="color: gray; background-color: #fff; border: 1px solid #1385B2;">
                                                         تفاصيل
@@ -95,11 +94,8 @@
                                     <input type="submit" class="firstSectionCard2btns addToCartProjectOfNewPageOfSeasonalProjects"
                                             style="color: #fff; background-color: #1385B2;" value="اهداء" projectId="{{ project.id }}"/>
                                     {#                                <a href="{% url 'refundproject' project.id %}">#}
-                                    <a href="#">
-                                        <button class="firstSectionCard2btns"
-                                                style="color: gray; background-color: #fff; border: 1px solid #1385B2;">
+                                    <a href="{% url 'project-detail' project.id %}" class="firstSectionCard2btns" style="color: gray; background-color: #fff; border: 1px solid #1385B2;">
                                             تفاصيل
-                                        </button>
                                     </a>
                                     <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
                                     <input type="hidden" class="project_category_id"
