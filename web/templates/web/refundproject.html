@@ -45,7 +45,8 @@
                         <div class="range">
                             <div class="field">
                                 <input type="range" min="0" max="100"
-                                       value="{{ project.fund_percent | intcomma:False }}" steps="1" style="width: 100%;">
+                                       value="{{ project.fund_percent | intcomma:False }}" steps="1"
+                                       style="width: 100%;">
                             </div>
                             <div class="sliderValue">
                                 <span>{{ project.fund_percent | intcomma:False }}%</span>
@@ -76,14 +77,14 @@
                 </div>
             </div>
             <div class="row justify-content-between align-items-center">
-                {% for project in projects %}
-                    <form>
-                    {% csrf_token %}
-                        <div class="col-4">
+                <div class="col-4">
+                    {% for project in projects %}
+                        <form>
+                            {% csrf_token %}
                             <div class="zakat_input d-flex justify-content-between">
                                 <span for="dinar">مبلغ النقد</span>
                                 <input type="number" class="input_field" name="amount[]"
-                                       id="enteredCost{{ project.id }}">
+                                       id="enteredCost{{ project.id }}" min="1">
                             </div>
                             <div class="d-flex justify-content-center my-3">
                                 {#                                <button class="donate_now">تبرع الان</button>#}
@@ -97,8 +98,8 @@
                                name="project_category_id[]"
                                value="{{ project.category.first.id }}">
                         <input type="hidden" name="project_id[]" value="{{ project.id }} ">
-                    </form>
-                {% endfor %}
+                        </form>
+                    {% endfor %}
                 <div class="col-4">
                     <div class="d-flex">
                         <i class="social_icon mx-2 fa fa-twitter" aria-hidden="true"></i>
