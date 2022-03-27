@@ -409,7 +409,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static './images/logo.png' %}" alt="">
+                <img src="{% static 'images/logo.png' %}" alt="">
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -515,13 +515,13 @@
                         </select>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/news"> اخبار ورحلات</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/happystories"> قصص السعاده</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/volunteerandspread">تطوع معنا</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'volunteer' %}">تطوع معنا</a>
                     </li>
                 </ul>
             </div>
