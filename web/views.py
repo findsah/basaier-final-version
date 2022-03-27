@@ -931,7 +931,7 @@ def icalculator(request):
 
 
 def createOwnProject(request):
-    return render(request, 'web/createOwnProject.html')
+    return render(request, 'web/createownproject.html')
 
 
 class NewsDetail(TemplateView):
