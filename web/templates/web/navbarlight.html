@@ -602,7 +602,7 @@
                                     اتصل بنا
                                 </option>
                             </a>
-                            <a class="nav-link desktop-nav color-light" href="/volunteer">
+                            <a class="nav-link desktop-nav color-light" href="{% url 'volunteer' %}">
                                 <option style="color: black;" value="/volunteer">
                                     الاسئله الشائعه
                                 </option>
@@ -620,13 +620,13 @@
                         </select>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/news"> اخبار ورحلات</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/happystories"> قصص السعاده</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="/volunteerandspread">تطوع معنا</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'volunteer' %}">تطوع معنا</a>
                     </li>
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0 col-md-7">
@@ -690,7 +690,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn" style="width: 15rem; height: 15rem;">
-                <img src="{% static './images/bgfooter.png' %}" alt="logoimg">
+                <img src="{% static 'images/bgfooter.png' %}" alt="logoimg">
             </div>
             <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn">
                 <ul style="list-style: none; text-align: right;">

@@ -883,8 +883,12 @@ class ProjectKlaDetail(TemplateView):
                        'getMyCurrency': getMyCurrency,
                        })
 
+def happyStories(request):
+    return render(request, 'web/happystories.html')
+
 
 class News(TemplateView):
+    # template_name = "web/newsPrevious.html"
     template_name = "web/news.html"
 
     def get(self, request, *args, **kwargs):
@@ -2063,7 +2067,8 @@ class ChangePasswordView(TemplateView):
 
 
 class AboutUs(TemplateView):
-    template_name = "web/about_us.html"
+    # template_name = "web/about_us.html"
+    template_name = "web/aboutus.html"
 
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -2098,7 +2103,7 @@ class AboutUs(TemplateView):
 
 
 class ContactUs(TemplateView):
-    template_name = "web/contactUs.html"
+    template_name = "web/contactUsPreviousOne.html"
 
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
@@ -2141,68 +2146,73 @@ class ContactUs(TemplateView):
                        })
 
 
-class Volunteer(TemplateView):
-    template_name = "web/volunteer.html"
+# class Volunteer(TemplateView):
+#     # template_name = "web/volunteerPreviousMaybe.html"
+#     template_name = "web/volunteer.html"
+#
+#     @method_decorator(csrf_protect)
+#     def post(self, request, *args, **kwargs):
+#         name = request.POST.get('name', '')
+#         email = request.POST.get('email', '')
+#         currentJob = request.POST.get('currentJob', '')
+#         phoneNumber = request.POST.get('phoneNumber', '')
+#         highestQualification = request.POST.get('highestQualification', '')
+#         address = request.POST.get('address', '')
+#         adminMail = settings.EMAIL_HOST_USER
+#         if email is not None and name is not None and currentJob is not None and phoneNumber is not None and highestQualification is not None and address is not None:
+#             volunteer.objects.create(
+#                 name=name,
+#                 email=email,
+#                 currentJob=currentJob,
+#                 phoneNumber=phoneNumber,
+#                 highestQualification=highestQualification,
+#                 address=address
+#             )
+#             language = get_language()
+#             if language == 'ar':
+#                 messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
+#             else:
+#                 messages.success(request, ("Message Sent Successfully...!"))
+#         # contact = Contact.objects.create(
+#         #     name=name, email=email,
+#         #     subject=subject, message=currentJob
+#         # )
+#         send_mail(email, address, adminMail, [adminMail, ])
+#         return render(request, self.template_name)
+#
+#     def get(self, request, *args, **kwargs):
+#         cart = Cart(request)
+#         totalProjectsInCart = cart.get_total_products()
+#         # getMyCurrency = getCurrency(request)
+#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+#         sliders = Slider.objects.all().order_by('-id')[:5]
+#         news = PRNews.objects.all().order_by('-id')[:6]
+#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
+#         categories = PRCategory.objects.all().order_by('order')
+#         sponsorCategories = sponsorship.objects.all()
+#         charity_categories = Category.objects.filter(
+#             inMenu=True, parent=None).order_by('order')
+#         cart_projects, projects_selected = get_cart(request)
+#         return render(request, self.template_name,
+#                       {'sliders': sliders,
+#                        'categories': categories,
+#                        'charity_categories': charity_categories,
+#                        'news': news,
+#                        'sponsorCategories': sponsorCategories,
+#                        'science_news': science_news,
+#                        'cart_projects': cart_projects,
+#                        'projects_selected': projects_selected,
+#                        'totalProjectsInCart': totalProjectsInCart,
+#                        'getMyCurrency': getMyCurrency,
+#                        })
 
-    @method_decorator(csrf_protect)
-    def post(self, request, *args, **kwargs):
-        name = request.POST.get('name', '')
-        email = request.POST.get('email', '')
-        currentJob = request.POST.get('currentJob', '')
-        phoneNumber = request.POST.get('phoneNumber', '')
-        highestQualification = request.POST.get('highestQualification', '')
-        address = request.POST.get('address', '')
-        adminMail = settings.EMAIL_HOST_USER
-        if email is not None and name is not None and currentJob is not None and phoneNumber is not None and highestQualification is not None and address is not None:
-            volunteer.objects.create(
-                name=name,
-                email=email,
-                currentJob=currentJob,
-                phoneNumber=phoneNumber,
-                highestQualification=highestQualification,
-                address=address
-            )
-            language = get_language()
-            if language == 'ar':
-                messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
-            else:
-                messages.success(request, ("Message Sent Successfully...!"))
-        # contact = Contact.objects.create(
-        #     name=name, email=email,
-        #     subject=subject, message=currentJob
-        # )
-        send_mail(email, address, adminMail, [adminMail, ])
-        return render(request, self.template_name)
-
-    def get(self, request, *args, **kwargs):
-        cart = Cart(request)
-        totalProjectsInCart = cart.get_total_products()
-        # getMyCurrency = getCurrency(request)
-        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        news = PRNews.objects.all().order_by('-id')[:6]
-        science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        cart_projects, projects_selected = get_cart(request)
-        return render(request, self.template_name,
-                      {'sliders': sliders,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'news': news,
-                       'sponsorCategories': sponsorCategories,
-                       'science_news': science_news,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       })
+def volunteerNew(request):
+    return render(request, 'web/volunteer.html')
 
 
 class Partner(TemplateView):
-    template_name = "web/partner.html"
+    # template_name = "web/partner.html"
+    template_name = "web/bepartner.html"
 
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):

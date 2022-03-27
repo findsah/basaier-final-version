@@ -1,0 +1,92 @@
+{% extends 'web/navbarlight.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+
+<header class="masthead text-white" style="background-image: url('{% static './images/heartsun.png' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center d-none d-md-block">
+                <h3 class="my-heading">شركاؤنا </h3>
+                <p class="myp-slider text-center">لعمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية
+                    نحو</p>
+                <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
+                    الدين </p>
+                <a href="{% url 'allProjects' %}">
+                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="testimonials">
+    <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mt-4">
+                <div class="my-right-text wow fadeInUp">
+                    <h3 class="myh-class font-weight-bold" style="font-size: 25px;">
+                        الشيخ عثمان الخميس عن جمعية بصائر الخيرية
+                    </h3>
+                    <p class="myp-class">
+                        تحثنا الفطرة البشرية على نشر الخير على الدوام، إذ يولد الإنسان على فطرة حب عمل الخير ويعمل
+                        على نشره بين الناس كلما اتيحت له الفرصة .التطوع هو الجهد الذي يقوم به الإنسان لمجتمعه بدافع
+                        منه ودون انتظار مقابل
+                        "قاصداً بذلك تحمل بعض المسئوليات في مجال العمل الإنساني والاجتماعي. وتتبنى بصائر الخيرية
+                        تفعيل ونشر ثقافة العمل التطوعي لتنمية المجتمع والاستفادة من كل الجهود التطوعية، عبر تنمية
+                        .قدرات المتطوعين وتحقيق ذواتهم من خلال تدريبهم على المجالات المختلفة في العمل الخيري ،لذلك
+                        أطلقنا هذا الموقع ليكون نقطة انطلاق لاستثمار جهود المتطوعين وتحفيزهم على المشاركة الفعالة
+                        عبر المساهمة في تأسيس منظمات المجتمع المدني المك ّملة لدور مؤسسات القطاعين العمومي والخاص في
+                        الدولة لتحقيق رؤية كويت 2035
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="big-img-3">
+                    <img src="{% static 'images/qari1.png' %}" class="img-fluid">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="big-img-3">
+                    <img src="{% static 'images/qari2.png' %}" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 mt-4">
+                <div class="my-right-text wow fadeInUp">
+                    <h3 class="myh-class font-weight-bold" style="font-size: 25px;">
+                        الشيخ محمد ضاوي العصيمي عن جمعية بصائر الخيرية
+                    </h3>
+                    <p class="myp-class">
+                        تحثنا الفطرة البشرية على نشر الخير على الدوام، إذ يولد الإنسان على فطرة حب عمل الخير ويعمل
+                        على نشره بين الناس كلما اتيحت له الفرصة .التطوع هو الجهد الذي يقوم به الإنسان لمجتمعه بدافع
+                        منه ودون انتظار مقابل
+                        "قاصداً بذلك تحمل بعض المسئوليات في مجال العمل الإنساني والاجتماعي. وتتبنى بصائر الخيرية
+                        تفعيل ونشر ثقافة العمل التطوعي لتنمية المجتمع والاستفادة من كل الجهود التطوعية، عبر تنمية
+                        .قدرات المتطوعين وتحقيق ذواتهم من خلال تدريبهم على المجالات المختلفة في العمل الخيري ،لذلك
+                        أطلقنا هذا الموقع ليكون نقطة انطلاق لاستثمار جهود المتطوعين وتحفيزهم على المشاركة الفعالة
+                        عبر المساهمة في تأسيس منظمات المجتمع المدني المك ّملة لدور مؤسسات القطاعين العمومي والخاص في
+                        الدولة لتحقيق رؤية كويت 2035
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

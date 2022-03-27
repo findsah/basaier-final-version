@@ -1,97 +1,101 @@
-{% extends 'web/master.html' %}
+{% extends 'web/navbarlight.html' %}
 {% load static %}
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
+{% load project_image %}
 
 {% block content %}
-{#    <section class="blog-section section-padding ash-white-bg">#}
-    <section class="blog-section section-padding">
-        <div class="main-content section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="row row-eq-rs-height">
-                            {% for obj in news %}
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="blog-post wow fadeInUpSmd" data-wow-duration="1.5s" data-wow-delay=".2s"
-                                         style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
-                                        <div class="blog-post__thumbnail-wrap">
-                                            <img src="{{ obj.get_image_url }}" alt="blog"
-                                                 style="height: 250px; width: 100%;">
 
-                                        </div>
-                                        <div class="blog-post__text-content">
-                                            <h4 class="blog-post__title heading-label-four text-truncate"><a
-                                                    href="{% url 'news-detail' obj.id %}">{{ obj.get_title }}</a></h4>
-                                            <div class="blog-post__meta-info">
-                                                <span class="small-text"><i
-                                                        class="fa fa-calendar base-color"></i>{{ obj.created_at | date:"M d, Y" }}</span>
-                                            </div>
-                                            <p>{{ obj.get_content | striptags |truncatewords:10 | nbsp }} ...</p>
-                                            <a href="{% url 'news-detail' obj.id %}"
-                                               class="btn">
-{% get_current_language as LANGUAGE_CODE %}
-                            {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "اقرأ أكثر" %}
-                            {% else %}
-                                {% trans "Read More" %}
-                            {% endif %}</a>
-                                        </div>
-                                    </div><!--/.blog-post-->
-                                </div>
+<header class="masthead text-white" style="background-image: url('{% static './images/sec2img2.png'%}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="my-heading">جمعيه بصائر الخيريه</h3>
+                <p class="myp-slider text-center">لعمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية
+                    نحو</p>
+                <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
+                    الدين </p>
+                <!-- <p class="myp-slider text-center">والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
+                        وعدم </p>
+                    <p class="myp-slider text-center">التساهل الذي يؤدي لضياع</p> -->
+            </div>
+        </div>
+    </div>
+</header>
 
-                            {% endfor %}
-                        </div>
-
+<div class="container">
+    <div class="row" style="margin: 8rem 0 3rem 0;">
+        <div class="col-4">
+            <a href="{% url 'allProjects' %}">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top">
+                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
                     </div>
-                    <div class="col-md-4">
-                        <aside class="sidebar">
-                            <div class="widget widget--category">
-                                <div class="widget__heading">
-                                    <h4 class="widget__title">{% trans "News Categories" %}</h4>
-                                </div>
-                                <div class="widget__text-content">
-                                    <ul>
-                                        {% for category in categories %}
-                                            <li><a href="#" class="pdr10">{{ category.get_name }}</a><span
-                                                    class="post-count">{{ category.total_news }}</span></li>
-                                        {% endfor %}
-                                    </ul>
-
-                                </div>
-                            </div>
-                            <div class="widget">
-                                <div class="widget__heading">
-                                    <h4 class="widget__title">{% trans "Latest" %} <span
-                                            class="base-color">{% trans "News" %}</span></h4>
-                                </div>
-                                <div class="widget__text-content">
-                                    {% for obj in latest_news %}
-                                        <div class="widget-latest-causes">
-                                            <div class="widget-latest-causes__image-wrap">
-                                                <a href="{% url 'news-detail' obj.id %}"><img
-                                                        class="widget-latest-causes__thubnail"
-                                                        src="{{ obj.get_image_url }}" width="145" height="93"
-                                                        alt=""></a>
-                                            </div>
-                                            <div class="widget-latest-causes__text-content">
-                                                <h4 class="widget-latest-causes__title"><a
-                                                        href="{% url 'news-detail' obj.id %}">{{ obj.get_title }}</a>
-                                                </h4>
-                                                <span class="small-text"><i
-                                                        class="fa fa-calendar base-color"></i> {{ obj.created_at | date:"M d, Y" }}</span>
-                                            </div>
-                                        </div><!--/.widget-latest-causes-->
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </aside>
+                    <div class="card-body">
+                        <h5 class="card-title">لقاء اذاعي</h5>
+                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
+                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
                     </div>
                 </div>
-
-            </div>
-
+            </a>
         </div>
-    </section>
+        <div class="col-4">
+            <a href="{% url 'allProjects' %}">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top">
+                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">لقاء اذاعي</h5>
+                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
+                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-4">
+            <a href="{% url 'allProjects' %}">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top">
+                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">لقاء اذاعي</h5>
+                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
+                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-12 meeting_section" style="background-image: url('{% static './images/newsfamous.png'%}');">
+            <h2 class="meeting_heading">
+                خبر صحفي ولقاء حول مشروع الشهر
+            </h2>
+            <p class="meeting-text">
+                العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف
+                الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو
+                والتطرف وعدم التساهل الذي يؤدي لضياع
+            </p>
+        </div>
+    </div>
+</div>
+
+{#<div>#}
+{#    <h1>I am a Image</h1>#}
+{#    {% for img in images %}#}
+{##}
+{#    <h1>{{img.title}}</h1>#}
+{#    <img alt="image not shown" src="{{img.image.url}}" width="120" />#}
+{##}
+{#    {% endfor %}#}
+{#</div>#}
 {% endblock %}

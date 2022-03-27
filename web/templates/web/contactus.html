@@ -1,0 +1,80 @@
+{% extends 'web/navbarlight.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+
+<header class="masthead text-white" style="background-image: url('{% static 'images/laptopwork.png'%}');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center d-none d-md-block">
+                <h3 class="my-heading">تواصل معنا </h3>
+                <p class="myp-slider text-center">لعمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية
+                    نحو</p>
+                <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
+                    الدين </p>
+                <a href="{% url 'allProjects' %}">
+                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                </a>
+                <!-- <p class="myp-slider text-center">والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
+                        وعدم </p>
+                    <p class="myp-slider text-center">التساهل الذي يؤدي لضياع</p> -->
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row" style="margin: 5rem 0 10rem 0;">
+        <div class="col-md-6 text-center m-auto">
+            <div style="margin: 5rem auto; width: 50%; text-align: right;">
+                <h4>
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-envelope ml-3"></i>
+                    البريد الالكتروني
+                </h4>
+                <p style="font-size: 22px;">info@bsaaer.com</p>
+            </div>
+            <div style="margin: 5rem auto; width: 50%; text-align: right;">
+                <h4>
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i>
+                    ارقام الهواتف
+                </h4>
+                <p style="font-size: 22px;">+002011 55 069 604</p>
+            </div>
+            <div style="margin: 5rem auto; width: 50%; text-align: right;">
+                <h4>
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-joomla ml-3"></i>
+                    التواصل الاجتماعي
+                </h4>
+                <div style="display: flex;">
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-vimeo ml-3"></i>
+                    <i style="font-size: 25px; color: #1385B2; margin: 0 1rem;" class="fa fa-twitter ml-3"></i>
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-facebook ml-3"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="margin: 2rem;">
+                <h5 style="margin-bottom: 2rem; display: flex; align-items: center;">
+                    <i style="font-size: 25px; color: #1385B2; margin-left: 1rem;"
+                        class="fa fa-map-marker ml-3"></i>موقع جمعية بصائر
+                    الخيرية - الفردوس
+                </h5>
+                <img src="{% static 'images/map.png' %}" style="width: 100%;" alt="mapimg">
+            </div>
+            <div style="margin: 2rem;">
+                <h5 style="margin-bottom: 2rem; display: flex; align-items: center;">
+                    <i style="font-size: 25px; color: #1385B2; margin-left: 1rem;"
+                        class="fa fa-map-marker ml-3"></i>موقع جمعية بصائر
+                    الخيرية - الفردوس
+                </h5>
+                <img src="{% static 'images/map.png' %}" style="width: 100%;" alt="mapimg">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
