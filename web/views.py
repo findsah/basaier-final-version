@@ -37,7 +37,7 @@ from news.models import Slider, PRNews, PRCategory, \
 from people.models import Contact
 from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
-    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner
+    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF
 from web.models import boardOfDirectories, influencerImages
 from .tokens import account_activation_token
 
@@ -682,6 +682,7 @@ class ProjectDetail(TemplateView):
         latest_projects = Project.objects.filter(
             is_closed=False, is_hidden=False).order_by('order')[:6]
         projects = Project.objects.filter(pk=id)
+        pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         cart_projects, projects_selected = get_cart(request)
         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
@@ -704,6 +705,7 @@ class ProjectDetail(TemplateView):
                        'latest_projects': latest_projects,
                        'project': project,
                        'projects': projects,
+                       'pdfFiles': pdfFiles,
                        'sponsorCategories': sponsorCategories,
                        'cart_projects': cart_projects,
                        'projects_selected': projects_selected,
@@ -771,6 +773,20 @@ class ProjectDetail(TemplateView):
                        })
 
 
+from django.http import FileResponse, Http404
+import os
+
+
+def openPdf(request, id):
+    modelId = id
+    objects = ProjectPDF.objects.filter(pk=modelId)
+    for data in objects:
+        fileName = data.file
+        print(fileName)
+    filepath = os.path.join('media', str(fileName))
+    return FileResponse(open(filepath, 'rb'), content_type='application/pdf')
+
+
 class ProjectDoaatDetail(TemplateView):
     template_name = "web/project_detail.html"
 
@@ -800,6 +816,10 @@ class ProjectDoaatDetail(TemplateView):
                        'totalProjectsInCart': totalProjectsInCart,
                        'getMyCurrency': getMyCurrency,
                        })
+
+
+def donatedDonation(request):
+    return render(request, 'web/donatedonation.html')
 
 
 class ProjectAishaDetail(TemplateView):

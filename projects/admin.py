@@ -11,7 +11,7 @@ from django.contrib import messages
 
 from .models import Category, Project, Donate, Transaction, \
     TransactionKNETMachine, TransactionCash, ProjectsDirectory, SMS, Country, Sacrifice, sponsorship, \
-    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner
+    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF
 
 config = {
     "apiKey": "553f4037184cf18490885a33458dc1cdce96b642",
@@ -349,6 +349,7 @@ admin.site.register(Sacrifice)
 admin.site.register(volunteer)
 admin.site.register(partner)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(ProjectPDF)
 admin.site.register(TransactionKNETMachine, TransactionKNETMachineAdmin)
 admin.site.register(TransactionCash, TransactionCashAdmin)
 

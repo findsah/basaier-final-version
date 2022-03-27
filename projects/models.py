@@ -431,6 +431,17 @@ def send_mail_when_project_created_by_admin(sender, instance, **kwargs):
     # sendSMS(message, fromm, to)
 
 
+class ProjectPDF(models.Model):
+    projectCategory = models.ManyToManyField(Project)
+    image = models.ImageField(upload_to='pdfImages', blank=True, null=True)
+    file = models.FileField(upload_to='pdfFiles', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "PDF File"
+        verbose_name_plural = "PDF Files"
+
+
+
 class Country(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     name_en = models.CharField(max_length=255, blank=False, null=False)
