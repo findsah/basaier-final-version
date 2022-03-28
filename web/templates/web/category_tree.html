@@ -1,5 +1,5 @@
 <li>
-    <a href="{% url 'projectsOfParticularCategory' category.id %}">{{ category.get_name }}</a>
+    <a href="{% url 'projectsOfParticularCategory' category.id %}" class="dropdown-item">{{ category.get_name }}</a>
     {% if category.has_children %}
         <ul class="dropdown">
             {% for child in category.children_objects %}

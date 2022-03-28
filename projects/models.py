@@ -399,6 +399,11 @@ class Project(models.Model):
         else:
             return None
 
+    def remaining_percent(self):
+        if self.total_amount is not None:
+            return round((self.remaining() / self.total_amount) * 100)
+        return 0.000
+
     def get_responsive_image_url(self, request):
         user_agent = request.META.get("HTTP_USER_AGENT")
         if user_agent is None:

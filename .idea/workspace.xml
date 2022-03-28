@@ -21,7 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/page10.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page10.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/category_tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/category_tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,8 +61,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\BasaierAgain\web\templates\web" />
-      <recent name="D:\BasaierAgain\static\styles" />
       <recent name="D:\BasaierAgain\static\js" />
+      <recent name="D:\BasaierAgain\static\styles" />
       <recent name="D:\BasaierAgain\static" />
     </key>
   </component>
@@ -100,7 +107,8 @@
       <workItem from="1648124916931" duration="15464000" />
       <workItem from="1648215463562" duration="8005000" />
       <workItem from="1648288795243" duration="183000" />
-      <workItem from="1648390383154" duration="8655000" />
+      <workItem from="1648390383154" duration="9808000" />
+      <workItem from="1648459286348" duration="15158000" />
     </task>
     <servers />
   </component>
@@ -117,12 +125,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648400936068">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648461893141">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648400936068" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648461893141" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1648011784663">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

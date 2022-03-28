@@ -883,6 +883,7 @@ class ProjectKlaDetail(TemplateView):
                        'getMyCurrency': getMyCurrency,
                        })
 
+
 def happyStories(request):
     return render(request, 'web/happystories.html')
 
@@ -2066,40 +2067,43 @@ class ChangePasswordView(TemplateView):
         })
 
 
-class AboutUs(TemplateView):
-    # template_name = "web/about_us.html"
-    template_name = "web/aboutus.html"
+def aboutUs(request):
+    return render(request, 'web/aboutus.html')
 
-    def get(self, request, *args, **kwargs):
-        cart = Cart(request)
-        totalProjectsInCart = cart.get_total_products()
-        # getMyCurrency = getCurrency(request)
-        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        news = PRNews.objects.all().order_by('-id')[:6]
-        science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        boardOfDirectory = boardOfDirectories.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
-        project_dirctories = ProjectsDirectory.objects.all()
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
 
-        cart_projects, projects_selected = get_cart(request)
-        return render(request, self.template_name,
-                      {'sliders': sliders,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'news': news,
-                       'sponsorCategories': sponsorCategories,
-                       'boardOfDirectory': boardOfDirectory,
-                       'project_dirctories': project_dirctories,
-                       'science_news': science_news,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       })
+# class AboutUs(TemplateView):
+#     # template_name = "web/about_us.html"
+#
+#     def get(self, request, *args, **kwargs):
+#         cart = Cart(request)
+#         totalProjectsInCart = cart.get_total_products()
+#         # getMyCurrency = getCurrency(request)
+#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+#         sliders = Slider.objects.all().order_by('-id')[:5]
+#         news = PRNews.objects.all().order_by('-id')[:6]
+#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
+#         boardOfDirectory = boardOfDirectories.objects.all().order_by('-id')[:6]
+#         categories = PRCategory.objects.all().order_by('order')
+#         project_dirctories = ProjectsDirectory.objects.all()
+#         sponsorCategories = sponsorship.objects.all()
+#         charity_categories = Category.objects.filter(
+#             inMenu=True, parent=None).order_by('order')
+#
+#         cart_projects, projects_selected = get_cart(request)
+#         return render(request, self.template_name,
+#                       {'sliders': sliders,
+#                        'categories': categories,
+#                        'charity_categories': charity_categories,
+#                        'news': news,
+#                        'sponsorCategories': sponsorCategories,
+#                        'boardOfDirectory': boardOfDirectory,
+#                        'project_dirctories': project_dirctories,
+#                        'science_news': science_news,
+#                        'cart_projects': cart_projects,
+#                        'projects_selected': projects_selected,
+#                        'totalProjectsInCart': totalProjectsInCart,
+#                        'getMyCurrency': getMyCurrency,
+#                        })
 
 
 class ContactUs(TemplateView):
@@ -2210,67 +2214,74 @@ def volunteerNew(request):
     return render(request, 'web/volunteer.html')
 
 
-class Partner(TemplateView):
-    # template_name = "web/partner.html"
-    template_name = "web/bepartner.html"
+def ourPartners(request):
+    return render(request, 'web/ourpartners.html')
 
-    @method_decorator(csrf_protect)
-    def post(self, request, *args, **kwargs):
-        organizationName = request.POST.get('organizationName', '')
-        country = request.POST.get('country', '')
-        email = request.POST.get('email', '')
-        domainOfWork = request.POST.get('domainOfWork', '')
-        website = request.POST.get('website', '')
-        phoneNumber = request.POST.get('phoneNumber', '')
-        address = request.POST.get('address', '')
-        adminMail = settings.EMAIL_HOST_USER
-        if organizationName is not None and country is not None and email is not None and website is not None and domainOfWork is not None and phoneNumber is not None and address is not None:
-            partner.objects.create(
-                organizationName=organizationName,
-                country=country,
-                email=email,
-                domainOfWork=domainOfWork,
-                website=website,
-                phoneNumber=phoneNumber,
-                address=address,
-            )
-            language = get_language()
-            if language == 'ar':
-                messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
-            else:
-                messages.success(request, ("Message Sent Successfully...!"))
-        # contact = Contact.objects.create(
-        #     name=name, email=email,
-        #     subject=subject, message=message
-        # )
-        send_mail(email, website, adminMail, [adminMail, ])
-        return render(request, self.template_name)
 
-    def get(self, request, *args, **kwargs):
-        cart = Cart(request)
-        totalProjectsInCart = cart.get_total_products()
-        # getMyCurrency = getCurrency(request)
-        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        news = PRNews.objects.all().order_by('-id')[:6]
-        science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        cart_projects, projects_selected = get_cart(request)
-        return render(request, self.template_name,
-                      {'sliders': sliders,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'news': news,
-                       'sponsorCategories': sponsorCategories,
-                       'science_news': science_news,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       })
+# class Partner(TemplateView):
+#     # template_name = "web/partner.html"
+#
+#     @method_decorator(csrf_protect)
+#     def post(self, request, *args, **kwargs):
+#         organizationName = request.POST.get('organizationName', '')
+#         country = request.POST.get('country', '')
+#         email = request.POST.get('email', '')
+#         domainOfWork = request.POST.get('domainOfWork', '')
+#         website = request.POST.get('website', '')
+#         phoneNumber = request.POST.get('phoneNumber', '')
+#         address = request.POST.get('address', '')
+#         adminMail = settings.EMAIL_HOST_USER
+#         if organizationName is not None and country is not None and email is not None and website is not None and domainOfWork is not None and phoneNumber is not None and address is not None:
+#             partner.objects.create(
+#                 organizationName=organizationName,
+#                 country=country,
+#                 email=email,
+#                 domainOfWork=domainOfWork,
+#                 website=website,
+#                 phoneNumber=phoneNumber,
+#                 address=address,
+#             )
+#             language = get_language()
+#             if language == 'ar':
+#                 messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
+#             else:
+#                 messages.success(request, ("Message Sent Successfully...!"))
+#         # contact = Contact.objects.create(
+#         #     name=name, email=email,
+#         #     subject=subject, message=message
+#         # )
+#         send_mail(email, website, adminMail, [adminMail, ])
+#         return render(request, self.template_name)
+#
+#     def get(self, request, *args, **kwargs):
+#         cart = Cart(request)
+#         totalProjectsInCart = cart.get_total_products()
+#         # getMyCurrency = getCurrency(request)
+#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+#         sliders = Slider.objects.all().order_by('-id')[:5]
+#         news = PRNews.objects.all().order_by('-id')[:6]
+#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
+#         categories = PRCategory.objects.all().order_by('order')
+#         sponsorCategories = sponsorship.objects.all()
+#         charity_categories = Category.objects.filter(
+#             inMenu=True, parent=None).order_by('order')
+#         cart_projects, projects_selected = get_cart(request)
+#         return render(request, self.template_name,
+#                       {'sliders': sliders,
+#                        'categories': categories,
+#                        'charity_categories': charity_categories,
+#                        'news': news,
+#                        'sponsorCategories': sponsorCategories,
+#                        'science_news': science_news,
+#                        'cart_projects': cart_projects,
+#                        'projects_selected': projects_selected,
+#                        'totalProjectsInCart': totalProjectsInCart,
+#                        'getMyCurrency': getMyCurrency,
+#                        })
+
+
+def Partner(request):
+    return render(request, 'web/bepartner.html')
 
 
 class CreatePeople(View):

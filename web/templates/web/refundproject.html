@@ -7,6 +7,36 @@
 
 {% block content %}
 
+    <style type="text/css">
+        .circle {
+            width: 4%;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1385B2;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+            position: absolute;
+            top: -7px;
+        }
+
+        .hrMain {
+            display: flex;
+        }
+
+        .hr1 {
+            height: 6px !important;
+            background-color: #1385B2;
+        }
+
+        .hr2 {
+            height: 6px !important;
+            background-color: gray;
+        }
+    </style>
+
     <div class="container" style="margin-top: 10rem;">
         <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
         <div class="title">
@@ -41,16 +71,23 @@
         <div class="container my-5">
             {% for project in projects %}
                 <div class="row">
-                    <div class="col-12">
-                        <div class="range">
-                            <div class="field">
-                                <input type="range" min="0" max="100"
-                                       value="{{ project.fund_percent | intcomma:False }}" steps="1"
-                                       style="width: 100%;">
-                            </div>
-                            <div class="sliderValue">
-                                <span>{{ project.fund_percent | intcomma:False }}%</span>
-                            </div>
+                    <div class="col-12" style="position: relative;">
+                        {#                        <div class="range">#}
+                        {#                            <div class="field">#}
+                        {#                                <input type="range" min="0" max="100"#}
+                        {#                                       value="{{ project.fund_percent | intcomma:False }}" steps="1"#}
+                        {#                                       style="width: 100%;">#}
+                        {#                            </div>#}
+                        {#                            <div class="sliderValue">#}
+                        {#                                <span>{{ project.fund_percent | intcomma:False }}%</span>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        <div class="circle"
+                             style="right: {{ project.fund_percent | intcomma:False }}%;">{{ project.fund_percent | intcomma:False }}%
+                        </div>
+                        <div class="hrMain">
+                            <hr class="hr1" style="width: {{ project.fund_percent | intcomma:False }}%;"/>
+                            <hr class="hr2" style="width: {{ project.remaining_percent }}%;"/>
                         </div>
                     </div>
                 </div>
@@ -83,14 +120,23 @@
                             {% csrf_token %}
                             <div class="zakat_input d-flex justify-content-between">
                                 <span for="dinar">مبلغ النقد</span>
-                                <input type="number" class="input_field" name="amount[]"
+                                <input type="number" name="amount[]"
                                        id="enteredCost{{ project.id }}" min="1">
                             </div>
-                            <div class="d-flex justify-content-center my-3">
+                            <div class="justify-content-center my-3">
                                 {#                                <button class="donate_now">تبرع الان</button>#}
                                 <input type="submit" class="donate_now addToCartProjectOfNewPageOfSeasonalProjects"
-                                       style="color: #fff; background-color: #1385B2;" value="اهداء"
+                                       style="color: #fff; background-color: #1385B2; width: 100%; border-radius: 10px; height: 3rem; font-size: 25px;"
+                                       value="اهداء"
                                        projectId="{{ project.id }}"/>
+                            </div>
+
+                            <div class="d-flex justify-content-between my-3">
+                                <a class="donate_now" href="{% url 'allProjects' %}"
+                                   style="background-color: lightgray; color: black; text-decoration: none;">تبرع
+                                    الان</a>
+                                <input type="submit" class="add_to_cart addToCartProjectOfNewPageOfSeasonalProjects"
+                                       value="تبرع الان" projectId="{{ project.id }}"/>
                             </div>
                         </div>
                         <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
@@ -117,8 +163,8 @@
                     {% for data in pdfFiles %}
                         <div class="col-md-3">
                             <div class="firstSectionCard1">
-                                {% for project in pdfFiles.projectCategory.all %}
-                                    <p class="firstSectionCard1P"> {{ project.get_name }}</p>
+                                {% for project in pdfFiles %}
+                                    <p class="firstSectionCard1P"> {{ project.projectCategory.first.name }}</p>
                                 {% endfor %}
                                 <a href="{% url 'openPdf' data.id %}">
                                     <img src="/media/{{ data.image }}" alt="{{ data.image }}"
