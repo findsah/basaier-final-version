@@ -3303,7 +3303,7 @@ def allProjects(request):
 
     current_user = request.user.id
     userIdsFromDonateTable = Donate.objects.all().order_by('-id')
-    projects = Project.objects.filter(is_compaign=False).order_by('-id')
+    projects = Project.objects.filter(is_compaign=False, is_thawab=False).order_by('-id')
     # I'M CHANGING THE ALL allProjects.html WITH seasonalprojects.html page, for new basaier design.
     return render(request, 'web/seasonalprojects.html',
                   {'sliders': sliders,
