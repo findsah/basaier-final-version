@@ -135,6 +135,7 @@ urlpatterns += i18n_patterns(
     path('thawabCompaignCategoryDetail/<int:categoryId>', views.thawabCompaignCategoryDetail, name='thawabCompaignCategoryDetail'),
     path('createCompaignOfParticularCategory/<int:categoryId>', views.createCompaignOfParticularCategory, name='createCompaignOfParticularCategory'),
     path('cart_add', views.cart_add, name='cart_add'),
+    path('cart_add_for_gift', views.cart_add_for_gift, name='cart_add_for_gift'),
     path('cart_remove/<int:id>', views.cart_remove, name='cart_remove'),
     path('cart_update/<int:id>', views.cart_update, name='cart_update'),
     path('removeAll', views.removeAll, name='removeAll'),

@@ -5012,16 +5012,39 @@ from web.cart import Cart
 
 
 # @require_POST
+def cart_add_for_gift(request):
+    cart = Cart(request)
+    if request.method == 'POST':
+        id = request.POST.get('project_id')
+        selectedAmount = request.POST.get('amount')
+        senderNameDonatedDonationPage = request.POST.get('senderNameDonatedDonationPage')
+        receiverNameDonatedDonationPage = request.POST.get('receiverNameDonatedDonationPage')
+        phoneNumberDonatedDonationPage = request.POST.get('phoneNumberDonatedDonationPage')
+        emailDonatedDonationPage = request.POST.get('emailDonatedDonationPage')
+        product = get_object_or_404(Project, id=id)
+        totalProjectsInCart = cart.get_total_products()
+        # projects = Project.objects.filter(id=id)
+        if cart != '':
+            cart.add(product=product, selectAmount=selectedAmount, quantity=1, override_quantity=False)
+            # messages.success(request, 'Cart Has Been Added Successfully...!')
+            # return render(request, 'web/add_to_cart.html', {
+            #     'totalProjectsInCart': totalProjectsInCart,
+            # })
+            # return JsonResponse({'status': 'OK'})
+            print("Countered Add Cart...!")
+            return HttpResponse('')
+    else:
+        # messages.error(request, 'Your Cart Could Not Be Added...!')
+        # return JsonResponse({'status': 'Fail'})
+        return HttpResponse('')
+
+
 def cart_add(request):
     cart = Cart(request)
     if request.method == 'POST':
-        print("Method Called")
         id = request.POST.get('project_id')
-        print(id)
         selectedAmount = request.POST.get('amount')
-        print(selectedAmount)
         product = get_object_or_404(Project, id=id)
-        print("Product", product)
         totalProjectsInCart = cart.get_total_products()
         # form = CartAddProductForm(request.POST)
         # if form.is_valid():

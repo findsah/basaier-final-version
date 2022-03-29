@@ -796,14 +796,18 @@
                 type: 'POST',
                 {% get_current_language as LANGUAGE_CODE %}
                 {% if LANGUAGE_CODE == "ar" %}
-                    url: '/ar/cart_add',
+                    url: '/ar/cart_add_for_gift',
                 {% else %}
-                    url: '/en/cart_add',
+                    url: '/en/cart_add_for_gift',
                 {% endif %}
                 async: true,
                 data: {
                     project_id: project_id,
                     amount: amount,
+                    senderNameDonatedDonationPage: senderNameDonatedDonationPage,
+                    receiverNameDonatedDonationPage: receiverNameDonatedDonationPage,
+                    phoneNumberDonatedDonationPage: phoneNumberDonatedDonationPage,
+                    emailDonatedDonationPage: emailDonatedDonationPage,
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
