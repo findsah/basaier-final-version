@@ -23,11 +23,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page10.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page10.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/category_tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/category_tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/page6.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page6.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/masjid.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/news_science_center_detail.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
@@ -108,7 +111,8 @@
       <workItem from="1648215463562" duration="8005000" />
       <workItem from="1648288795243" duration="183000" />
       <workItem from="1648390383154" duration="9808000" />
-      <workItem from="1648459286348" duration="15158000" />
+      <workItem from="1648459286348" duration="15263000" />
+      <workItem from="1648533898990" duration="10064000" />
     </task>
     <servers />
   </component>
@@ -128,6 +132,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1648537411027">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648537411027" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648461893141">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

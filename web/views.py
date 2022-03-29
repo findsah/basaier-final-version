@@ -37,7 +37,7 @@ from news.models import Slider, PRNews, PRCategory, \
 from people.models import Contact
 from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
-    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF
+    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage
 from web.models import boardOfDirectories, influencerImages
 from .tokens import account_activation_token
 
@@ -510,7 +510,7 @@ class Index(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
-                                          is_compaign=False).order_by('-id')[:3]
+                                          is_compaign=False, is_thawab=False).order_by('-id')[:3]
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
@@ -683,6 +683,9 @@ class ProjectDetail(TemplateView):
             is_closed=False, is_hidden=False).order_by('order')[:6]
         projects = Project.objects.filter(pk=id)
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
+        multipleImages = PostImage.objects.filter(post=id)
+        for data in multipleImages:
+            print(data.image)
         cart_projects, projects_selected = get_cart(request)
         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
@@ -706,6 +709,7 @@ class ProjectDetail(TemplateView):
                        'project': project,
                        'projects': projects,
                        'pdfFiles': pdfFiles,
+                       'multipleImages': multipleImages,
                        'sponsorCategories': sponsorCategories,
                        'cart_projects': cart_projects,
                        'projects_selected': projects_selected,
@@ -819,7 +823,21 @@ class ProjectDoaatDetail(TemplateView):
 
 
 def donatedDonation(request):
-    return render(request, 'web/donatedonation.html')
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('order')
+    projects = Project.objects.filter(
+        is_closed=False, is_hidden=False, is_thawab=True).order_by('-id')[:6]
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, 'web/donatedonation.html',
+                  {
+                      'charity_categories': charity_categories,
+                      'projects': projects,
+                      'cart_projects': cart_projects,
+                      'projects_selected': projects_selected,
+                      'totalProjectsInCart': totalProjectsInCart,
+                  })
 
 
 class ProjectAishaDetail(TemplateView):
@@ -996,41 +1014,6 @@ class ScienceCenter(TemplateView):
                        'categories': categories,
                        'charity_categories': charity_categories,
                        'science_categories': science_categories,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       })
-
-
-class ScienceCenterDetail(TemplateView):
-    template_name = "web/news_science_center_detail.html"
-
-    def get(self, request, *args, **kwargs):
-        cart = Cart(request)
-        totalProjectsInCart = cart.get_total_products()
-        # getMyCurrency = getCurrency(request)
-        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        obj = get_object_or_404(ScienceNews, pk=kwargs['id'])
-        news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        science_categories = ScienceCategory.objects.all().order_by('order')
-        latest_news = ScienceNews.objects.all().order_by('-id')[:6]
-
-        cart_projects, projects_selected = get_cart(request)
-        return render(request, self.template_name,
-                      {'sliders': sliders,
-                       'news': news,
-                       'latest_news': latest_news,
-                       'categories': categories,
-                       'sponsorCategories': sponsorCategories,
-                       'charity_categories': charity_categories,
-                       'science_categories': science_categories,
-                       'obj': obj,
                        'cart_projects': cart_projects,
                        'projects_selected': projects_selected,
                        'totalProjectsInCart': totalProjectsInCart,
@@ -3336,39 +3319,6 @@ def allProjects(request):
                    'project_dirctories': project_dirctories,
                    'current_user': current_user,
                    'totalProjectsInCart': totalProjectsInCart,
-                   })
-
-
-# THIS VIEW IS ACTUALLY FOR THE DETAIL OF A PROJECT, WHEN USER CLICK ON IMAGE OF THE PROJECT THEN IT TAKES TO THIS PAGE AND
-# THEN TO THE DONATE PAGE:
-def masjid(request, projectId):
-    cart = Cart(request)
-    totalProjectsInCart = cart.get_total_products()
-    # getMyCurrency = getCurrency(request)
-    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-    projects = Project.objects.filter(id=projectId, is_closed=False, is_hidden=False, is_compaign=False).order_by(
-        'order')
-    science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
-    sponsorCategories = sponsorship.objects.all()
-    charity_categories = Category.objects.filter(
-        inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
-    # topPageImages = topImages.objects.all()
-    # masjidPageData = masjidPageDetails.objects.all()
-    imagesOfInfluencer = influencerImages.objects.all().order_by('-id')
-
-    return render(request, 'web/masjid.html',
-                  {'projects': projects,
-                   'categories': categories,
-                   'charity_categories': charity_categories,
-                   'sponsorCategories': sponsorCategories,
-                   'science_news': science_news,
-                   # 'topPageImages': topPageImages,
-                   # 'masjidPageData': masjidPageData,
-                   'imagesOfInfluencer': imagesOfInfluencer,
-                   'totalProjectsInCart': totalProjectsInCart,
-                   'getMyCurrency': getMyCurrency,
                    })
 
 

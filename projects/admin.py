@@ -11,7 +11,7 @@ from django.contrib import messages
 
 from .models import Category, Project, Donate, Transaction, \
     TransactionKNETMachine, TransactionCash, ProjectsDirectory, SMS, Country, Sacrifice, sponsorship, \
-    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF
+    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage
 
 config = {
     "apiKey": "553f4037184cf18490885a33458dc1cdce96b642",
@@ -311,7 +311,12 @@ class TransactionCashAdmin(admin.ModelAdmin):
 # @admin.register(Project)
 # class ProjectAdmin(ImportExportModelAdmin):
 #     pass
+class PostImageAdmin(admin.StackedInline):
+    model = PostImage
+
+
 class ProjectAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
+    inlines = [PostImageAdmin]
     list_display = (
         '__str__', 'total_amount', 'active_compaign', 'is_hidden', 'total_funded', 'total_efunded', "total_efunded_per_category",
         'is_closed',
@@ -329,7 +334,13 @@ class ProjectAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     search_fields = ['name', 'nameEn']
     readonly_fields = ('created_at', 'created_by',)
 
+    class Meta:
+        model = Project
 
+
+@admin.register(PostImage)
+class PostImageAdmin(admin.ModelAdmin):
+    pass
 # limitCount = CompaignCategory.projectsLimit
 #
 #

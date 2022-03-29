@@ -530,55 +530,55 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                       data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
-                        Explore Us
-                    </a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
+                            Explore Us
+                        </a>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                من نحن
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'aboutUs' %}">
-                                قالو عنا
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'partner' %}">
-                                كن شريكا
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'ourPartners' %}">
-                                شركاؤنا
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'contactUs' %}">
-                                اتصل بنا
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'volunteer' %}">
-                                الاسئله الشائعه
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'joinchat' %}">
-                                مساعدك الشخصي
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                اللجان التابعه
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    من نحن
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'aboutUs' %}">
+                                    قالو عنا
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'partner' %}">
+                                    كن شريكا
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'ourPartners' %}">
+                                    شركاؤنا
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'contactUs' %}">
+                                    اتصل بنا
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'volunteer' %}">
+                                    الاسئله الشائعه
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'joinchat' %}">
+                                    مساعدك الشخصي
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    اللجان التابعه
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-dark" href="{% url 'news' %}"> اخبار ورحلات</a>
@@ -758,6 +758,70 @@
     });
 </script>
 {# END ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+
+{# ADD TO CART DONATED_DONATION PAGE: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartProjectOfNewPageOfDonatedDonationPage').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        var senderNameDonatedDonationPage = document.getElementById('senderNameDonatedDonationPage').value;
+        var receiverNameDonatedDonationPage = document.getElementById('receiverNameDonatedDonationPage').value;
+        var phoneNumberDonatedDonationPage = document.getElementById('phoneNumberDonatedDonationPage').value;
+        var emailDonatedDonationPage = document.getElementById('emailDonatedDonationPage').value;
+        {#console.log({project_id, amount});#}
+        console.log(senderNameDonatedDonationPage, receiverNameDonatedDonationPage);
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else if (senderNameDonatedDonationPage === '') {
+            alert('Please Provide The Sender Name');
+            document.getElementById('senderNameDonatedDonationPage').focus();
+        } else if (receiverNameDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Name');
+            document.getElementById('receiverNameDonatedDonationPage').focus();
+        } else if (phoneNumberDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Phone Number');
+            document.getElementById('phoneNumberDonatedDonationPage').focus();
+        } else if (emailDonatedDonationPage === '') {
+            alert('Please Provide The Email');
+            document.getElementById('emailDonatedDonationPage').focus();
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART DONATED_DONATION PAGE: #}
+
 
 <script src="/static/js/indexNew.js"></script>
 

@@ -51,19 +51,31 @@
             </ol>
             <div class="carousel-inner">
                 {% for project in projects %}
-                    <div {% if forloop.first %} class="carousel-item active header2" {% else %}
-                                                class="carousel-item header2" {% endif %}>
-                    <div class="row justify-content-between">
-                        <div class="col-md-5">
-                            <img class="d-block w-100" style="height: 15rem;"
-                                 src="{% project_image_tag project request %}" alt="{{ project.get_name }}">
-                        </div>
-                        <div class="col-md-6" style="font-size: 25px;">
-                            {{ project.get_detail }}
+                    <div class="carousel-item active header2">
+                        <div class="row justify-content-between">
+                            <div class="col-md-5">
+                                <img class="d-block w-100" style="height: 15rem;"
+                                     src="{% project_image_tag project request %}" alt="{{ project.get_name }}">
+                            </div>
+                            <div class="col-md-6" style="font-size: 25px;">
+                                {{ project.get_detail }}
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
-                </div>
+            {% for images in multipleImages %}
+                    <div class="carousel-item header2">
+                        <div class="row justify-content-between">
+                            <div class="col-md-5">
+                                <img class="d-block w-100" style="height: 15rem;"
+                                     src="/media/{{ images.image }}">
+                            </div>
+                            <div class="col-md-6" style="font-size: 25px;">
+{#                                {{ project.get_detail }}#}
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
             </div>
         </div>
 

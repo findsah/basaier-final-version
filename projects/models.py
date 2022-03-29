@@ -82,10 +82,6 @@ class Project(models.Model):
         default=NO,
         choices=YES_NO_CHOICES)
     deduction = models.BooleanField(default=False)
-    image = models.ImageField(
-        upload_to='projects/%Y/%m/%d', blank=True, null=True)
-    image_small = models.ImageField(
-        upload_to='projects_small/%Y/%m/%d', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ManyToManyField(Category)
@@ -287,7 +283,7 @@ class Project(models.Model):
         ("Zimbabwe", "Zimbabwe")
     )
     location = models.CharField(max_length=255, choices=COUNTRY_CHOICES, null=False, default='Kuwait')
-    countryFlag = models.ImageField(upload_to='countryFlags', blank=True, null=True)
+    # countryFlag = models.ImageField(upload_to='countryFlags', blank=True, null=True)
     normal_email = models.EmailField(blank=True, null=True)
     order = models.IntegerField(default=0)
     isZakat = models.BooleanField(default=False)
@@ -303,6 +299,8 @@ class Project(models.Model):
     donater_name = models.CharField(max_length=255, blank=True, null=True)
     donater_phone = models.CharField(max_length=255, blank=True, null=True)
     created_by = models.IntegerField(null=True)
+    image = models.ImageField(
+        upload_to='projects/%Y/%m/%d', blank=True, null=True)
 
     def get_name(self):
         if django.utils.translation.get_language() == 'en':
@@ -376,14 +374,6 @@ class Project(models.Model):
         else:
             return ""
 
-    def get_image_small_url(self):
-        if self.image_small and hasattr(
-                self.image_small, 'url'
-        ):
-            return self.image_small.url
-        else:
-            return ""
-
     def has_reached_target(self):
         if not self.is_target_amount():
             return False
@@ -409,7 +399,7 @@ class Project(models.Model):
         if user_agent is None:
             return self.get_image_url()
         if request.user_agent.is_mobile:
-            return self.get_image_small_url()
+            return self.get_image_url()
         return self.get_image_url()
 
     class Meta:
@@ -434,6 +424,14 @@ def send_mail_when_project_created_by_admin(sender, instance, **kwargs):
     # fromm = '+96590900055'
     # to = recieversMblNumbers
     # sendSMS(message, fromm, to)
+
+
+class PostImage(models.Model):
+    post = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='projects/%Y/%m/%d')
+
+    def __str__(self):
+        return self.post.name
 
 
 class ProjectPDF(models.Model):
