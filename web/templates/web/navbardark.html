@@ -781,16 +781,16 @@
             alert('Please Select The Project');
         } else if (senderNameDonatedDonationPage === '') {
             alert('Please Provide The Sender Name');
-            document.getElementById('senderNameDonatedDonationPage').focus();
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (receiverNameDonatedDonationPage === '') {
             alert('Please Provide The Receiver Name');
-            document.getElementById('receiverNameDonatedDonationPage').focus();
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (phoneNumberDonatedDonationPage === '') {
             alert('Please Provide The Receiver Phone Number');
-            document.getElementById('phoneNumberDonatedDonationPage').focus();
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (emailDonatedDonationPage === '') {
             alert('Please Provide The Email');
-            document.getElementById('emailDonatedDonationPage').focus();
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else {
             $.ajax({
                 type: 'POST',

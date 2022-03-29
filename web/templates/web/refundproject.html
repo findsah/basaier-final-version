@@ -51,7 +51,7 @@
             </ol>
             <div class="carousel-inner">
                 {% for project in projects %}
-                    <div class="carousel-item active header2">
+                    <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} header2">
                         <div class="row justify-content-between">
                             <div class="col-md-5">
                                 <img class="d-block w-100" style="height: 15rem;"
@@ -144,9 +144,8 @@
                             </div>
 
                             <div class="d-flex justify-content-between my-3">
-                                <a class="donate_now" href="{% url 'allProjects' %}"
-                                   style="background-color: lightgray; color: black; text-decoration: none;">تبرع
-                                    الان</a>
+                                <input type="submit" class="donate_now addToCartProjectOfNewPageOfSeasonalProjects"
+                                       value="تبرع الان" projectId="{{ project.id }}"/>
                                 <input type="submit" class="add_to_cart addToCartProjectOfNewPageOfSeasonalProjects"
                                        value="تبرع الان" projectId="{{ project.id }}"/>
                             </div>
