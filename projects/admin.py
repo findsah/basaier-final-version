@@ -11,7 +11,7 @@ from django.contrib import messages
 
 from .models import Category, Project, Donate, Transaction, \
     TransactionKNETMachine, TransactionCash, ProjectsDirectory, SMS, Country, Sacrifice, sponsorship, \
-    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage
+    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, giftSenderReceiver
 
 config = {
     "apiKey": "553f4037184cf18490885a33458dc1cdce96b642",
@@ -351,6 +351,9 @@ class PostImageAdmin(admin.ModelAdmin):
 #             return HttpResponseRedirect(reverse(f'admin:{self.model._meta.app_label}_about_changelist'))
 #         return super().add_view(request, form_url, extra_context)
 
+class giftSenderReceiverAdmin(admin.ModelAdmin):
+    list_display = ('sender', 'email', 'status')
+
 
 admin.site.register(SMS)
 admin.site.register(ProjectsDirectory)
@@ -361,6 +364,7 @@ admin.site.register(volunteer)
 admin.site.register(partner)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(ProjectPDF)
+admin.site.register(giftSenderReceiver, giftSenderReceiverAdmin)
 admin.site.register(TransactionKNETMachine, TransactionKNETMachineAdmin)
 admin.site.register(TransactionCash, TransactionCashAdmin)
 

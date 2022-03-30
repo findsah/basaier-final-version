@@ -37,7 +37,8 @@ from news.models import Slider, PRNews, PRCategory, \
 from people.models import Contact
 from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
-    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage
+    CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, \
+    giftSenderReceiver
 from web.models import boardOfDirectories, influencerImages
 from .tokens import account_activation_token
 
@@ -414,6 +415,15 @@ class PaymentSuccessOfCreditCard(View):
             request.session['project_ids'] = []
             cart = Cart(request)
             cart.removeAll()
+
+            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            for data in fetchProjectName:
+                projectIdFetchedFromDonationTable = data.project.id
+                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
+            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
 
             html_message = loader.render_to_string(
                 'web/email.html',
@@ -2703,6 +2713,20 @@ class PaymentSuccess(View):
             cart = Cart(request)
             cart.removeAll()
 
+            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            for data in fetchProjectName:
+                projectIdFetchedFromDonationTable = data.project.id
+                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
+            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
+
+            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            for data in fetchProjectName:
+                nameProject = data.project.name
+                request.session['projectName'] = nameProject
+
             html_message = loader.render_to_string(
                 'web/email.html',
                 {
@@ -2738,7 +2762,7 @@ class PaymentSuccess(View):
                 print("IF DONATED AS GIFT:", projectName)
                 phoneNumber = donates[0].recieverPhone
                 amount = donates[0].amount
-                print("IF DONATED AS GIFT:", phoneNumber)
+                print("IF DONATED AS GIFT PHONE NUMBER:", phoneNumber)
                 message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(projectName, amount)
                 print(message)
                 callThat = sendSMS(message, fromSender, phoneNumber)
@@ -2889,6 +2913,15 @@ class PaymentSuccessTap(View):
             request.session['project_ids'] = []
             cart = Cart(request)
             cart.removeAll()
+
+            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            for data in fetchProjectName:
+                projectIdFetchedFromDonationTable = data.project.id
+                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
+            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
 
             html_message = loader.render_to_string(
                 'web/email.html',
@@ -5021,6 +5054,18 @@ def cart_add_for_gift(request):
         receiverNameDonatedDonationPage = request.POST.get('receiverNameDonatedDonationPage')
         phoneNumberDonatedDonationPage = request.POST.get('phoneNumberDonatedDonationPage')
         emailDonatedDonationPage = request.POST.get('emailDonatedDonationPage')
+        instance = Project.objects.get(id=id)
+        insert = giftSenderReceiver.objects.create(
+            project=instance,
+            amount=selectedAmount,
+            sender=senderNameDonatedDonationPage,
+            receiver=receiverNameDonatedDonationPage,
+            phoneNumber=phoneNumberDonatedDonationPage,
+            email=emailDonatedDonationPage
+        )
+        # projectId = Project.objects.get(id=id)
+        # insert.project.add(projectId)
+
         product = get_object_or_404(Project, id=id)
         totalProjectsInCart = cart.get_total_products()
         # projects = Project.objects.filter(id=id)
@@ -5225,29 +5270,18 @@ def cart_detail(request):
 def checkoutDetail(request):
     cart = Cart(request)
     totalProjectsInCart = cart.get_total_products()
-    # getMyCurrency = getCurrency(request)
-    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-    sliders = Slider.objects.all().order_by('-id')[:5]
-    project_dirctories = ProjectsDirectory.objects.all()
-    projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False, is_compaign=False).order_by(
-        '-id')[:3]
-    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
-                                             is_compaign=False).order_by('-id')
-    news = PRNews.objects.all().order_by('-id')[:6]
-    news2 = PRNews.objects.all().order_by('-id')[:4]
-    science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
-    sponsorCategories = sponsorship.objects.all()
+    # projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False, is_compaign=False).order_by(
+    #     '-id')
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
-    if request.user.is_authenticated:
-        userId = request.user.id
-        userInstance = get_object_or_404(User, id=userId)
-        profile = get_object_or_404(Profile, user=userInstance)
-        phoneNumberOfUser = profile.phone
-    else:
-        phoneNumberOfUser = ''
+    ).order_by('-id')
+    # if request.user.is_authenticated:
+    #     userId = request.user.id
+    #     userInstance = get_object_or_404(User, id=userId)
+    #     profile = get_object_or_404(Profile, user=userInstance)
+    #     phoneNumberOfUser = profile.phone
+    # else:
+    #     phoneNumberOfUser = ''
     # print("PHONE NUMBER OF THE USER:", phoneNumberOfUser)
     # cust = get_object_or_404(Customer, id=id)
     # for item in cart:
@@ -5256,18 +5290,10 @@ def checkoutDetail(request):
     #         'override': True})
     return render(request, 'web/donationbasket.html', {
         'cart': cart,
-        'projects': projects,
+        # 'projects': projects,
         'totalProjectsInCart': totalProjectsInCart,
-        'getMyCurrency': getMyCurrency,
-        'sliders': sliders,
-        'project_dirctories': project_dirctories,
-        'news': news,
-        'news2': news2,
-        'science_news': science_news,
-        'categories': categories,
-        'sponsorCategories': sponsorCategories,
         'charity_categories': charity_categories,
-        'phoneNumberOfUser': phoneNumberOfUser,
+        # 'phoneNumberOfUser': phoneNumberOfUser,
     })
 
 

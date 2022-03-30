@@ -444,6 +444,22 @@ class ProjectPDF(models.Model):
         verbose_name_plural = "PDF Files"
 
 
+class giftSenderReceiver(models.Model):
+    project = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=100, decimal_places=3)
+    sender = models.CharField(max_length=100)
+    receiver = models.CharField(max_length=100)
+    phoneNumber = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, default='Pending')
+
+    def __str__(self):
+        return self.project.name
+
+    class Meta:
+        verbose_name = "Gift Sender And Receiver"
+        verbose_name_plural = "Gift Senders And Receivers"
+
 
 class Country(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
