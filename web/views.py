@@ -3516,6 +3516,23 @@ def allProjects(request):
                    })
 
 
+def search_project(request):
+    # Search bar on seasonal projects page i.e seasonalprojects.html
+    project_data = Project.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, inHomePage=True, parent=None
+    ).order_by('order')
+    if request.method == 'POST':
+        searched = request.POST.get('searched')
+        project = Project.objects.filter(name__contains=searched, is_hidden=False, is_thawab=False, projects_dep_email=None)
+
+        return render(request, "web/seasonalprojects.html", {
+            'searched': searched,
+            'searched_project': project,
+            'charity_categories': charity_categories,
+        })
+
+
 # def sponsorshipPage(request, sponsorCategoryId):
 #     cart = Cart(request)
 #     totalProjectsInCart = cart.get_total_products()

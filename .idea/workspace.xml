@@ -20,7 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0002_auto_20220402_2252.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0002_auto_20201116_0725.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0003_whoweare.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0004_auto_20201127_0739.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0005_boardofdirectories.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0006_sponsorship.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0007_topimages.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0008_auto_20201209_1015.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0009_auto_20201209_1039.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0010_influencerimages_masjidpagedetails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0011_delete_sponsorship.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0012_auto_20210410_1535.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0013_joinchat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +68,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/SSD Data/PycharmProjects/basaier/basaier" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../basierNew1" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
@@ -108,7 +130,8 @@
       <workItem from="1648533898990" duration="29216000" />
       <workItem from="1648625061898" duration="30650000" />
       <workItem from="1648875049777" duration="2889000" />
-      <workItem from="1648878653610" duration="21619000" />
+      <workItem from="1648878653610" duration="21787000" />
+      <workItem from="1648929874343" duration="2139000" />
     </task>
     <servers />
   </component>
@@ -132,10 +155,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="845" y="383" width="629" height="274" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1648625095115" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1648910428885">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1648931892223">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648910428885" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648931892223" />
     <state width="943" height="522" key="#com.intellij.structuralsearch.plugin.ui.StructuralReplaceDialog" timestamp="1648754137415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -144,10 +167,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="488" y="259" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648761831545" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648912965998">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648929964427">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648912965998" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648929964427" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1648751472245">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

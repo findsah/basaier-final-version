@@ -112,6 +112,7 @@ urlpatterns += i18n_patterns(
     path('zakatForCattle', views.zakatForCattle, name="zakatForCattle"),
     path('zakatForStocks', views.zakatForStocks, name="zakatForStocks"),
     path('allProjects', views.allProjects, name="allProjects"),
+    path('search_project', views.search_project, name="search_project"),
     path('projectsAccordingToCategories', views.projectsWithCategories, name="projectsAccordingToCategories"),
     path('sponsorshipPage/<int:sponsorCategoryId>', views.sponsorshipPage, name='sponsorshipPage'),
     # path('createToken/<int:sponsorProjectId>', views.createTokenView, name='createTokenView'),
