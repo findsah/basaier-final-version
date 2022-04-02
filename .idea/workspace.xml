@@ -20,58 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0002_slider.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0003_auto_20201116_0732.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0004_auto_20201127_0739.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0005_auto_20201215_1040.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0006_auto_20201217_1401.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0007_auto_20210224_2245.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0008_sciencenews_meetinglink.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/0002_contact.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/0003_auto_20201116_0736.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0002_auto_20220329_2210.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/indexNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/indexNew.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page20.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page20.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0002_alter_permission_name_max_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0003_alter_user_email_max_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0004_alter_user_username_opts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0005_alter_user_last_login_null.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0006_require_contenttypes_0002.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0007_alter_validators_add_error_messages.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0008_alter_user_username_max_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0009_alter_user_last_name_max_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0010_alter_group_name_max_length.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0011_update_proxy_permissions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/checkout_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/checkout_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/master.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/slider.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +108,7 @@
       <workItem from="1648533898990" duration="29216000" />
       <workItem from="1648625061898" duration="30650000" />
       <workItem from="1648875049777" duration="2889000" />
-      <workItem from="1648878653610" duration="21559000" />
+      <workItem from="1648878653610" duration="21619000" />
     </task>
     <servers />
   </component>
