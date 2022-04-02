@@ -1,78 +1,151 @@
-{% extends 'web/master.html' %}
+{% extends 'web/navbardark.html' %}
 {% load static %}
 {% load humanize %}
 {% load i18n %}
-
-{#{% if messages %}#}
-{#<ul class="messages">#}
-{#    {% for message in messages %}#}
-{#    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
-{#    {% endfor %}#}
-{#</ul>#}
-{#{% endif %}#}
+{% load app_filters %}
+{% load project_image %}
 
 {% block content %}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li class="text-center bg-{{ message.tags }} container" id="messageStyle">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
-    <section class="blog-section section-padding white-bg">
-        <div class="main-content">
-            <div class="container">
-                <div class="col-md-offset-3">
-                    <div class="main-contact">
-                        <form class="contact-form" action="{% url 'login' %}" method="post">
-                            {% csrf_token %}
-                            <h4 style="color:red;">{% trans error %}</h4>
-
-                            <h3>
-                                {% get_current_language as LANGUAGE_CODE %}
-                                {% if LANGUAGE_CODE == "ar" %}
-                                    {% trans "تسجيل الدخول" %}
-                                {% else %}
-                                    {% trans "Login" %}
-                                {% endif %}
-                            </h3>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <input type="email" name="email" placeholder="Email"
-                                               class="input-group__input form-control">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <input type="password" name="password" placeholder="Password"
-                                               class="input-group__input form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="submit" class="btn base-bg" value="Submit">
-                            <span class="text-mute pdl15">*
-                                {% get_current_language as LANGUAGE_CODE %}
-                                {% if LANGUAGE_CODE == "ar" %}
-                                    {% trans "جميع الحقول مطلوبة" %}
-                                {% else %}
-                                    {% trans "All fields are required" %}
-                                {% endif %}
-                            </span>
-                            <a href="{% url 'register' %}">
-                                {% get_current_language as LANGUAGE_CODE %}
-                                {% if LANGUAGE_CODE == "ar" %}
-                                    {% trans "تسجيل حساب" %}
-                                {% else %}
-                                    {% trans "Register Account" %}
-                                {% endif %}
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top: 10rem;">
+            <div class="col-6">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-8" style="height: 50px; margin-top: -12px;">
+                            <h3>تبرع دون تسجيل الدخول؟</h3>
+                            <p>للتبرعإت السريعة بدون تسجيل<br>
+                                ولكن لم تحفظ فى صفحتك إلشخصىه
+                            </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="{% url 'register' %}" type="button" class="btn btn-md .mybtn" style="background-color: #1385b2; color: white;
+                        width: 130px; border-radius: 10px;">
+                                دخول
                             </a>
-                        </form>
+                        </div>
                     </div>
                 </div>
+                <br>
+                <form class="contact-form" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="row">
+                            <div>
+                                <h2>تسجيل دخول</h2>
+                                <p>هنإ ىكتب تفا صىل قصىره عن لوىب ىكتب ىكتب تفا صىل قصىره عن الوىب ساىت</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="phone_input d-flex justify-content-between my-3">
+                                    {#                            <input id="btnSubmit" class="moneybtn" type="button" value="رقم الجوال">#}
+                                    <input type="number" name="email" required
+                                           class="txtbox moneybtn fetchPhoneNumberOfTheUser" placeholder="رقم الجوال"/>
+                                </div>
+                                <div class="my-3">
+                                    {#                            <input id="btnSubmit" class="moneybtn" type="button" value="رقم الجوال">#}
+                                    <button type="button" onclick="generateActivationCode()" id="activationCodeCreateCompaign"
+                                            class="buttons2loginPage d-flex justify-content-center">Send Code
+                                    </button>
+                                </div>
+                                <div class="phone_input d-flex justify-content-between my-3">
+                                        <input type="number" name="activationCode" class="txtbox moneybtn"
+                                               placeholder="Activation Code"/>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="code_input d-flex justify-content-between my-3">
+                                    <input class="input_field text-center" required placeholder="Password"
+                                           type="password"
+                                           id="txtUsername" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <hr class="hr_line">
+                            </div>
+                            <div class="col-2 text-center" style="color: #808080;">أو</div>
+                            <div class="col-5">
+                                <hr class="hr_line">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-12 text-center" style="color: #808080;">
+                                    <span>نسيت كلمه السر؟</span>
+                                </div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-6 text-center">
+                                    <button class="buttons d-flex justify-content-center"><span>Gmails</span><img
+                                            src="{% static 'images/gmail.png' %}" alt="gmail" class="gmail_icon">
+                                    </button>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <button class="buttons facebook_button"><span class="mx-2">Facebook</span><i
+                                            class="fa fa-facebook-f"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="submit" class="btn buttons login" value="تسجيل دخول">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
-    </section>
+    </div>
+{#    </div>#}
+
+
+
+{# GENERATE ACTIVATION CODE: IN CREATE COMPAIGN OF PARTICULAR CATEGORY PAGE, which is now working for login SMS OTP system for login page: #}
+<script type="text/javascript">
+    function generateActivationCode() {
+        var phoneNumberOfUser = $('.fetchPhoneNumberOfTheUser').val();
+        console.log("PHONE NUMBER OF USER:", phoneNumberOfUser);
+        $.ajax({
+            type: 'POST',
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE == "ar" %}
+                url: '/ar/generateActivationCode',
+            {% else %}
+                url: '/en/generateActivationCode',
+            {% endif %}
+            async: true,
+            data: {
+                phoneNumberOfUser: phoneNumberOfUser,
+                {# project_category_id: project_category_id, #}
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function () {
+                {#console.log(amount);#}
+                {#console.log(project_id);#}
+                {#frm[0].reset();#}
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    alert("تم إرسال الرمز");
+                {% else %}
+                    alert("Code Has Been Sent");
+                {% endif %}
+            },
+            error: function () {
+                alert("Something went wrong!");
+            },
+        });
+    }
+</script>
+{# GENERATE ACTIVATION CODE: IN CREATE COMPAIGN OF PARTICULAR CATEGORY PAGE, which is now working for login SMS OTP system for login page: #}
+
 {% endblock %}

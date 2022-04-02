@@ -396,6 +396,13 @@
         </script>
     {% endif %}
 
+    <style type="text/css">
+        #messageStyle {
+            padding: 15px 0;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 
@@ -596,7 +603,7 @@
                     </div>
                 </li>
                 <li class="nav-link">
-                    <a href="#" class="btn btn-circle my-social-btn color-light ">
+                    <a href="{% url 'login' %}" class="btn btn-circle my-social-btn color-light ">
                         <i style="font-size: 25px;" class="fa fa-user"></i>
                     </a>
                 </li>
@@ -750,6 +757,79 @@
 </script>
 {# END ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
 
+{# ADD TO CART DONATED_DONATION PAGE: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartProjectOfNewPageOfDonatedDonationPage').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        var senderNameDonatedDonationPage = document.getElementById('senderNameDonatedDonationPage').value;
+        var receiverNameDonatedDonationPage = document.getElementById('receiverNameDonatedDonationPage').value;
+        var phoneNumberDonatedDonationPage = document.getElementById('phoneNumberDonatedDonationPage').value;
+        var emailDonatedDonationPage = document.getElementById('emailDonatedDonationPage').value;
+        {#console.log({project_id, amount});#}
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else if (senderNameDonatedDonationPage === '') {
+            alert('Please Provide The Sender Name');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (receiverNameDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Name');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (phoneNumberDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Phone Number');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (emailDonatedDonationPage === '') {
+            alert('Please Provide The Email');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add_for_gift',
+                {% else %}
+                    url: '/en/cart_add_for_gift',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    senderNameDonatedDonationPage: senderNameDonatedDonationPage,
+                    receiverNameDonatedDonationPage: receiverNameDonatedDonationPage,
+                    phoneNumberDonatedDonationPage: phoneNumberDonatedDonationPage,
+                    emailDonatedDonationPage: emailDonatedDonationPage,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART DONATED_DONATION PAGE: #}
+
+<script type="text/javascript">
+    {#    REGISTER PAGE: #}
+    function selectCountryCode(value) {
+        var countryValue = value;
+        $('#fetchTheSelectedCountryCode').val(countryValue);
+    }
+</script>
 
 <script src="/static/js/indexNew.js"></script>
 

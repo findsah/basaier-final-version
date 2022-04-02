@@ -428,7 +428,7 @@ def send_mail_when_project_created_by_admin(sender, instance, **kwargs):
 
 class PostImage(models.Model):
     post = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='projects/%Y/%m/%d')
+    images = models.FileField(upload_to='projects/%Y/%m/%d')
 
     def __str__(self):
         return self.post.name
@@ -459,6 +459,31 @@ class giftSenderReceiver(models.Model):
     class Meta:
         verbose_name = "Gift Sender And Receiver"
         verbose_name_plural = "Gift Senders And Receivers"
+
+
+class createOwnProjectModel(models.Model):
+    project = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
+    country = models.CharField(max_length=100)
+    projectAmount = models.DecimalField(max_digits=100, decimal_places=3)
+    projectName = models.CharField(max_length=100)
+    relativeRelation = models.CharField(max_length=100)
+    civilIdPhoto = models.CharField(max_length=100)
+    phoneNumber = models.CharField(max_length=100)
+    contactChoice = models.CharField(max_length=100)
+    donorName = models.CharField(max_length=200)
+    donorPhoneNumber1 = models.CharField(max_length=200)
+    donorPhoneNumber2 = models.CharField(max_length=200)
+    address = models.CharField(max_length=300)
+    email = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    generatedLink = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.project.name
+
+    class Meta:
+        verbose_name = "Create Own Project"
+        verbose_name_plural = "Create Own Projects"
 
 
 class Country(models.Model):
@@ -922,7 +947,7 @@ def send_mail_when_project_created_by_admin2(sender, instance, **kwargs):
 
 class Donate(models.Model):
     user = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=3)
     email = models.CharField(max_length=200, blank=True, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE,
@@ -987,7 +1012,7 @@ class Donate(models.Model):
 
 class DonateSponsor(models.Model):
     user = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=3)
     email = models.CharField(max_length=200, blank=True, null=True)
     project = models.ForeignKey(sponsorshipProjects, on_delete=models.CASCADE,
@@ -1353,7 +1378,7 @@ class Compaigns(models.Model):
     suggestedDonation = models.DecimalField(
         max_digits=10, decimal_places=3, default=0.000)
     compaignCategory = models.ManyToManyField(CompaignCategory)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nameOfDeceased
@@ -1427,16 +1452,19 @@ class volunteer(models.Model):
 
 
 class partner(models.Model):
-    organizationName = models.CharField(max_length=255, null=True)
+    foreignAffairsNumber = models.CharField(max_length=255, null=True)
+    licenseStartDate = models.DateField(null=True)
+    licenseExpiryDate = models.DateField(null=True)
+    entityAr = models.CharField(max_length=255, null=True)
+    entityEn = models.CharField(max_length=255, null=True)
+    entityLocal = models.CharField(max_length=255, null=True)
+    continent = models.CharField(max_length=255, null=True)
     country = models.CharField(max_length=255, null=True)
-    email = models.EmailField(null=True)
-    domainOfWork = models.CharField(max_length=255, null=True)
-    website = models.CharField(max_length=255, null=True)
-    phoneNumber = models.CharField(max_length=255, null=True)
+    provinceOrState = models.CharField(max_length=255, null=True)
     address = models.TextField(null=True)
 
     def __str__(self):
-        return self.organizationName
+        return "{}".format(self.foreignAffairsNumber)
 
     class Meta:
         verbose_name_plural = "Partners"

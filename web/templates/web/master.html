@@ -373,15 +373,15 @@
             <li>
                 {% get_current_language as LANGUAGE_CODE %}
                 {% if LANGUAGE_CODE == "ar" %}
-                    <a href="{% url 'about-us' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                    <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
                             class="fa fa-angle-down"></i></a>
                 {% else %}
-                    <a href="{% url 'about-us' %}" class="has-submenu">{% trans "About Us" %}<i
+                    <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "About Us" %}<i
                             class="fa fa-angle-down"></i></a>
                 {% endif %}
                 <ul class="dropdown">
                     <div><h5 id="aboutCharity"><a
-                            href="{% url 'about-us' %}">  {% trans "About Basaier Chairty >>" %} </a>
+                            href="{% url 'aboutUs' %}">  {% trans "About Basaier Chairty >>" %} </a>
                     </h5></div>
                     <ol>
                         {% get_current_language as LANGUAGE_CODE %}
@@ -392,9 +392,9 @@
                         {% endif %}
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "ar" %}
-                            <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "تواصل معنا" %} </a></li>
+                            <li><a href="{% url 'contactUs' %}" id="olATag">  {% trans "تواصل معنا" %} </a></li>
                         {% else %}
-                            <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "Contact Us" %} </a></li>
+                            <li><a href="{% url 'contactUs' %}" id="olATag">  {% trans "Contact Us" %} </a></li>
                         {% endif %}
                     </ol>
                 </ul>
@@ -518,7 +518,7 @@
                 </ul>
             </li>
 
-            {#            <li><a href="{% url 'contact-us' %}">{% trans "Contact" %}</a></li>#}
+            {#            <li><a href="{% url 'contactUs' %}">{% trans "Contact" %}</a></li>#}
 
             <li>
                 {% get_current_language as LANGUAGE_CODE %}
@@ -651,10 +651,10 @@
                     <li>
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "ar" %}
-                            <a href="{% url 'about-us' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                            <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
                                     class="fa fa-angle-down"></i></a>
                         {% else %}
-                            <a href="{% url 'about-us' %}" class="has-submenu">{% trans "About Us" %}<i
+                            <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "About Us" %}<i
                                     class="fa fa-angle-down"></i></a>
                         {% endif %}
                         <ul class="dropdown">
@@ -667,10 +667,10 @@
                                 {% endif %}
                                 {% get_current_language as LANGUAGE_CODE %}
                                 {% if LANGUAGE_CODE == "ar" %}
-                                    <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "تواصل معنا" %} </a>
+                                    <li><a href="{% url 'contactUs' %}" id="olATag">  {% trans "تواصل معنا" %} </a>
                                     </li>
                                 {% else %}
-                                    <li><a href="{% url 'contact-us' %}" id="olATag">  {% trans "Contact Us" %} </a>
+                                    <li><a href="{% url 'contactUs' %}" id="olATag">  {% trans "Contact Us" %} </a>
                                     </li>
                                 {% endif %}
                             </ol>
@@ -1585,7 +1585,7 @@
                     <div><a href="{% url 'index' %}" class="text-left pb-5 footerFontSizeReduce"
                             id="whiteColor">{% trans "Home" %}</a></div>
                     <div>
-                        <a href="{% url 'about-us' %}" class="text-left pb-5 footerFontSizeReduce"
+                        <a href="{% url 'aboutUs' %}" class="text-left pb-5 footerFontSizeReduce"
                            id="whiteColor">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% if LANGUAGE_CODE == "ar" %}

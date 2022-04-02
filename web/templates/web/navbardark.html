@@ -9,6 +9,7 @@
 <html dir="rtl" lang="ar">
 
 <head>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CJYD2GTVX"></script>
     {# GEOLOCATION API TO GET CURRENCY VALUE: #}
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
@@ -324,14 +325,6 @@
 
     {% endif %}
 
-
-    <!-- custom css files -->
-    {#    {% if LANGUAGE_CODE == "ar" %}#}
-    {#        <link rel="stylesheet" href="/static/css/style_ar.css">#}
-    {#    {% else %}#}
-    {#        <link rel="stylesheet" href="/static/css/style.css">#}
-    {#    {% endif %}#}
-
     <link rel="stylesheet" href="{% static 'styles/page1.css' %}">
     <link rel="stylesheet" href="{% static 'styles/page2.css' %}">
     <link rel="stylesheet" href="{% static 'styles/page3.css' %}">
@@ -403,6 +396,13 @@
         </script>
     {% endif %}
 
+    <style type="text/css">
+        #messageStyle {
+            padding: 15px 0;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 
@@ -602,7 +602,7 @@
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="#" class="btn-circle my-social-btn color-dark">
+                    <a href="{% url 'login' %}" class="btn-circle my-social-btn color-dark">
                         <i style="font-size: 25px;" class="fa fa-user"></i>
                     </a>
                 </li>
@@ -824,6 +824,15 @@
     });
 </script>
 {# END ADD TO CART DONATED_DONATION PAGE: #}
+
+
+<script type="text/javascript">
+    {#    REGISTER PAGE: #}
+    function selectCountryCode(value) {
+        var countryValue = value;
+        $('#fetchTheSelectedCountryCode').val(countryValue);
+    }
+</script>
 
 
 <script src="/static/js/indexNew.js"></script>

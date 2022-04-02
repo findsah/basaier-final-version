@@ -20,7 +20,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0002_slider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0003_auto_20201116_0732.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0004_auto_20201127_0739.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0005_auto_20201215_1040.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0006_auto_20201217_1401.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0007_auto_20210224_2245.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0008_sciencenews_meetinglink.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/0002_contact.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/0003_auto_20201116_0736.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0002_auto_20220329_2210.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/indexNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/indexNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/page20.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page20.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0002_alter_permission_name_max_length.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0003_alter_user_email_max_length.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0004_alter_user_username_opts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0005_alter_user_last_login_null.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0006_require_contenttypes_0002.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0007_alter_validators_add_error_messages.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0008_alter_user_username_max_length.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0009_alter_user_last_name_max_length.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0010_alter_group_name_max_length.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/0011_update_proxy_permissions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/checkout_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/checkout_result.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/master.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/slider.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +97,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/templates/web" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="E:/SSD Data/PycharmProjects/basaier/basaier" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -82,6 +133,11 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1648754165191" text="custom" recursive="false" caseInsensitive="false" type="XML" scope_type="PROJECT" scope_descriptor="" history="1">
+      <constraint name="__context__" within="" contains="" />
+    </searchConfiguration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -101,7 +157,9 @@
       <workItem from="1648390383154" duration="9808000" />
       <workItem from="1648459286348" duration="15263000" />
       <workItem from="1648533898990" duration="29216000" />
-      <workItem from="1648625061898" duration="875000" />
+      <workItem from="1648625061898" duration="30650000" />
+      <workItem from="1648875049777" duration="2889000" />
+      <workItem from="1648878653610" duration="21559000" />
     </task>
     <servers />
   </component>
@@ -125,17 +183,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="845" y="383" width="629" height="274" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1648625095115" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1648571660655">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1648910428885">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648571660655" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648461893141">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648910428885" />
+    <state width="943" height="522" key="#com.intellij.structuralsearch.plugin.ui.StructuralReplaceDialog" timestamp="1648754137415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648461893141" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1648011784663">
+    <state width="943" height="522" key="#com.intellij.structuralsearch.plugin.ui.StructuralReplaceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648754137415" />
+    <state x="488" y="259" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1648761831545">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1648011784663" />
+    <state x="488" y="259" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648761831545" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648912965998">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648912965998" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1648751472245">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1648751472245" />
+    <state x="905" y="99" width="585" height="795" key="find.popup" timestamp="1648762223029">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="905" y="99" width="585" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1648762223029" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1648751457075">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1648751457075" />
   </component>
 </project>

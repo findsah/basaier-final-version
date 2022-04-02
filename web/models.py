@@ -2,6 +2,27 @@ from django.db import models
 
 
 # Create your models here.
+class joinChat(models.Model):
+    NO = False
+    YES = True
+    YES_NO_CHOICES = (
+        (NO, 'no'),
+        (YES, 'yes')
+    )
+    country = models.CharField(max_length=255, blank=True)
+    whatsappPhone = models.CharField(max_length=255, blank=True)
+    contactChoice = models.BooleanField(
+        default=NO,
+        choices=YES_NO_CHOICES)
+
+    def __str__(self):
+        return str(self.whatsappPhone)
+
+    class Meta:
+        verbose_name = 'Join Chat'
+        verbose_name_plural = 'Join Chats'
+
+
 class carouselImages(models.Model):
     uploadImage = models.ImageField(upload_to='uploads/')
 

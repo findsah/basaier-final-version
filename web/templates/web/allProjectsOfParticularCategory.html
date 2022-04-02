@@ -1,0 +1,161 @@
+{% extends 'web/navbardark.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load app_filters %}
+{% load project_image %}
+
+{% block content %}
+    {% if searched %}
+        {% for project in searched_project %}
+            <!-- <div style="margin-top: 200px;">
+        <h1>{{project.name}}</h1>
+        <h1>{{project.nameEn}}</h1>
+    </div> -->
+            <div class="container-fluid" style="display: flex;margin-top: 10rem;">
+                <div class="container" style="width: 70%;">
+                    <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
+                    <div class="title">
+                        <h2 style="color: #1385B2; font-size: 37px;">المشاريع الموسميه</h2>
+                        <p style="color: #858585; font-size: 15px;">يمكنك التعرف علي المشاريع الموسميه
+                        </p>
+                    </div>
+                    <div class="firstSection">
+                        <div class="row firstSectionCard">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="firstSectionCard1">
+                                    <!-- مشروع برد عليهم -->
+                                    {% for project in searched_project %}
+                                        <p class="firstSectionCard1P"> {{ project.name }}</p>
+                                        <img src="{{ project.image.url }}" alt="cardimg"
+                                             style="width: 100%; height: 234px;">
+
+                                        <!-- <p class="firstSectionCard1P"> مشروع برد عليهم</p>
+                            <img src="{% static 'images/cardimg1.png' %}" alt="cardimg"
+                                style="width: 100%; height: 234px;"> -->
+                                        </div>
+                                        <div class="firstSectionCard2">
+                                            <div class="firstSectionCard2div">
+                                                <p> دينار كويت</p>
+                                                <p>{{ project.total_amount }}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between my-3">
+                                                <button class="firstSectionCard2btns"
+                                                        style="color: #fff; background-color: #1385B2;">اهداء
+                                                </button>
+
+                                                <a href="{% url 'project-detail' project.id %}">
+                                                    <button class="firstSectionCard2btns"
+                                                            style="color: gray; background-color: #fff; border: 1px solid #1385B2;">
+                                                        تفاصيل
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="container-fluid" style="display: flex;margin-top: 10rem;">
+        <div class="container" style="width: 70%;">
+            <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
+            <div class="title">
+                <h2 style="color: #1385B2; font-size: 37px;">المشاريع الموسميه</h2>
+                <p style="color: #858585; font-size: 15px;">يمكنك التعرف علي المشاريع الموسميه
+                </p>
+            </div>
+            <div class="firstSection">
+                <div class="row firstSectionCard">
+                    {% for project in projects %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="firstSectionCard1">
+                                <!-- مشروع برد عليهم -->
+
+                                <p class="firstSectionCard1P"> {{ project.get_name }}</p>
+                                <img src="{% project_image_tag project request %}" alt="cardimg"
+                                     style="width: 100%; height: 234px;">
+                            </div>
+                        <form>
+                            {% csrf_token %}
+                            <div class="firstSectionCard2">
+                                <div class="firstSectionCard2div">
+                                    <p>دينار كويت</p>
+                                    <input type="number" step="any" min="0"
+                                           name="amount[]" id="enteredCost{{ project.id }}">
+                                    <input type="hidden" id="first-price-{{ project.id }}"
+                                           value="{{ project.suggestedDonation | intcomma:False }}">
+                                </div>
+                                <div class="d-flex justify-content-between my-3">
+                                    <input type="submit" class="firstSectionCard2btns addToCartProjectOfNewPageOfSeasonalProjects"
+                                            style="color: #fff; background-color: #1385B2;" value="اهداء" projectId="{{ project.id }}"/>
+                                    {#                                <a href="{% url 'refundproject' project.id %}">#}
+                                    <a href="{% url 'project-detail' project.id %}" class="firstSectionCard2btns" style="color: gray; background-color: #fff; border: 1px solid #1385B2;">
+                                            تفاصيل
+                                    </a>
+                                    <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
+                                    <input type="hidden" class="project_category_id"
+                                           name="project_category_id[]"
+                                           value="{{ project.category.first.id }}">
+                                    <input type="hidden" name="project_id[]" value="{{ project.id }} ">
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+<div style="width: 23%">
+    <div class="sidefilters">
+        <div class="sections">
+            <h5 style="font-weight: normal;">ابحث عن مشروع موسمي</h5>
+            {#                    <form action="{% url 'searchproject' %}" method="POST">#}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="inputDiv">
+                    <button type="submit"><i style="font-size: 15px; color: #1385B2;" class="fa fa-search"></i></button>
+
+                    <input type="search" placeholder="بحث" name="searched">
+
+                </div>
+            </form>
+        </div>
+
+        <div class="sections">
+            <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
+            <form action="" method="POST">
+                {{ form.location }}
+            </form>
+
+        </div>
+        <div class="sections">
+            <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
+
+        </div>
+        <div class="sections" style="border-bottom: none;">
+            <h5 style="font-weight: normal;">تجور الذكاة</h5>
+            <div style="display: flex; justify-content: space-around; margin-top: 2rem;">
+                <div>
+                    <input type="radio" id="correct" name="fav_language" value="نعم">
+                    <label for="correct">نعم</label>
+                </div>
+                <div>
+                    <input type="radio" id="wrong" name="fav_language" value="ل">
+                    <label for="wrong">ل</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,9 +1,10 @@
-{% extends 'web/master.html' %}
+{% extends 'web/navbardark.html' %}
 {% load static %}
 {% load humanize %}
 {% load i18n %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         {#.jumbotron-main {#}
         {#    display: flex;#}
@@ -135,12 +136,13 @@
         }
     </style>
 
+    <br><br><br><br><br><br><br><br>
 
     <!-- <div class="jumbotron jumbotron-main">تبرعاتكم</div> -->
 
-    <div style="position: relative; background-color: lightGreen;">
+    <div style="position: relative; background-color: lightGreen; height: 180px;">
         <img src="/static/topImages/invoice.jpeg" alt=""
-             style="width: 100%; opacity: 0.6;">
+             style="width: 100%; opacity: 0.6; height: 180px;">
         <div id="topPullOnTop">
             <h1 class="text-center" style="color: white;">{% trans "تبرعاتكم" %}</h1>
         </div>

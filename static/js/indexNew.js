@@ -130,7 +130,7 @@ $(document).ready(function () {
     });
 
 
-    // signin.html page
+    // login.html page
 
     let passwordInput = document.getElementById("txtPassword"),
         toggle = document.getElementById("btnToggle"),

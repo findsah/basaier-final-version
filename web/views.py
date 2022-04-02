@@ -38,8 +38,8 @@ from people.models import Contact
 from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
     CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, \
-    giftSenderReceiver
-from web.models import boardOfDirectories, influencerImages
+    giftSenderReceiver, createOwnProjectModel
+from web.models import boardOfDirectories, influencerImages, joinChat
 from .tokens import account_activation_token
 
 # from web.cart import Cart
@@ -520,7 +520,7 @@ class Index(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
-                                          is_compaign=False, is_thawab=False).order_by('-id')[:3]
+                                          is_compaign=False, is_thawab=False).order_by('-id')
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
@@ -667,6 +667,127 @@ class Index(TemplateView):
 
 # BASAIER DESIGN HAS BEEN CHANGED, SO WE HAVE USED NEW TEMPLATE FOR DISPLAYING DETAIL OF A PARTICULAR PROJECT.
 class ProjectDetail(TemplateView):
+    template_name = "web/refundproject.html"
+
+    def get(self, request, *args, **kwargs):
+        cart = Cart(request)
+        totalProjectsInCart = cart.get_total_products()
+        # getMyCurrency = getCurrency(request)
+        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+        sliders = Slider.objects.all().order_by('-id')[:5]
+        project_dirctories = ProjectsDirectory.objects.all()
+        project = None
+        if 'slug' in kwargs:
+            project = get_object_or_404(Project, slug=kwargs['slug'])
+        else:
+            project = get_object_or_404(Project, pk=kwargs['id'])
+        id = kwargs['id']
+        # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
+        #     return redirect("/")
+
+        categories = PRCategory.objects.all().order_by('order')
+        sponsorCategories = sponsorship.objects.all()
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('order')
+        latest_projects = Project.objects.filter(
+            is_closed=False, is_hidden=False).order_by('order')[:6]
+        projects = Project.objects.filter(pk=id)
+        pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
+        multipleImages = PostImage.objects.filter(post=id)
+        for data in multipleImages:
+            print(data.image)
+        cart_projects, projects_selected = get_cart(request)
+        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
+        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
+
+        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
+        if len(sacrifices_json_data) > 0:
+            self.template_name = "web/project_sacrifice_detail_.html"
+        if request.user.is_authenticated:
+            userId = request.user.id
+            userInstance = get_object_or_404(User, id=userId)
+            profile = get_object_or_404(Profile, user=userInstance)
+            phoneNumberOfUser = profile.phone
+        else:
+            phoneNumberOfUser = ''
+
+        return render(request, self.template_name,
+                      {'sliders': sliders,
+                       'categories': categories,
+                       'charity_categories': charity_categories,
+                       'latest_projects': latest_projects,
+                       'project': project,
+                       'projects': projects,
+                       'pdfFiles': pdfFiles,
+                       'multipleImages': multipleImages,
+                       'sponsorCategories': sponsorCategories,
+                       'cart_projects': cart_projects,
+                       'projects_selected': projects_selected,
+                       'project_dirctories': project_dirctories,
+                       'sacrifices_json': sacrifices_json,
+                       'sacrifices': sacrifices,
+                       'totalProjectsInCart': totalProjectsInCart,
+                       'getMyCurrency': getMyCurrency,
+                       'phoneNumberOfUser': phoneNumberOfUser,
+                       })
+
+    def post(self, request, *args, **kwargs):
+        cart = Cart(request)
+        totalProjectsInCart = cart.get_total_products()
+        # getMyCurrency = getCurrency(request)
+        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+        numberOfShare = int(request.POST.get('numberOfShare', 0))
+
+        amounts = request.POST.getlist('amount[]', [""])
+        # print(amounts)
+        # if amounts == [""]:
+        #     amounts = ["0.0"]
+
+        # project_category_ids = request.POST.getlist('project_category_id[]')
+        sliders = Slider.objects.all().order_by('-id')[:5]
+        project_dirctories = ProjectsDirectory.objects.all()
+        project = None
+
+        if 'slug' in kwargs:
+            project = get_object_or_404(Project, slug=kwargs['slug'])
+        else:
+            project = get_object_or_404(Project, pk=kwargs['id'])
+            # fetchProject = Project.objects.values('id', 'category__id').filter(pk=kwargs['id'])
+            # for data in fetchProject:
+            #     print(data)
+        categories = PRCategory.objects.all().order_by('order')
+        sponsorCategories = sponsorship.objects.all()
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('order')
+        latest_projects = Project.objects.filter(
+            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+        cart_projects, projects_selected = get_cart(request)
+        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
+        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
+        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
+        if len(sacrifices_json_data) > 0:
+            self.template_name = "web/project_sacrifice_detail_.html"
+        return render(request, self.template_name,
+                      {'sliders': sliders,
+                       'categories': categories,
+                       'charity_categories': charity_categories,
+                       'latest_projects': latest_projects,
+                       'project': project,
+                       'sponsorCategories': sponsorCategories,
+                       'cart_projects': cart_projects,
+                       'projects_selected': projects_selected,
+                       'project_dirctories': project_dirctories,
+                       'numberOfShare': numberOfShare,
+                       'amount': "{0:.3f}".format(float(amounts[0].strip())),
+                       # 'project_category_id': int(project_category_ids[0]),
+                       'sacrifices_json': sacrifices_json,
+                       'sacrifices': sacrifices,
+                       'totalProjectsInCart': totalProjectsInCart,
+                       'getMyCurrency': getMyCurrency,
+                       })
+
+
+class privateProjectDetail(TemplateView):
     template_name = "web/refundproject.html"
 
     def get(self, request, *args, **kwargs):
@@ -952,15 +1073,31 @@ class News(TemplateView):
 
 
 def joinchat(request):
-    return render(request, 'web/joinchat.html')
+    if request.method == 'POST':
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('order')
+        country = request.POST.get('country', '')
+        number = request.POST.get('number', '')
+        contactChoice = request.POST.get('contactChoice', '')
+        joinChat.objects.create(
+            country=country,
+            whatsappPhone=number,
+            contactChoice=contactChoice
+        )
+        messages.success(request, ('Thanks For Joining Us'))
+        return render(request, 'web/joinchat.html', {
+            'charity_categories': charity_categories,
+        })
+    else:
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('order')
+        return render(request, 'web/joinchat.html', {
+            'charity_categories': charity_categories,
+        })
 
 
 def icalculator(request):
     return render(request, 'web/iqalculator.html')
-
-
-def createOwnProject(request):
-    return render(request, 'web/createownproject.html')
 
 
 class NewsDetail(TemplateView):
@@ -1220,11 +1357,11 @@ def projectsOfParticularCategory(request, category_id):
 
     # topImagess = topImages.objects.all().order_by('-id')[:1]
     latest_projects = Project.objects.filter(
-        is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+        is_closed=False, is_hidden=False).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
 
     # return render(request, 'web/projectsAccordingToCategories.html', {'categoryId': categoryId})
-    return render(request, 'web/projectsOfParticularCategory.html',
+    return render(request, 'web/allProjectsOfParticularCategory.html',
                   {'sliders': sliders,
                    'allprojects': allprojects,
                    'sponsorCategories': sponsorCategories,
@@ -1235,7 +1372,7 @@ def projectsOfParticularCategory(request, category_id):
                    'latest_projects': latest_projects,
                    'cart_projects': cart_projects,
                    'projects_selected': projects_selected,
-                   'categoryOfProjects': categoryOfProjects,
+                   'projects': categoryOfProjects,
                    'categoryId': categoryId,
                    'totalProjectsInCart': totalProjectsInCart,
                    'categoryName1': categoryName1,
@@ -1743,13 +1880,13 @@ def RemoveDonate(request):
     request.session['project_category_ids'] = []
 
 
-class Login(TemplateView):
+def Login(request):
     authentication_classes = []
     permission_classes = []
     template_name = "web/login.html"
 
-    @method_decorator(csrf_protect)
-    def post(self, request, *args, **kwargs):
+    # @method_decorator(csrf_protect)
+    if request.method == 'POST':
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
         sliders = Slider.objects.all().order_by('-id')[:5]
@@ -1764,30 +1901,43 @@ class Login(TemplateView):
         projects = Project.objects.filter(is_sadaqah=False, is_compaign=False).order_by('-id')
         projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
         username = request.POST.get('email', '')
-        password = request.POST.get('password', '')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            request.session['User_id'] = username
-            login(request, user)
-            return render(request, 'web/profile.html',
-                          {
-                              'totalProjectsInCart': totalProjectsInCart,
-                              'sliders': sliders,
-                              'categories': categories,
-                              'sponsorCategories': sponsorCategories,
-                              'charity_categories': charity_categories,
-                              'latest_projects': latest_projects,
-                              'news': news,
-                              'science_news': science_news,
-                              'projects': projects,
-                              'projectsSadaqah': projectsSadaqah,
-                          })
+        activationCodeCreateCompaign = request.POST.get('activationCode')
+        activationCodeCreateCompaignStr = str(activationCodeCreateCompaign)
+        getTheGeneratedCodeFromSession = request.session.get('generatedRandomNumber')
+        getTheGeneratedCodeFromSessionStr = str(getTheGeneratedCodeFromSession)
+        print("IN SESSION CODE STR:", getTheGeneratedCodeFromSessionStr)
+        print("FETCHED FROM POST METHOD CODE STR:", activationCodeCreateCompaignStr)
+        if activationCodeCreateCompaignStr == getTheGeneratedCodeFromSessionStr:
+            password = request.POST.get('password', '')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                request.session['User_id'] = username
+                login(request, user)
+                del request.session['generatedRandomNumber']
+                # return render(request, 'web/profile.html',
+                return render(request, 'web/index2.html',
+                              {
+                                  'totalProjectsInCart': totalProjectsInCart,
+                                  'sliders': sliders,
+                                  'categories': categories,
+                                  'sponsorCategories': sponsorCategories,
+                                  'charity_categories': charity_categories,
+                                  'latest_projects': latest_projects,
+                                  'news': news,
+                                  'science_news': science_news,
+                                  'projects': projects,
+                                  'projectsSadaqah': projectsSadaqah,
+                              })
+            else:
+                error = "Username/Password Combination Invalid."
+                return render(request, 'web/login.html',
+                              {'error': error})
         else:
-            error = "Username/Password Combination Invalid."
-            return render(request, self.template_name,
+            error = "Code Doesn't Match."
+            return render(request, 'web/login.html',
                           {'error': error})
 
-    def get(self, request, *args, **kwargs):
+    if request.method == 'GET':
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
         # getMyCurrency = getCurrency(request)
@@ -1807,7 +1957,7 @@ class Login(TemplateView):
         #     projects = Project.objects.filter(
         #         category__id=kwargs['category_id']).order_by('-id')[:15]
         if request.user.is_authenticated:
-            return render(request, 'web/profile.html',
+            return render(request, 'web/index2.html',
                           {
                               'totalProjectsInCart': totalProjectsInCart,
                               'getMyCurrency': getMyCurrency,
@@ -1835,7 +1985,7 @@ class Login(TemplateView):
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         projects = Project.objects.filter(is_sadaqah=False, is_compaign=False).order_by('-id')
         projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
-        return render(request, self.template_name,
+        return render(request, 'web/login.html',
                       {
                           'totalProjectsInCart': totalProjectsInCart,
                           'getMyCurrency': getMyCurrency,
@@ -1900,7 +2050,7 @@ class ProfileView(TemplateView):
 
 
 class Register(TemplateView):
-    template_name = "web/register.html"
+    template_name = "web/signup.html"
 
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
@@ -1980,7 +2130,7 @@ class Register(TemplateView):
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         if request.user.is_authenticated:
-            return render(request, 'web/profile.html', {'totalProjectsInCart': totalProjectsInCart, })
+            return render(request, 'web/index2.html', {'totalProjectsInCart': totalProjectsInCart, })
 
         categories = PRCategory.objects.all().order_by('order')
         charity_categories = Category.objects.filter(
@@ -2009,10 +2159,10 @@ class ActivateAccount(View):
             language = get_language()
             if language == 'ar':
                 messages.success(request, ('تم تنشيط حسابك....!'))
-                return redirect('/ar/profile/')
+                return redirect('/ar')
             else:
                 messages.success(request, ('Your Account Have Been Activated....!'))
-                return redirect('/en/profile/')
+                return redirect('/en')
         else:
             language = get_language()
             if language == 'ar':
@@ -2100,7 +2250,7 @@ def aboutUs(request):
 
 
 class ContactUs(TemplateView):
-    template_name = "web/contactUsPreviousOne.html"
+    template_name = "web/contactus.html"
 
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
@@ -2204,11 +2354,19 @@ class ContactUs(TemplateView):
 #                        })
 
 def volunteerNew(request):
-    return render(request, 'web/volunteer.html')
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('order')
+    return render(request, 'web/volunteer.html', {
+        'charity_categories': charity_categories,
+    })
 
 
 def ourPartners(request):
-    return render(request, 'web/ourpartners.html')
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('order')
+    return render(request, 'web/ourpartners.html', {
+        'charity_categories': charity_categories,
+    })
 
 
 # class Partner(TemplateView):
@@ -2274,7 +2432,10 @@ def ourPartners(request):
 
 
 def Partner(request):
-    return render(request, 'web/bepartner.html')
+    if request.method == 'POST':
+        return render(request, 'web/bepartner.html')
+    else:
+        return render(request, 'web/bepartner.html')
 
 
 class CreatePeople(View):
@@ -2444,6 +2605,7 @@ def generate_payment_url_tap(request, transaction, payment_method):
         }
         payload = json.dumps(json_payload)
         response = requests.request("POST", settings.TAP_PAY_URL, data=payload, headers=headers)
+        print(response)
         # if response.status_code != 200:
         #     return None, None, None
         json_data = json.loads(response.text)
@@ -3328,7 +3490,6 @@ def allProjects(request):
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
     categories = PRCategory.objects.all().order_by('order')
     sponsorCategories = sponsorship.objects.all()
-
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('order')
@@ -3336,7 +3497,7 @@ def allProjects(request):
 
     current_user = request.user.id
     userIdsFromDonateTable = Donate.objects.all().order_by('-id')
-    projects = Project.objects.filter(is_compaign=False, is_thawab=False).order_by('-id')
+    projects = Project.objects.filter(is_hidden=False, is_thawab=False, projects_dep_email=None).order_by('-id')
     # I'M CHANGING THE ALL allProjects.html WITH seasonalprojects.html page, for new basaier design.
     return render(request, 'web/seasonalprojects.html',
                   {'sliders': sliders,
@@ -4568,6 +4729,106 @@ def publicCompaigns(request):
         })
 
 
+def createOwnProject(request):
+    if request.method == 'POST':
+        projectId = request.POST.get('projectId')
+        # GENERATE SHAREABLE LINK USER's PARTICULAR PROJECT:
+        intProjectId = int(projectId)
+        current_site = get_current_site(request)
+        site_url = 'http://%s/privateProject/%s/detail' % (current_site.domain, intProjectId)
+        print(site_url)
+        country = request.POST.get('country')
+        amount = request.POST.get('amount')
+        amountVar = round(float(amount), 3)
+        projectName = request.POST.get('projectName')
+        relativeRelation = request.POST.get('relativeRelation')
+        civilIdPhoto = request.POST.get("civilIdPhoto")
+        phoneNumber = request.POST.get('phoneNumber')
+        contactMethod = request.POST.getlist('contactMethod')
+        contactChoice = str(contactMethod)
+        donorName = request.POST.get('donorName')
+        donorPhone1 = request.POST.get('donorPhone1')
+        donorPhone2 = request.POST.get('donorPhone2')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        instance1 = Project.objects.get(id=projectId)
+        create = createOwnProjectModel.objects.create(
+            project=instance1,
+            country=country,
+            projectAmount=amountVar,
+            projectName=projectName,
+            relativeRelation=relativeRelation,
+            civilIdPhoto=civilIdPhoto,
+            phoneNumber=phoneNumber,
+            contactChoice=contactChoice,
+            donorName=donorName,
+            donorPhoneNumber1=donorPhone1,
+            donorPhoneNumber2=donorPhone2,
+            address=address,
+            email=email,
+            generatedLink=site_url
+        )
+        instance = Project.objects.filter(id=projectId)
+        for data in instance:
+            detailVar = data.detail
+            detailEnVar = data.detailEn
+            imageVar = data.image
+            print("IMAGE VARIABLE.", imageVar)
+        categoryId = instance.values_list('category__id', flat=True)
+        for entry in categoryId:
+            list_result = entry
+        print("CATEGORY NAME:", str(list_result))
+        # receive_category = Category.objects.get(id=categoryVar)
+
+        project = Project.objects.create(
+            name=projectName,
+            nameEn=projectName,
+            detail=detailVar,
+            detailEn=detailEnVar,
+            total_amount=amountVar,
+            is_closed=False,
+            is_hidden=True,
+            image=imageVar,
+            # project.category.set(categoryVar),
+            location=country,
+            projects_dep_email=email,
+            # order=orderVar,
+            isZakat=False,
+            is_share=False,
+            is_thawab=False,
+            is_compaign=False,
+            donater_name=donorName,
+            created_by=None,
+        )
+        # https://stackoverflow.com/questions/47706946/message-title-needs-to-have-a-value-for-field-id-before-this-many-to-many
+        project.category.add(list_result)
+
+        cart = Cart(request)
+        totalProjectsInCart = cart.get_total_products()
+        projects = Project.objects.filter(is_hidden=True).order_by('-id')
+        charity_categories = Category.objects.filter(inMenu=True).order_by('order')
+        messages.success(request, "Project Created Successfully...!")
+        messages.success(request, "Your Private Link Is:")
+        return render(request, 'web/createownproject.html', {
+            'site_url': site_url,
+            'cart': cart,
+            'totalProjectsInCart': totalProjectsInCart,
+            'projects': projects,
+            'charity_categories': charity_categories,
+        })
+    else:
+        cart = Cart(request)
+        totalProjectsInCart = cart.get_total_products()
+        projects = Project.objects.filter(is_hidden=True, projects_dep_email=None).order_by('-id')
+        charity_categories = Category.objects.filter(inMenu=True).order_by('order')
+        return render(request, 'web/createownproject.html', {
+            'cart': cart,
+            'totalProjectsInCart': totalProjectsInCart,
+            'projects': projects,
+            'charity_categories': charity_categories,
+        })
+
+
 def postAProject(request):
     cart = Cart(request)
     totalProjectsInCart = cart.get_total_products()
@@ -4666,7 +4927,7 @@ def postAProject(request):
             if language == 'ar':
                 messages.success(request, ("تم إنشاء المشروع بنجاح.!"))
             else:
-                messages.success(request, ("Project Created Successfully...!"))
+                messages.success(request, "Project Created Successfully...!")
         return render(request, 'web/postAProject.html',
                       {'sliders': sliders,
                        'projects': projects,
