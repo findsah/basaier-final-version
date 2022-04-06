@@ -3731,59 +3731,58 @@ def search_project(request):
                 'price') == '':
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, location__icontains=country).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '':
+        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, location__icontains=country, total_amount__lte=price,
                 is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('country') == '':
+        elif request.POST.get('searched') == '' and request.POST.get('country') == '' and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, isZakat=isZakat, total_amount__lte=price, is_compaign=False).order_by(
                 '-id')
-        elif request.POST.get('searched') == '' and request.POST.get('price') == '':
+        elif request.POST.get('searched') == '' and request.POST.get('price') == '' and request.POST.get('country') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, location__icontains=country, isZakat=isZakat,
                 is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('country') == '' and request.POST.get('price') == '':
+        elif request.POST.get('country') == '' and request.POST.get('price') == '' and request.POST.get('searched') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, name__icontains=searched, isZakat=isZakat,
                 is_compaign=False,
             ).order_by('-id')
-        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '':
+        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '' and request.POST.get('searched') is not None and request.POST.get('price') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, name__icontains=searched, total_amount__lte=price,
                 is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('price') == '' and request.POST.get('isZakat') == '':
+        elif request.POST.get('price') == '' and request.POST.get('isZakat') == '' and request.POST.get('searched') is not None and request.POST.get('country') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, name__icontains=searched, location__icontains=country,
                 is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('searched') == '':
+        elif request.POST.get('searched') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, location__icontains=country,
                 total_amount__lte=price, isZakat=isZakat, is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('country') == '':
+        elif request.POST.get('country') == '' and request.POST.get('searched') is not None and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 name__icontains=searched, is_closed=False, is_hidden=False,
-                total_amount__lte=price, isZakat=isZakat, is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('price') == '':
+                total_amount__lte=price, isZakat=isZakat).order_by('-id')
+        elif request.POST.get('price') == '' and request.POST.get('country') is not None and request.POST.get('searched') is not None and request.POST.get('isZakat') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False,
                 name__icontains=searched, isZakat=isZakat, location__icontains=country, is_compaign=False
             ).order_by('-id')
-        elif request.POST.get('isZakat') == '':
+        elif request.POST.get('isZakat') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None and request.POST.get('searched') is not None:
             projects = Project.objects.filter(
                 is_closed=False, is_hidden=False, category__inHomePage=True,
                 name__icontains=searched, total_amount__lte=price, location__icontains=country, is_compaign=False
             ).order_by('-id')
-
+        projectData = projects
         return render(request, "web/seasonalprojects.html", {
             'searched': searched,
-            'searched_project': projects,
+            'searched_project': projectData,
             'charity_categories': charity_categories,
         })
 

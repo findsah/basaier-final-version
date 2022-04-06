@@ -22,89 +22,8 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture_1DrFkZX.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture_5InuauH.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture_EJeiJm0.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture_VAJleSs.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/ownProjects/2022/03/30/Capture_lbjLZPY.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/03/29/cardimg1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/03/29/cardimg2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/03/30/cardimg2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/03/30/cricket.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/03/30/download_3_42p4Hvk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/04/01/download_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/04/01/download_3_3hSvtQU.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/projects/2022/04/02/cardimg1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page10.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page10.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page3.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page7.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page7.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/about_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/aboutus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/add_to_cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/add_to_cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/allSponsorshipProjects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allSponsorshipProjects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/cartCheckoutDetailPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/cartCheckoutDetailPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/charity.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/charity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/checkout_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/checkout_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/contactus.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/contactus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createToken.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createToken.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/donationbasket.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donationbasket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/foreignProjects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/foreignProjects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftNew.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftNew.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftProjectPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftProjectPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftRecieverAndSender.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftRecieverAndSender.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftSendGift.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftSendGift.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftSendSadaqa.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftSendSadaqa.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/happystories.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/happystories.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/iqalculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/iqalculator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/localProjects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/localProjects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/master.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/ourpartners.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/ourpartners.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/postAProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/postAProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/privateCompaigns.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/privateCompaigns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/project_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/project_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/project_sacrifice_detail_.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/project_sacrifice_detail_.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/projectsAccordingToCategories.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/projectsAccordingToCategories.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/projectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/projectsOfParticularCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/publicCompaigns.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/publicCompaigns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/sharedCompaigns.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/sharedCompaigns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/sponsorOrphan.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/sponsorOrphan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/sponsorParticularPerson.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/sponsorParticularPerson.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/sponsorshipPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/sponsorshipPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/thawabCompaigns.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/thawabCompaigns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/thawabContribution.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/thawabContribution.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/thawabNew.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/thawabNew.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/thawabProjects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/thawabProjects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/volunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/volunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +132,7 @@
       <workItem from="1649075339841" duration="9665000" />
       <workItem from="1649143091057" duration="12979000" />
       <workItem from="1649178499141" duration="5258000" />
-      <workItem from="1649227638401" duration="9769000" />
+      <workItem from="1649227638401" duration="12381000" />
     </task>
     <servers />
   </component>
@@ -265,16 +184,5 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1648751457075" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/web/views.py</url>
-          <line>3768</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
