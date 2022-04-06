@@ -3,18 +3,17 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
-    {% get_current_language as LANGUAGE_CODE %}
-    {% if LANGUAGE_CODE == "ar" %}
-        <link rel="stylesheet" href="/static/css/style_ar.css">
-    {% else %}
-        <link rel="stylesheet" href="/static/css/style.css">
-    {% endif %}
-
-    <br><br>
+{#    {% get_current_language as LANGUAGE_CODE %}#}
+{#    {% if LANGUAGE_CODE == "ar" %}#}
+{#        <link rel="stylesheet" href="/static/css/style_ar.css">#}
+{#    {% else %}#}
+{#        <link rel="stylesheet" href="/static/css/style.css">#}
+{#    {% endif %}#}
+{##}
+{#    <br><br>#}
 
 
 
@@ -85,11 +84,11 @@
                             <input type="radio" id="payment-method-online" name="payment_method"
                                    value="Knet" checked>
                             <label for="payment-method-online"><img src="/static/knet.png" alt=""
-                                                                    class="knetLogo"></label>
+                                                                    class="knetLogo" style="width: 50px; height: 30px;"></label>
                             <input type="radio" id="payment-method-online" name="payment_method"
                                    value="CreditCard">
                             <label for="payment-method-online"><img src="/static/MasterCard.png" alt=""
-                                                                    class="masterCardLogo"></label>
+                                                                    class="masterCardLogo" style="width: 50px; height: 30px;"></label>
                         </div>
                     </div>
                 </div>

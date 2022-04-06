@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% load i18n %}
-{% load project_image %}
 {% load app_filters %}
 {% block content %}
 
@@ -26,9 +25,9 @@
                             {% endif %}
                             <div class="">
                                 {% if request.user_agent.is_mobile %}
-                                    <img src="{% project_image_tag project request %}" height="250" width="100%" alt="">
+                                    <img src="/media/{{ project.image }}" height="250" width="100%" alt="">
                                 {% else %}
-                                    <img src="{% project_image_tag project request %}" height="500" width="100%" alt="">
+                                    <img src="/media/{{ project.image }}" height="500" width="100%" alt="">
                                 {% endif %}
                             </div>
                             <div class="causes-details-top__text-content">
@@ -212,7 +211,7 @@
                                 <div class="widget-latest-causes__image-wrap">
                                     <a href="{% url 'project-detail' obj.id %}"><img
                                             class="widget-latest-causes__thubnail"
-                                            src="{% project_image_tag obj request %}" width="145" height="93"
+                                            src="/media/{{ obj.image }}" width="145" height="93"
                                             alt=""></a>
                                 </div>
                                 <div class="widget-latest-causes__text-content">

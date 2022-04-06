@@ -3,7 +3,6 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
@@ -70,7 +69,7 @@
                     <div class="card card-price">
                         <div class="card-img">
                             <a href="{% url 'project-detail' project.id %}">
-                                <img src="{% project_image_tag project request %}" style="width: 100%; height: 250px;"
+                                <img src="/media/{{ project.image }}" style="width: 100%; height: 250px;"
                                      class="">
                             </a>
                         </div>
@@ -166,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-4" style="padding: 15px 10px;">
-                                <img src="{% project_image_tag project request %}" class="img-circle">
+                                <img src="/media/{{ project.image }}" class="img-circle">
                             </div>
                         </div>
                     </div>

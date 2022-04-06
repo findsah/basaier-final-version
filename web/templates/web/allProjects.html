@@ -3,7 +3,6 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
@@ -29,7 +28,7 @@
                                          data-wow-delay=".2s"
                                          style="width: 100%; height: 484px; visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
                                         <div class="our-causes__image-wrap">
-                                            <img src="{% project_image_tag project request %}" style="height: 284px;"
+                                            <img src="/media/{{ project.image }}" style="height: 284px;"
                                                  class="our-causes__image" alt="">
                                         </div>
                                         <div class="our-causes__text-content text-center">
@@ -98,7 +97,7 @@
                                                 </p>
                                                 <input type="hidden" id="title" value="{{ project.get_name }}">
                                                 <input type="hidden" id="image"
-                                                       value="{% project_image_tag project request %}">
+                                                       value="/media/{{ project.image }}">
                                                 <input type="hidden" id="project_id" value="{{ project.id }}">
                                                 <input type="hidden" name="project_id[]" value="{{ project.id }} ">
                                             </form>

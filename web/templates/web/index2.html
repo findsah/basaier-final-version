@@ -3,18 +3,8 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
-
-<style type="text/css">
-    .header2{
-        background-color: black;
-    }
-    .imageOpacity{
-        opacity: 0.6;
-    }
-</style>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -25,122 +15,73 @@
 
     <div class="carousel-inner">
         {% for project in projects %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %} header2">
-                <img class="d-block w-100 imageOpacity" src="{% project_image_tag project request %}" alt="{{ project.get_name }}">
+        <div class="carousel-item {% if forloop.first %}active{% endif %} header2">
+            <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}" alt="{{ project.get_name }}">
 
-                <div class="carousel-caption d-none d-md-block">
-                    <h3 class="my-heading">{{ project.get_name }}</h3>
-                    <p class="myp-slider text-center">{{ project.get_detail }}</p>
-{#                    <p class="myp-slider text-center">سهوله من خلال موقعنا</p>#}
-{#                    <a href="{% url 'project-detail' project.id %}">#}
-                    <a href="{% url 'allProjects' %}">
-                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
-                    </a>
-                </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="my-heading">{{ project.get_name }}</h3>
+                <p class="myp-slider text-center">{{ project.get_detail }}</p>
+                <!-- {# <p class="myp-slider text-center">سهوله من خلال موقعنا</p>#} -->
+                <!-- {# <a href="{% url 'project-detail' project.id %}">#} -->
+                <a href="{% url 'allProjects' %}">
+                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
+                    </button>
+                </a>
             </div>
+        </div>
         {% endfor %}
 
     </div>
 </div>
 
-
 <section class="testimonials">
-{#    <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->#}
+    <!-- <img src="./images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
     <div class="container">
         <div class="row">
-
-{#            {% for project in projects|slice:"1:2" %}#}
-            <div class="col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s" style="margin:auto">
-                <div class="big-img">
-                    <a href="{% url 'allProjects' %}">
-                        <p class="myp-onimgtxt text-center" style="right: 12rem;">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "تفاصيل المشروع" %}
-                            {% else %}
-                                {% trans "Project Details" %}
-                            {% endif %}
-                            &#62;
-                        </p>
-                    </a>
-{#                    <img src="{% project_image_tag project request %}" alt="{{ project.get_name }}" class="img-fluid" width="140%" height="200px">#}
-                    <div>
-                        <img src="{% static 'images/imgseries4.png' %}" alt="" width="100%" height="430px">
-                    </div>
-                </div>
+            <div class="col-6 mb-3 wow bounceInUp" data-wow-duration="1.4s">
+                <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
+                    بوابه التبرع
+                </a>
+                <img src="/static/images/sec2img1.png" class="fluidImg">
             </div>
-{#            {% endfor %}#}
-
-
-{#            {% for project in projects|slice:"2:3" %}#}
-            <div class="col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s" style="margin:auto">
-                <div class="big-img">
-                    <a href="{% url 'createOwnProject' %}">
-                        <p class="myp-onimgtxt text-center" style="right: 12rem;">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "إنشاء مشروع جديد" %}
-                            {% else %}
-                                {% trans "Create A New Project" %}
-                            {% endif %}
-                            &#62;
-                        </p>
-                    </a>
-{#                    <img src="{% project_image_tag project request %}" alt="{{ project.get_name }}" class="img-fluid" width="140%" height="200px">#}
-                    <div>
-                        <img src="{% static 'images/cardimg1.png' %}" alt="" width="100%" height="430px">
-                    </div>
-                </div>
+            <div class="col-6 mb-3 wow bounceInUp">
+                <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
+                    أنشأ مشروعك الخاص
+                </a>
+                <img src="/static/images/sec2img2.png" class="fluidImg">
             </div>
-{#            {% endfor %}#}
+        </div>
 
-
-            <div class="col-12 col-sm-6 col-md-3 my-3">
-                <div class="small-img">
-                    <a href="{% url 'icalculator' %}">
-                        <p class="myp-onimgtxt text-center" style="right:5rem; font-size: 18px;">
-                            أحسب ذكاتك
-                            &#62;
-                        </p>
-                    </a>
-                    <img src="{% static 'images/sec2img6.png' %}" style="width: 100%; height: auto;">
-                </div>
+        <div class="row">
+            <div class="col-6 col-md-3 mb-3">
+                <a href="{% url 'icalculator' %}" class="myp-onimgtxt text-center">
+                    أحسب ذكاتك
+                </a>
+                <img src="/static/images/sec2img6.png" class="fluidImg">
             </div>
-            <div class="col-12 col-sm-6 col-md-3 my-3">
-                <div class="small-img">
-                    <p class="myp-onimgtxt text-center" style="right: 3rem; font-size: 18px;">
-                        استفسر عن مشروعك
-                        &#62;
-                    </p>
-                    <img src="{% static 'images/sec2img5.png' %}" style="width: 100%; height: auto;">
-                </div>
+            <div class="col-6 col-md-3">
+                <p class="myp-onimgtxt text-center">
+                    استفسر عن مشروعك
+                </p>
+                <img src="/static/images/sec2img5.png" class="fluidImg">
             </div>
-            <div class="col-12 col-sm-6 col-md-3 my-3">
-                <div class="small-img">
-                    <a href="{% url 'joinchat' %}">
-                        <p class="myp-onimgtxt text-center" style="right: 3rem; font-size: 18px;">
-                            انضم الي
-                            ًأدقاء النش
-                            &#62;
-                        </p>
-                    </a>
-                    <img src="{% static 'images/sec2img4.png' %}" style="width: 100%; height: auto;">
-                </div>
+            <div class="col-6 col-md-3 mb-3">
+                <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center">
+                    انضم الي
+                    ًأدقاء النش
+                </a>
+                <img src="/static/images/sec2img4.png" class="fluidImg">
             </div>
-            <div class="col-12 col-sm-6 col-md-3 my-3">
-                <div class="small-img">
-                    <a href="{% url 'donatedDonation' %}">
-                        <p class="myp-onimgtxt text-center" style="right: 6rem; font-size: 18px;">
-                            أهداء تبرع
-                            &#62;
-                        </p>
-                    </a>
-                    <img src="{% static 'images/sec2img3.png' %}" style="width: 100%; height: auto;">
-                </div>
+            <div class="col-6 col-md-3">
+                <a href="{% url 'donatedDonation' %}" class="myp-onimgtxt text-center">
+                    أهداء تبرع
+                </a>
+                <img src="/static/images/sec2img3.png" class="fluidImg">
             </div>
         </div>
     </div>
 </section>
+
 
 <section class="testimonials">
     <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
@@ -199,8 +140,10 @@
 </section>
 
 <!-- './images/bgFixed.png' -->
+
 <!-- background-image: url('{% static 'images/hadfana.png' %}');  -->
-<section class="testimonials mybg-events text-center">
+<section class="testimonials mybg-events text-center"
+    style="background-image: url('{% static 'images/bgFixed.png' %}'); ">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 wow fadeInUp">
@@ -223,7 +166,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="/detailpage">
+                <a href="{% url 'allProjects' %}">
                     <div class="card card-custom">
                         <img class="card-img-top" src="{% static 'images/child.png' %}">
                         <div class="card-block">
@@ -241,7 +184,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="/detailpage">
+                <a href="{% url 'allProjects' %}">
                     <div class="card card-custom">
                         <img class="card-img-top" src="{% static 'images/child.png' %}">
                         <div class="card-block">
@@ -259,7 +202,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="/detailpage">
+                <a href="{% url 'allProjects' %}">
                     <div class="card card-custom">
                         <img class="card-img-top" src="{% static 'images/child.png' %}">
                         <div class="card-block">
@@ -283,24 +226,28 @@
 <section class="testimonials text-center">
     <div class="container">
         <div class="row justify-content-center bgStyledSection"
-            style="background-image: url('{% static './images/bgFixed.png'%}');">
-            <div class="col-md-2"
+            style="background-image: url('{% static './images/bgFixed.png' %}');">
+            <div class="col-4 col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br />يتيم مكفول
             </div>
-            <div class="col-md-2"
+            <div class="col-4 col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br />مشروع جاري تنفيذه
             </div>
-            <div class="col-md-2"
+            <div class="col-4 col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br /> داعيه مكفول
             </div>
-            <div class="col-md-2"
+            <div class="col-4 col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br />دوله
             </div>
-            <div class="col-md-2"
+            <div class="col-4 col-md-2"
+                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                <span style="font-size: 47px">75</span> <br />مسلم جديد
+            </div>
+            <div class="col-4 col-md-2"
                 style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                 <span style="font-size: 47px">75</span> <br />مسلم جديد
             </div>
@@ -308,106 +255,256 @@
     </div>
 </section>
 
-<section class="testimonials text-center">
+<section class="testimonials text-center" style="display: none;">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-7 wow fadeInUp">
                 <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
             </div>
         </div>
-        <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel" data-interval="false">
-            <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                <div class="carousel-item col-md-4  active">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 1" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 1">
-                            </a>
+        <section>
+            <div class="rt-container">
+                <div class="col-rt-12">
+                    <div class='demo-container'>
+                        <div class='carousel1'>
+                            <input checked='checked' class='carousel__activator' id='carousel-slide-activator-1'
+                                name='carousel' type='radio'>
+                            <input class='carousel__activator' id='carousel-slide-activator-2' name='carousel'
+                                type='radio'>
+                            <input class='carousel__activator' id='carousel-slide-activator-3' name='carousel'
+                                type='radio'>
+                            <div class='carousel__controls'>
+                                <label class='carousel__control carousel__control--forward'
+                                    for='carousel-slide-activator-2'>
+                                    <img src="{% static 'images/arrowleft.png' %}">
+                                </label>
+                            </div>
+                            <div class='carousel__controls'>
+                                <label class='carousel__control carousel__control--backward'
+                                    for='carousel-slide-activator-1'>
+                                    <img src="{% static 'images/arrowright.png' %}">
+                                </label>
+                                <label class='carousel__control carousel__control--forward'
+                                    for='carousel-slide-activator-3'>
+                                    <img src="{% static 'images/arrowleft.png' %}">
+                                </label>
+                            </div>
+                            <div class='carousel__controls'>
+                                <label class='carousel__control carousel__control--backward'
+                                    for='carousel-slide-activator-2'>
+                                    <img src="{% static 'images/arrowright.png' %}">
+                                </label>
+                            </div>
+                            <div class='carousel__screen'>
+                                <div class='carousel__track'>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3'>
+                                        <div class='main-content'>
+                                            <div class="testimonialhead">
+                                                <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                    انسان
+                                                </p>
+                                            </div>
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                                الخميلشيخ
+                                                عثمان الخميلشيخ عثمان
+                                                الخميلشيخ عثمان الخمي</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4 ">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 3" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 2">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 4" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 3">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 5" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 4">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 6" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 5">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 7" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 6">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 8" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 7">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-thumbnail">
-                            <a href="#" title="image 2" class="thumb">
-                                <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"
-                                    alt="slide 8">
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+        </section>
+        <!-- {#            <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel"#}
+{#                 data-interval="false">#}
+{#                <div class="carousel-inner row w-100 mx-auto" role="listbox">#}
+{#                    {% for data in testimonialsData %}#}
+{#                    <div class="carousel-item col-md-4  active">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 1" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 1">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                    <div class="carousel-item col-md-4 ">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 3" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 2">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 4" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 3">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 5" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 4">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 6" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 5">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 7" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 6">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 8" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 7">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="carousel-item col-md-4">#}
+{#                        <div class="panel panel-default">#}
+{#                            <div class="panel-thumbnail">#}
+{#                                <a href="#" title="image 2" class="thumb">#}
+{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
+{#                                         alt="slide 8">#}
+{#                                </a>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">#}
+{#                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#                    <span class="sr-only">Previous</span>#}
+{#                </a>#}
+{#                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">#}
+{#                    <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#                    <span class="sr-only">Next</span>#}
+{#                </a>#}
+{#            </div>#} -->
     </div>
 </section>
 

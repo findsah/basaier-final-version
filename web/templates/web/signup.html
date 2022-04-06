@@ -3,9 +3,17 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
+
+    {% if messages %}
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <ul class="container messages">
+            {% for message in messages %}
+                <div class="text-center bg-{{ message.tags }} container" id="messageStyle" style="color: white;">{{ message }}</div>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <div class="container">
         <div class="row justify-content-center" style="margin-top: 10rem;">

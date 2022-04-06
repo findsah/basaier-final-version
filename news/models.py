@@ -72,7 +72,7 @@ class PRNews(models.Model):
     content = models.TextField(blank=True)
     contentEn = models.TextField(blank=True)
     category = models.ForeignKey(PRCategory, on_delete=models.DO_NOTHING)
-    image = models.ImageField(upload_to='news/%Y/%m/%d', blank=True, null=True)
+    image = models.FileField(upload_to='news/%Y/%m/%d', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -107,13 +107,14 @@ class ScienceNews(models.Model):
     content = models.TextField(blank=True)
     contentEn = models.TextField(blank=True)
     category = models.ForeignKey(ScienceCategory, on_delete=models.DO_NOTHING)
-    image = models.ImageField(upload_to='news/%Y/%m/%d', blank=True, null=True)
+    image = models.FileField(upload_to='news/%Y/%m/%d', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    meetingLink = models.CharField(max_length=255, null=True)
+    # meetingLink = models.CharField(max_length=255, null=True)
 
     class Meta:
-        verbose_name_plural = "Science News"
+        verbose_name_plural = "Stories"
+        verbose_name = "Stories"
 
     def get_title(self):
         if django.utils.translation.get_language() == 'en':

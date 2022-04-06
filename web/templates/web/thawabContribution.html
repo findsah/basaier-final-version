@@ -4,7 +4,6 @@
 {% load i18n %}
 {% load projects_user %}
 {% load app_filters %}
-{% load project_image %}
 
 
 {% block content %}
@@ -57,7 +56,7 @@
                             <p>{{ project.name | truncatechars:18 }}</p>
                         </div>
                         <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4 col-lg-4 forPadding2">
-                            <div><img src="{% project_image_tag project request %}" alt="" class="imageRounded"></div>
+                            <div><img src="/media/{{ project.image }}" alt="" class="imageRounded"></div>
                         </div>
                         <div class="col-md-8 col-sm-6 col-xs-12 col-lg-8 col-lg-8 forPadding3">
                             <div>

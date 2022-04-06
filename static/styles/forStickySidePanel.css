@@ -1,0 +1,475 @@
+/* FOR STICKY COLLAPSED SIDEPANEL: */
+.affix {
+    /*top: 20px;*/
+    z-index: 1100 !important;
+}
+
+
+.sidepanel {
+    width: 0;
+    position: absolute;
+    z-index: 9999;
+    height: auto;
+    top: 160px;
+    right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    /*padding-top: 60px;*/
+    -webkit-box-shadow: -1px 0px 15px 0px #000000;
+    box-shadow: -1px 0px 15px 0px #000000;
+    /*border-top-right-radius: 25px;*/
+    /*border-bottom-left-radius: 25px;*/
+}
+
+@media (max-width: 415px) {
+    /*#mySidepanel{*/
+    /*    width: 300px !important;*/
+    /*}*/
+    #txtTotalAmountFastAccountCampaigns1 {
+        margin-bottom: 1%;
+    }
+}
+
+#toFixProperOpenTabButtonQuickDonate {
+    position: absolute;
+    background-color: #00B4DB;
+    left: -47%;
+    width: 47px;
+    height: 42px;
+    top: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+@media (max-width: 500px) {
+    #toFixProperOpenTabButtonQuickDonate {
+        width: 19px !important;
+        height: 47px !important;
+        -webkit-transition-delay: 0.5s;
+        -moz-transition-delay: 0.5s;
+        -ms-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+}
+
+@media (max-width: 500px) {
+    .openbtn {
+        font-size: 11px !important;
+        -webkit-transition-delay: 0.5s;
+        -moz-transition-delay: 0.5s;
+        -ms-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    color: #55ACEE;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+    font-size: 36px;
+    color: black;
+}
+
+.sidepanel .closebtn:hover {
+    color: #55ACEE;
+}
+
+.openbtn {
+    cursor: pointer;
+    background-color: white;
+    color: white;
+    width: 97px;
+    height: 42px;
+    border-color: transparent;
+}
+
+/*from net*/
+.padding-less {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    /*color: white;*/
+    cursor: default;
+    /*background-color: #4D5280;*/
+    background-color: #F1EFED;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    width: 100%;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+    color: black;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.nav > li > a {
+    padding: 10px 15px;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid #F5F2F2;
+    border-radius: 4px 4px 0 0;
+    background-color: #4D5280;
+    color: white;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+a:hover {
+    color: #63a69f;
+    text-decoration: none;
+}
+
+.nav > li > a {
+    padding: 10px 15px;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid #F5F2F2;
+    border-radius: 4px 4px 0 0;
+}
+
+.nav > li > a {
+    /*position: relative;*/
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav > li {
+    /*position: relative;*/
+    display: block;
+}
+
+/*.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {*/
+/*    color: white;*/
+/*    cursor: default;*/
+/*    background-color: #4D5280;*/
+/*    border: 1px solid #ddd;*/
+/*    border-bottom-color: transparent;*/
+/*}*/
+
+.nav > li > a {
+    padding: 10px 15px;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid #F5F2F2;
+    border-radius: 4px 4px 0 0;
+    background-color: #4D5280;
+    color: white;
+}
+
+.nav > li > a {
+    /*position: relative;*/
+    display: block;
+    padding: 10px 15px;
+}
+
+.margin-0-bottom {
+    margin-bottom: 0;
+}
+
+.tab-content > .active {
+    display: block;
+}
+
+/*.tab-content > .tab-pane {*/
+/*    display: none;*/
+/*}*/
+
+.padding-15-v {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.padding-15-v2 {
+    padding-bottom: 15px;
+}
+
+.form-control {
+    height: 49px !important;
+    border-radius: 50px !important;
+    background-color: lightgray !important;
+}
+
+.form-control option {
+    color: #464a4c;
+    background-color: #fff;
+    border-color: #ccc;
+    box-shadow: none;
+    outline: 0;
+}
+
+.margin-10-bottom {
+    margin-bottom: 10px !important;
+}
+
+/*.QC_add-to-cart {*/
+/*background-image: url(/Content/images/QC_add-to-cart.png);*/
+/*background-repeat: no-repeat;*/
+/*background-position: center;*/
+/*padding-left: 60px;*/
+/*background-color: #52616d;*/
+/*color: #fff;*/
+/*height: 42px;*/
+/*display: inline-block;*/
+/*margin-bottom: 0;*/
+/*font-size: 13px;*/
+/*font-weight: 400;*/
+/*line-height: 42px;*/
+/*text-align: center;*/
+/*white-space: nowrap;*/
+/*vertical-align: middle;*/
+/*-ms-touch-action: manipulation;*/
+/*touch-action: manipulation;*/
+/*cursor: pointer;*/
+/*-webkit-user-select: none;*/
+/*-moz-user-select: none;*/
+/*-ms-user-select: none;*/
+/*user-select: none;*/
+/*border: none;*/
+/*border-radius: 4px;*/
+/*}*/
+
+.fast-donation {
+    float: left;
+    list-style: outside none none;
+    width: 357px;
+    z-index: 500;
+    position: fixed;
+    top: 300px;
+    -webkit-box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+}
+
+.side-action {
+    width: 154px;
+    /*position: absolute;*/
+    top: 35%;
+    left: 100%;
+}
+
+.side-btn-arrow {
+    /*background-image: url(/Content/images/side-btn-arrow-en.png);*/
+    background-repeat: no-repeat;
+    background-position: 64% 50%;
+    display: block;
+    height: 80px;
+    background-color: #52616d;
+    border-radius: 0 4px 4px 0;
+    border: none;
+    float: right;
+    position: absolute;
+    margin-left: 90px;
+    font-size: 10px;
+    -webkit-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, .52);
+    -moz-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, .52);
+    box-shadow: 1px 0 5px 0 rgba(0, 0, 0, .52);
+}
+
+.side-btn {
+    height: 80px;
+    /*background-image: url(/Content/images/fast-donation-side-btn.png);*/
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-color: #788590;
+    color: #fff;
+    border: none;
+    line-height: 14px;
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 32px;
+}
+
+.nav-tabs {
+    /*border-bottom: 1px solid #ddd;*/
+}
+
+.padding-15-v {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+/*.QC_fixed-amount-btn {*/
+/*    margin-left: 0;*/
+/*    margin-right: 5px;*/
+/*    float: left;*/
+/*    background-color: transparent;*/
+/*    color: #00B4DB;*/
+/*    height: 42px;*/
+/*    display: inline-block;*/
+/*    width: 42px;*/
+/*    padding: 0;*/
+/*    margin-bottom: 0;*/
+/*    font-size: 13px;*/
+/*    font-weight: 400;*/
+/*    line-height: 42px;*/
+/*    text-align: center;*/
+/*    white-space: nowrap;*/
+/*    vertical-align: middle;*/
+/*    -ms-touch-action: manipulation;*/
+/*    touch-action: manipulation;*/
+/*    cursor: pointer;*/
+/*    -webkit-user-select: none;*/
+/*    -moz-user-select: none;*/
+/*    -ms-user-select: none;*/
+/*    user-select: none;*/
+/*    background-image: none;*/
+/*    border: 1px solid #00B4DB;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+.padding-15-h {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.margin-20-v {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.link-arrowed {
+    display: inline-block;
+}
+
+.link-arrowed .arrow-icon {
+    position: relative;
+    top: 0;
+    -webkit-transition: -webkit-transform .3s ease;
+    transition: -webkit-transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease, -webkit-transform .3s ease;
+    vertical-align: middle;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.fast-donation {
+    float: left;
+    list-style: outside none none;
+    width: 357px;
+    z-index: 500;
+    position: fixed;
+    top: 300px;
+    -webkit-box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 39px 0 rgba(0, 0, 0, .5);
+}
+
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+
+.link-arrowed .arrow-icon-circle {
+    -webkit-transition: stroke-dashoffset .3s ease;
+    transition: stroke-dashoffset .3s ease;
+    stroke-dasharray: 95;
+    stroke-dashoffset: 95;
+}
+
+/*.tab-content > .tab-pane {*/
+/*    display: none;*/
+/*}*/
+
+.QC_white-border-btn {
+    color: #00B4DB !important;
+    border: #fff 1px solid !important;
+    background-color: transparent !important;
+}
+
+.QC_secondary-btn, .btn-default.QC_secondary-btn, .btn-default[disabled].QC_secondary-btn, .btn.QC_secondary-btn, .QC_secondary-border-btn, .btn-default.QC_secondary-border-btn, .btn-default[disabled].QC_secondary-border-btn, .btn.QC_secondary-border-btn, .QC_white-border-btn, .QC_fixed-amount-btn, .QC_add-to-cart {
+    /*color: #4D5280;*/
+    height: 53px;
+    width: 53px;
+    color: #00B4DB;
+    border: 1px solid #00B4DB;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.btnOfQuickDonate {
+    border: none;
+    color: white;
+    padding: 0 60px;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 4px 2px;
+    height: 44px;
+    border-radius: 15px;
+}
+
+.bottomText {
+    font-size: 15px;
+    font-weight: lighter;
+    margin-top: 2rem;
+}
+
+.divBoxes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.radioBtn {
+    margin-left: 5%;
+    width: 22px;
+    height: 22px;
+    color: lightgray;
+    font-size: 14px;
+}
+
+/* END FOR STICKY COLLAPSED SIDEPANEL: */

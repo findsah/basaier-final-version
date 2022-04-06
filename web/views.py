@@ -39,7 +39,7 @@ from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
     CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, \
     giftSenderReceiver, createOwnProjectModel
-from web.models import boardOfDirectories, influencerImages, joinChat
+from web.models import boardOfDirectories, influencerImages, joinChat, testimonials
 from .tokens import account_activation_token
 
 # from web.cart import Cart
@@ -132,7 +132,8 @@ class OnlinePaymentTap(TemplateView):
         amounts = request.POST.getlist('amount[]')
         email = request.POST.get('email', '')
         recieverPhone = request.POST.get('recieverPhone', '')
-        project_category_ids = request.POST.getlist('project_category_id[]', '')
+        project_category_ids = request.POST.getlist(
+            'project_category_id[]', '')
         print("PROJECT CATEGORY ID'S: ", project_category_ids)
         sacrifice_id = int(request.POST.get('sacrifice', 0))
         sacrifice = None
@@ -142,7 +143,8 @@ class OnlinePaymentTap(TemplateView):
         if sacrifice is not None and not sacrifice.availability >= quantity:
             return redirect(get_domain_url(request) + "/project/" + str(sacrifice.project.id) + "/detail")
         payment_method = request.POST.get('payment_method')
-        phones = helpers.remove_dublicates(request.POST.getlist('phones[]', ''))
+        phones = helpers.remove_dublicates(
+            request.POST.getlist('phones[]', ''))
         transaction = Transaction.objects.create(
             status='Pending', payment_method=payment_method, is_tap_payment=True)
         for phone in phones:
@@ -155,13 +157,13 @@ class OnlinePaymentTap(TemplateView):
             #     project_dirctories = ProjectsDirectory.objects.all()
             #     projects = Project.objects.filter(
             #         is_closed=False, is_hidden=False, category__inHomePage=True
-            #     ).order_by('order')
+            #     ).order_by('-id')
             #     news = PRNews.objects.all().order_by('-id')[:6]
             #     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-            #     categories = PRCategory.objects.all().order_by('order')
+            #     categories = PRCategory.objects.all().order_by('-id')
             #     charity_categories = Category.objects.filter(
             #         inMenu=True, inHomePage=True, parent=None
-            #     ).order_by('order')
+            #     ).order_by('-id')
             #     cart_projects, projects_selected = get_cart(request)
             #     return render(request, self.template_name,
             #                   {'sliders': sliders,
@@ -178,13 +180,15 @@ class OnlinePaymentTap(TemplateView):
                 userInstance = get_object_or_404(User, id=userId2)
             if request.user.id is not None:
                 donate = Donate.objects.create(
-                    user=userInstance, amount=amounts[i], email=email, project_id=int(project_ids[i]),
+                    user=userInstance, amount=amounts[i], email=email, project_id=int(
+                        project_ids[i]),
                     transaction=transaction,
                     category_id=int(project_category_ids[i]),
                     recieverPhone=recieverPhone)
             else:
                 donate = Donate.objects.create(
-                    amount=amounts[i], email=email, project_id=int(project_ids[i]),
+                    amount=amounts[i], email=email, project_id=int(
+                        project_ids[i]),
                     transaction=transaction,
                     category_id=int(project_category_ids[i]),
                     recieverPhone=recieverPhone)
@@ -221,9 +225,11 @@ class OnlineSubscriptionTap(TemplateView):
         if sacrifice is not None and not sacrifice.availability >= quantity:
             return redirect(get_domain_url(request) + "/project/" + str(sacrifice.project.id) + "/detail")
         payment_method = request.POST.get('payment_method')
-        project_category_ids = request.POST.getlist('project_category_id[]', '')
+        project_category_ids = request.POST.getlist(
+            'project_category_id[]', '')
         # print("ONLINE_SUBSCRIPTION_TAP: ", project_category_ids)
-        phones = helpers.remove_dublicates(request.POST.getlist('phones[]', ''))
+        phones = helpers.remove_dublicates(
+            request.POST.getlist('phones[]', ''))
         transaction = Transaction.objects.create(
             status='Pending', payment_method=payment_method, is_tap_payment=True)
         for phone in phones:
@@ -232,18 +238,23 @@ class OnlineSubscriptionTap(TemplateView):
         for i, project_id in enumerate(project_ids):
             if sacrifice is not None:
                 donate = DonateSponsor.objects.create(
-                    user=userId, amount=amounts[i], email=email, project_id=int(project_ids[i]),
+                    user=userId, amount=amounts[i], email=email, project_id=int(
+                        project_ids[i]),
                     transaction=transaction,
-                    sponsorCategory=sponsorship.objects.get(pk=int(project_category_ids[i])),
-                    sponsorProject=sponsorshipProjects.objects.get(pk=int(project_ids[i])),
+                    sponsorCategory=sponsorship.objects.get(
+                        pk=int(project_category_ids[i])),
+                    sponsorProject=sponsorshipProjects.objects.get(
+                        pk=int(project_ids[i])),
                     qty=quantity,
                     sacrifice=sacrifice,
                     description=sacrifice.get_name())
             else:
                 donate = DonateSponsor.objects.create(
-                    amount=amounts[i], email=email, project_id=int(project_ids[i]),
+                    amount=amounts[i], email=email, project_id=int(
+                        project_ids[i]),
                     transaction=transaction,
-                    sponsorCategory=sponsorship.objects.get(pk=int(project_category_ids[i])),
+                    sponsorCategory=sponsorship.objects.get(
+                        pk=int(project_category_ids[i])),
                     sponsorProject=sponsorshipProjects.objects.get(
                         pk=int(project_ids[i])))
                 donates.append(donate)
@@ -309,7 +320,8 @@ def create_customer_sponsor_url(request):
             'content-type': "application/json"
         }
         payload = json.dumps(payload)
-        response = requests.request("POST", settings.TAP_PAY_CUSTOMER_URL, data=payload, headers=headers)
+        response = requests.request(
+            "POST", settings.TAP_PAY_CUSTOMER_URL, data=payload, headers=headers)
         print("RESPONSE FROM THE CUSTOMER URL: ", response.status_code)
         json_data = json.loads(response.text)
         # print(json_data)
@@ -376,9 +388,9 @@ class OnlinePayment(TemplateView):
             return redirect(url)
 
         session_id, amount = generate_credit_card_payment(request, transaction)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         return render(request, self.template_name,
                       {'categories': categories,
                        'charity_categories': charity_categories,
@@ -416,14 +428,20 @@ class PaymentSuccessOfCreditCard(View):
             cart = Cart(request)
             cart.removeAll()
 
-            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            fetchProjectName = Donate.objects.filter(
+                transaction=transaction).order_by('-id')
             for data in fetchProjectName:
                 projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
-            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
-            print("DATA IN MODEL:", senderReceiverModel)
-            senderReceiverModel.status = 'Approved'
-            senderReceiverModel.save()
+                print("projectIdFetchedFromDonationTable",
+                      projectIdFetchedFromDonationTable)
+            try:
+                senderReceiverModel = giftSenderReceiver.objects.get(
+                    project=projectIdFetchedFromDonationTable)
+                print("DATA IN MODEL:", senderReceiverModel)
+                senderReceiverModel.status = 'Approved'
+                senderReceiverModel.save()
+            except:
+                pass
 
             html_message = loader.render_to_string(
                 'web/email.html',
@@ -436,12 +454,15 @@ class PaymentSuccessOfCreditCard(View):
                     "donates": donates
                 }
             )
-            email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-            to_list = donates[0].email
-            adminMail = settings.EMAIL_HOST_USER
-            mail = EmailMultiAlternatives(
-                email_subject, 'This is message', adminMail, [to_list])
-            mail.attach_alternative(html_message, "text/html")
+            try:
+                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+                to_list = donates[0].email
+                adminMail = settings.EMAIL_HOST_USER
+                mail = EmailMultiAlternatives(
+                    email_subject, 'This is message', adminMail, [to_list])
+                mail.attach_alternative(html_message, "text/html")
+            except:
+                pass
 
             try:
                 mail.send()
@@ -452,7 +473,8 @@ class PaymentSuccessOfCreditCard(View):
             # TO SEND SMS IF THE DONATION WAS AS GIFT:
             if donates[0].recieverPhone is not None:
                 fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+                fetchProjectName = Donate.objects.filter(
+                    transaction=transaction).order_by('-id')
                 for data in fetchProjectName:
                     nameProject = data.project.name
                     request.session['projectName'] = nameProject
@@ -461,7 +483,8 @@ class PaymentSuccessOfCreditCard(View):
                 phoneNumber = donates[0].recieverPhone
                 amount = donates[0].amount
                 print("IF DONATED AS GIFT:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(projectName, amount)
+                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                    projectName, amount)
                 print(message)
                 callThat = sendSMS(message, fromSender, phoneNumber)
                 # print(callThat)
@@ -479,7 +502,8 @@ class PaymentSuccessOfCreditCard(View):
                     # phone = phonenumbers.parse(obj.phone, None)
                     # if phonenumbers.is_valid_number(phone):
                     # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(amount, payment_id)
+                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                        amount, payment_id)
 
                     fromSender = 'S@basorg'
                     callThat = sendSMS(message, fromSender, obj.phone)
@@ -489,7 +513,7 @@ class PaymentSuccessOfCreditCard(View):
                     pass
 
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             sponsorCategories = sponsorship.objects.all()
 
             return render(
@@ -525,12 +549,13 @@ class Index(TemplateView):
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
         news2 = PRNews.objects.all().order_by('-id')[:4]
+        testimonialsData = testimonials.objects.all().order_by('-id')
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         # whoWeAreVar = whoWeAre.objects.all()
         cart_projects, projects_selected = get_cart(request)
         return render(request, self.template_name,
@@ -549,6 +574,7 @@ class Index(TemplateView):
                        # 'whoWeAreVar': whoWeAreVar,
                        'totalProjectsInCart': totalProjectsInCart,
                        'getMyCurrency': getMyCurrency,
+                       'testimonialsData': testimonialsData,
                        })
 
 
@@ -571,12 +597,12 @@ class Index(TemplateView):
 #         # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
 #         #     return redirect("/")
 #
-#         categories = PRCategory.objects.all().order_by('order')
+#         categories = PRCategory.objects.all().order_by('-id')
 #         sponsorCategories = sponsorship.objects.all()
 #         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('order')
+#             inMenu=True, parent=None).order_by('-id')
 #         latest_projects = Project.objects.filter(
-#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
 #         cart_projects, projects_selected = get_cart(request)
 #         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
 #         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
@@ -633,12 +659,12 @@ class Index(TemplateView):
 #             # fetchProject = Project.objects.values('id', 'category__id').filter(pk=kwargs['id'])
 #             # for data in fetchProject:
 #             #     print(data)
-#         categories = PRCategory.objects.all().order_by('order')
+#         categories = PRCategory.objects.all().order_by('-id')
 #         sponsorCategories = sponsorship.objects.all()
 #         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('order')
+#             inMenu=True, parent=None).order_by('-id')
 #         latest_projects = Project.objects.filter(
-#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
 #         cart_projects, projects_selected = get_cart(request)
 #         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
 #         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
@@ -685,22 +711,25 @@ class ProjectDetail(TemplateView):
         # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
         #     return redirect("/")
 
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False).order_by('order')[:6]
+            is_closed=False, is_hidden=False).order_by('-id')[:6]
         projects = Project.objects.filter(pk=id)
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         multipleImages = PostImage.objects.filter(post=id)
         for data in multipleImages:
             print(data.image)
         cart_projects, projects_selected = get_cart(request)
-        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
+        sacrifices = Sacrifice.objects.filter(
+            availability__gt=0, project=project).order_by('country').all()
+        sacrifices_json_data = Sacrifice.objects.filter(
+            availability__gt=0, project=project).values()
 
-        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
+        sacrifices_json = json.dumps(
+            list(sacrifices_json_data), cls=DjangoJSONEncoder)
         if len(sacrifices_json_data) > 0:
             self.template_name = "web/project_sacrifice_detail_.html"
         if request.user.is_authenticated:
@@ -755,16 +784,19 @@ class ProjectDetail(TemplateView):
             # fetchProject = Project.objects.values('id', 'category__id').filter(pk=kwargs['id'])
             # for data in fetchProject:
             #     print(data)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+            is_closed=False, is_hidden=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
-        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
-        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
+        sacrifices = Sacrifice.objects.filter(
+            availability__gt=0, project=project).order_by('country').all()
+        sacrifices_json_data = Sacrifice.objects.filter(
+            availability__gt=0, project=project).values()
+        sacrifices_json = json.dumps(
+            list(sacrifices_json_data), cls=DjangoJSONEncoder)
         if len(sacrifices_json_data) > 0:
             self.template_name = "web/project_sacrifice_detail_.html"
         return render(request, self.template_name,
@@ -793,64 +825,35 @@ class privateProjectDetail(TemplateView):
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
-        # getMyCurrency = getCurrency(request)
-        getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        project_dirctories = ProjectsDirectory.objects.all()
         project = None
         if 'slug' in kwargs:
             project = get_object_or_404(Project, slug=kwargs['slug'])
         else:
             project = get_object_or_404(Project, pk=kwargs['id'])
         id = kwargs['id']
-        # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
-        #     return redirect("/")
-
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False).order_by('order')[:6]
+            is_closed=False).order_by('-id')[:6]
         projects = Project.objects.filter(pk=id)
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         multipleImages = PostImage.objects.filter(post=id)
         for data in multipleImages:
             print(data.image)
-        cart_projects, projects_selected = get_cart(request)
-        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
-
-        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
-        if len(sacrifices_json_data) > 0:
-            self.template_name = "web/project_sacrifice_detail_.html"
-        if request.user.is_authenticated:
-            userId = request.user.id
-            userInstance = get_object_or_404(User, id=userId)
-            profile = get_object_or_404(Profile, user=userInstance)
-            phoneNumberOfUser = profile.phone
-        else:
-            phoneNumberOfUser = ''
 
         return render(request, self.template_name,
-                      {'sliders': sliders,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'latest_projects': latest_projects,
-                       'project': project,
-                       'projects': projects,
-                       'pdfFiles': pdfFiles,
-                       'multipleImages': multipleImages,
-                       'sponsorCategories': sponsorCategories,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'project_dirctories': project_dirctories,
-                       'sacrifices_json': sacrifices_json,
-                       'sacrifices': sacrifices,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       'phoneNumberOfUser': phoneNumberOfUser,
-                       })
+                      {
+                          'categories': categories,
+                          'charity_categories': charity_categories,
+                          'latest_projects': latest_projects,
+                          'projects': projects,
+                          'pdfFiles': pdfFiles,
+                          'multipleImages': multipleImages,
+                          'sponsorCategories': sponsorCategories,
+                          'totalProjectsInCart': totalProjectsInCart,
+                      })
 
     def post(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -860,10 +863,6 @@ class privateProjectDetail(TemplateView):
         numberOfShare = int(request.POST.get('numberOfShare', 0))
 
         amounts = request.POST.getlist('amount[]', [""])
-        # print(amounts)
-        # if amounts == [""]:
-        #     amounts = ["0.0"]
-
         # project_category_ids = request.POST.getlist('project_category_id[]')
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
@@ -876,16 +875,19 @@ class privateProjectDetail(TemplateView):
             # fetchProject = Project.objects.values('id', 'category__id').filter(pk=kwargs['id'])
             # for data in fetchProject:
             #     print(data)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+            is_closed=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
-        sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-        sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
-        sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
+        sacrifices = Sacrifice.objects.filter(
+            availability__gt=0, project=project).order_by('country').all()
+        sacrifices_json_data = Sacrifice.objects.filter(
+            availability__gt=0, project=project).values()
+        sacrifices_json = json.dumps(
+            list(sacrifices_json_data), cls=DjangoJSONEncoder)
         if len(sacrifices_json_data) > 0:
             self.template_name = "web/project_sacrifice_detail_.html"
         return render(request, self.template_name,
@@ -893,7 +895,7 @@ class privateProjectDetail(TemplateView):
                        'categories': categories,
                        'charity_categories': charity_categories,
                        'latest_projects': latest_projects,
-                       'project': project,
+                       'projects': project,
                        'sponsorCategories': sponsorCategories,
                        'cart_projects': cart_projects,
                        'projects_selected': projects_selected,
@@ -932,10 +934,10 @@ class ProjectDoaatDetail(TemplateView):
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
         project = get_object_or_404(Project, pk=7)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
             is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
@@ -957,7 +959,7 @@ def donatedDonation(request):
     cart = Cart(request)
     totalProjectsInCart = cart.get_total_products()
     charity_categories = Category.objects.filter(
-        inMenu=True, parent=None).order_by('order')
+        inMenu=True, parent=None).order_by('-id')
     projects = Project.objects.filter(
         is_closed=False, is_hidden=False, is_thawab=True).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
@@ -981,10 +983,10 @@ class ProjectAishaDetail(TemplateView):
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
         project = get_object_or_404(Project, pk=9)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
             is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
@@ -1012,10 +1014,10 @@ class ProjectKlaDetail(TemplateView):
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
         project = get_object_or_404(Project, pk=8)
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
             is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
@@ -1034,7 +1036,17 @@ class ProjectKlaDetail(TemplateView):
 
 
 def happyStories(request):
-    return render(request, 'web/happystories.html')
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    cart_projects, projects_selected = get_cart(request)
+    dataScienceNews = ScienceNews.objects.all().order_by('-id')[:5]
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('-id')
+    return render(request, 'web/happystories.html', {
+        'dataScienceNews': dataScienceNews,
+        'charity_categories': charity_categories,
+        'cart_projects': cart_projects,
+    })
 
 
 class News(TemplateView):
@@ -1051,10 +1063,10 @@ class News(TemplateView):
         if 'category_id' in kwargs:
             news = PRNews.objects.filter(
                 category__id=kwargs['category_id']).order_by('-id')[:15]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_news = PRNews.objects.all().order_by('-id')[:6]
 
         cart_projects, projects_selected = get_cart(request)
@@ -1075,7 +1087,7 @@ class News(TemplateView):
 def joinchat(request):
     if request.method == 'POST':
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         country = request.POST.get('country', '')
         number = request.POST.get('number', '')
         contactChoice = request.POST.get('contactChoice', '')
@@ -1090,7 +1102,7 @@ def joinchat(request):
         })
     else:
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         return render(request, 'web/joinchat.html', {
             'charity_categories': charity_categories,
         })
@@ -1111,10 +1123,10 @@ class NewsDetail(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         obj = get_object_or_404(PRNews, pk=kwargs['id'])
         news = PRNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         latest_news = PRNews.objects.all().order_by('-id')[:6]
 
         cart_projects, projects_selected = get_cart(request)
@@ -1146,10 +1158,10 @@ class ScienceCenter(TemplateView):
         if 'category_id' in kwargs:
             news = ScienceNews.objects.filter(
                 category__id=kwargs['category_id']).order_by('-id')[:15]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        science_categories = ScienceCategory.objects.all().order_by('order')
+            inMenu=True, parent=None).order_by('-id')
+        science_categories = ScienceCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         latest_news = ScienceNews.objects.all().order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
@@ -1178,17 +1190,17 @@ class Charity(TemplateView):
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
         projects = Project.objects.filter(
-            is_closed=False, is_hidden=False, is_compaign=False).order_by('order')
+            is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')
         if 'category_id' in kwargs:
             projects = Project.objects.filter(is_closed=False, is_hidden=False,
-                                              category__id=kwargs['category_id'], is_compaign=False).order_by('order')
-        categories = PRCategory.objects.all().order_by('order')
+                                              category__id=kwargs['category_id'], is_compaign=False).order_by('-id')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
-        all_categories = Category.objects.filter(inMenu=True).order_by('order')
+        all_categories = Category.objects.filter(inMenu=True).order_by('-id')
         charity_categories = all_categories.filter(parent=None)
         # topImagess = topImages.objects.all().order_by('-id')[:1]
         latest_projects = Project.objects.filter(
-            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+            is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
 
         cart_projects, projects_selected = get_cart(request)
         return render(request, self.template_name,
@@ -1219,9 +1231,9 @@ def localProjects(request):
                                             is_sadaqah=False, is_compaign=False).order_by('-id')[:4]
     projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, location="Kuwait", is_sadaqah=True,
                                              is_compaign=False)
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
-    all_categories = Category.objects.filter(inMenu=True).order_by('order')
+    all_categories = Category.objects.filter(inMenu=True).order_by('-id')
     charity_categories = all_categories.filter(parent=None)
     # topImagess = topImages.objects.all().order_by('-id')[:1]
     cart_projects, projects_selected = get_cart(request)
@@ -1259,9 +1271,9 @@ def foreignProjects(request):
     projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                              is_compaign=False).exclude(
         location="Kuwait").order_by('-id')[:4]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
-    all_categories = Category.objects.filter(inMenu=True).order_by('order')
+    all_categories = Category.objects.filter(inMenu=True).order_by('-id')
     charity_categories = all_categories.filter(parent=None)
     # topImagess = topImages.objects.all().order_by('-id')[:1]
     cart_projects, projects_selected = get_cart(request)
@@ -1291,10 +1303,11 @@ def projectsWithCategories(request, category_id):
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     sliders = Slider.objects.all().order_by('-id')[:5]
-    allprojects = Project.objects.filter(is_closed=False, is_hidden=False, is_compaign=False).order_by('order')
-    categories = PRCategory.objects.all().order_by('order')
+    allprojects = Project.objects.filter(
+        is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
-    all_categories = Category.objects.filter(inMenu=True).order_by('order')
+    all_categories = Category.objects.filter(inMenu=True).order_by('-id')
     charity_categories = all_categories.filter(parent=None)
 
     categoryOfProjects = Project.objects.values('id', 'category__id')
@@ -1308,7 +1321,7 @@ def projectsWithCategories(request, category_id):
 
     # topImagess = topImages.objects.all().order_by('-id')[:1]
     latest_projects = Project.objects.filter(
-        is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('order')[:6]
+        is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
 
     # return render(request, 'web/projectsAccordingToCategories.html', {'categoryId': categoryId})
@@ -1337,16 +1350,18 @@ def projectsOfParticularCategory(request, category_id):
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     sliders = Slider.objects.all().order_by('-id')[:5]
-    allprojects = Project.objects.filter(is_closed=False, is_hidden=False, is_compaign=False).order_by('order')
-    categories = PRCategory.objects.all().order_by('order')
+    allprojects = Project.objects.filter(
+        is_closed=False, is_hidden=False, is_compaign=False).order_by('-id')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
-    all_categories = Category.objects.filter(inMenu=True).order_by('order')
+    all_categories = Category.objects.filter(inMenu=True).order_by('-id')
     categoryName = Category.objects.filter(pk=categoryId)
     for data in categoryName:
         categoryName1 = data.name
     charity_categories = all_categories.filter(parent=None)
 
-    categoryOfProjects = Project.objects.filter(category=categoryId, is_hidden=False, is_compaign=False).order_by('-id')
+    categoryOfProjects = Project.objects.filter(
+        category=categoryId, is_hidden=False, is_compaign=False).order_by('-id')
     # print(categoryOfProjects)
     # for categoryId in all_categories:
     #     print("CATEGORY PARENT:", categoryId.id)
@@ -1436,9 +1451,9 @@ class Confirmation(TemplateView):
         self.request.session['project_ids'] = session_project_ids
         self.request.session['project_category_ids'] = \
             session_project_category_ids
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         sliders = Slider.objects.all().order_by('-id')[:5]
         return render(request, self.template_name,
                       {'categories': categories,
@@ -1508,9 +1523,9 @@ class Checkout(TemplateView):
         self.request.session['amounts'] = amounts
         self.request.session['project_ids'] = project_ids
         self.request.session['project_category_ids'] = project_category_ids
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         sliders = Slider.objects.all().order_by('-id')[:5]
         projects = Project.objects.filter(id__in=project_ids)
         return render(request, self.template_name,
@@ -1559,9 +1574,9 @@ class Checkout(TemplateView):
                    'project_category_id': project_category_id}
             projects_selected.append(obj)
 
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         return render(request, self.template_name,
                       {'categories': categories,
                        'charity_categories': charity_categories,
@@ -1598,13 +1613,13 @@ class CheckoutAsGuest(TemplateView):
             request, transaction)
         return redirect(url)
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         request.session['amounts'] = []
         request.session['project_ids'] = []
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
                                           is_compaign=False).order_by('-id')[:3]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         return render(request, self.template_name,
                       {'categories': categories,
@@ -1682,9 +1697,9 @@ class CheckoutWithLogged(TemplateView):
 
             session_id, amount = generate_credit_card_payment(
                 request, transaction)
-            categories = PRCategory.objects.all().order_by('order')
+            categories = PRCategory.objects.all().order_by('-id')
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             return render(request, self.template_name,
                           {'categories': categories,
                            'charity_categories': charity_categories,
@@ -1734,9 +1749,9 @@ class CheckoutWithLogin(TemplateView):
             url, reference, transaction = generate_payment_url(
                 request, transaction)
             return redirect(url)
-            categories = PRCategory.objects.all().order_by('order')
+            categories = PRCategory.objects.all().order_by('-id')
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             request.session['amounts'] = []
             request.session['project_ids'] = []
             return render(request, self.template_name,
@@ -1805,9 +1820,9 @@ class CheckoutWithRegister(TemplateView):
                     url, reference, transaction = generate_payment_url(
                         request, transaction)
                     return redirect(url)
-                    categories = PRCategory.objects.all().order_by('order')
+                    categories = PRCategory.objects.all().order_by('-id')
                     charity_categories = Category.objects.filter(
-                        inMenu=True, parent=None).order_by('order')
+                        inMenu=True, parent=None).order_by('-id')
                     request.session['amounts'] = []
                     request.session['project_ids'] = []
                     return render(request, self.template_name,
@@ -1890,23 +1905,28 @@ def Login(request):
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
         sliders = Slider.objects.all().order_by('-id')[:5]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        latest_projects = Project.objects.filter(is_compaign=False).order_by('-id')[:6]
+            inMenu=True, parent=None).order_by('-id')
+        latest_projects = Project.objects.filter(
+            is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        projects = Project.objects.filter(is_sadaqah=False, is_compaign=False).order_by('-id')
-        projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
+        projects = Project.objects.filter(
+            is_sadaqah=False, is_compaign=False).order_by('-id')
+        projectsSadaqah = Project.objects.filter(
+            is_sadaqah=True, is_compaign=False).order_by('-id')
         username = request.POST.get('email', '')
         activationCodeCreateCompaign = request.POST.get('activationCode')
         activationCodeCreateCompaignStr = str(activationCodeCreateCompaign)
-        getTheGeneratedCodeFromSession = request.session.get('generatedRandomNumber')
+        getTheGeneratedCodeFromSession = request.session.get(
+            'generatedRandomNumber')
         getTheGeneratedCodeFromSessionStr = str(getTheGeneratedCodeFromSession)
         print("IN SESSION CODE STR:", getTheGeneratedCodeFromSessionStr)
-        print("FETCHED FROM POST METHOD CODE STR:", activationCodeCreateCompaignStr)
+        print("FETCHED FROM POST METHOD CODE STR:",
+              activationCodeCreateCompaignStr)
         if activationCodeCreateCompaignStr == getTheGeneratedCodeFromSessionStr:
             password = request.POST.get('password', '')
             user = authenticate(username=username, password=password)
@@ -1943,16 +1963,19 @@ def Login(request):
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        latest_projects = Project.objects.filter(is_compaign=False).order_by('-id')[:6]
+            inMenu=True, parent=None).order_by('-id')
+        latest_projects = Project.objects.filter(
+            is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        projects = Project.objects.filter(is_sadaqah=False, is_compaign=False).order_by('-id')
-        projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
+        projects = Project.objects.filter(
+            is_sadaqah=False, is_compaign=False).order_by('-id')
+        projectsSadaqah = Project.objects.filter(
+            is_sadaqah=True, is_compaign=False).order_by('-id')
         # if 'category_id' in kwargs:
         #     projects = Project.objects.filter(
         #         category__id=kwargs['category_id']).order_by('-id')[:15]
@@ -1975,16 +1998,19 @@ def Login(request):
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
-        latest_projects = Project.objects.filter(is_compaign=False).order_by('-id')[:6]
+            inMenu=True, parent=None).order_by('-id')
+        latest_projects = Project.objects.filter(
+            is_compaign=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        projects = Project.objects.filter(is_sadaqah=False, is_compaign=False).order_by('-id')
-        projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
+        projects = Project.objects.filter(
+            is_sadaqah=False, is_compaign=False).order_by('-id')
+        projectsSadaqah = Project.objects.filter(
+            is_sadaqah=True, is_compaign=False).order_by('-id')
         return render(request, 'web/login.html',
                       {
                           'totalProjectsInCart': totalProjectsInCart,
@@ -2019,16 +2045,19 @@ class ProfileView(TemplateView):
             userId1 = request.user.id
             userId = int(userId1)
             sliders = Slider.objects.all().order_by('-id')[:5]
-            categories = PRCategory.objects.all().order_by('order')
+            categories = PRCategory.objects.all().order_by('-id')
             sponsorCategories = sponsorship.objects.all()
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
-            latest_projects = Project.objects.filter(is_compaign=False).order_by('-id')[:6]
+                inMenu=True, parent=None).order_by('-id')
+            latest_projects = Project.objects.filter(
+                is_compaign=False).order_by('-id')[:6]
             cart_projects, projects_selected = get_cart(request)
             news = PRNews.objects.all().order_by('-id')[:6]
             science_news = ScienceNews.objects.all().order_by('-id')[:6]
-            projects = Project.objects.filter(created_by=userId, is_compaign=False).order_by('-id')
-            projectsSadaqah = Project.objects.filter(is_sadaqah=True, is_compaign=False).order_by('-id')
+            projects = Project.objects.filter(
+                created_by=userId, is_compaign=False).order_by('-id')
+            projectsSadaqah = Project.objects.filter(
+                is_sadaqah=True, is_compaign=False).order_by('-id')
             if 'category_id' in kwargs:
                 projects = Project.objects.filter(
                     category__id=kwargs['category_id'], is_compaign=False).order_by('-id')[:15]
@@ -2075,7 +2104,8 @@ class Register(TemplateView):
             except User.DoesNotExist:
                 user_withemail = None
             if user_withemail is None:
-                user, profile = create_user(first_name, last_name, username, password, phone)
+                user, profile = create_user(
+                    first_name, last_name, username, password, phone)
                 users = User.objects.filter(email=username)
                 for user in users:
                     user.is_active = False
@@ -2084,7 +2114,8 @@ class Register(TemplateView):
                 current_site = get_current_site(request)
                 subject = 'Activate Your MySite Account'
                 site_url = 'http://%s/activate/%s/%s' % (
-                    current_site.domain, urlsafe_base64_encode(force_bytes(user.pk)),
+                    current_site.domain, urlsafe_base64_encode(
+                        force_bytes(user.pk)),
                     account_activation_token.make_token(user))
                 language = get_language()
                 if language == 'ar':
@@ -2098,9 +2129,11 @@ class Register(TemplateView):
                 print("MAIL SENT FOR ACTIVATIOIN:")
                 language = get_language()
                 if language == 'ar':
-                    messages.success(request, ('يرجى تأكيد بريدك الإلكتروني لإكمال التسجيل.'))
+                    messages.success(
+                        request, ('يرجى تأكيد بريدك الإلكتروني لإكمال التسجيل.'))
                 else:
-                    messages.success(request, ('Please Confirm Your Email To Complete Registration.'))
+                    messages.success(
+                        request, ('Please Confirm Your Email To Complete Registration.'))
                 # if profile is not None:
                 #     login(request, user)
                 #     return redirect('/profile/')
@@ -2132,9 +2165,9 @@ class Register(TemplateView):
         if request.user.is_authenticated:
             return render(request, 'web/index2.html', {'totalProjectsInCart': totalProjectsInCart, })
 
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         return render(request, self.template_name,
                       {'categories': categories,
                        'charity_categories': charity_categories,
@@ -2161,12 +2194,14 @@ class ActivateAccount(View):
                 messages.success(request, ('تم تنشيط حسابك....!'))
                 return redirect('/ar')
             else:
-                messages.success(request, ('Your Account Have Been Activated....!'))
+                messages.success(
+                    request, ('Your Account Have Been Activated....!'))
                 return redirect('/en')
         else:
             language = get_language()
             if language == 'ar':
-                messages.error(request, ('كان ارتباط التأكيد غير صالح ، ربما لأنه تم استخدامه بالفعل.'))
+                messages.error(
+                    request, ('كان ارتباط التأكيد غير صالح ، ربما لأنه تم استخدامه بالفعل.'))
                 return redirect('/')
             else:
                 messages.error(request,
@@ -2211,7 +2246,11 @@ class ChangePasswordView(TemplateView):
 
 
 def aboutUs(request):
-    return render(request, 'web/aboutus.html')
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('-id')
+    return render(request, 'web/aboutus.html', {
+        'charity_categories': charity_categories,
+    })
 
 
 # class AboutUs(TemplateView):
@@ -2226,11 +2265,11 @@ def aboutUs(request):
 #         news = PRNews.objects.all().order_by('-id')[:6]
 #         science_news = ScienceNews.objects.all().order_by('-id')[:6]
 #         boardOfDirectory = boardOfDirectories.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('order')
+#         categories = PRCategory.objects.all().order_by('-id')
 #         project_dirctories = ProjectsDirectory.objects.all()
 #         sponsorCategories = sponsorship.objects.all()
 #         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('order')
+#             inMenu=True, parent=None).order_by('-id')
 #
 #         cart_projects, projects_selected = get_cart(request)
 #         return render(request, self.template_name,
@@ -2274,10 +2313,10 @@ class ContactUs(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
-            inMenu=True, parent=None).order_by('order')
+            inMenu=True, parent=None).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, self.template_name,
                       {'sliders': sliders,
@@ -2335,10 +2374,10 @@ class ContactUs(TemplateView):
 #         sliders = Slider.objects.all().order_by('-id')[:5]
 #         news = PRNews.objects.all().order_by('-id')[:6]
 #         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('order')
+#         categories = PRCategory.objects.all().order_by('-id')
 #         sponsorCategories = sponsorship.objects.all()
 #         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('order')
+#             inMenu=True, parent=None).order_by('-id')
 #         cart_projects, projects_selected = get_cart(request)
 #         return render(request, self.template_name,
 #                       {'sliders': sliders,
@@ -2355,87 +2394,188 @@ class ContactUs(TemplateView):
 
 def volunteerNew(request):
     charity_categories = Category.objects.filter(
-        inMenu=True, parent=None).order_by('order')
+        inMenu=True, parent=None).order_by('-id')
     return render(request, 'web/volunteer.html', {
         'charity_categories': charity_categories,
     })
 
 
+def volunteerAndSpread(request):
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('-id')
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        civilNumber = request.POST.get('civilNumber', '')
+        dateOfBirth = request.POST.get('dateOfBirth', '')
+        sex = request.POST.get('sex', '')
+        country = request.POST.get('country', '')
+        phoneNumber1 = request.POST.get('phoneNumber1', '')
+        emergencyPhoneNumber = request.POST.get('emergencyPhoneNumber', '')
+        relativeRelation = request.POST.get('relativeRelation', '')
+        email = request.POST.get('email', '')
+        qualification = request.POST.get('qualification', '')
+        specialization = request.POST.get('specialization', '')
+        employer = request.POST.get('employer', '')
+        currentPosition = request.POST.get('currentPosition', '')
+        preferedVolunteeringField = request.POST.get('preferedVolunteeringField', '')
+        interset = request.POST.get('interset', '')
+        # try:
+        obj = volunteer.objects.create(
+            name=name,
+            civilNumber=civilNumber,
+            dateOfBirth=dateOfBirth,
+            sex=sex,
+            country=country,
+            phoneNumber1=phoneNumber1,
+            emergencyPhoneNumber=emergencyPhoneNumber,
+            relativeRelation=relativeRelation,
+            email=email,
+            qualification=qualification,
+            specialization=specialization,
+            employer=employer,
+            currentPosition=currentPosition,
+            preferedVolunteeringField=preferedVolunteeringField,
+            interset=interset,
+        )
+        messages.success(request, "Data Has Been Sent Successfully...!")
+        # except:
+        #     messages.success(request, "Please Try Again Later...!")
+        #     pass
+        return render(request, 'web/volunteerandspread.html', {
+            'charity_categories': charity_categories,
+        })
+    else:
+        return render(request, 'web/volunteerandspread.html', {
+            'charity_categories': charity_categories,
+        })
+
+
+def joinfieldvolunteer(request):
+    if request.method == 'POST':
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('-id')
+        return render(request, 'web/joinfieldvolunteer.html', {
+            'charity_categories': charity_categories,
+        })
+    else:
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('-id')
+        return render(request, 'web/joinfieldvolunteer.html', {
+            'charity_categories': charity_categories,
+        })
+
+
 def ourPartners(request):
     charity_categories = Category.objects.filter(
-        inMenu=True, parent=None).order_by('order')
+        inMenu=True, parent=None).order_by('-id')
     return render(request, 'web/ourpartners.html', {
         'charity_categories': charity_categories,
     })
 
 
-# class Partner(TemplateView):
-#     # template_name = "web/partner.html"
-#
-#     @method_decorator(csrf_protect)
-#     def post(self, request, *args, **kwargs):
-#         organizationName = request.POST.get('organizationName', '')
-#         country = request.POST.get('country', '')
-#         email = request.POST.get('email', '')
-#         domainOfWork = request.POST.get('domainOfWork', '')
-#         website = request.POST.get('website', '')
-#         phoneNumber = request.POST.get('phoneNumber', '')
-#         address = request.POST.get('address', '')
-#         adminMail = settings.EMAIL_HOST_USER
-#         if organizationName is not None and country is not None and email is not None and website is not None and domainOfWork is not None and phoneNumber is not None and address is not None:
-#             partner.objects.create(
-#                 organizationName=organizationName,
-#                 country=country,
-#                 email=email,
-#                 domainOfWork=domainOfWork,
-#                 website=website,
-#                 phoneNumber=phoneNumber,
-#                 address=address,
-#             )
-#             language = get_language()
-#             if language == 'ar':
-#                 messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
-#             else:
-#                 messages.success(request, ("Message Sent Successfully...!"))
-#         # contact = Contact.objects.create(
-#         #     name=name, email=email,
-#         #     subject=subject, message=message
-#         # )
-#         send_mail(email, website, adminMail, [adminMail, ])
-#         return render(request, self.template_name)
-#
-#     def get(self, request, *args, **kwargs):
-#         cart = Cart(request)
-#         totalProjectsInCart = cart.get_total_products()
-#         # getMyCurrency = getCurrency(request)
-#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         news = PRNews.objects.all().order_by('-id')[:6]
-#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('order')
-#         sponsorCategories = sponsorship.objects.all()
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('order')
-#         cart_projects, projects_selected = get_cart(request)
-#         return render(request, self.template_name,
-#                       {'sliders': sliders,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'news': news,
-#                        'sponsorCategories': sponsorCategories,
-#                        'science_news': science_news,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        })
-
-
 def Partner(request):
+    charity_categories = Category.objects.filter(inMenu=True, parent=None).order_by('-id')
     if request.method == 'POST':
-        return render(request, 'web/bepartner.html')
+        foreignAffairsNumber = request.POST.get('foreignAffairsNumber', '')
+        licenseStartDate = request.POST.get('licenseStartDate', '')
+        licenseExpiryDate = request.POST.get('licenseExpiryDate', '')
+        entityAr = request.POST.get('entityAr', '')
+        entityEn = request.POST.get('entityEn', '')
+        entityLocal = request.POST.get('entityLocal', '')
+        continent = request.POST.get('continent', '')
+        country = request.POST.get('country', '')
+        provinceOrState = request.POST.get('provinceOrState', '')
+        address = request.POST.get('address', '')
+        phoneNumber1 = request.POST.get('phoneNumber1', '')
+        phoneNumber2 = request.POST.get('phoneNumber2', '')
+        phoneNumber3 = request.POST.get('phoneNumber3', '')
+        email = request.POST.get('email', '')
+        website = request.POST.get('website', '')
+        facebookLink = request.POST.get('facebookLink', '')
+        twitterLink = request.POST.get('twitterLink', '')
+        instagramLink = request.POST.get('instagramLink', '')
+        yearFounded = request.POST.get('yearFounded', '')
+        affliatedAuthority = request.POST.get('affliatedAuthority', '')
+        branches = request.POST.get('branches', '')
+        natureOfEntityWork = request.POST.get('natureOfEntityWork', '')
+        employeesInEntity = request.POST.get('employeesInEntity', '')
+        projectsImplemented = request.POST.get('projectsImplemented', '')
+        prominentGoals = request.POST.get('prominentGoals', '')
+        achievements = request.POST.get('achievements', '')
+        beneficiarySegments = request.POST.get('beneficiarySegments', '')
+        entityManagerName = request.POST.get('entityManagerName', '')
+        entityManagerPhoneNumber1 = request.POST.get('entityManagerPhoneNumber1', '')
+        entityManagerUsername1 = request.POST.get('entityManagerUsername1', '')
+        entityManagerPhoneNumber2 = request.POST.get('entityManagerPhoneNumber2', '')
+        entityManagerUsername2 = request.POST.get('entityManagerUsername2', '')
+        entityManagerPhoneNumber3 = request.POST.get('entityManagerPhoneNumber3', '')
+        entityManagerUsername3 = request.POST.get('entityManagerUsername3', '')
+        entityManagerPhoneNumber4 = request.POST.get('entityManagerPhoneNumber4', '')
+        donorName = request.POST.get('donorName', '')
+        theState1 = request.POST.get('theState1', '')
+        donorName2 = request.POST.get('donorName2', '')
+        theState2 = request.POST.get('theState2', '')
+        donorName3 = request.POST.get('donorName3', '')
+        theState3 = request.POST.get('theState3', '')
+        donorName4 = request.POST.get('donorName4', '')
+        theState4 = request.POST.get('theState4', '')
+        nameOfSponsoringParty = request.POST.get('nameOfSponsoringParty', '')
+        attachTestimonial = request.FILES["attachTestimonial"]
+        try:
+            created = partner.objects.create(
+                foreignAffairsNumber=foreignAffairsNumber,
+                licenseStartDate=licenseStartDate,
+                licenseExpiryDate=licenseExpiryDate,
+                entityAr=entityAr,
+                entityEn=entityEn,
+                entityLocal=entityLocal,
+                continent=continent,
+                country=country,
+                provinceOrState=provinceOrState,
+                address=address,
+                phoneNumber1=phoneNumber1,
+                phoneNumber2=phoneNumber2,
+                phoneNumber3=phoneNumber3,
+                email=email,
+                website=website,
+                facebookLink=facebookLink,
+                twitterLink=twitterLink,
+                instagramLink=instagramLink,
+                yearFounded=yearFounded,
+                affliatedAuthority=affliatedAuthority,
+                branches=branches,
+                natureOfEntityWork=natureOfEntityWork,
+                employeesInEntity=employeesInEntity,
+                projectsImplemented=projectsImplemented,
+                prominentGoals=prominentGoals,
+                achievements=achievements,
+                beneficiarySegments=beneficiarySegments,
+                entityManagerName=entityManagerName,
+                entityManagerPhoneNumber1=entityManagerPhoneNumber1,
+                entityManagerUsername1=entityManagerUsername1,
+                entityManagerPhoneNumber2=entityManagerPhoneNumber2,
+                entityManagerUsername2=entityManagerUsername2,
+                entityManagerPhoneNumber3=entityManagerPhoneNumber3,
+                entityManagerUsername3=entityManagerUsername3,
+                entityManagerPhoneNumber4=entityManagerPhoneNumber4,
+                donorName=donorName,
+                theState1=theState1,
+                donorName2=donorName2,
+                theState2=theState2,
+                donorName3=donorName3,
+                theState3=theState3,
+                donorName4=donorName4,
+                theState4=theState4,
+                nameOfSponsoringParty=nameOfSponsoringParty,
+                attachTestimonial=attachTestimonial
+            )
+            messages.success(request, "BE A PARTNER PROJECT CREATED SUCCESSFULLY...!")
+            print("BE A PARTNER PROJECT CREATED SUCCESSFULLY...!")
+        except:
+            return render(request, 'web/bepartner.html', {'charity_categories': charity_categories, })
+        return render(request, 'web/bepartner.html', {'charity_categories': charity_categories, })
     else:
-        return render(request, 'web/bepartner.html')
+        return render(request, 'web/bepartner.html', {'charity_categories': charity_categories, })
 
 
 class CreatePeople(View):
@@ -2604,7 +2744,8 @@ def generate_payment_url_tap(request, transaction, payment_method):
             'content-type': "application/json"
         }
         payload = json.dumps(json_payload)
-        response = requests.request("POST", settings.TAP_PAY_URL, data=payload, headers=headers)
+        response = requests.request(
+            "POST", settings.TAP_PAY_URL, data=payload, headers=headers)
         print(response)
         # if response.status_code != 200:
         #     return None, None, None
@@ -2700,7 +2841,8 @@ def generate_sponsor_payment_url_tap(request, transaction, payment_method, inter
             'content-type': "application/json"
         }
         payload = json.dumps(json_payload)
-        response = requests.request("POST", settings.TAP_PAY_SUBSCRIPTION_URL, data=payload, headers=headers)
+        response = requests.request(
+            "POST", settings.TAP_PAY_SUBSCRIPTION_URL, data=payload, headers=headers)
         print("RESPONSE FROM THE SUBSCRIPTION URL: ", response.status_code)
         # if response.status_code != 200:
         #     return None, None, None
@@ -2760,7 +2902,7 @@ class PaymentFailureTap(View):
     def get(self, request):
         try:
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             sponsorCategories = sponsorship.objects.all()
 
             payment_id = request.GET.get("tap_id")
@@ -2809,7 +2951,7 @@ class PaymentFailure(View):
     def get(self, request):
         try:
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             sponsorCategories = sponsorship.objects.all()
 
             payment_id = request.GET.get("PaymentID")
@@ -2875,16 +3017,23 @@ class PaymentSuccess(View):
             cart = Cart(request)
             cart.removeAll()
 
-            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            fetchProjectName = Donate.objects.filter(
+                transaction=transaction).order_by('-id')
             for data in fetchProjectName:
                 projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
-            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
-            print("DATA IN MODEL:", senderReceiverModel)
-            senderReceiverModel.status = 'Approved'
-            senderReceiverModel.save()
+                print("projectIdFetchedFromDonationTable",
+                      projectIdFetchedFromDonationTable)
+            try:
+                senderReceiverModel = giftSenderReceiver.objects.get(
+                    project=projectIdFetchedFromDonationTable)
+                print("DATA IN MODEL:", senderReceiverModel)
+                senderReceiverModel.status = 'Approved'
+                senderReceiverModel.save()
+            except:
+                pass
 
-            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            fetchProjectName = Donate.objects.filter(
+                transaction=transaction).order_by('-id')
             for data in fetchProjectName:
                 nameProject = data.project.name
                 request.session['projectName'] = nameProject
@@ -2900,12 +3049,15 @@ class PaymentSuccess(View):
                     "donates": donates
                 }
             )
-            email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-            to_list = donates[0].email
-            adminMail = settings.EMAIL_HOST_USER
-            mail = EmailMultiAlternatives(
-                email_subject, 'This is message', adminMail, [to_list])
-            mail.attach_alternative(html_message, "text/html")
+            try:
+                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+                to_list = donates[0].email
+                adminMail = settings.EMAIL_HOST_USER
+                mail = EmailMultiAlternatives(
+                    email_subject, 'This is message', adminMail, [to_list])
+                mail.attach_alternative(html_message, "text/html")
+            except:
+                pass
 
             try:
                 mail.send()
@@ -2916,7 +3068,8 @@ class PaymentSuccess(View):
             # TO SEND SMS IF THE DONATION WAS AS GIFT:
             if donates[0].recieverPhone is not None:
                 fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+                fetchProjectName = Donate.objects.filter(
+                    transaction=transaction).order_by('-id')
                 for data in fetchProjectName:
                     nameProject = data.project.name
                     request.session['projectName'] = nameProject
@@ -2925,7 +3078,8 @@ class PaymentSuccess(View):
                 phoneNumber = donates[0].recieverPhone
                 amount = donates[0].amount
                 print("IF DONATED AS GIFT PHONE NUMBER:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(projectName, amount)
+                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                    projectName, amount)
                 print(message)
                 callThat = sendSMS(message, fromSender, phoneNumber)
                 # print(callThat)
@@ -2942,7 +3096,8 @@ class PaymentSuccess(View):
             for obj in sms:
                 try:
                     # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(amount, payment_id)
+                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                        amount, payment_id)
 
                     fromSender = 'S@basorg'
                     callThat = sendSMS(message, fromSender, obj.phone)
@@ -2952,7 +3107,7 @@ class PaymentSuccess(View):
                     pass
 
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             sponsorCategories = sponsorship.objects.all()
             return render(
                 request, "web/checkout_result.html",
@@ -3006,7 +3161,8 @@ class ResponseTap(View):
             url = settings.TAP_PAY_URL + "/" + payment_id
             payload = "{}"
             headers = {'authorization': "Bearer " + settings.TAP_API_KEY}
-            response = requests.request("GET", url, data=payload, headers=headers)
+            response = requests.request(
+                "GET", url, data=payload, headers=headers)
             json_data = json.loads(response.text)
             trackid = json_data["reference"]["transaction"]
             result = json_data["status"]
@@ -3019,7 +3175,8 @@ class ResponseTap(View):
                     if result == "CAPTURED":
                         obj.status = "Approved"
                         if donate.sacrifice is not None:
-                            sacrifice = Sacrifice.objects.get(pk=donate.sacrifice.pk)
+                            sacrifice = Sacrifice.objects.get(
+                                pk=donate.sacrifice.pk)
                             sacrifice.availability = sacrifice.availability - donate.qty
                             sacrifice.save()
                     else:
@@ -3076,14 +3233,20 @@ class PaymentSuccessTap(View):
             cart = Cart(request)
             cart.removeAll()
 
-            fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+            fetchProjectName = Donate.objects.filter(
+                transaction=transaction).order_by('-id')
             for data in fetchProjectName:
                 projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable", projectIdFetchedFromDonationTable)
-            senderReceiverModel = giftSenderReceiver.objects.get(project=projectIdFetchedFromDonationTable)
-            print("DATA IN MODEL:", senderReceiverModel)
-            senderReceiverModel.status = 'Approved'
-            senderReceiverModel.save()
+                print("projectIdFetchedFromDonationTable",
+                      projectIdFetchedFromDonationTable)
+            try:
+                senderReceiverModel = giftSenderReceiver.objects.get(
+                    project=projectIdFetchedFromDonationTable)
+                print("DATA IN MODEL:", senderReceiverModel)
+                senderReceiverModel.status = 'Approved'
+                senderReceiverModel.save()
+            except:
+                pass
 
             html_message = loader.render_to_string(
                 'web/email.html',
@@ -3096,12 +3259,15 @@ class PaymentSuccessTap(View):
                     "donates": donates
                 }
             )
-            email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-            to_list = donates[0].email
-            adminMail = settings.EMAIL_HOST_USER
-            mail = EmailMultiAlternatives(
-                email_subject, 'This is message', adminMail, [to_list])
-            mail.attach_alternative(html_message, "text/html")
+            try:
+                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+                to_list = donates[0].email
+                adminMail = settings.EMAIL_HOST_USER
+                mail = EmailMultiAlternatives(
+                    email_subject, 'This is message', adminMail, [to_list])
+                mail.attach_alternative(html_message, "text/html")
+            except:
+                pass
 
             try:
                 mail.send()
@@ -3112,7 +3278,8 @@ class PaymentSuccessTap(View):
             # TO SEND SMS IF THE DONATION WAS AS GIFT:
             if donates[0].recieverPhone is not None:
                 fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(transaction=transaction).order_by('-id')
+                fetchProjectName = Donate.objects.filter(
+                    transaction=transaction).order_by('-id')
                 for data in fetchProjectName:
                     nameProject = data.project.name
                     request.session['projectName'] = nameProject
@@ -3121,7 +3288,8 @@ class PaymentSuccessTap(View):
                 phoneNumber = donates[0].recieverPhone
                 amount = donates[0].amount
                 print("IF DONATED AS GIFT:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(projectName, amount)
+                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                    projectName, amount)
                 print(message)
                 callThat = sendSMS(message, fromSender, phoneNumber)
                 # print(callThat)
@@ -3140,7 +3308,8 @@ class PaymentSuccessTap(View):
                     # phone = phonenumbers.parse(obj.phone, None)
                     # if phonenumbers.is_valid_number(phone):
                     # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(amount, payment_id)
+                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                        amount, payment_id)
 
                     fromSender = 'S@basorg'
                     callThat = sendSMS(message, fromSender, obj.phone)
@@ -3150,7 +3319,7 @@ class PaymentSuccessTap(View):
                     pass
 
             charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('order')
+                inMenu=True, parent=None).order_by('-id')
             sponsorCategories = sponsorship.objects.all()
 
             return render(
@@ -3295,11 +3464,11 @@ def zakatPage(request):
     news = PRNews.objects.all().order_by('-id')[:6]
     news2 = PRNews.objects.all().order_by('-id')[:4]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     return render(request, 'web/zakatNew.html', {
@@ -3328,11 +3497,11 @@ def zakatForMoney(request):
     news = PRNews.objects.all().order_by('-id')[:6]
     news2 = PRNews.objects.all().order_by('-id')[:4]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     return render(request, 'web/zakatForMoney.html', {
@@ -3360,11 +3529,11 @@ def zakatForGold(request):
     news = PRNews.objects.all().order_by('-id')[:6]
     news2 = PRNews.objects.all().order_by('-id')[:4]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     getMyCurrencyStr = str(getMyCurrency)
@@ -3436,12 +3605,12 @@ def zakatForStocks(request):
 #         project_dirctories = ProjectsDirectory.objects.all()
 #         news = PRNews.objects.all().order_by('-id')[:6]
 #         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('order')
+#         categories = PRCategory.objects.all().order_by('-id')
 #         sponsorCategories = sponsorship.objects.all()
 #
 #         charity_categories = Category.objects.filter(
 #             inMenu=True, inHomePage=True, parent=None
-#         ).order_by('order')
+#         ).order_by('-id')
 #         cart_projects, projects_selected = get_cart(request)
 #
 #         current_user = request.user.id
@@ -3488,16 +3657,17 @@ def allProjects(request):
     project_dirctories = ProjectsDirectory.objects.all()
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
 
     current_user = request.user.id
     userIdsFromDonateTable = Donate.objects.all().order_by('-id')
-    projects = Project.objects.filter(is_hidden=False, is_thawab=False, projects_dep_email=None).order_by('-id')
+    projects = Project.objects.filter(
+        is_hidden=False, is_thawab=False, projects_dep_email=None).order_by('-id')
     # I'M CHANGING THE ALL allProjects.html WITH seasonalprojects.html page, for new basaier design.
     return render(request, 'web/seasonalprojects.html',
                   {'sliders': sliders,
@@ -3521,14 +3691,99 @@ def search_project(request):
     project_data = Project.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
-    if request.method == 'POST':
-        searched = request.POST.get('searched')
-        project = Project.objects.filter(name__contains=searched, is_hidden=False, is_thawab=False, projects_dep_email=None)
+    ).order_by('-id')
+    # searched = request.POST.get('searched')
+    # try:
+    # except:
+    #     pass
+    if request.POST.get('searched') or request.POST.get('country') or request.POST.get(
+            'price') or request.POST.get('isZakat'):
+        if request.POST.get('searched') != '':
+            searched = request.POST.get('searched')
+        if request.POST.get('country') != '':
+            country = request.POST.get('isZakat')
+        if request.POST.get('price') != '':
+            price = request.POST.get('price')
+        if request.POST.get('isZakat') != '':
+            isZakat = request.POST.get('isZakat')
+
+        if request.POST.get('searched') != '' and request.POST.get('country') != '' and request.POST.get(
+                'price') != '' and request.POST.get('isZakat') != '':
+            projects = Project.objects.filter(name__icontains=searched,
+                                              is_closed=False, is_hidden=False, location__icontains=country,
+                                              isZakat=isZakat, total_amount__lte=price).order_by('-id')
+        elif request.POST.get('searched') == '' and request.POST.get('country') == '' and request.POST.get(
+                'price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, is_compaign=False, isZakat=isZakat).order_by('-id')
+        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get(
+                'country') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, total_amount__lte=price,
+                is_compaign=False).order_by(
+                '-id')
+        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '' and request.POST.get(
+                'price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, name__icontains=searched, is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get(
+                'price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, location__icontains=country).order_by('-id')
+        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, location__icontains=country, total_amount__lte=price,
+                is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('searched') == '' and request.POST.get('country') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, isZakat=isZakat, total_amount__lte=price, is_compaign=False).order_by(
+                '-id')
+        elif request.POST.get('searched') == '' and request.POST.get('price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, location__icontains=country, isZakat=isZakat,
+                is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('country') == '' and request.POST.get('price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, name__icontains=searched, isZakat=isZakat,
+                is_compaign=False,
+            ).order_by('-id')
+        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, name__icontains=searched, total_amount__lte=price,
+                is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('price') == '' and request.POST.get('isZakat') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, name__icontains=searched, location__icontains=country,
+                is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('searched') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, location__icontains=country,
+                total_amount__lte=price, isZakat=isZakat, is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('country') == '':
+            projects = Project.objects.filter(
+                name__icontains=searched, is_closed=False, is_hidden=False,
+                total_amount__lte=price, isZakat=isZakat, is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('price') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False,
+                name__icontains=searched, isZakat=isZakat, location__icontains=country, is_compaign=False
+            ).order_by('-id')
+        elif request.POST.get('isZakat') == '':
+            projects = Project.objects.filter(
+                is_closed=False, is_hidden=False, category__inHomePage=True,
+                name__icontains=searched, total_amount__lte=price, location__icontains=country, is_compaign=False
+            ).order_by('-id')
 
         return render(request, "web/seasonalprojects.html", {
             'searched': searched,
-            'searched_project': project,
+            'searched_project': projects,
             'charity_categories': charity_categories,
         })
 
@@ -3540,13 +3795,13 @@ def search_project(request):
 #     sliders = Slider.objects.all().order_by('-id')[:5]
 #     project_dirctories = ProjectsDirectory.objects.all()
 #     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#     categories = PRCategory.objects.all().order_by('order')
+#     categories = PRCategory.objects.all().order_by('-id')
 #     sponsorCategories = sponsorship.objects.all()
 #     sponsorProjects = sponsorshipProjects.objects.filter(category=sponsorCategoryId).order_by('-id')[:6]
 #     sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=sponsorCategoryId)
 #     charity_categories = Category.objects.filter(
 #         inMenu=True, inHomePage=True, parent=None
-#     ).order_by('order')
+#     ).order_by('-id')
 #     cart_projects, projects_selected = get_cart(request)
 #
 #     return render(request, 'web/sponsorshipPage.html', {
@@ -3576,17 +3831,18 @@ def sponsorshipPage(request, sponsorCategoryId):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         instanceOfCategory = get_object_or_404(sponsorship, pk=categoryId)
         stringinstanceOfCategory = str(instanceOfCategory)
         print("POST: ", stringinstanceOfCategory)
-        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=categoryId)
+        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(
+            category=categoryId)
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                           is_compaign=False).order_by('-id')[:3]
         if request.POST.get('age') or request.POST.get('gender') or request.POST.get(
@@ -3630,18 +3886,20 @@ def sponsorshipPage(request, sponsorCategoryId):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         instanceOfCategory = get_object_or_404(sponsorship, pk=categoryId)
         stringinstanceOfCategory = str(instanceOfCategory)
         print("GET: ", stringinstanceOfCategory)
-        sponsorProjects = sponsorshipProjects.objects.filter(category=instanceOfCategory).order_by('-id')[:6]
-        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=categoryId)
+        sponsorProjects = sponsorshipProjects.objects.filter(
+            category=instanceOfCategory).order_by('-id')[:6]
+        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(
+            category=categoryId)
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                           is_compaign=False).order_by('-id')[:3]
         cart_projects, projects_selected = get_cart(request)
@@ -3727,7 +3985,8 @@ def createTokenView(request, sponsorProjectId):
                 }
                 payload = json.dumps(json_payload)
                 # response = requests.post(settings.TAP_PAY_CREATE_TOKEN_URL, data=json_payload, headers=headers)
-                response = requests.request("POST", settings.TAP_PAY_CREATE_TOKEN_URL, data=payload, headers=headers)
+                response = requests.request(
+                    "POST", settings.TAP_PAY_CREATE_TOKEN_URL, data=payload, headers=headers)
                 json_data1 = json.loads(response.text)
                 print("TOKEN_ID:", json_data1["id"])
                 token_id = json_data1["id"]
@@ -3769,7 +4028,8 @@ def createTokenView(request, sponsorProjectId):
                         'authorization': "Bearer" + settings.TAP_API_KEY,
                         'content-type': "application/json"
                     }
-                    response = requests.request("POST", url, data=payload, headers=headers)
+                    response = requests.request(
+                        "POST", url, data=payload, headers=headers)
                     print(response)
                     jsonedData = json.loads(response.text)
                     card_id = jsonedData['id']
@@ -3786,8 +4046,10 @@ def createTokenView(request, sponsorProjectId):
                     #     customerId = data.customer_id
                     #     print("CUSTOMER_ID CREATED ONE, LINE 2648:", customerId)
                     #     request.session['justCreatedCustomerId'] = str(customerId)
-                    justCreatedCustomerId = request.session.get('justCreatedCustomerId')
-                    print("justCreatedCustomerId Session LINE: 2651", justCreatedCustomerId)
+                    justCreatedCustomerId = request.session.get(
+                        'justCreatedCustomerId')
+                    print("justCreatedCustomerId Session LINE: 2651",
+                          justCreatedCustomerId)
                     tokenId = request.session.get('generatedTokenId')
 
                     # conn = http.client.HTTPSConnection("api.tap.company")
@@ -3817,7 +4079,8 @@ def createTokenView(request, sponsorProjectId):
                         'content-type': "application/json"
                     }
 
-                    response = requests.request("POST", url, data=payload, headers=headers)
+                    response = requests.request(
+                        "POST", url, data=payload, headers=headers)
                     print(response)
                     jsonedData2 = json.loads(response.text)
                     card_id2 = jsonedData2['id']
@@ -3834,13 +4097,14 @@ def createTokenView(request, sponsorProjectId):
             sliders = Slider.objects.all().order_by('-id')[:5]
             project_dirctories = ProjectsDirectory.objects.all()
             science_news = ScienceNews.objects.all().order_by('-id')[:6]
-            categories = PRCategory.objects.all().order_by('order')
+            categories = PRCategory.objects.all().order_by('-id')
             sponsorCategories = sponsorship.objects.all()
-            sponsorProjects = sponsorshipProjects.objects.all().order_by('-id')[:6]
+            sponsorProjects = sponsorshipProjects.objects.all().order_by(
+                '-id')[:6]
             sponsorshipsPageContent = sponsorshipPageContent.objects.all()
             charity_categories = Category.objects.filter(
                 inMenu=True, inHomePage=True, parent=None
-            ).order_by('order')
+            ).order_by('-id')
             cart_projects, projects_selected = get_cart(request)
             # ipAddress = get_client_ip(request)
             # print(ipAddress)
@@ -3886,7 +4150,7 @@ def sponsorParticularPerson(request, particularPersonId):
     # print(personId)
     project_dirctories = ProjectsDirectory.objects.all()
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     sponsorProjects = sponsorshipProjects.objects.all().filter(pk=personId)
     sponsorProjectsCategoryId = sponsorshipProjects.objects.values('id', 'category__id', 'category__category').filter(
@@ -3897,7 +4161,7 @@ def sponsorParticularPerson(request, particularPersonId):
         print("SPONSOR_PARTICULAR_PERSON: ", categoryId)
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
 
     totalProjectsInCart = cart.get_total_products()
@@ -3947,14 +4211,16 @@ def allSponsorshipProjects(request, sponsorId):
     if request.method == 'POST':
         project_dirctories = ProjectsDirectory.objects.all()
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
-        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=sponsorId)
+        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(
+            category=sponsorId)
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
-        sponsorCountries = sponsorshipProjects.objects.values('location').distinct()
+        sponsorCountries = sponsorshipProjects.objects.values(
+            'location').distinct()
         # age gender duration country
         if request.POST.get('age') or request.POST.get('gender') or request.POST.get(
                 'duration') or request.POST.get('location'):
@@ -4046,14 +4312,17 @@ def allSponsorshipProjects(request, sponsorId):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
-        sponsorProjects = sponsorshipProjects.objects.filter(category=sponsorId).order_by('-id')[:6]
-        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=sponsorId)
-        sponsorCountries = sponsorshipProjects.objects.values('location').distinct()
+        sponsorProjects = sponsorshipProjects.objects.filter(
+            category=sponsorId).order_by('-id')[:6]
+        sponsorshipsPageContent = sponsorshipPageContent.objects.filter(
+            category=sponsorId)
+        sponsorCountries = sponsorshipProjects.objects.values(
+            'location').distinct()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/allSponsorshipProjects.html', {
             'sponsorId': sponsorId,
@@ -4081,14 +4350,17 @@ def sponsorshipProjectsFromQuickDonate(request, sponsorId):
     sliders = Slider.objects.all().order_by('-id')[:5]
     project_dirctories = ProjectsDirectory.objects.all()
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
-    sponsorProjects = sponsorshipProjects.objects.filter(id=sponsorId).order_by('-id')
-    sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=sponsorId)
-    sponsorCountries = sponsorshipProjects.objects.values('location').distinct()
+    sponsorProjects = sponsorshipProjects.objects.filter(
+        id=sponsorId).order_by('-id')
+    sponsorshipsPageContent = sponsorshipPageContent.objects.filter(
+        category=sponsorId)
+    sponsorCountries = sponsorshipProjects.objects.values(
+        'location').distinct()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/allSponsorshipProjects.html', {
         'sponsorId': sponsorId,
@@ -4120,11 +4392,11 @@ def giftPage(request):
     ).order_by('-id')[:1]
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/giftNew.html', {
         'sliders': sliders,
@@ -4155,11 +4427,11 @@ def giftProjectPage(request):
         ).exclude(total_amount=None).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/giftProjectPage.html', {
             'sliders': sliders,
@@ -4178,11 +4450,11 @@ def giftProjectPage(request):
     else:
         project_dirctories = ProjectsDirectory.objects.all()
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = PRCategory.objects.all().order_by('order')
+        categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
 
         if request.POST.get('isShared') or request.POST.get('isZakat') or request.POST.get(
@@ -4203,12 +4475,12 @@ def giftProjectPage(request):
                     is_closed=False, is_hidden=False, category__inHomePage=True,
                     is_share=isShared, isZakat=is_Zakat, is_thawab=isThawab,
                     category=projectType, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('isZakat') == '' and request.POST.get(
                     'isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, category=projectType, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('projectType') == '' and request.POST.get(
                     'isZakat') == '':
                 projects = Project.objects.filter(
@@ -4219,66 +4491,66 @@ def giftProjectPage(request):
                     'isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, is_share=isShared, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('projectType') == '' and request.POST.get(
                     'isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, isZakat=is_Zakat, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('projectType') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, isZakat=is_Zakat, is_thawab=isThawab,
                     is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('isZakat') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, category=projectType,
                     is_thawab=isThawab, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '' and request.POST.get('isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, category=projectType, isZakat=is_Zakat,
                     is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isZakat') == '' and request.POST.get('isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, category=projectType,
                     is_compaign=False,
                     is_share=isShared,
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isZakat') == '' and request.POST.get('projectType') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, is_thawab=isThawab, is_share=isShared,
                     is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isThawab') == '' and request.POST.get('projectType') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True, isZakat=is_Zakat, is_share=isShared,
                     is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isShared') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True,
                     is_thawab=isThawab, isZakat=is_Zakat,
                     category=projectType, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isZakat') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True,
                     is_share=isShared, is_thawab=isThawab,
                     category=projectType, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('isThawab') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True,
                     is_share=isShared, isZakat=is_Zakat,
                     category=projectType, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
             elif request.POST.get('projectType') == '':
                 projects = Project.objects.filter(
                     is_closed=False, is_hidden=False, category__inHomePage=True,
                     isZakat=is_Zakat, is_share=isShared, is_thawab=isThawab, is_compaign=False
-                ).order_by('order')
+                ).order_by('-id')
 
             return render(request, 'web/giftProjectPage.html', {
                 'minPrice': request.POST.get('minPrice'),
@@ -4313,7 +4585,7 @@ def giftSendGift(request):
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/giftSendGift.html', {
             'sliders': sliders,
@@ -4339,7 +4611,7 @@ def giftSendGift(request):
             sponsorCategories = sponsorship.objects.all()
             charity_categories = Category.objects.filter(
                 inMenu=True, inHomePage=True, parent=None
-            ).order_by('order')
+            ).order_by('-id')
             cart_projects, projects_selected = get_cart(request)
 
             if request.POST.get('minPrice') or request.POST.get('maxPrice') or request.POST.get('category'):
@@ -4408,7 +4680,7 @@ def giftSendSadaqa(request):
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/giftSendSadaqa.html', {
         'sliders': sliders,
@@ -4435,14 +4707,14 @@ def thawab(request):
     project_dirctories = ProjectsDirectory.objects.all()
     projects = Project.objects.filter(
         is_closed=False, is_hidden=False, is_thawab=True, is_compaign=False
-    ).order_by('order')
+    ).order_by('-id')
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/thawabNew.html',
                   {'sliders': sliders,
@@ -4472,11 +4744,11 @@ def thawabContribution(request):
     ).order_by('-id')[:9]
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/thawabContribution.html',
                   {'sliders': sliders,
@@ -4506,11 +4778,11 @@ def thawabProjects(request):
     ).order_by('-id')[:9]
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/thawabProjects.html',
                   {'sliders': sliders,
@@ -4536,14 +4808,15 @@ def thawabCompaigns(request):
     if request.user.is_authenticated == True:
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
-        projects = Compaigns.objects.filter(is_active=True, is_private=False).order_by('-id')
+        projects = Compaigns.objects.filter(
+            is_active=True, is_private=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         categories = Category.objects.filter(is_compaign=True).order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/thawabCompaigns.html',
                       {'sliders': sliders,
@@ -4561,14 +4834,15 @@ def thawabCompaigns(request):
     else:
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
-        projects = Compaigns.objects.filter(is_active=True, is_private=False).order_by('-id')
+        projects = Compaigns.objects.filter(
+            is_active=True, is_private=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         categories = Category.objects.filter(is_compaign=True).order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         messages.error(request, "You Must Login First...!")
         return render(request, 'web/login.html', {
@@ -4604,7 +4878,7 @@ def privateCompaigns(request):
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/privateCompaigns.html',
                       {'sliders': sliders,
@@ -4631,7 +4905,7 @@ def privateCompaigns(request):
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         messages.error(request, "You Must Login First...!")
         return render(request, 'web/login.html', {
@@ -4666,7 +4940,7 @@ def sharedCompaigns(request, productId):
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/sharedCompaigns.html',
                   {'sliders': sliders,
@@ -4701,7 +4975,7 @@ def publicCompaigns(request):
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         return render(request, 'web/publicCompaigns.html',
                       {'sliders': sliders,
@@ -4728,7 +5002,7 @@ def publicCompaigns(request):
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         messages.error(request, "You Must Login First...!")
         return render(request, 'web/login.html', {
@@ -4751,9 +5025,6 @@ def createOwnProject(request):
         projectId = request.POST.get('projectId')
         # GENERATE SHAREABLE LINK USER's PARTICULAR PROJECT:
         intProjectId = int(projectId)
-        current_site = get_current_site(request)
-        site_url = 'http://%s/privateProject/%s/detail' % (current_site.domain, intProjectId)
-        print(site_url)
         country = request.POST.get('country')
         amount = request.POST.get('amount')
         amountVar = round(float(amount), 3)
@@ -4768,23 +5039,6 @@ def createOwnProject(request):
         donorPhone2 = request.POST.get('donorPhone2')
         address = request.POST.get('address')
         email = request.POST.get('email')
-        instance1 = Project.objects.get(id=projectId)
-        create = createOwnProjectModel.objects.create(
-            project=instance1,
-            country=country,
-            projectAmount=amountVar,
-            projectName=projectName,
-            relativeRelation=relativeRelation,
-            civilIdPhoto=civilIdPhoto,
-            phoneNumber=phoneNumber,
-            contactChoice=contactChoice,
-            donorName=donorName,
-            donorPhoneNumber1=donorPhone1,
-            donorPhoneNumber2=donorPhone2,
-            address=address,
-            email=email,
-            generatedLink=site_url
-        )
         instance = Project.objects.filter(id=projectId)
         for data in instance:
             detailVar = data.detail
@@ -4819,11 +5073,34 @@ def createOwnProject(request):
         )
         # https://stackoverflow.com/questions/47706946/message-title-needs-to-have-a-value-for-field-id-before-this-many-to-many
         project.category.add(list_result)
+        justCreatedProjectId = project.pk
+        current_site = get_current_site(request)
+        site_url = 'http://%s/privateProject/%s/detail' % (
+            current_site.domain, justCreatedProjectId)
+        print(site_url)
+        instance1 = Project.objects.get(id=projectId)
+        create = createOwnProjectModel.objects.create(
+            project=instance1,
+            country=country,
+            projectAmount=amountVar,
+            projectName=projectName,
+            relativeRelation=relativeRelation,
+            civilIdPhoto=civilIdPhoto,
+            phoneNumber=phoneNumber,
+            contactChoice=contactChoice,
+            donorName=donorName,
+            donorPhoneNumber1=donorPhone1,
+            donorPhoneNumber2=donorPhone2,
+            address=address,
+            email=email,
+            generatedLink=site_url
+        )
 
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
         projects = Project.objects.filter(is_hidden=True).order_by('-id')
-        charity_categories = Category.objects.filter(inMenu=True).order_by('order')
+        charity_categories = Category.objects.filter(
+            inMenu=True).order_by('-id')
         messages.success(request, "Project Created Successfully...!")
         messages.success(request, "Your Private Link Is:")
         return render(request, 'web/createownproject.html', {
@@ -4836,8 +5113,10 @@ def createOwnProject(request):
     else:
         cart = Cart(request)
         totalProjectsInCart = cart.get_total_products()
-        projects = Project.objects.filter(is_hidden=True, projects_dep_email=None).order_by('-id')
-        charity_categories = Category.objects.filter(inMenu=True).order_by('order')
+        projects = Project.objects.filter(
+            is_hidden=True, projects_dep_email=None).order_by('-id')
+        charity_categories = Category.objects.filter(
+            inMenu=True).order_by('-id')
         return render(request, 'web/createownproject.html', {
             'cart': cart,
             'totalProjectsInCart': totalProjectsInCart,
@@ -4858,11 +5137,11 @@ def postAProject(request):
         # projects = Project.objects.all().order_by('-id')[:12]
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = Category.objects.all().order_by('order')
+        categories = Category.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         if request.method == 'POST':
             slugVar = request.POST.get('slug')
@@ -4966,11 +5245,11 @@ def postAProject(request):
         projects = Project.objects.all().order_by('-id')[:12]
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = Category.objects.all().order_by('order')
+        categories = Category.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, inHomePage=True, parent=None
-        ).order_by('order')
+        ).order_by('-id')
         cart_projects, projects_selected = get_cart(request)
         messages.error(request, ("Please Login First....!"))
         return render(request, 'web/login.html',
@@ -4996,7 +5275,8 @@ def thawabCompaignCategoryDetail(request, categoryId):
     categoryId = categoryId
     sliders = Slider.objects.all().order_by('-id')[:5]
     project_dirctories = ProjectsDirectory.objects.all()
-    projects = Compaigns.objects.filter(compaignCategory=categoryId, is_active=True).order_by('-id')
+    projects = Compaigns.objects.filter(
+        compaignCategory=categoryId, is_active=True).order_by('-id')
     # remainingAmount = Compaigns.checkRemainingProjectLimit(categoryId)
     # for objects in projects:
     # remainingAmount = checkRemainingProjectLimit(categoryId)
@@ -5005,13 +5285,14 @@ def thawabCompaignCategoryDetail(request, categoryId):
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
     categories = Category.objects.filter(id=categoryId).order_by('-id')
     # FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
-    particularCountry = CompaignCategory.objects.only('country').filter(id=categoryId).distinct()
+    particularCountry = CompaignCategory.objects.only(
+        'country').filter(id=categoryId).distinct()
     # END FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
     categoriesAllData = CompaignCategory.objects.order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     return render(request, 'web/thawabCompaignCategoryDetail.html', {
         'categoryId': categoryId,
@@ -5068,18 +5349,20 @@ def createCompaignOfParticularCategory(request, categoryId):
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     sliders = Slider.objects.all().order_by('-id')[:5]
     project_dirctories = ProjectsDirectory.objects.all()
-    projects = Compaigns.objects.filter(compaignCategory=categoryId, is_active=True).order_by('-id')
+    projects = Compaigns.objects.filter(
+        compaignCategory=categoryId, is_active=True).order_by('-id')
     news = PRNews.objects.all().order_by('-id')[:6]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
     categories = CompaignCategory.objects.filter(id=categoryId).order_by('-id')
     # FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
-    particularCountry = CompaignCategory.objects.only('country').filter(id=categoryId).distinct()
+    particularCountry = CompaignCategory.objects.only(
+        'country').filter(id=categoryId).distinct()
     # END FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
     categoriesAllData = CompaignCategory.objects.order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     cart_projects, projects_selected = get_cart(request)
     if request.user.is_authenticated == True:
         if request.method == 'POST':
@@ -5100,17 +5383,23 @@ def createCompaignOfParticularCategory(request, categoryId):
             total_amount = request.POST.get('total_amount')
             suggestedDonation = request.POST.get('suggestedDonation')
             isPrivate = request.POST.get('isPrivate')
-            activationCodeCreateCompaign = request.POST.get('activationCodeCreateCompaign')
+            activationCodeCreateCompaign = request.POST.get(
+                'activationCodeCreateCompaign')
             activationCodeCreateCompaignStr = str(activationCodeCreateCompaign)
             suggestedDonationVar = round(float(suggestedDonation), 3)
-            getTheGeneratedCodeFromSession = request.session.get('generatedRandomNumber')
-            getTheGeneratedCodeFromSessionStr = str(getTheGeneratedCodeFromSession)
+            getTheGeneratedCodeFromSession = request.session.get(
+                'generatedRandomNumber')
+            getTheGeneratedCodeFromSessionStr = str(
+                getTheGeneratedCodeFromSession)
             print("IN SESSION CODE STR:", getTheGeneratedCodeFromSessionStr)
-            print("FETCHED FROM POST METHOD CODE STR:", activationCodeCreateCompaignStr)
+            print("FETCHED FROM POST METHOD CODE STR:",
+                  activationCodeCreateCompaignStr)
             if activationCodeCreateCompaignStr == getTheGeneratedCodeFromSessionStr:
                 userId = request.user.id
-                compaignCategoryData = CompaignCategory.objects.filter(id=categoryId)
-                compaignData = Compaigns.objects.filter(compaignCategory=categoryId, is_active=True)
+                compaignCategoryData = CompaignCategory.objects.filter(
+                    id=categoryId)
+                compaignData = Compaigns.objects.filter(
+                    compaignCategory=categoryId, is_active=True)
                 countedCompaignData = compaignData.count()
                 # print('COUNTED COMPAIGN DATA: ', countedCompaignData)
                 # print("LET'S CHECK THE USER ID: ", userId)
@@ -5137,7 +5426,8 @@ def createCompaignOfParticularCategory(request, categoryId):
                 if language == 'ar':
                     messages.success(request, 'تم إنشاء Compaign بنجاح.!')
                 else:
-                    messages.success(request, 'Compaign Created Successfully...!')
+                    messages.success(
+                        request, 'Compaign Created Successfully...!')
                 request.session['generatedRandomNumber'] = ''
                 isSessionDeleted = request.session.get('generatedRandomNumber')
                 print("SESSION DELETED....!", isSessionDeleted)
@@ -5174,24 +5464,29 @@ def createCompaignOfParticularCategory(request, categoryId):
                 getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
                 sliders = Slider.objects.all().order_by('-id')[:5]
                 project_dirctories = ProjectsDirectory.objects.all()
-                projects = Compaigns.objects.filter(compaignCategory=categoryId, is_active=True).order_by('-id')
+                projects = Compaigns.objects.filter(
+                    compaignCategory=categoryId, is_active=True).order_by('-id')
                 news = PRNews.objects.all().order_by('-id')[:6]
                 science_news = ScienceNews.objects.all().order_by('-id')[:6]
-                categories = CompaignCategory.objects.filter(id=categoryId).order_by('-id')
+                categories = CompaignCategory.objects.filter(
+                    id=categoryId).order_by('-id')
                 # FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
-                particularCountry = CompaignCategory.objects.only('country').filter(id=categoryId).distinct()
+                particularCountry = CompaignCategory.objects.only(
+                    'country').filter(id=categoryId).distinct()
                 # END FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
                 categoriesAllData = CompaignCategory.objects.order_by('-id')
                 sponsorCategories = sponsorship.objects.all()
                 charity_categories = Category.objects.filter(
                     inMenu=True, inHomePage=True, parent=None
-                ).order_by('order')
+                ).order_by('-id')
                 cart_projects, projects_selected = get_cart(request)
                 language = get_language()
                 if language == 'ar':
-                    messages.warning(request, 'لم يتطابق الرمز ، حاول مرة أخرى.!')
+                    messages.warning(
+                        request, 'لم يتطابق الرمز ، حاول مرة أخرى.!')
                 else:
-                    messages.warning(request, 'The Code Did Not Match, Try Again...!')
+                    messages.warning(
+                        request, 'The Code Did Not Match, Try Again...!')
 
                 cart = Cart(request)
                 totalProjectsInCart = cart.get_total_products()
@@ -5221,18 +5516,21 @@ def createCompaignOfParticularCategory(request, categoryId):
             categoryId = categoryId
             sliders = Slider.objects.all().order_by('-id')[:5]
             project_dirctories = ProjectsDirectory.objects.all()
-            projects = Compaigns.objects.filter(compaignCategory=categoryId, is_active=True).order_by('-id')
+            projects = Compaigns.objects.filter(
+                compaignCategory=categoryId, is_active=True).order_by('-id')
             news = PRNews.objects.all().order_by('-id')[:6]
             science_news = ScienceNews.objects.all().order_by('-id')[:6]
-            categories = CompaignCategory.objects.filter(id=categoryId).order_by('-id')
+            categories = CompaignCategory.objects.filter(
+                id=categoryId).order_by('-id')
             # FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
-            particularCountry = CompaignCategory.objects.only('country').filter(id=categoryId).distinct()
+            particularCountry = CompaignCategory.objects.only(
+                'country').filter(id=categoryId).distinct()
             # END FOR FETCHING COUNTRY FROM ABOVE CATEGORY ID:
             categoriesAllData = CompaignCategory.objects.order_by('-id')
             sponsorCategories = sponsorship.objects.all()
             charity_categories = Category.objects.filter(
                 inMenu=True, inHomePage=True, parent=None
-            ).order_by('order')
+            ).order_by('-id')
             cart_projects, projects_selected = get_cart(request)
             if request.user.is_authenticated:
                 userId = request.user.id
@@ -5291,13 +5589,16 @@ def giftRecieverAndSender(request):
             recieverPhoneVar = request.POST.get('recieverPhone')
             yourMessageToHimVar = request.POST.get('yourMessageToHim')
             fromSender = "+96590900055"
-            callThat = sendSMS(yourMessageToHimVar, fromSender, recieverPhoneVar)
+            callThat = sendSMS(yourMessageToHimVar,
+                               fromSender, recieverPhoneVar)
             # print(callThat)
             if callThat == 200:
-                messages.success(request, 'Your Message Delivered Successfully...!')
+                messages.success(
+                    request, 'Your Message Delivered Successfully...!')
                 return render(request, 'web/giftRecieverAndSender.html')
             else:
-                messages.error(request, 'Your Message Could Not Be Delivered...!')
+                messages.error(
+                    request, 'Your Message Could Not Be Delivered...!')
                 return render(request, 'web/giftRecieverAndSender.html')
         else:
             userName = request.user.get_full_name()
@@ -5328,9 +5629,12 @@ def cart_add_for_gift(request):
     if request.method == 'POST':
         id = request.POST.get('project_id')
         selectedAmount = request.POST.get('amount')
-        senderNameDonatedDonationPage = request.POST.get('senderNameDonatedDonationPage')
-        receiverNameDonatedDonationPage = request.POST.get('receiverNameDonatedDonationPage')
-        phoneNumberDonatedDonationPage = request.POST.get('phoneNumberDonatedDonationPage')
+        senderNameDonatedDonationPage = request.POST.get(
+            'senderNameDonatedDonationPage')
+        receiverNameDonatedDonationPage = request.POST.get(
+            'receiverNameDonatedDonationPage')
+        phoneNumberDonatedDonationPage = request.POST.get(
+            'phoneNumberDonatedDonationPage')
         emailDonatedDonationPage = request.POST.get('emailDonatedDonationPage')
         instance = Project.objects.get(id=id)
         insert = giftSenderReceiver.objects.create(
@@ -5348,7 +5652,8 @@ def cart_add_for_gift(request):
         totalProjectsInCart = cart.get_total_products()
         # projects = Project.objects.filter(id=id)
         if cart != '':
-            cart.add(product=product, selectAmount=selectedAmount, quantity=1, override_quantity=False)
+            cart.add(product=product, selectAmount=selectedAmount,
+                     quantity=1, override_quantity=False)
             # messages.success(request, 'Cart Has Been Added Successfully...!')
             # return render(request, 'web/add_to_cart.html', {
             #     'totalProjectsInCart': totalProjectsInCart,
@@ -5373,7 +5678,8 @@ def cart_add(request):
         # if form.is_valid():
         #     cd = form.cleaned_data
         if cart != '':
-            cart.add(product=product, selectAmount=selectedAmount, quantity=1, override_quantity=False)
+            cart.add(product=product, selectAmount=selectedAmount,
+                     quantity=1, override_quantity=False)
             # messages.success(request, 'Cart Has Been Added Successfully...!')
             # return render(request, 'web/add_to_cart.html', {
             #     'totalProjectsInCart': totalProjectsInCart,
@@ -5416,7 +5722,8 @@ def cart_update(request, id):
     # if form.is_valid():
     #     cd = form.cleaned_data
     if cart != '':
-        cart.update(product=product, selectAmount=selectedAmount, quantity=1, override_quantity=False)
+        cart.update(product=product, selectAmount=selectedAmount,
+                    quantity=1, override_quantity=False)
         # return render(request, 'web/add_to_cart.html', {
         #     'totalProjectsInCart': totalProjectsInCart,
         # })
@@ -5469,11 +5776,11 @@ def cart_detail(request):
     news = PRNews.objects.all().order_by('-id')[:6]
     news2 = PRNews.objects.all().order_by('-id')[:4]
     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-    categories = PRCategory.objects.all().order_by('order')
+    categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
-    ).order_by('order')
+    ).order_by('-id')
     # cust = get_object_or_404(Customer, id=id)
     # for item in cart:
     #     item['update_quantity_form'] = CartAddProductForm(initial={
@@ -5510,11 +5817,11 @@ def cart_detail(request):
 #     news = PRNews.objects.all().order_by('-id')[:6]
 #     news2 = PRNews.objects.all().order_by('-id')[:4]
 #     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#     categories = PRCategory.objects.all().order_by('order')
+#     categories = PRCategory.objects.all().order_by('-id')
 #     sponsorCategories = sponsorship.objects.all()
 #     charity_categories = Category.objects.filter(
 #         inMenu=True, inHomePage=True, parent=None
-#     ).order_by('order')
+#     ).order_by('-id')
 #     if request.user.is_authenticated:
 #         userId = request.user.id
 #         userInstance = get_object_or_404(User, id=userId)
@@ -5580,7 +5887,8 @@ def getValuesAccordingToSelectedCategory(request):
         id = request.GET.get('categoryId')
         print("FetchedId", id)
         instanceCategory = get_object_or_404(Category, pk=id)
-        projectsData = Project.objects.filter(category=instanceCategory, is_compaign=False)
+        projectsData = Project.objects.filter(
+            category=instanceCategory, is_compaign=False)
         results = []
         try:
             for r in projectsData:
@@ -5588,7 +5896,8 @@ def getValuesAccordingToSelectedCategory(request):
                 results.append(r.name)
                 # data = json.dumps(results)
             # CONVERT IN ARRAY OF DICTIONARIES:
-            converted = [{'id': v, 'name': s} for v, s in zip(results[::2], results[1::2])]
+            converted = [{'id': v, 'name': s}
+                         for v, s in zip(results[::2], results[1::2])]
             # print("CONVERTED:", converted)
             data = json.dumps(converted)
             mimetype = 'application/json'
@@ -5602,7 +5911,8 @@ def getSponsoshipValuesAccordingToSelectedCategory(request):
         id = request.GET.get('categoryId1')
         print("FetchedSponssorCategoryId", id)
         instanceCategory = get_object_or_404(sponsorship, pk=id)
-        projectsData = sponsorshipProjects.objects.filter(category=instanceCategory)
+        projectsData = sponsorshipProjects.objects.filter(
+            category=instanceCategory)
         results = []
         try:
             for r in projectsData:
@@ -5610,7 +5920,8 @@ def getSponsoshipValuesAccordingToSelectedCategory(request):
                 results.append(r.name)
                 # data = json.dumps(results)
             # CONVERT IN ARRAY OF DICTIONARIES:
-            converted = [{'id': v, 'name': s} for v, s in zip(results[::2], results[1::2])]
+            converted = [{'id': v, 'name': s}
+                         for v, s in zip(results[::2], results[1::2])]
             # print("CONVERTED:", converted)
             data = json.dumps(converted)
             mimetype = 'application/json'

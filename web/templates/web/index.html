@@ -3,7 +3,6 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
@@ -27,7 +26,7 @@
         <div {% if forloop.first %} class="item active" {% else %} class="item" {% endif %}>
             <a href="{% url 'project-detail' project.id %}">
                 <div style="position: relative; background-color: dodgerblue;">
-                    <img src="{% project_image_tag project request %}" alt="{{ project.get_name }}"
+                    <img src="/media/{{ project.image }}" alt="{{ project.get_name }}"
                          style="width: 100%; height: 627px; opacity: 0.6;">
                     <div id="contentOnProjectImages">
                         <div>
@@ -84,14 +83,14 @@
                 {% if forloop.first %}
                 <div class="header4" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;">
                     <a href="{% url 'localProjects' %}">
-                        <img src="{% project_image_tag project request %}" alt="" id="imageWH" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;"
+                        <img src="/media/{{ project.image }}" alt="" id="imageWH" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;"
                              class="text-center">
                     </a>
                 </div>
                 {% else %}
                 <div class="header4" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;">
                     <a href="{% url 'foreignProjects' %}">
-                        <img src="{% project_image_tag project request %}" alt="" id="imageWH" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;"
+                        <img src="/media/{{ project.image }}" alt="" id="imageWH" style="border-top-right-radius: 17px; borde-top-left-radius: 17px;"
                              class="text-center">
                     </a>
                 </div>
@@ -135,7 +134,7 @@
                          data-wow-delay=".2s"
                          style="width: 100%; height: 484px; visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
                         <div class="{% if forloop.counter|divisibleby:2 %}header3{% else %}header4{% endif %}">
-                            <img src="{% project_image_tag project request %}"
+                            <img src="/media/{{ project.image }}"
                                  style="height: 284px; width: 100%;"
                                  class="our-causes__text-content-image" alt="">
                         </div>

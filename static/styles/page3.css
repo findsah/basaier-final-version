@@ -33,8 +33,13 @@
     font-size: 15px;
     color: #797979;
     font-weight: 500;
+    width: auto !important;
     flex-direction: row-reverse;
     justify-content: flex-end;
+}
+.accordion-item:last-of-type {
+    border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
 }
 
 .accordion-item {

@@ -3,11 +3,10 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
-<header class="masthead text-white" style="background-image: url('{% static './images/sec2img2.png'%}');">
+<header class="masthead text-white" style="background-image: url('{% static 'images/sec2img2.png'%}');">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -16,78 +15,50 @@
                     نحو</p>
                 <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
                     الدين </p>
-                <!-- <p class="myp-slider text-center">والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
-                        وعدم </p>
-                    <p class="myp-slider text-center">التساهل الذي يؤدي لضياع</p> -->
             </div>
         </div>
     </div>
 </header>
 
-<div class="container">
+    <br><br>
+
+    <div class="container">
     <div class="row" style="margin: 8rem 0 3rem 0;">
-        <div class="col-4">
-            <a href="{% url 'allProjects' %}">
+        {% for data in news %}
+        <div class="col-12 col-md-4">
+            <a href="#">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card1-img-top">
-                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
+                        <img src="/media/{{ data.image }}" style="width: 100%;" alt="img">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">لقاء اذاعي</h5>
-                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
-                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        <h5 class="card-title">{{ data.title }}</h5>
+                        <p class="card-text">{{ data.content|slice:":255" }}
                         </p>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-4">
-            <a href="{% url 'allProjects' %}">
-                <div class="card" style="border-radius: 12px;">
-                    <div class="card1-img-top">
-                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">لقاء اذاعي</h5>
-                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
-                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-4">
-            <a href="{% url 'allProjects' %}">
-                <div class="card" style="border-radius: 12px;">
-                    <div class="card1-img-top">
-                        <img src="{% static 'images/sea.png' %}" style="width: 100%;" alt="img">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">لقاء اذاعي</h5>
-                        <p class="card-text">العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو
-                            تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
+        {% endfor %}
     </div>
+
+    <br><br>
+
     <div class="row my-5">
-        <div class="col-12 meeting_section" style="background-image: url('{% static './images/newsfamous.png'%}');">
-            <h2 class="meeting_heading">
-                خبر صحفي ولقاء حول مشروع الشهر
-            </h2>
+        {% for data in news %}
+            {% if forloop.last %}
+        <div class="col-12 meeting_section" style="background-image: url('/media/{{ data.image }}');">
+            <h2 class="meeting_heading"> {{ data.title }} </h2>
             <p class="meeting-text">
-                العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف
-                الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو
-                والتطرف وعدم التساهل الذي يؤدي لضياع
+                {{ data.content|slice:":255" }}
             </p>
         </div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
+
+    <br><br>
 
 {#<div>#}
 {#    <h1>I am a Image</h1>#}

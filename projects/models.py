@@ -1437,12 +1437,223 @@ class CustomerIds(models.Model):
 
 
 class volunteer(models.Model):
+    Male = True
+    Female = False
+    YES_NO_CHOICES = (
+        (Male, 'Male'),
+        (Female, 'Female')
+    )
+
+    COUNTRY_CHOICES = (
+        ("Kuwait", "Kuwait"),
+        ("Afghanistan", "Afghanistan"),
+        ("Albania", "Albania"),
+        ("Algeria", "Algeria"),
+        ("Algeria", "Algeria"),
+        ("Algeria", "Algeria"),
+        ("Antigua and Barbuda", "Antigua and Barbuda"),
+        ("Argentina", "Argentina"),
+        ("Armenia", "Armenia"),
+        ("Australia", "Australia"),
+        ("Austria", "Austria"),
+        ("Azerbaijan", "Azerbaijan"),
+        ("Bahamas", "Bahamas"),
+        ("Bahrain", "Bahrain"),
+        ("Bangladesh", "Bangladesh"),
+        ("Barbados", "Barbados"),
+        ("Belarus", "Belarus"),
+        ("Belgium", "Belgium"),
+        ("Belize", "Belize"),
+        ("Benin", "Benin"),
+        ("Bhutan", "Bhutan"),
+        ("Bolivia", "Bolivia"),
+        ("Bosnia and Herzegovina", "Bosnia and Herzegovina"),
+        ("Botswana", "Botswana"),
+        ("Brazil", "Brazil"),
+        ("Brunei", "Brunei"),
+        ("Bulgaria", "Bulgaria"),
+        ("Burkina Faso", "Burkina Faso"),
+        ("Burundi", "Burundi"),
+        ("Cambodia", "Cambodia"),
+        ("Cameroon", "Cameroon"),
+        ("Canada", "Canada"),
+        ("Cape Verde", "Cape Verde"),
+        ("Central African Republic", "Central African Republic"),
+        ("Chad", "Chad"),
+        ("Chile", "Chile"),
+        ("China", "China"),
+        ("Colombi", "Colombi"),
+        ("Comoros", "Comoros"),
+        ("Congo (Brazzaville)", "Congo (Brazzaville)"),
+        ("Congo", "Congo"),
+        ("Costa Rica", "Costa Rica"),
+        ("Cote d'Ivoire", "Cote d'Ivoire"),
+        ("Croatia", "Croatia"),
+        ("Cuba", "Cuba"),
+        ("Cyprus", "Cyprus"),
+        ("Czech Republic", "Czech Republic"),
+        ("Denmark", "Denmark"),
+        ("Djibouti", "Djibouti"),
+        ("Dominica", "Dominica"),
+        ("Dominican Republic", "Dominican Republic"),
+        ("East Timor (Timor Timur)", "East Timor (Timor Timur)"),
+        ("Ecuador", "Ecuador"),
+        ("Egypt", "Egypt"),
+        ("El Salvador", "El Salvador"),
+        ("Equatorial Guinea", "Equatorial Guinea"),
+        ("Eritrea", "Eritrea"),
+        ("Estonia", "Estonia"),
+        ("Ethiopia", "Ethiopia"),
+        ("Fiji", "Fiji"),
+        ("Finland", "Finland"),
+        ("France", "France"),
+        ("Gabon", "Gabon"),
+        ("Gambia, The", "Gambia, The"),
+        ("Georgia", "Georgia"),
+        ("Germany", "Germany"),
+        ("Ghana", "Ghana"),
+        ("Greece", "Greece"),
+        ("Grenada", "Grenada"),
+        ("Guatemala", "Guatemala"),
+        ("Guinea", "Guinea"),
+        ("Guinea-Bissau", "Guinea-Bissau"),
+        ("Guyana", "Guyana"),
+        ("Haiti", "Haiti"),
+        ("Honduras", "Honduras"),
+        ("Hungary", "Hungary"),
+        ("Iceland", "Iceland"),
+        ("India", "India"),
+        ("Indonesia", "Indonesia"),
+        ("Iran", "Iran"),
+        ("Iraq", "Iraq"),
+        ("Ireland", "Ireland"),
+        ("Israel", "Israel"),
+        ("Italy", "Italy"),
+        ("Jamaica", "Jamaica"),
+        ("Japan", "Japan"),
+        ("Jordan", "Jordan"),
+        ("Kazakhstan", "Kazakhstan"),
+        ("Kenya", "Kenya"),
+        ("Kiribati", "Kiribati"),
+        ("Korea, North", "Korea, North"),
+        ("Korea, South", "Korea, South"),
+        ("Kyrgyzstan", "Kyrgyzstan"),
+        ("Laos", "Laos"),
+        ("Latvia", "Latvia"),
+        ("Lebanon", "Lebanon"),
+        ("Lesotho", "Lesotho"),
+        ("Liberia", "Liberia"),
+        ("Libya", "Libya"),
+        ("Liechtenstein", "Liechtenstein"),
+        ("Lithuania", "Lithuania"),
+        ("Luxembourg", "Luxembourg"),
+        ("Macedonia", "Macedonia"),
+        ("Madagascar", "Madagascar"),
+        ("Malawi", "Malawi"),
+        ("Malaysia", "Malaysia"),
+        ("Maldives", "Maldives"),
+        ("Mali", "Mali"),
+        ("Malta", "Malta"),
+        ("Marshall Islands", "Marshall Islands"),
+        ("Mauritania", "Mauritania"),
+        ("Mauritius", "Mauritius"),
+        ("Mexico", "Mexico"),
+        ("Micronesia", "Micronesia"),
+        ("Moldova", "Moldova"),
+        ("Monaco", "Monaco"),
+        ("Mongolia", "Mongolia"),
+        ("Morocco", "Morocco"),
+        ("Mozambique", "Mozambique"),
+        ("Myanmar", "Myanmar"),
+        ("Namibia", "Namibia"),
+        ("Nauru", "Nauru"),
+        ("Nepa", "Nepa"),
+        ("Netherlands", "Netherlands"),
+        ("New Zealand", "New Zealand"),
+        ("Nicaragua", "Nicaragua"),
+        ("Niger", "Niger"),
+        ("Nigeria", "Nigeria"),
+        ("Norway", "Norway"),
+        ("Oman", "Oman"),
+        ("Pakistan", "Pakistan"),
+        ("Palau", "Palau"),
+        ("Panama", "Panama"),
+        ("Papua New Guinea", "Papua New Guinea"),
+        ("Paraguay", "Paraguay"),
+        ("Peru", "Peru"),
+        ("Philippines", "Philippines"),
+        ("Poland", "Poland"),
+        ("Portugal", "Portugal"),
+        ("Qatar", "Qatar"),
+        ("Romania", "Romania"),
+        ("Russia", "Russia"),
+        ("Rwanda", "Rwanda"),
+        ("Saint Kitts and Nevis", "Saint Kitts and Nevis"),
+        ("Saint Lucia", "Saint Lucia"),
+        ("Saint Vincent", "Saint Vincent"),
+        ("Samoa", "Samoa"),
+        ("San Marino", "San Marino"),
+        ("Sao Tome and Principe", "Sao Tome and Principe"),
+        ("Saudi Arabia", "Saudi Arabia"),
+        ("Senegal", "Senegal"),
+        ("Serbia and Montenegro", "Serbia and Montenegro"),
+        ("Seychelles", "Seychelles"),
+        ("Sierra Leone", "Sierra Leone"),
+        ("Singapore", "Singapore"),
+        ("Slovakia", "Slovakia"),
+        ("Slovenia", "Slovenia"),
+        ("Solomon Islands", "Solomon Islands"),
+        ("Somalia", "Somalia"),
+        ("South Africa", "South Africa"),
+        ("Spain", "Spain"),
+        ("Sri Lanka", "Sri Lanka"),
+        ("Sudan", "Sudan"),
+        ("Suriname", "Suriname"),
+        ("Swaziland", "Swaziland"),
+        ("Sweden", "Sweden"),
+        ("Switzerland", "Switzerland"),
+        ("Syria", "Syria"),
+        ("Taiwan", "Taiwan"),
+        ("Tajikistan", "Tajikistan"),
+        ("Tanzania", "Tanzania"),
+        ("Thailand", "Thailand"),
+        ("Togo", "Togo"),
+        ("Tonga", "Tonga"),
+        ("Trinidad and Tobago", "Trinidad and Tobago"),
+        ("Tunisia", "Tunisia"),
+        ("Turkey", "Turkey"),
+        ("Turkmenistan", "Turkmenistan"),
+        ("Tuvalu", "Tuvalu"),
+        ("Uganda", "Uganda"),
+        ("Ukraine", "Ukraine"),
+        ("United Arab Emirates", "United Arab Emirates"),
+        ("United Kingdom", "United Kingdom"),
+        ("United States", "United States"),
+        ("Uruguay", "Uruguay"),
+        ("Uzbekistan", "Uzbekistan"),
+        ("Vanuatu", "Vanuatu"),
+        ("Vatican City", "Vatican City"),
+        ("Venezuela", "Venezuela"),
+        ("Vietnam", "Vietnam"),
+        ("Yemen", "Yemen"),
+        ("Zambia", "Zambia"),
+        ("Zimbabwe", "Zimbabwe")
+    )
     name = models.CharField(max_length=255, null=True)
-    email = models.EmailField(null=True)
-    currentJob = models.CharField(max_length=255, null=True)
-    phoneNumber = models.CharField(max_length=255, null=True)
-    highestQualification = models.CharField(max_length=255, null=True)
-    address = models.TextField(null=True)
+    civilNumber = models.CharField(max_length=255, null=True)
+    dateOfBirth = models.DateField(blank=True, null=True)
+    sex = models.BooleanField(default=Male, choices=YES_NO_CHOICES)
+    country = models.CharField(max_length=255, choices=COUNTRY_CHOICES)
+    phoneNumber1 = models.CharField(max_length=255, null=True)
+    emergencyPhoneNumber = models.CharField(max_length=255, null=True)
+    relativeRelation = models.CharField(max_length=255, null=True)
+    email = models.CharField(max_length=255, null=True)
+    qualification = models.CharField(max_length=255, null=True)
+    specialization = models.CharField(max_length=255, null=True)
+    employer = models.CharField(max_length=255, null=True)
+    currentPosition = models.CharField(max_length=255, null=True)
+    preferedVolunteeringField = models.CharField(max_length=255, null=True)
+    interset = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name
@@ -1462,6 +1673,41 @@ class partner(models.Model):
     country = models.CharField(max_length=255, null=True)
     provinceOrState = models.CharField(max_length=255, null=True)
     address = models.TextField(null=True)
+    phoneNumber1 = models.CharField(max_length=255, null=True, blank=True)
+    phoneNumber2 = models.CharField(max_length=255, null=True, blank=True)
+    phoneNumber3 = models.CharField(max_length=255, null=True, blank=True)
+    email = models.CharField(max_length=255, null=True, blank=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
+    facebookLink = models.CharField(max_length=255, null=True, blank=True)
+    twitterLink = models.CharField(max_length=255, null=True, blank=True)
+    instagramLink = models.CharField(max_length=255, null=True, blank=True)
+    yearFounded = models.CharField(max_length=255, null=True, blank=True)
+    affliatedAuthority = models.CharField(max_length=255, null=True, blank=True)
+    branches = models.CharField(max_length=255, null=True, blank=True)
+    natureOfEntityWork = models.CharField(max_length=255, null=True, blank=True)
+    employeesInEntity = models.CharField(max_length=255, null=True, blank=True)
+    projectsImplemented = models.CharField(max_length=255, null=True, blank=True)
+    prominentGoals = models.CharField(max_length=255, null=True, blank=True)
+    achievements = models.CharField(max_length=255, null=True, blank=True)
+    beneficiarySegments = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerName = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerPhoneNumber1 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerUsername1 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerPhoneNumber2 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerUsername2 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerPhoneNumber3 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerUsername3 = models.CharField(max_length=255, null=True, blank=True)
+    entityManagerPhoneNumber4 = models.CharField(max_length=255, null=True, blank=True)
+    donorName = models.CharField(max_length=255, null=True, blank=True)
+    theState1 = models.CharField(max_length=255, null=True, blank=True)
+    donorName2 = models.CharField(max_length=255, null=True, blank=True)
+    theState2 = models.CharField(max_length=255, null=True, blank=True)
+    donorName3 = models.CharField(max_length=255, null=True, blank=True)
+    theState3 = models.CharField(max_length=255, null=True, blank=True)
+    donorName4 = models.CharField(max_length=255, null=True, blank=True)
+    theState4 = models.CharField(max_length=255, null=True, blank=True)
+    nameOfSponsoringParty = models.CharField(max_length=255, null=True, blank=True)
+    attachTestimonial = models.FileField(upload_to='bePartner/%Y/%m/%d', blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.foreignAffairsNumber)

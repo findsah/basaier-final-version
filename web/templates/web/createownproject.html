@@ -3,18 +3,17 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
     {% if messages %}
         <br><br><br><br><br><br><br><br><br><br><br>
-        <ul class="messages">
+        <ul class="container messages">
             {% for message in messages %}
-                <span class="text-center bg-{{ message.tags }} container" id="messageStyle">{{ message }}</span>
+                <div class="text-center bg-{{ message.tags }} container" id="messageStyle" style="color: white; background-image: linear-gradient(#00B4DB, #0083B0) !important; justify-content: center; align-items: center; text-align: center;">{{ message }}</div>
             {% endfor %}
 
-            <span class="text-center bg-primary container" id="messageStyle">{{ site_url }} </span>
+            <div class="text-center bg-primary container" id="messageStyle" style="color: white; background-image: linear-gradient(#00B4DB, #0083B0) !important; justify-content: center; align-items: center; text-align: center;">{{ site_url }} </div>
         </ul>
     {% endif %}
 

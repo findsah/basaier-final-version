@@ -4,7 +4,6 @@
 {% load i18n %}
 {% load projects_user %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
@@ -21,7 +20,7 @@
                                          data-wow-delay=".2s"
                                          style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
                                         <div class="our-causes__image-wrap">
-                                            <img src="{% project_image_tag project request %}"
+                                            <img src="/media/{{ project.image }}"
                                                  class="our-causes__image" alt="" style="height: 275px; width: 100%; border-top-left-radius: 16px; border-top-right-radius: 15px;">
                                             {% if project.is_target_amount %}
                                                 <div class="our-causes__percentage base-bg">

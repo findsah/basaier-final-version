@@ -3,7 +3,6 @@
 {% load humanize %}
 {% load i18n %}
 {% load app_filters %}
-{% load project_image %}
 
 {% block content %}
 
@@ -23,7 +22,7 @@
                     <div class="col-md-3">
                         <div class="firstSectionCard1">
                             <p class="firstSectionCard1P"> {{ project.get_name }}</p>
-                            <img src="{% project_image_tag project request %}" alt="{{ project.get_name }}"
+                            <img src="/media/{{ project.image }}" alt="{{ project.get_name }}"
                                  style="width: 100%; height: 234px;">
                         </div>
 
@@ -62,17 +61,17 @@
                 <span style="color: #1385B2">المرحله الثانيه</span>
             </div>
             <div class="row" id="whereWeWillScrollWindow">
-                <div class="col-md-3">
-                    <img src="{% static 'images/imgseries1.png' %}" alt="imgseries">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <img style="width: 100%" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
                 </div>
-                <div class="col-md-3">
-                    <img src="{% static 'images/imgseries2.png' %}" alt="imgseries">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <img style="width: 100%" src="{% static 'images/imgseries2.png' %}" alt="imgseries">
                 </div>
-                <div class="col-md-3">
-                    <img src="{% static 'images/imgseries3.png' %}" alt="imgseries">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <img style="width: 100%" src="{% static 'images/imgseries3.png' %}" alt="imgseries">
                 </div>
-                <div class="col-md-3">
-                    <img src="{% static 'images/imgseries4.png' %}" alt="imgseries">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <img style="width: 100%" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
                 </div>
             </div>
         </div>

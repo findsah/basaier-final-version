@@ -16,10 +16,11 @@
     width: 90%;
     display: flex;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 50px;
     justify-content: center;
-    height: 2.5rem;
+    height: 49px;
     outline: none;
+    background-color: lightgray;
 }
 
 .inputDiv input {
