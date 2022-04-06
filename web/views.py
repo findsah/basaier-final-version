@@ -40,6 +40,7 @@ from projects.models import Project, Category, \
     CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, \
     giftSenderReceiver, createOwnProjectModel
 from web.models import boardOfDirectories, influencerImages, joinChat, testimonials
+from .filters import ProjectFilter
 from .tokens import account_activation_token
 
 # from web.cart import Cart
@@ -3668,6 +3669,9 @@ def allProjects(request):
     userIdsFromDonateTable = Donate.objects.all().order_by('-id')
     projects = Project.objects.filter(
         is_hidden=False, is_thawab=False, projects_dep_email=None).order_by('-id')
+    employee = Project.objects.all()
+    myFilter = ProjectFilter(request.POST, queryset=employee)
+    employee = myFilter.qs
     # I'M CHANGING THE ALL allProjects.html WITH seasonalprojects.html page, for new basaier design.
     return render(request, 'web/seasonalprojects.html',
                   {'sliders': sliders,
@@ -3683,6 +3687,8 @@ def allProjects(request):
                    'project_dirctories': project_dirctories,
                    'current_user': current_user,
                    'totalProjectsInCart': totalProjectsInCart,
+                   'myFilter': myFilter,
+                   'employee': employee,
                    })
 
 
@@ -3692,99 +3698,16 @@ def search_project(request):
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('-id')
-    # searched = request.POST.get('searched')
-    # try:
-    # except:
-    #     pass
-    if request.POST.get('searched') or request.POST.get('country') or request.POST.get(
-            'price') or request.POST.get('isZakat'):
-        if request.POST.get('searched') != '':
-            searched = request.POST.get('searched')
-        if request.POST.get('country') != '':
-            country = request.POST.get('isZakat')
-        if request.POST.get('price') != '':
-            price = request.POST.get('price')
-        if request.POST.get('isZakat') != '':
-            isZakat = request.POST.get('isZakat')
-
-        if request.POST.get('searched') != '' and request.POST.get('country') != '' and request.POST.get(
-                'price') != '' and request.POST.get('isZakat') != '':
-            projects = Project.objects.filter(name__icontains=searched,
-                                              is_closed=False, is_hidden=False, location__icontains=country,
-                                              isZakat=isZakat, total_amount__lte=price).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('country') == '' and request.POST.get(
-                'price') == '':
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, is_compaign=False, isZakat=isZakat).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get(
-                'country') == '':
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, total_amount__lte=price,
-                is_compaign=False).order_by(
-                '-id')
-        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '' and request.POST.get(
-                'price') == '':
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, name__icontains=searched, is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get(
-                'price') == '':
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, location__icontains=country).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('isZakat') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, location__icontains=country, total_amount__lte=price,
-                is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('country') == '' and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, isZakat=isZakat, total_amount__lte=price, is_compaign=False).order_by(
-                '-id')
-        elif request.POST.get('searched') == '' and request.POST.get('price') == '' and request.POST.get('country') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, location__icontains=country, isZakat=isZakat,
-                is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('country') == '' and request.POST.get('price') == '' and request.POST.get('searched') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, name__icontains=searched, isZakat=isZakat,
-                is_compaign=False,
-            ).order_by('-id')
-        elif request.POST.get('country') == '' and request.POST.get('isZakat') == '' and request.POST.get('searched') is not None and request.POST.get('price') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, name__icontains=searched, total_amount__lte=price,
-                is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('price') == '' and request.POST.get('isZakat') == '' and request.POST.get('searched') is not None and request.POST.get('country') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, name__icontains=searched, location__icontains=country,
-                is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('searched') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, location__icontains=country,
-                total_amount__lte=price, isZakat=isZakat, is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('country') == '' and request.POST.get('searched') is not None and request.POST.get('price') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                name__icontains=searched, is_closed=False, is_hidden=False,
-                total_amount__lte=price, isZakat=isZakat).order_by('-id')
-        elif request.POST.get('price') == '' and request.POST.get('country') is not None and request.POST.get('searched') is not None and request.POST.get('isZakat') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False,
-                name__icontains=searched, isZakat=isZakat, location__icontains=country, is_compaign=False
-            ).order_by('-id')
-        elif request.POST.get('isZakat') == '' and request.POST.get('country') is not None and request.POST.get('price') is not None and request.POST.get('searched') is not None:
-            projects = Project.objects.filter(
-                is_closed=False, is_hidden=False, category__inHomePage=True,
-                name__icontains=searched, total_amount__lte=price, location__icontains=country, is_compaign=False
-            ).order_by('-id')
-        projectData = projects
-        return render(request, "web/seasonalprojects.html", {
-            'searched': searched,
-            'searched_project': projectData,
-            'charity_categories': charity_categories,
-        })
+    employee = Project.objects.all()
+    myFilter = ProjectFilter(request.POST, queryset=employee)
+    employee = myFilter.qs
+    return render(request, "web/seasonalprojects2.html", {
+        # 'searched': searched,
+        # 'searched_project': projects,
+        'myFilter': myFilter,
+        'employee': employee,
+        'charity_categories': charity_categories,
+    })
 
 
 # def sponsorshipPage(request, sponsorCategoryId):
