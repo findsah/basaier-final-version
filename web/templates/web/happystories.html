@@ -30,74 +30,80 @@
             <div class="col-12 col-md-5">
                 {% for data in dataScienceNews %}
                     {% if forloop.last %}
-                        <div class="video-container">
-                            <video autoplay muted controls loop>
-                                <source src="/media/{{ data.image }}"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
-                                <div>
-                                    <h2>{{ data.title }}</h2>
-                                    <p>{{ data.content }}</p>
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        <span class="mx-2">30</span>
-                                        <span>دقيقه</span>
+                        <a href="{% url 'science-center-category' data.id %}">
+                            <div class="video-container">
+                                <video autoplay muted controls loop>
+                                    <source src="/media/{{ data.image }}"
+                                            type="video/mp4"/>
+                                </video>
+                                <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
+                                    <div>
+                                        <h2>{{ data.title }}</h2>
+                                        <p>{{ data.content|truncatewords:255 }}</p>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                            <span class="mx-2">30</span>
+                                            <span>دقيقه</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="col-12 col-md-7">
                 <div class="row">
                     {% for data in dataScienceNews|slice:"2" %}
-                        <div class="col-12 col-md-6">
-                            <div class="video-container" style="height: 218px;">
-                                <video autoplay muted controls loop>
-                                    <source
-                                            src="/media/{{ data.image }}"
-                                            type="video/mp4"/>
-                                </video>
-                                <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
-                                    <div>
-                                        <h2 class="card_overly_h">{{ data.title }}</h2>
-                                        <p class="card_overly_p">{{ data.content }}</p>
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <span class="mx-2">30</span>
-                                            <span>دقيقه</span>
+                        <a href="{% url 'science-center-category' data.id %}">
+                            <div class="col-12 col-md-6">
+                                <div class="video-container" style="height: 218px;">
+                                    <video autoplay muted controls loop>
+                                        <source
+                                                src="/media/{{ data.image }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                    <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
+                                        <div>
+                                            <h2 class="card_overly_h">{{ data.title }}</h2>
+                                            <p class="card_overly_p">{{ data.content|truncatechars:255 }}</p>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                <span class="mx-2">30</span>
+                                                <span>دقيقه</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
 
                 <div class="row mt-3">
                     {% for data in dataScienceNews|slice:"2" %}
-                        <div class="col-12 col-md-6">
-                            <div class="video-container" style="height: 218px;">
-                                <video autoplay muted controls loop>
-                                    <source
-                                            src="/media/{{ data.image }}"
-                                            type="video/mp4"/>
-                                </video>
-                                <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
-                                    <div>
-                                        <h2 class="card_overly_h">{{ data.title }}</h2>
-                                        <p class="card_overly_p">{{ data.content }}</p>
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <span class="mx-2">30</span>
-                                            <span>دقيقه</span>
+                        <a href="{% url 'science-center-category' data.id %}">
+                            <div class="col-12 col-md-6">
+                                <div class="video-container" style="height: 218px;">
+                                    <video autoplay muted controls loop>
+                                        <source
+                                                src="/media/{{ data.image }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                    <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
+                                        <div>
+                                            <h2 class="card_overly_h">{{ data.title }}</h2>
+                                            <p class="card_overly_p">{{ data.content|truncatechars:255 }}</p>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                <span class="mx-2">30</span>
+                                                <span>دقيقه</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>

@@ -21,8 +21,8 @@
             <div class="carousel-caption d-none d-md-block">
                 <h3 class="my-heading">{{ project.get_name }}</h3>
                 <p class="myp-slider text-center">{{ project.get_detail }}</p>
-                <!-- {# <p class="myp-slider text-center">سهوله من خلال موقعنا</p>#} -->
-                <!-- {# <a href="{% url 'project-detail' project.id %}">#} -->
+                <!-- <p class="myp-slider text-center">سهوله من خلال موقعنا</p> -->
+                <!-- <a href="{% url 'project-detail' project.id %}"> -->
                 <a href="{% url 'allProjects' %}">
                     <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
                     </button>
@@ -31,6 +31,94 @@
         </div>
         {% endfor %}
 
+    </div>
+</div>
+
+
+<div class="mobileCrousel">
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
+    </div>
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
+    </div>
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
+    </div>
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
+    </div>
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
+    </div>
+    <div class="crouselDiv">
+        <div class="onImageDiv">
+            <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                <br />
+                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
+                سهوله من خلال موقعنا
+            </p>
+            <button class="crouselBtn">تبرع الان</button>
+        </div>
+        <img src="/static/images/background.png" class="crouselImg">
     </div>
 </div>
 
@@ -114,7 +202,7 @@
 <section class="testimonials">
     <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
     <div class="container">
-        <div class="row">
+        <div class="row reverseCol">
             <div class="col-sm-12 col-md-6 mt-4">
                 <div class="my-right-text wow fadeInUp">
                     <h3 class="myh-class font-weight-bold">
@@ -255,14 +343,86 @@
     </div>
 </section>
 
-<section class="testimonials text-center" style="display: none;">
+<section class="testimonials text-center">
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-7 wow fadeInUp">
                 <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
             </div>
         </div>
-        <section>
+        <div class="mobileCrousel" style="display: flex; padding: 20px 0;">
+            <div class='main-content'>
+                <div class="testimonialhead">
+                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                        اداره
+                        انسان
+                    </p>
+                </div>
+                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                    عثمان
+                    <br/>     الخميلشيخ
+                    عثمان الخميلشيخ عثمان
+                    الخميلشيخ عثمان الخمي</p>
+            </div>
+            <div class='main-content'>
+                <div class="testimonialhead">
+                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                        اداره
+                        انسان
+                    </p>
+                </div>
+                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                    عثمان
+                    <br/>   الخميلشيخ
+                    عثمان الخميلشيخ عثمان
+                    الخميلشيخ عثمان الخمي</p>
+            </div>
+            <div class='main-content'>
+                <div class="testimonialhead">
+                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                        اداره
+                        انسان
+                    </p>
+                </div>
+                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                    عثمان
+                    <br/> الخميلشيخ
+                    عثمان الخميلشيخ عثمان
+                    الخميلشيخ عثمان الخمي</p>
+            </div>
+            <div class='main-content'>
+                <div class="testimonialhead">
+                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                        اداره
+                        انسان
+                    </p>
+                </div>
+                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                    عثمان
+               <br/>     الخميلشيخ
+                    عثمان الخميلشيخ عثمان
+                    الخميلشيخ عثمان الخمي</p>
+            </div>
+            <div class='main-content'>
+                <div class="testimonialhead">
+                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
+                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                        اداره
+                        انسان
+                    </p>
+                </div>
+                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                    عثمان
+                    <br/> الخميلشيخ
+                    عثمان الخميلشيخ عثمان
+                    الخميلشيخ عثمان الخمي</p>
+            </div>
+        </div>
+        <!-- <section>
             <div class="rt-container">
                 <div class="col-rt-12">
                     <div class='demo-container'>
@@ -302,11 +462,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -317,11 +479,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -332,11 +496,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -347,11 +513,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -362,11 +530,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -377,11 +547,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -392,11 +564,13 @@
                                         <div class='main-content'>
                                             <div class="testimonialhead">
                                                 <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس اداره
+                                                <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
+                                                    اداره
                                                     انسان
                                                 </p>
                                             </div>
-                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ عثمان
+                                            <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
+                                                عثمان
                                                 الخميلشيخ
                                                 عثمان الخميلشيخ عثمان
                                                 الخميلشيخ عثمان الخمي</p>
@@ -408,103 +582,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- {#            <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel"#}
-{#                 data-interval="false">#}
-{#                <div class="carousel-inner row w-100 mx-auto" role="listbox">#}
-{#                    {% for data in testimonialsData %}#}
-{#                    <div class="carousel-item col-md-4  active">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 1" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 1">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
-{#                    <div class="carousel-item col-md-4 ">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 3" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 2">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 4" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 3">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 5" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 4">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 6" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 5">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 7" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 6">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 8" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 7">#}
-{#                                </a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="carousel-item col-md-4">#}
-{#                        <div class="panel panel-default">#}
-{#                            <div class="panel-thumbnail">#}
-{#                                <a href="#" title="image 2" class="thumb">#}
-{#                                    <img class="img-fluid mx-auto d-block" src="{% static 'images/background.png' %}"#}
-{#                                         alt="slide 8">#}
-{#                                </a>#}
-{#                            </div>#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">#}
-{#                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                    <span class="sr-only">Previous</span>#}
-{#                </a>#}
-{#                <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">#}
-{#                    <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                    <span class="sr-only">Next</span>#}
-{#                </a>#}
-{#            </div>#} -->
+        </section> -->
+
     </div>
 </section>
 

@@ -283,19 +283,39 @@
 <nav class="navbar navbar-dark fixed-top navbar-expand-lg"
      style="box-shadow: 0 5px 20px lightgrey; color: black !important;">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'images/logo2.png' %}" class="logoimg" alt="logoimg">
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars mfa-white"></span>
-        </button>
-
-        <div id="main">
+            </button>
+            <div id="main">
             <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars" onclick="openNav()"></span></a>
-        </div>
-
+            <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'images/logo2.png' %}" alt="">
+            </a>
+            </div>
+            <a class="navbar-brand navbarImg" href="{% url 'index' %}">
+                <img src="{% static 'images/logo2.png' %}" alt="">
+                </a>
+            <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
+            <li class="nav-link">
+            <a href="#" class="btn btn-circle my-social-btn color-light">
+            <i style="font-size: 25px;" class="fa fa-search searchIcon"></i>
+            </a>
+            <div class="searchDiv">
+            <i style="font-size: 20px;" class="fa fa-search"></i>
+            <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
+            </div>
+            </li>
+            <li class="nav-link">
+            <a href="{% url 'login' %}" class="btn btn-circle my-social-btn color-light ">
+            <i style="font-size: 25px;" class="fa fa-user"></i>
+            </a>
+            </li>
+            <li class="nav-link">
+            <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn color-light ">
+            <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+            </a>
+            </li>
+            </ul>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <ul class="mob-ul">
@@ -369,7 +389,7 @@
                     <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعاده</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'volunteer' %}">تطوع معنا</a>
                 </li>
             </ul>
         </div>
@@ -450,7 +470,7 @@
                     <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعاده</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'volunteer' %}">تطوع معنا</a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0 col-md-7">
@@ -768,71 +788,75 @@
     </div>
 </section>
 
-<footer class="footer">
+<footer class="footer removePadding">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn" style="width: 15rem; height: 15rem;">
-                <img src="{% static 'images/bgfooter.png' %}" alt="logoimg">
-            </div>
-            <div class="col-sm-6 col-md-4 text-center my-auto  wow zoomIn">
-                <ul style="list-style: none; text-align: right;">
-                    <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">
-                            <h3>القائمة الرئيسية</h3>
-                        </a>
-                    </li>
-                    <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
-                    </li>
-                    <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
-                    </li>
-                    <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
-                    </li>
-                    <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-md-4 text-right my-auto  wow zoomIn">
-                <ul class="list-inline mb-0 p-0">
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-linkedin fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-youtube fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-instagram fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-instagram fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item mr-3">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-twitter fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i style="font-size: 25px;" class="fa fa-facebook fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                </ul>
-                <p class="text-mutedP small mb-4 mb-lg-0"><sup>©</sup> 2021 جميع الحقوق </p>
-            </div>
-        </div>
+    <div class="row">
+    <div class=" col-6 col-md-4 text-center my-auto  wow zoomIn">
+    <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
     </div>
-</footer>
+    <div class=" col-6 col-md-4 text-center my-auto  wow zoomIn">
+    <ul style="list-style: none; text-align: right;" class="footerUl">
+    <li style="margin: 1rem 0;">
+    <a href="#" style="text-decoration: none; color: #fff;">
+    <h3>
+    القائمة الرئيسية
+    </h3>
+    </a>
+    </li>
+    <li style="margin: 1rem 0;">
+    <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
+    </li>
+    <li style="margin: 1rem 0;">
+    <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
+    </li>
+    <li style="margin: 1rem 0;">
+    <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
+    </li>
+    <li style="margin: 1rem 0;">
+    <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
+    </li>
+    </ul>
+    </div>
+    <div class=" col-6 col-md-4 text-right my-auto  wow zoomIn">
+    <ul class="list-inline mb-0 p-0">
+    <li class="list-inline-item mr-3">
+    <a href="#">
+    <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
+    </a>
+    </li>
+    <li class="list-inline-item mr-3">
+    <a href="#">
+    <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
+    </a>
+    </li>
+    <li class="list-inline-item">
+    <a href="#">
+    <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+    </a>
+    </li>
+    <li class="list-inline-item mr-3">
+    <a href="#">
+    <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+    </a>
+    </li>
+    <li class="list-inline-item mr-3">
+    <a href="#">
+    <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
+    </a>
+    </li>
+    <li class="list-inline-item">
+    <a href="#">
+    <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
+    </a>
+    </li>
+    </ul>
+    <p class="text-mutedP small mb-4 mb-lg-0">
+    <sup>©</sup> 2021 جميع الحقوق
+    </p>
+    </div>
+    </div>
+    </div>
+    </footer>
 
 {# ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
 <script type="text/javascript">

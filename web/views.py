@@ -1060,10 +1060,10 @@ class News(TemplateView):
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
-        news = PRNews.objects.all().order_by('-id')[:15]
+        news = PRNews.objects.all().order_by('-id')[:6]
         if 'category_id' in kwargs:
             news = PRNews.objects.filter(
-                category__id=kwargs['category_id']).order_by('-id')[:15]
+                category__id=kwargs['category_id']).order_by('-id')[:6]
         categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
@@ -1114,7 +1114,7 @@ def icalculator(request):
 
 
 class NewsDetail(TemplateView):
-    template_name = "web/news_detail.html"
+    template_name = "web/newsdetail.html"
 
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -1147,7 +1147,7 @@ class NewsDetail(TemplateView):
 
 
 class ScienceCenter(TemplateView):
-    template_name = "web/science_center.html"
+    template_name = "web/detailpage.html"
 
     def get(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -1155,10 +1155,11 @@ class ScienceCenter(TemplateView):
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         sliders = Slider.objects.all().order_by('-id')[:5]
-        news = ScienceNews.objects.all().order_by('-id')[:15]
-        if 'category_id' in kwargs:
-            news = ScienceNews.objects.filter(
-                category__id=kwargs['category_id']).order_by('-id')[:15]
+        news = ScienceNews.objects.all().order_by('-id')[:1]
+        obj = get_object_or_404(ScienceNews, pk=kwargs['category_id'])
+        # if 'category_id' in kwargs:
+        #     news = ScienceNews.objects.filter(
+        #         category__id=kwargs['category_id']).order_by('-id')[:1]
         categories = PRCategory.objects.all().order_by('-id')
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
@@ -1178,6 +1179,7 @@ class ScienceCenter(TemplateView):
                        'projects_selected': projects_selected,
                        'totalProjectsInCart': totalProjectsInCart,
                        'getMyCurrency': getMyCurrency,
+                       'obj': obj,
                        })
 
 
@@ -1375,6 +1377,9 @@ def projectsOfParticularCategory(request, category_id):
     latest_projects = Project.objects.filter(
         is_closed=False, is_hidden=False).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
+    employee = Project.objects.all()
+    myFilter = ProjectFilter(request.POST, queryset=employee)
+    employee = myFilter.qs
 
     # return render(request, 'web/projectsAccordingToCategories.html', {'categoryId': categoryId})
     return render(request, 'web/allProjectsOfParticularCategory.html',
@@ -1393,6 +1398,8 @@ def projectsOfParticularCategory(request, category_id):
                    'totalProjectsInCart': totalProjectsInCart,
                    'categoryName1': categoryName1,
                    'getMyCurrency': getMyCurrency,
+                   'myFilter': myFilter,
+                   'employee': employee,
                    })
 
 

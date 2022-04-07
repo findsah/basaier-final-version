@@ -213,63 +213,22 @@ body {
 
 .textimonialbottomtext {
     color: #111;
-    font-size: 12px;
+    font-size: 14px;
     margin-right: 1rem;
     margin-bottom: 0;
-    width: 65%;
     margin: 1rem 0;
     text-align: justify;
 }
 
-
-
 .main-content {
-    color: #fff;
-    padding: 20px 5px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+    padding: 10px 20px;
     font-family: Helvetica;
-    border-radius: 5px;
-    width: 100%;
-    box-shadow: 0 0px 20px -7px black;
+    margin: 1rem;
+    height: 12rem;
 }
-
-/* .carousel__item:nth-child(1) .demo-content {
-    background-color: #216485;
-  }
-  
-  .carousel__item:nth-child(2) .demo-content {
-    background-color: #3692b6;
-  }
-  
-  .carousel__item:nth-child(3) .demo-content {
-    background-color: #6fccc9;
-  }
-  
-  .carousel__item:nth-child(4) .demo-content {
-    background-color: #a6e3cf;
-  }
-  
-  .carousel__item:nth-child(5) .demo-content {
-    background-color: #aff0be;
-  }
-  
-  .carousel__item:nth-child(6) .demo-content {
-    background-color: #527059;
-  }
-  
-  .carousel__item:nth-child(7) .demo-content {
-    background-color: #243127;
-  } */
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -300,7 +259,7 @@ body {
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: #111;
+    background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -309,8 +268,9 @@ body {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #111 !important;
     display: block;
     transition: 0.3s;
 }
@@ -411,6 +371,9 @@ a.openNav {
 .sidenav li a {
     padding: 10px 15px;
     text-transform: uppercase;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #111 !important;
 }
 
 .sidenav ul li:hover .nav-link {
@@ -711,11 +674,74 @@ li.list-inline-item a {
     font-size: 16px;
     margin: 2rem 0;
 }
-.hideHiddenDiv{
+
+.hideHiddenDiv {
     display: none;
 }
-.mainProjects{
+
+.mainProjects {
     width: 70%;
+}
+
+.mobileCrousel {
+    display: none;
+}
+
+.mobileCrousel {
+    margin: 8rem 1rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.crouselDiv {
+    position: relative;
+    width: 13rem;
+    height: 18rem;
+    border-radius: 10px;
+    margin: 0 1rem;
+    /* white-space: initial; */
+}
+
+.onImageDiv {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+}
+
+.crouselBtn {
+    background-color: #fff;
+    color: #1488B5;
+    padding: 10px 4rem;
+    display: flex;
+    margin: auto;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+}
+
+.crouselText {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 0;
+    line-height: 30px;
+    white-space: normal;
+}
+
+.crouselText span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.crouselImg {
+    width: 13rem;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.socialIcons {
+    font-size: 25px;
 }
 
 
@@ -759,25 +785,55 @@ li.list-inline-item a {
     }
 }
 
+
 @media (max-width: 767px) {
-    .hideHiddenDiv{
+    .hideHiddenDiv {
         display: block;
     }
-    .mainProjects{
+
+    .mainProjects {
         width: 100% !important;
     }
+
     .sidePanelFilter {
         display: none !important;
     }
-    .firstSectionCard2{
+
+    .firstSectionCard2 {
         width: 100% !important;
     }
-    .firstSectionCard1{
+
+    .firstSectionCard1 {
         width: 100% !important;
     }
+
     .video-container {
         margin-bottom: 2rem;
-      }
+    }
+
+    .fixed-top {
+        background-image: linear-gradient(#00A7D0, #0083B0);
+    }
+
+    .fluidImg {
+        height: 12rem;
+    }
+
+    .carousel {
+        display: none;
+    }
+
+    .mobileCrousel {
+        display: flex;
+    }
+}
+@media (max-width: 991px){
+    .navbarUl{
+        display: flex !important;
+    }
+    .navbarImg{
+        display: none !important;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -962,6 +1018,35 @@ li.list-inline-item a {
 
     .box img {
         height: 100%;
+    }
+}
+
+
+@media (max-width: 428px) {
+    .removePadding {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .footerUl {
+        padding: 0 !important;
+    }
+
+    .socialIcons {
+        font-size: 12px !important;
+    }
+    .text-mutedP {
+        text-align: center;
+        font-size: 14px;
+        margin: 5px 0;
+        font-weight: bold;
+    }
+    .testimonials {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .reverseCol{
+        flex-direction: column-reverse !important;
     }
 }
 

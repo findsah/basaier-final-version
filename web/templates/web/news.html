@@ -26,14 +26,14 @@
     <div class="row" style="margin: 8rem 0 3rem 0;">
         {% for data in news %}
         <div class="col-12 col-md-4">
-            <a href="#">
+            <a href="{% url 'news-detail' data.id %}">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card1-img-top">
                         <img src="/media/{{ data.image }}" style="width: 100%;" alt="img">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ data.title }}</h5>
-                        <p class="card-text">{{ data.content|slice:":255" }}
+                        <p class="card-text">{{ data.content|truncatechars:255 }}
                         </p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
         <div class="col-12 meeting_section" style="background-image: url('/media/{{ data.image }}');">
             <h2 class="meeting_heading"> {{ data.title }} </h2>
             <p class="meeting-text">
-                {{ data.content|slice:":255" }}
+                {{ data.content|truncatechars:255 }}
             </p>
         </div>
             {% endif %}
