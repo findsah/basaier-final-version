@@ -3,11 +3,13 @@
 }
 
 .mysocial-icons {
-    background: white;
-    padding: 0.7rem 2rem;
+        background: white;
+    padding: 0.7rem 0;
     box-shadow: 0 0px 15px -3px lightgrey;
     border-radius: 25px;
-    margin-left: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
+    width: 8rem;
+    margin-bottom: 1rem;
 }

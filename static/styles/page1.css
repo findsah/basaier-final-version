@@ -352,10 +352,11 @@ a.openNav {
 .nav-item {
     font-size: 13px;
     font-weight: bold;
+    margin-bottom: 10px !important;
 }
 
 .nav-link {
-    padding: .2rem 1rem !important;
+    /*padding: .2rem 1rem !important;*/
 }
 
 .mob-ul {
@@ -743,7 +744,9 @@ li.list-inline-item a {
 .socialIcons {
     font-size: 25px;
 }
-
+.tabsUl{
+        flex-direction: column;
+    }
 
 @media only screen and (min-width:1600px) and (max-width:1920px) {
     .navbar-toggler {
@@ -1047,6 +1050,18 @@ li.list-inline-item a {
     }
     .reverseCol{
         flex-direction: column-reverse !important;
+    }
+    header.masthead {
+        height: 60vh !important;
+    }
+    .affix{
+        margin-top: 40% !important;
+    }
+    .contactusH6{
+        font-size: 11px !important;
+    }
+    .tabsUl{
+        flex-direction: row !important;
     }
 }
 

@@ -105,6 +105,8 @@
                     </div>
                 </div>
             </div>
+        <input type="hidden" value="{% if request.user.is_authenticated %} {{ user.email }} {% else %}Salem_web@basaier.org{% endif %}"
+                                       name="email" size="5" placeholder="Email" required style="width: 50%;">
         </form>
     </div>
 

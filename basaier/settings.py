@@ -200,6 +200,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # EMAIL_HOST_USER = 'Salem_web@basaier.org'
 # EMAIL_HOST_PASSWORD = 'T123987@'  # THIS IS FOR OFFICE 365 AND Salem_web@basaier.org mail.
 # EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.office365.com'
+# EMAIL_HOST_USER = 'info@basaier.org'
+# EMAIL_HOST_PASSWORD = '1Q2w3e4r@'  # THIS IS FOR OFFICE 365 AND Salem_web@basaier.org mail.
+# EMAIL_PORT = 587
 
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '41d9a61129241d'
@@ -283,10 +288,10 @@ TAP_PAY_CUSTOMER_URL = "https://api.tap.company/v2/customers"
 TAP_PAY_CREATE_TOKEN_URL = "https://api.tap.company/v2/tokens"
 TAP_PAY_CARD_URL = "https://api.tap.company/v2/card/"
 # TAP_PAY_CARD_URL = "https://api.tap.company/v2/card/{customer_id}" WE WILL CONCATENATE THAT CUSTOMER_ID
-# TAP_API_KEY = "sk_test_7MFWOt9IpNQ3fz2YUag5Heuh"
+TAP_API_KEY = "sk_test_7MFWOt9IpNQ3fz2YUag5Heuh"
 
 # KEY FOR LIVE:
-TAP_API_KEY = "sk_live_VjRY4rK3EeCtmzvgX86BqN2n"
+# TAP_API_KEY = "sk_live_VjRY4rK3EeCtmzvgX86BqN2n"
 # END KEY FOR LIVE:
 
 
