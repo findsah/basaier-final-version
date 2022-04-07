@@ -1957,13 +1957,13 @@ def Login(request):
                                   'projectsSadaqah': projectsSadaqah,
                               })
             else:
-                error = "Username/Password Combination Invalid."
+                messages = "Username/Password Combination Invalid."
                 return render(request, 'web/login.html',
-                              {'error': error})
+                              {'messages': messages})
         else:
-            error = "Code Doesn't Match."
+            messages = "Code Doesn't Match."
             return render(request, 'web/login.html',
-                          {'error': error})
+                          {'messages': messages})
 
     if request.method == 'GET':
         cart = Cart(request)
@@ -2097,7 +2097,7 @@ class Register(TemplateView):
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
-        username = request.POST.get('email', '')
+        username = request.POST.get('phone', '')
         password = request.POST.get('password', '')
         confirm_password = request.POST.get('confirm_password', '')
         # name = request.POST.get('user_name', '')
@@ -2137,23 +2137,22 @@ class Register(TemplateView):
                 print("MAIL SENT FOR ACTIVATIOIN:")
                 language = get_language()
                 if language == 'ar':
-                    messages.success(
-                        request, ('يرجى تأكيد بريدك الإلكتروني لإكمال التسجيل.'))
+                    messages = 'يرجى تأكيد بريدك الإلكتروني لإكمال التسجيل.'
                 else:
-                    messages.success(
-                        request, ('Please Confirm Your Email To Complete Registration.'))
+                    messages = 'Please Confirm Your Email To Complete Registration.'
                 # if profile is not None:
                 #     login(request, user)
                 #     return redirect('/profile/')
                 return render(request, 'web/login.html', {
+                    'messages': messages,
                     'totalProjectsInCart': totalProjectsInCart,
                     'getMyCurrency': getMyCurrency,
                 })
             else:
-                error = "User with email already exists."
+                messages = "User with email already exists."
                 return render(request, self.template_name,
                               {
-                                  'error': error,
+                                  'messages': messages,
                                   'totalProjectsInCart': totalProjectsInCart,
                                   'getMyCurrency': getMyCurrency,
                               })

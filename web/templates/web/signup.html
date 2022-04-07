@@ -5,16 +5,6 @@
 {% load app_filters %}
 
 {% block content %}
-
-    {% if messages %}
-        <br><br><br><br><br><br><br><br><br><br><br>
-        <ul class="container messages">
-            {% for message in messages %}
-                <div class="text-center bg-{{ message.tags }} container" id="messageStyle" style="color: white;">{{ message }}</div>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
     <div class="container">
         <div class="row justify-content-center" style="margin-top: 10rem;">
             <div class="col-6">
@@ -26,8 +16,13 @@
                         </div>
                     </div>
 
-
                     <div class="row">
+                        {% if messages %}
+                                <ul class="container messages">
+                                    <div class="text-center bg-{{ messages.tags }} container" id="messageStyle"
+                                         style="color: white; background-image: linear-gradient(#00B4DB, #0083B0) !important; justify-content: center; align-items: center; text-align: center;">{{ messages }}</div>
+                                </ul>
+                            {% endif %}
                         <div class="col-12">
                             <form class="contact-form" action="{% url 'register' %}" method="post">
                                 {% csrf_token %}
