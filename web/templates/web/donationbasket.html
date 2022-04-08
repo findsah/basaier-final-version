@@ -53,7 +53,7 @@
 {#                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">#}
                             <label for="vehicle1" style="margin-left: 2rem;"> Cart Details </label>
                         </div>
-                        <i style="font-size: 25px; color: red;" class="fa fa-trash"></i>
+                        <a href="{% url 'removeAll' %}"><i style="font-size: 25px; color: red;" class="fa fa-trash"></i></a>
                     </div>
                     {% for item in cart %}
                         {% with product=item.product %}

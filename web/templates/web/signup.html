@@ -46,9 +46,9 @@
                                     <input type="password" name="confirm_password" placeholder="Confirm Password"
                                            class="input_field text-center" required>
                                 </div>
-                                <div class="code_input d-flex justify-content-between my-3">
-                                    <select name="countryCode" style="width: 30%;"
-                                            class="form-control input-group__input"
+                                <div class="d-flex justify-content-between my-3">
+                                    <select name="countryCode" style="width: 30%; height: 99px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border: 1px solid lightgray !important;"
+                                            class="input-group__input"
                                             onchange="selectCountryCode(this.value)" id="onChangeWillHitInputField" required>
                                         <option value="">Country</option>
                                         <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -279,8 +279,8 @@
                                         <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
 
                                     </select>
-                                    <input type="text" style="width: 70%;" id="fetchTheSelectedCountryCode"
-                                           class="form-control input-group__input" name="phone" placeholder="Phone"
+                                    <input type="text" style="border: 1px solid lightgray; width: 70%; height: 99px; border-top-left-radius: 30px; border-bottom-left-radius: 30px;" id="fetchTheSelectedCountryCode"
+                                           class="input-group__input" name="phone" placeholder="Phone"
                                            required>
                                 </div>
 

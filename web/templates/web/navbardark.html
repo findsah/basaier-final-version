@@ -94,7 +94,11 @@
     </script>
 {% endif %}
 
-    
+
+    <!-- jquery files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
     <!-- bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -110,10 +114,6 @@
             crossorigin="anonymous"></script>
 
 
-    <!-- jquery files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-            crossorigin="anonymous"></script>
 
     <!-- == mixitup == -->
     <script src="/static/js/mixitup.min.js"></script>
@@ -858,6 +858,52 @@
     </div>
     </footer>
 
+{# ADD TO CART AND NAVIGATE TO CART PAGE: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartAndNavigateToCartPage').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        console.log({project_id, amount});
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount')
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add',
+                {% else %}
+                    url: '/en/cart_add',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    location.href = "/checkoutDetail";
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART AND NAVIGATE TO CART PAGE: #}
+
 {# ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
 <script type="text/javascript">
     {#function addCart(post_id) {#}
@@ -903,6 +949,72 @@
     });
 </script>
 {# END ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
+
+{# ADD TO CART REFUND_PROJECT PAGE POPUP: #}
+<script type="text/javascript">
+    {#function addCart(post_id) {#}
+    $('.addToCartProjectOfNewPageOfrefuneprojectPOPUP').click(function (e) {
+        e.preventDefault();
+        var post_id = $(this).attr('projectId');
+        var project_id = document.getElementById("projectId" + post_id).value;
+        var amount = document.getElementById("enteredCost" + post_id).value;
+        var senderNameDonatedDonationPage = document.getElementById('senderNameDonatedDonationPage').value;
+        var receiverNameDonatedDonationPage = document.getElementById('receiverNameDonatedDonationPage').value;
+        var phoneNumberDonatedDonationPage = document.getElementById('phoneNumberDonatedDonationPage').value;
+        var emailDonatedDonationPage = document.getElementById('emailDonatedDonationPage').value;
+        {#console.log({project_id, amount});#}
+        if (amount <= 0) {
+            alert('Please Select The Amount');
+        } else if (amount < 0) {
+            alert('Please Select A Valid Amount');
+        } else if (project_id == null) {
+            alert('Please Select The Project');
+        } else if (senderNameDonatedDonationPage === '') {
+            alert('Please Provide The Sender Name');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (receiverNameDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Name');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (phoneNumberDonatedDonationPage === '') {
+            alert('Please Provide The Receiver Phone Number');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else if (emailDonatedDonationPage === '') {
+            alert('Please Provide The Email');
+            document.getElementById('whereWeWillScrollWindow').scrollIntoView();
+        } else {
+            $.ajax({
+                type: 'POST',
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    url: '/ar/cart_add_for_gift',
+                {% else %}
+                    url: '/en/cart_add_for_gift',
+                {% endif %}
+                async: true,
+                data: {
+                    project_id: project_id,
+                    amount: amount,
+                    senderNameDonatedDonationPage: senderNameDonatedDonationPage,
+                    receiverNameDonatedDonationPage: receiverNameDonatedDonationPage,
+                    phoneNumberDonatedDonationPage: phoneNumberDonatedDonationPage,
+                    emailDonatedDonationPage: emailDonatedDonationPage,
+                    {#project_category_id: project_category_id,#}
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function () {
+                    alert('Donation Added To Cart....!');
+                    {#window.location.href = "giftRecieverAndSender";#}
+                    {#project_id[0].reset();#}
+                    {#amount[0].reset();#}
+                },
+                error: function () {
+                    alert("Something went wrong!");
+                },
+            });
+        }
+    });
+</script>
+{# END ADD TO CART REFUND_PROJECT PAGE POPUP: #}
 
 {# ADD TO CART DONATED_DONATION PAGE: #}
 <script type="text/javascript">

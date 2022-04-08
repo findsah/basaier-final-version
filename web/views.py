@@ -1771,9 +1771,9 @@ class CheckoutWithLogin(TemplateView):
             return redirect('/checkout/')
 
 
-def create_user(first_name, last_name, email, password, phone):
+def create_user(first_name, last_name, username, email, password, phone):
     user = User.objects.create_user(first_name=first_name, last_name=last_name,
-                                    username=email, email=email, password=password)
+                                    username=username, email=email, password=password)
     profile = Profile.objects.create(user=user, phone=phone)
     if profile is not None:
         return user, profile
@@ -2098,6 +2098,7 @@ class Register(TemplateView):
         first_name = request.POST.get('first_name', '')
         last_name = request.POST.get('last_name', '')
         username = request.POST.get('phone', '')
+        email = request.POST.get('email', '')
         password = request.POST.get('password', '')
         confirm_password = request.POST.get('confirm_password', '')
         # name = request.POST.get('user_name', '')
@@ -2108,13 +2109,13 @@ class Register(TemplateView):
 
         if password == confirm_password:
             try:
-                user_withemail = User.objects.get(email=username)
+                user_withemail = User.objects.get(username=username)
             except User.DoesNotExist:
                 user_withemail = None
             if user_withemail is None:
                 user, profile = create_user(
-                    first_name, last_name, username, password, phone)
-                users = User.objects.filter(email=username)
+                    first_name, last_name, username, email, password, phone)
+                users = User.objects.filter(username=username)
                 for user in users:
                     user.is_active = False
                     # print(user.is_active)
@@ -5682,10 +5683,10 @@ def removeAll(request):
     language = get_language()
     if language == 'ar':
         messages.success(request, 'تمت إزالة عربات التسوق بنجاح.!')
-        return redirect('/ar/cart_detail')
+        return redirect('/ar/checkoutDetail')
     else:
         messages.success(request, 'Carts Have Been Removed Successfully...!')
-        return redirect('/en/cart_detail')
+        return redirect('/en/checkoutDetail')
 
 
 def cart_detail(request):

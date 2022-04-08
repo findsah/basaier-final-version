@@ -584,7 +584,7 @@ section#marketplace h5 {
     color: #fff;
     outline: none;
     padding: 0.2rem 7rem;
-    width: 100%;
+    /*width: 100%;*/
     font-size: 14px;
     border-radius: 10px;
     border: none;
