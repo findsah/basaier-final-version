@@ -7,25 +7,25 @@
 {% block content %}
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for project in projects %}
-                {% if forloop.first %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"
-                        class="active"></li>
-                {% else %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>
-
-                {% endif %}
-            {% endfor %}
-        </ol>
+{#        <ol class="carousel-indicators">#}
+{#            {% for project in projects %}#}
+{#                {% if forloop.first %}#}
+{#                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"#}
+{#                        class="active"></li>#}
+{#                {% else %}#}
+{#                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>#}
+{##}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#        </ol>#}
 
         <div class="carousel-inner">
             {% for project in projects %}
                 {#        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} header2">#}
-                {% if forloop.counter0|divisibleby:"4" %}
+{#                {% if forloop.counter0|divisibleby:"4" %}#}
                     <div class="carousel-item {% if forloop.first %} active {% endif %} header2">
                         <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}"
-                             alt="{{ project.get_name }}">
+                             alt="{{ project.get_name }}" style="height: 950px;">
 
                         <div class="carousel-caption d-none d-md-block">
                             <h3 class="my-heading">{{ project.get_name }}</h3>
@@ -38,9 +38,8 @@
                             </a>
                         </div>
                     </div>
-                {% endif %}
+{#                {% endif %}#}
             {% endfor %}
-
         </div>
     </div>
 
