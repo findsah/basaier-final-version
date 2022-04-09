@@ -292,7 +292,8 @@
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
                 </li>
-                <li class="dropdown">
+                <li class="nav-item" style="padding: 0.5rem 1rem;">
+                <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none; color: white;">المشاريع
                     </a>
@@ -301,8 +302,9 @@
                             {% include "web/category_tree.html" %}
                         {% endfor %}
                     </ul>
+                </div>
                 </li>
-                <div class="dropdown">
+                <div class="dropdown" style="padding: 0.5rem 1rem;">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none; color: white;">
                         اكتشفنا
@@ -357,7 +359,7 @@
                     <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'volunteer' %}">تطوع معنا</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
             </ul>
         </div>
@@ -366,7 +368,8 @@
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
                 </li>
-                <li class="dropdown">
+                <li class="nav-item" style="padding: 0.5rem 1rem;">
+                <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none; color: white;">
                         المشاريع
@@ -376,8 +379,9 @@
                             {% include "web/category_tree.html" %}
                         {% endfor %}
                     </ul>
+                </div>
                 </li>
-                <div class="dropdown">
+                <div class="dropdown" style="padding: 0.5rem 1rem;">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none; color: white;">
                         اكتشفنا
@@ -432,7 +436,7 @@
                     <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'volunteer' %}">تطوع معنا</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0 col-md-7">

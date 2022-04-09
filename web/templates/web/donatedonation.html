@@ -40,7 +40,7 @@
                                            style="color: #fff; background-color: #1385B2;"
                                            value="اهداء"
                                            projectId="{{ project.id }}"/>
-                                    <a href="{% url 'allProjects' %}" class="firstSectionCard2btnsDonatedDonationPage">
+                                    <a href="{% url 'project-detail' project.id %}" class="firstSectionCard2btnsDonatedDonationPage">
                                         تفاصيل
                                     </a>
                                     <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
@@ -96,7 +96,7 @@
                 <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
                     <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i>رقم الهاتف
                 </label>
-                <input class="formDivInput" type="text" id="phoneNumberDonatedDonationPage">
+                <input class="formDivInput" type="number" id="phoneNumberDonatedDonationPage">
             </div>
             <div class="formDiv">
                 <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">

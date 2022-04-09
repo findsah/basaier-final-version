@@ -436,12 +436,12 @@ class PaymentSuccessOfCreditCard(View):
                 print("projectIdFetchedFromDonationTable",
                       projectIdFetchedFromDonationTable)
             try:
-                senderReceiverModel = giftSenderReceiver.objects.get(
-                    project=projectIdFetchedFromDonationTable)
+                senderReceiverModel = giftSenderReceiver.objects.filter(
+                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
                 print("DATA IN MODEL:", senderReceiverModel)
                 senderReceiverModel.status = 'Approved'
                 senderReceiverModel.save()
-            except:
+            except Exception as e:
                 pass
 
             html_message = loader.render_to_string(
@@ -718,6 +718,7 @@ class ProjectDetail(TemplateView):
             inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
             is_closed=False, is_hidden=False).order_by('-id')[:6]
+        print("PROJECTS ID: 721:", id)
         projects = Project.objects.filter(pk=id)
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         multipleImages = PostImage.objects.filter(post=id)
@@ -733,13 +734,13 @@ class ProjectDetail(TemplateView):
             list(sacrifices_json_data), cls=DjangoJSONEncoder)
         if len(sacrifices_json_data) > 0:
             self.template_name = "web/project_sacrifice_detail_.html"
-        if request.user.is_authenticated:
-            userId = request.user.id
-            userInstance = get_object_or_404(User, id=userId)
-            profile = get_object_or_404(Profile, user=userInstance)
-            phoneNumberOfUser = profile.phone
-        else:
-            phoneNumberOfUser = ''
+        # if request.user.is_authenticated:
+        #     userId = request.user.id
+        #     userInstance = get_object_or_404(User, id=userId)
+        #     profile = get_object_or_404(Profile, user=userInstance)
+        #     phoneNumberOfUser = profile.phone
+        # else:
+        #     phoneNumberOfUser = ''
 
         return render(request, self.template_name,
                       {'sliders': sliders,
@@ -758,7 +759,7 @@ class ProjectDetail(TemplateView):
                        'sacrifices': sacrifices,
                        'totalProjectsInCart': totalProjectsInCart,
                        'getMyCurrency': getMyCurrency,
-                       'phoneNumberOfUser': phoneNumberOfUser,
+                       # 'phoneNumberOfUser': phoneNumberOfUser,
                        })
 
     def post(self, request, *args, **kwargs):
@@ -3032,12 +3033,12 @@ class PaymentSuccess(View):
                 print("projectIdFetchedFromDonationTable",
                       projectIdFetchedFromDonationTable)
             try:
-                senderReceiverModel = giftSenderReceiver.objects.get(
-                    project=projectIdFetchedFromDonationTable)
+                senderReceiverModel = giftSenderReceiver.objects.filter(
+                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
                 print("DATA IN MODEL:", senderReceiverModel)
                 senderReceiverModel.status = 'Approved'
                 senderReceiverModel.save()
-            except:
+            except Exception as e:
                 pass
 
             fetchProjectName = Donate.objects.filter(
@@ -3064,7 +3065,7 @@ class PaymentSuccess(View):
                 mail = EmailMultiAlternatives(
                     email_subject, 'This is message', adminMail, [to_list])
                 mail.attach_alternative(html_message, "text/html")
-            except:
+            except Exception as e:
                 pass
 
             try:
@@ -3248,12 +3249,12 @@ class PaymentSuccessTap(View):
                 print("projectIdFetchedFromDonationTable",
                       projectIdFetchedFromDonationTable)
             try:
-                senderReceiverModel = giftSenderReceiver.objects.get(
-                    project=projectIdFetchedFromDonationTable)
+                senderReceiverModel = giftSenderReceiver.objects.filter(
+                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
                 print("DATA IN MODEL:", senderReceiverModel)
                 senderReceiverModel.status = 'Approved'
                 senderReceiverModel.save()
-            except:
+            except Exception as e:
                 pass
 
             html_message = loader.render_to_string(

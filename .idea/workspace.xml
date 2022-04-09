@@ -22,6 +22,18 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,14 +72,14 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\BasaierAgain\media\news\2022" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\BasaierAgain\web\templates\web" />
       <recent name="D:\BasaierAgain\static\js" />
       <recent name="D:\BasaierAgain\static\styles" />
       <recent name="D:\BasaierAgain\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\BasaierAgain\media\news\2022" />
     </key>
   </component>
   <component name="RunManager">
@@ -133,7 +145,9 @@
       <workItem from="1649227638401" duration="36579000" />
       <workItem from="1649316960384" duration="18997000" />
       <workItem from="1649360736828" duration="2400000" />
-      <workItem from="1649438011498" duration="12146000" />
+      <workItem from="1649438011498" duration="12182000" />
+      <workItem from="1649492076003" duration="5976000" />
+      <workItem from="1649522516063" duration="6846000" />
     </task>
     <servers />
   </component>

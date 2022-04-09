@@ -63,7 +63,7 @@ class testimonials(models.Model):
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     message = models.TextField()
-    image = models.ImageField(upload_to='testimonials/', null=False)
+    image = models.ImageField(upload_to='testimonials/%Y/%m/%d', null=False)
 
     def __str__(self):
         return self.name

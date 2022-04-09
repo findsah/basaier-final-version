@@ -6,423 +6,373 @@
 
 {% block content %}
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for project in projects %}
+                {% if forloop.first %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"
+                        class="active"></li>
+                {% else %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>
 
-    <div class="carousel-inner">
-        {% for project in projects %}
-        <div class="carousel-item {% if forloop.first %}active{% endif %} header2">
-            <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}" alt="{{ project.get_name }}">
+                {% endif %}
+            {% endfor %}
+        </ol>
 
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="my-heading">{{ project.get_name }}</h3>
-                <p class="myp-slider text-center">{{ project.get_detail }}</p>
-                <!-- <p class="myp-slider text-center">سهوله من خلال موقعنا</p> -->
-                <!-- <a href="{% url 'project-detail' project.id %}"> -->
-                <a href="{% url 'allProjects' %}">
-                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
-                    </button>
-                </a>
-            </div>
+        <div class="carousel-inner">
+            {% for project in projects %}
+                {#        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} header2">#}
+                {% if forloop.counter0|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %} header2">
+                        <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}"
+                             alt="{{ project.get_name }}">
+
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3 class="my-heading">{{ project.get_name }}</h3>
+                            <p class="myp-slider text-center">{{ project.get_detail }}</p>
+                            <!-- <p class="myp-slider text-center">سهوله من خلال موقعنا</p> -->
+                            <!-- <a href="{% url 'project-detail' project.id %}"> -->
+                            <a href="{% url 'allProjects' %}">
+                                <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
         </div>
-        {% endfor %}
-
     </div>
-</div>
 
 
-<div class="mobileCrousel">
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
+    <div class="mobileCrousel">
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
                 <span>
                     جمعيه بصائر الخيريه
                 </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
-                <span>
-                    جمعيه بصائر الخيريه
-                </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
-                <span>
-                    جمعيه بصائر الخيريه
-                </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
-                <span>
-                    جمعيه بصائر الخيريه
-                </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
-                <span>
-                    جمعيه بصائر الخيريه
-                </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-    <div class="crouselDiv">
-        <div class="onImageDiv">
-            <p class="crouselText text-center">
-                <span>
-                    جمعيه بصائر الخيريه
-                </span>
-                <br />
-                جمعيه كويتيه تساعدك <br /> علي التبرع بكل
-                سهوله من خلال موقعنا
-            </p>
-            <button class="crouselBtn">تبرع الان</button>
-        </div>
-        <img src="/static/images/background.png" class="crouselImg">
-    </div>
-</div>
-
-<section class="testimonials">
-    <!-- <img src="./images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
-    <div class="container">
-        <div class="row">
-            <div class="col-6 mb-3 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
-                    بوابه التبرع
-                </a>
-                <img src="/static/images/sec2img1.png" class="fluidImg">
-            </div>
-            <div class="col-6 mb-3 wow bounceInUp">
-                <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
-                    أنشأ مشروعك الخاص
-                </a>
-                <img src="/static/images/sec2img2.png" class="fluidImg">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6 col-md-3 mb-3">
-                <a href="{% url 'icalculator' %}" class="myp-onimgtxt text-center">
-                    أحسب ذكاتك
-                </a>
-                <img src="/static/images/sec2img6.png" class="fluidImg">
-            </div>
-            <div class="col-6 col-md-3">
-                <p class="myp-onimgtxt text-center">
-                    استفسر عن مشروعك
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
                 </p>
-                <img src="/static/images/sec2img5.png" class="fluidImg">
+                <button class="crouselBtn">تبرع الان</button>
             </div>
-            <div class="col-6 col-md-3 mb-3">
-                <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center">
-                    انضم الي
-                    ًأدقاء النش
-                </a>
-                <img src="/static/images/sec2img4.png" class="fluidImg">
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="{% url 'donatedDonation' %}" class="myp-onimgtxt text-center">
-                    أهداء تبرع
-                </a>
-                <img src="/static/images/sec2img3.png" class="fluidImg">
-            </div>
+            <img src="/static/images/background.png" class="crouselImg">
         </div>
-    </div>
-</section>
-
-
-<section class="testimonials">
-    <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="big-img-3">
-                    <img src="{% static 'images/news.png' %}" class="img-fluid">
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 mt-4">
-                <div class="my-right-text wow fadeInUp">
-                    <h3 class="myh-class font-weight-bold">خبر صحفي ولقاء حول<br>
-                        مشروع الشهر</h3>
-                    <p class="myp-class">
-                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
-                        والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                        ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                        اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
-                        الذي يؤدي لضياع
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<section class="testimonials">
-    <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
-    <div class="container">
-        <div class="row reverseCol">
-            <div class="col-sm-12 col-md-6 mt-4">
-                <div class="my-right-text wow fadeInUp">
-                    <h3 class="myh-class font-weight-bold">
-                        هدفنا في هذه السنه
-                    </h3>
-                    <p class="myp-class">
-                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
-                        والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                        ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                        اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
-                        الذي يؤدي لضياع
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <div class="big-img-3">
-                    <img src="{% static 'images/hadfana.png' %}" class="img-fluid">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- './images/bgFixed.png' -->
-
-<!-- background-image: url('{% static 'images/hadfana.png' %}');  -->
-<section class="testimonials mybg-events text-center"
-    style="background-image: url('{% static 'images/bgFixed.png' %}'); ">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7 wow fadeInUp">
-                <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
-                <p class="myp">
-                    العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية
-                    ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
-                    اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
                 </p>
-                <a href="{% url 'allProjects' %}">
-                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
-                </a>
+                <button class="crouselBtn">تبرع الان</button>
             </div>
+            <img src="/static/images/background.png" class="crouselImg">
+        </div>
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
+                </p>
+                <button class="crouselBtn">تبرع الان</button>
+            </div>
+            <img src="/static/images/background.png" class="crouselImg">
+        </div>
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
+                </p>
+                <button class="crouselBtn">تبرع الان</button>
+            </div>
+            <img src="/static/images/background.png" class="crouselImg">
+        </div>
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
+                </p>
+                <button class="crouselBtn">تبرع الان</button>
+            </div>
+            <img src="/static/images/background.png" class="crouselImg">
+        </div>
+        <div class="crouselDiv">
+            <div class="onImageDiv">
+                <p class="crouselText text-center">
+                <span>
+                    جمعيه بصائر الخيريه
+                </span>
+                    <br/>
+                    جمعيه كويتيه تساعدك <br/> علي التبرع بكل
+                    سهوله من خلال موقعنا
+                </p>
+                <button class="crouselBtn">تبرع الان</button>
+            </div>
+            <img src="/static/images/background.png" class="crouselImg">
         </div>
     </div>
-</section>
+
+    <section class="testimonials">
+        <!-- <img src="./images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mb-3 wow bounceInUp" data-wow-duration="1.4s">
+                    <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
+                        بوابه التبرع
+                    </a>
+                    <img src="/static/images/sec2img1.png" class="fluidImg">
+                </div>
+                <div class="col-6 mb-3 wow bounceInUp">
+                    <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
+                        أنشأ مشروعك الخاص
+                    </a>
+                    <img src="/static/images/sec2img2.png" class="fluidImg">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-md-3 mb-3">
+                    <a href="{% url 'icalculator' %}" class="myp-onimgtxt text-center">
+                        أحسب ذكاتك
+                    </a>
+                    <img src="/static/images/sec2img6.png" class="fluidImg">
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="myp-onimgtxt text-center">
+                        استفسر عن مشروعك
+                    </p>
+                    <img src="/static/images/sec2img5.png" class="fluidImg">
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center">
+                        انضم الي
+                        ًأدقاء النش
+                    </a>
+                    <img src="/static/images/sec2img4.png" class="fluidImg">
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="{% url 'donatedDonation' %}" class="myp-onimgtxt text-center">
+                        أهداء تبرع
+                    </a>
+                    <img src="/static/images/sec2img3.png" class="fluidImg">
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-<section class="testimonials">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="{% url 'allProjects' %}">
-                    <div class="card card-custom">
-                        <img class="card-img-top" src="{% static 'images/child.png' %}">
-                        <div class="card-block">
-                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                            <small>
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                            </small>
-                            <div class="card-bottom">
-                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                    style="font-size: 14px;">30 دقيقه</span>
-                            </div>
-                        </div>
+    <section class="testimonials">
+        <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="big-img-3">
+                        <img src="{% static 'images/news.png' %}" class="img-fluid">
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="{% url 'allProjects' %}">
-                    <div class="card card-custom">
-                        <img class="card-img-top" src="{% static 'images/child.png' %}">
-                        <div class="card-block">
-                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                            <small>
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                            </small>
-                            <div class="card-bottom">
-                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                    style="font-size: 14px;">30 دقيقه</span>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-sm-12 col-md-6 mt-4">
+                    <div class="my-right-text wow fadeInUp">
+                        <h3 class="myh-class font-weight-bold">خبر صحفي ولقاء حول<br>
+                            مشروع الشهر</h3>
+                        <p class="myp-class">
+                            العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
+                            والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
+                            الذي يؤدي لضياع
+                        </p>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                <a href="{% url 'allProjects' %}">
-                    <div class="card card-custom">
-                        <img class="card-img-top" src="{% static 'images/child.png' %}">
-                        <div class="card-block">
-                            <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                            <small>
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                                اليتيم محمد بن سوريا فقد أباه في رمضان
-                            </small>
-                            <div class="card-bottom">
-                                <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                    style="font-size: 14px;">30 دقيقه</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- "background-image: url('{% static 'images/bgFixed.png'%}');" -->
-<section class="testimonials text-center">
-    <div class="container">
-        <div class="row justify-content-center bgStyledSection"
-            style="background-image: url('{% static './images/bgFixed.png' %}');">
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br />يتيم مكفول
-            </div>
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br />مشروع جاري تنفيذه
-            </div>
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br /> داعيه مكفول
-            </div>
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br />دوله
-            </div>
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br />مسلم جديد
-            </div>
-            <div class="col-4 col-md-2"
-                style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
-                <span style="font-size: 47px">75</span> <br />مسلم جديد
-            </div>
-        </div>
-    </div>
-</section>
+                </div>
 
-<section class="testimonials text-center">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-7 wow fadeInUp">
-                <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
             </div>
         </div>
-        <div class="mobileCrousel" style="display: flex; padding: 20px 0;">
-            <div class='main-content'>
-                <div class="testimonialhead">
-                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
-                        اداره
-                        انسان
-                    </p>
+    </section>
+
+
+    <section class="testimonials">
+        <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
+        <div class="container">
+            <div class="row reverseCol">
+                <div class="col-sm-12 col-md-6 mt-4">
+                    <div class="my-right-text wow fadeInUp">
+                        <h3 class="myh-class font-weight-bold">
+                            هدفنا في هذه السنه
+                        </h3>
+                        <p class="myp-class">
+                            العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
+                            والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
+                            الذي يؤدي لضياع
+                        </p>
+                    </div>
                 </div>
-                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
-                    عثمان
-                    <br/>     الخميلشيخ
-                    عثمان الخميلشيخ عثمان
-                    الخميلشيخ عثمان الخمي</p>
-            </div>
-            <div class='main-content'>
-                <div class="testimonialhead">
-                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
-                        اداره
-                        انسان
-                    </p>
+                <div class="col-sm-12 col-md-6 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="big-img-3">
+                        <img src="{% static 'images/hadfana.png' %}" class="img-fluid">
+                    </div>
                 </div>
-                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
-                    عثمان
-                    <br/>   الخميلشيخ
-                    عثمان الخميلشيخ عثمان
-                    الخميلشيخ عثمان الخمي</p>
-            </div>
-            <div class='main-content'>
-                <div class="testimonialhead">
-                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
-                        اداره
-                        انسان
-                    </p>
-                </div>
-                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
-                    عثمان
-                    <br/> الخميلشيخ
-                    عثمان الخميلشيخ عثمان
-                    الخميلشيخ عثمان الخمي</p>
-            </div>
-            <div class='main-content'>
-                <div class="testimonialhead">
-                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
-                        اداره
-                        انسان
-                    </p>
-                </div>
-                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
-                    عثمان
-               <br/>     الخميلشيخ
-                    عثمان الخميلشيخ عثمان
-                    الخميلشيخ عثمان الخمي</p>
-            </div>
-            <div class='main-content'>
-                <div class="testimonialhead">
-                    <img class="textimonialimg" src="{% static 'images/qari3.png' %}">
-                    <p class="textimonialtext"> الشيخ عثمان الخميس <br /> رئيس مجلس
-                        اداره
-                        انسان
-                    </p>
-                </div>
-                <p class="textimonialbottomtext">لشيخ عثمان الخميلشيخ عثمان الخميلشيخ
-                    عثمان
-                    <br/> الخميلشيخ
-                    عثمان الخميلشيخ عثمان
-                    الخميلشيخ عثمان الخمي</p>
+
             </div>
         </div>
-        <!-- <section>
+    </section>
+
+    <!-- './images/bgFixed.png' -->
+
+    <!-- background-image: url('{% static 'images/hadfana.png' %}');  -->
+    <section class="testimonials mybg-events text-center"
+             style="background-image: url('{% static 'images/bgFixed.png' %}'); ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 wow fadeInUp">
+                    <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
+                    <p class="myp">
+                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية
+                        ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                        اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                    </p>
+                    <a href="{% url 'allProjects' %}">
+                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <a href="{% url 'allProjects' %}">
+                        <div class="card card-custom">
+                            <img class="card-img-top" src="{% static 'images/child.png' %}">
+                            <div class="card-block">
+                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                                <small>
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                </small>
+                                <div class="card-bottom">
+                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                        style="font-size: 14px;">30 دقيقه</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <a href="{% url 'allProjects' %}">
+                        <div class="card card-custom">
+                            <img class="card-img-top" src="{% static 'images/child.png' %}">
+                            <div class="card-block">
+                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                                <small>
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                </small>
+                                <div class="card-bottom">
+                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                        style="font-size: 14px;">30 دقيقه</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <a href="{% url 'allProjects' %}">
+                        <div class="card card-custom">
+                            <img class="card-img-top" src="{% static 'images/child.png' %}">
+                            <div class="card-block">
+                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                                <small>
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                </small>
+                                <div class="card-bottom">
+                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
+                                        style="font-size: 14px;">30 دقيقه</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- "background-image: url('{% static 'images/bgFixed.png'%}');" -->
+    <section class="testimonials text-center">
+        <div class="container">
+            <div class="row justify-content-center bgStyledSection"
+                 style="background-image: url('{% static './images/bgFixed.png' %}');">
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/>يتيم مكفول
+                </div>
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/>مشروع جاري تنفيذه
+                </div>
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/> داعيه مكفول
+                </div>
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/>دوله
+                </div>
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/>مسلم جديد
+                </div>
+                <div class="col-4 col-md-2"
+                     style="color: #fff; font-size: 13px; font-weight: bold; border-right: 1px solid #5AB9D4;">
+                    <span style="font-size: 47px">75</span> <br/>مسلم جديد
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials text-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-7 wow fadeInUp">
+                    <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
+                </div>
+            </div>
+            <div class="mobileCrousel" style="display: flex; padding: 20px 0;">
+                {% for data in testimonialsData %}
+                    <div class='main-content'>
+                        <div class="testimonialhead">
+                            <img class="textimonialimg" src="/media/{{ data.image }}">
+                            <p class="textimonialtext"> {{ data.name }} <br/>{{ data.title }}</p>
+                        </div>
+                        <p class="textimonialbottomtext"
+                           style="white-space: normal !important;">{{ data.message|truncatechars:255 }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- <section>
             <div class="rt-container">
                 <div class="col-rt-12">
                     <div class='demo-container'>
@@ -584,14 +534,41 @@
             </div>
         </section> -->
 
-    </div>
-</section>
+        </div>
+    </section>
 
-<section class="testimonials text-center">
-    <div class="container">
-        <img class="img-fluid" src="{% static 'images/googlemap.png' %}" alt="mapimg">
-    </div>
-</section>
+    <section class="testimonials text-center">
+        <div class="container">
+            <img class="img-fluid" src="{% static 'images/googlemap.png' %}" alt="mapimg">
+        </div>
+    </section>
+
+    <script>
+{#    INDEX2.HTML, FIRST HEADER CAROUSEL: #}
+
+    $('#carouselExampleIndicators').on('slide.bs.carousel', function (e) {
+
+
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 3;
+        var totalItems = $('.carousel-item').length;
+
+        if (idx >= totalItems - (itemsPerSlide - 1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i = 0; i < it; i++) {
+                // append slides to end
+                if (e.direction == "left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
+            }
+        }
+    });
+{#    INDEX2.HTML, FIRST HEADER CAROUSEL: #}
+    </script>
 
 
 {% endblock %}
