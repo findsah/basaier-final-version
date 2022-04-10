@@ -2123,7 +2123,7 @@ class Register(TemplateView):
                     user.save()
                 current_site = get_current_site(request)
                 subject = 'Activate Your MySite Account'
-                site_url = 'http://%s/activate/%s/%s' % (
+                site_url = 'https://%s/activate/%s/%s' % (
                     current_site.domain, urlsafe_base64_encode(
                         force_bytes(user.pk)),
                     account_activation_token.make_token(user))
@@ -5005,7 +5005,7 @@ def createOwnProject(request):
         project.category.add(list_result)
         justCreatedProjectId = project.pk
         current_site = get_current_site(request)
-        site_url = 'http://%s/privateProject/%s/detail' % (
+        site_url = 'https://%s/privateProject/%s/detail' % (
             current_site.domain, justCreatedProjectId)
         print(site_url)
         instance1 = Project.objects.get(id=projectId)

@@ -20,30 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0002_auto_20220404_1517.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/0003_auto_20220404_1536.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/people/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0002_volunteer_relativerelation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/0002_testimonials.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/0003_auto_20220409_1505.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +135,7 @@
       <workItem from="1649438011498" duration="12182000" />
       <workItem from="1649492076003" duration="5976000" />
       <workItem from="1649522516063" duration="8375000" />
-      <workItem from="1649573376833" duration="11767000" />
+      <workItem from="1649573376833" duration="11922000" />
     </task>
     <servers />
   </component>
