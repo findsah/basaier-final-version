@@ -21,9 +21,30 @@
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0002_auto_20220404_1517.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/0003_auto_20220404_1536.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/people/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/0002_volunteer_relativerelation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0002_testimonials.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/0003_auto_20220409_1505.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +83,14 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\BasaierAgain\media\news\2022" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\BasaierAgain\web\templates\web" />
       <recent name="D:\BasaierAgain\static\js" />
       <recent name="D:\BasaierAgain\static\styles" />
       <recent name="D:\BasaierAgain\static" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\BasaierAgain\media\news\2022" />
     </key>
   </component>
   <component name="RunManager">
@@ -137,7 +158,8 @@
       <workItem from="1649360736828" duration="2400000" />
       <workItem from="1649438011498" duration="12182000" />
       <workItem from="1649492076003" duration="5976000" />
-      <workItem from="1649522516063" duration="8297000" />
+      <workItem from="1649522516063" duration="8375000" />
+      <workItem from="1649573376833" duration="11767000" />
     </task>
     <servers />
   </component>
@@ -161,10 +183,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="845" y="383" width="629" height="274" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1648625095115" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1649234670832">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1649581102754">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649234670832" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649581102754" />
     <state width="943" height="522" key="#com.intellij.structuralsearch.plugin.ui.StructuralReplaceDialog" timestamp="1648754137415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

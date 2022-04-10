@@ -200,16 +200,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # EMAIL_HOST_USER = 'Salem_web@basaier.org'
 # EMAIL_HOST_PASSWORD = 'T123987@'  # THIS IS FOR OFFICE 365 AND Salem_web@basaier.org mail.
 # EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.office365.com'
-# EMAIL_HOST_USER = 'info@basaier.org'
-# EMAIL_HOST_PASSWORD = '1Q2w3e4r@'  # THIS IS FOR OFFICE 365 AND Salem_web@basaier.org mail.
-# EMAIL_PORT = 587
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '41d9a61129241d'
-EMAIL_HOST_PASSWORD = 'bc68c67dfbdc68'
-EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = 'info@basaier.org'
+EMAIL_HOST_PASSWORD = '1Q2w3e4r@'  # THIS IS FOR OFFICE 365 AND Salem_web@basaier.org mail.
+EMAIL_PORT = 587
+
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '41d9a61129241d'
+# EMAIL_HOST_PASSWORD = 'bc68c67dfbdc68'
+# EMAIL_PORT = '2525'
 
 # SENDSMS_BACKEND = 'sendsms.backends.console.SmsBackend'
 

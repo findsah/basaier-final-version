@@ -1206,6 +1206,39 @@
         }
     });
 </script>
+
+
+
+{# FOR SHOWING THE COUNTRY AND AMOUNT OF PROJECT: ACCORDING TO THE SELECTED PROJECT: #}
+<script type="text/javascript">
+    function onChangeCreateOwnProject(value) {
+        categoryId = value;
+        $("#country, #amount").each(function () {
+            $(this).remove();
+        });
+        $.ajax({
+            url: "/getValuesAccordingToSelectedCategoryInCreateOwnProject",
+            type: "GET",
+            async: true,
+            {#dataType: "json",#}
+            data: {
+                categoryId: categoryId,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (json) {
+                console.log(json);
+                $('#amountCreateOwnProject').val(json.amountVar);
+                $('#countryCreateOwnProject').val(json.countryVar);
+            },
+            failure: function () {
+                alert('Got an error dude');
+            }
+        });
+    }
+</script>
+{# END FOR SHOWING THE COUNTRY AND AMOUNT OF PROJECT: ACCORDING TO THE SELECTED PROJECT: #}
+
+
 {# FOR SHOWING PROJECTS: ACCORDING TO THEIR CATEGORIES: #}
 <script type="text/javascript">
     function onchangehit(value) {
@@ -1278,6 +1311,7 @@
         });
     }
 </script>
+
 {# ADD TO CART QUICK DONATE PROJECTS: #}
 <script type="text/javascript">
     $(document).on('submit', '#forQuickDonateProjectForm', function (e) {

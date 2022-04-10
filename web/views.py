@@ -406,132 +406,132 @@ class OnlinePayment(TemplateView):
 @method_decorator(csrf_exempt, name='dispatch')
 class PaymentSuccessOfCreditCard(View):
     def get(self, request):
+        # try:
+        payment_id = request.GET.get("resultIndicator")
+        print(payment_id)
+        transaction = Transaction.objects.filter(
+            successIndicator=payment_id)
+        transaction = transaction[0]
+        transaction.result = 'CAPTURED'
+        transaction.status = 'Approved'
+        transaction.save()
+
+        amount = 0.0
+        donates = Donate.objects.filter(transaction=transaction)
+        for donate in donates:
+            amount += float(donate.amount)
+
+        project = donates[0].project
+        update_total_fund_firebase(project)
+
+        request.session['amounts'] = []
+        request.session['project_ids'] = []
+        cart = Cart(request)
+        cart.removeAll()
+
+        fetchProjectName = Donate.objects.filter(
+            transaction=transaction).order_by('-id')
+        for data in fetchProjectName:
+            projectIdFetchedFromDonationTable = data.project.id
+            print("projectIdFetchedFromDonationTable",
+                  projectIdFetchedFromDonationTable)
         try:
-            payment_id = request.GET.get("resultIndicator")
-            print(payment_id)
-            transaction = Transaction.objects.filter(
-                successIndicator=payment_id)
-            transaction = transaction[0]
-            transaction.result = 'CAPTURED'
-            transaction.status = 'Approved'
-            transaction.save()
+            senderReceiverModel = giftSenderReceiver.objects.filter(
+                project=projectIdFetchedFromDonationTable).order_by('-id')[0]
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
+        except Exception as e:
+            pass
 
-            amount = 0.0
-            donates = Donate.objects.filter(transaction=transaction)
-            for donate in donates:
-                amount += float(donate.amount)
+        html_message = loader.render_to_string(
+            'web/email.html',
+            {
+                "amount": amount, "reference_id": transaction.successIndicator,
+                "payment_id": transaction.successIndicator,
+                "db_id": transaction.id,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates
+            }
+        )
+        # try:
+        email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+        to_list = donates[0].email
+        adminMail = settings.EMAIL_HOST_USER
+        mail = EmailMultiAlternatives(
+            email_subject, 'This is message', adminMail, [to_list])
+        mail.attach_alternative(html_message, "text/html")
+        # except:
+        #     pass
 
-            project = donates[0].project
-            update_total_fund_firebase(project)
+        # try:
+        mail.send()
+        print("MAIL SENT AFTER SUCCESS PAYMENT:")
+        # except Exception:
+        #     pass
 
-            request.session['amounts'] = []
-            request.session['project_ids'] = []
-            cart = Cart(request)
-            cart.removeAll()
-
+        # TO SEND SMS IF THE DONATION WAS AS GIFT:
+        if donates[0].recieverPhone is not None:
+            fromSender = 'S@basorg'
             fetchProjectName = Donate.objects.filter(
                 transaction=transaction).order_by('-id')
             for data in fetchProjectName:
-                projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable",
-                      projectIdFetchedFromDonationTable)
-            try:
-                senderReceiverModel = giftSenderReceiver.objects.filter(
-                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
-                print("DATA IN MODEL:", senderReceiverModel)
-                senderReceiverModel.status = 'Approved'
-                senderReceiverModel.save()
-            except Exception as e:
-                pass
+                nameProject = data.project.name
+                request.session['projectName'] = nameProject
+            projectName = request.session.get('projectName')
+            print("IF DONATED AS GIFT:", projectName)
+            phoneNumber = donates[0].recieverPhone
+            amount = donates[0].amount
+            print("IF DONATED AS GIFT:", phoneNumber)
+            message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                projectName, amount)
+            print(message)
+            callThat = sendSMS(message, fromSender, phoneNumber)
+            # print(callThat)
+            if callThat == 200:
+                print("Message Delivered")
 
-            html_message = loader.render_to_string(
-                'web/email.html',
-                {
-                    "amount": amount, "reference_id": transaction.successIndicator,
-                    "payment_id": transaction.successIndicator,
-                    "db_id": transaction.id,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates
-                }
-            )
+        # client = boto3.client(
+        #     'sns', settings.AWS_SNS_ZONE,
+        #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+        # )
+        sms = SMS.objects.filter(transaction=transaction)
+        for obj in sms:
             try:
-                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-                to_list = donates[0].email
-                adminMail = settings.EMAIL_HOST_USER
-                mail = EmailMultiAlternatives(
-                    email_subject, 'This is message', adminMail, [to_list])
-                mail.attach_alternative(html_message, "text/html")
-            except:
-                pass
+                # phone = phonenumbers.parse(obj.phone, None)
+                # if phonenumbers.is_valid_number(phone):
+                # paymentId = donates[0].transaction_id
+                message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                    amount, payment_id)
 
-            try:
-                mail.send()
-                print("MAIL SENT AFTER SUCCESS PAYMENT:")
+                fromSender = 'S@basorg'
+                callThat = sendSMS(message, fromSender, obj.phone)
+                if callThat == 200:
+                    print("Invoice Message Sent.", callThat)
             except Exception:
                 pass
 
-            # TO SEND SMS IF THE DONATION WAS AS GIFT:
-            if donates[0].recieverPhone is not None:
-                fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(
-                    transaction=transaction).order_by('-id')
-                for data in fetchProjectName:
-                    nameProject = data.project.name
-                    request.session['projectName'] = nameProject
-                projectName = request.session.get('projectName')
-                print("IF DONATED AS GIFT:", projectName)
-                phoneNumber = donates[0].recieverPhone
-                amount = donates[0].amount
-                print("IF DONATED AS GIFT:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
-                    projectName, amount)
-                print(message)
-                callThat = sendSMS(message, fromSender, phoneNumber)
-                # print(callThat)
-                if callThat == 200:
-                    print("Message Delivered")
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('-id')
+        sponsorCategories = sponsorship.objects.all()
 
-            # client = boto3.client(
-            #     'sns', settings.AWS_SNS_ZONE,
-            #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
-            # )
-            sms = SMS.objects.filter(transaction=transaction)
-            for obj in sms:
-                try:
-                    # phone = phonenumbers.parse(obj.phone, None)
-                    # if phonenumbers.is_valid_number(phone):
-                    # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
-                        amount, payment_id)
-
-                    fromSender = 'S@basorg'
-                    callThat = sendSMS(message, fromSender, obj.phone)
-                    if callThat == 200:
-                        print("Invoice Message Sent.", callThat)
-                except Exception:
-                    pass
-
-            charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('-id')
-            sponsorCategories = sponsorship.objects.all()
-
-            return render(
-                request, "web/checkout_result.html",
-                {
-                    "amount": amount, "reference_id": transaction.successIndicator,
-                    "payment_id": transaction.successIndicator,
-                    "db_id": transaction.pk,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates,
-                    'charity_categories': charity_categories,
-                    'sponsorCategories': sponsorCategories,
-                }
-            )
-        except Exception as e:
-            return redirect('/')
+        return render(
+            request, "web/checkout_result.html",
+            {
+                "amount": amount, "reference_id": transaction.successIndicator,
+                "payment_id": transaction.successIndicator,
+                "db_id": transaction.pk,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates,
+                'charity_categories': charity_categories,
+                'sponsorCategories': sponsorCategories,
+            }
+        )
+        # except Exception as e:
+        #     return redirect('/')
 
 
 class Index(TemplateView):
@@ -550,7 +550,7 @@ class Index(TemplateView):
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
         news2 = PRNews.objects.all().order_by('-id')[:4]
-        testimonialsData = testimonials.objects.all().order_by('-id')
+        testimonialsData = testimonials.objects.all().order_by('-id')[:3]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         categories = PRCategory.objects.all().order_by('-id')
         sponsorCategories = sponsorship.objects.all()
@@ -3007,132 +3007,132 @@ class PaymentFailure(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class PaymentSuccess(View):
     def get(self, request):
+        # try:
+        payment_id = request.GET.get("paymentid")
+        transaction = Transaction.objects.filter(
+            knet_payment_id=payment_id)
+        transaction = transaction[0]
+
+        amount = 0.0
+        donates = Donate.objects.filter(transaction=transaction)
+        for donate in donates:
+            amount += float(donate.amount)
+
+        project = donates[0].project
+        update_total_fund_firebase(project)
+
+        request.session['amounts'] = []
+        request.session['project_ids'] = []
+        cart = Cart(request)
+        cart.removeAll()
+
+        fetchProjectName = Donate.objects.filter(
+            transaction=transaction).order_by('-id')
+        for data in fetchProjectName:
+            projectIdFetchedFromDonationTable = data.project.id
+            print("projectIdFetchedFromDonationTable",
+                  projectIdFetchedFromDonationTable)
         try:
-            payment_id = request.GET.get("paymentid")
-            transaction = Transaction.objects.filter(
-                knet_payment_id=payment_id)
-            transaction = transaction[0]
+            senderReceiverModel = giftSenderReceiver.objects.filter(
+                project=projectIdFetchedFromDonationTable).order_by('-id')[0]
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
+        except Exception as e:
+            pass
 
-            amount = 0.0
-            donates = Donate.objects.filter(transaction=transaction)
-            for donate in donates:
-                amount += float(donate.amount)
+        fetchProjectName = Donate.objects.filter(
+            transaction=transaction).order_by('-id')
+        for data in fetchProjectName:
+            nameProject = data.project.name
+            request.session['projectName'] = nameProject
 
-            project = donates[0].project
-            update_total_fund_firebase(project)
+        html_message = loader.render_to_string(
+            'web/email.html',
+            {
+                "amount": amount, "reference_id": transaction.reference,
+                "payment_id": transaction.knet_payment_id,
+                "db_id": transaction.id,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates
+            }
+        )
+        # try:
+        email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+        to_list = donates[0].email
+        adminMail = settings.EMAIL_HOST_USER
+        mail = EmailMultiAlternatives(
+            email_subject, 'This is message', adminMail, [to_list])
+        mail.attach_alternative(html_message, "text/html")
+        # except Exception as e:
+        #     pass
 
-            request.session['amounts'] = []
-            request.session['project_ids'] = []
-            cart = Cart(request)
-            cart.removeAll()
+        # try:
+        mail.send()
+        print("MAIL SENT AFTER SUCCESS PAYMENT:")
+        # except Exception:
+        #     pass
 
-            fetchProjectName = Donate.objects.filter(
-                transaction=transaction).order_by('-id')
-            for data in fetchProjectName:
-                projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable",
-                      projectIdFetchedFromDonationTable)
-            try:
-                senderReceiverModel = giftSenderReceiver.objects.filter(
-                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
-                print("DATA IN MODEL:", senderReceiverModel)
-                senderReceiverModel.status = 'Approved'
-                senderReceiverModel.save()
-            except Exception as e:
-                pass
-
+        # TO SEND SMS IF THE DONATION WAS AS GIFT:
+        if donates[0].recieverPhone is not None:
+            fromSender = 'S@basorg'
             fetchProjectName = Donate.objects.filter(
                 transaction=transaction).order_by('-id')
             for data in fetchProjectName:
                 nameProject = data.project.name
                 request.session['projectName'] = nameProject
+            projectName = request.session.get('projectName')
+            print("IF DONATED AS GIFT:", projectName)
+            phoneNumber = donates[0].recieverPhone
+            amount = donates[0].amount
+            print("IF DONATED AS GIFT PHONE NUMBER:", phoneNumber)
+            message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                projectName, amount)
+            print(message)
+            callThat = sendSMS(message, fromSender, phoneNumber)
+            # print(callThat)
+            if callThat == 200:
+                print("Message Delivered")
 
-            html_message = loader.render_to_string(
-                'web/email.html',
-                {
-                    "amount": amount, "reference_id": transaction.reference,
-                    "payment_id": transaction.knet_payment_id,
-                    "db_id": transaction.id,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates
-                }
-            )
-            try:
-                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-                to_list = donates[0].email
-                adminMail = settings.EMAIL_HOST_USER
-                mail = EmailMultiAlternatives(
-                    email_subject, 'This is message', adminMail, [to_list])
-                mail.attach_alternative(html_message, "text/html")
-            except Exception as e:
-                pass
+        # client = boto3.client(
+        #     'sns', settings.AWS_SNS_ZONE,
+        #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+        # )
 
+        sms = SMS.objects.filter(transaction=transaction)
+        for obj in sms:
             try:
-                mail.send()
-                print("MAIL SENT AFTER SUCCESS PAYMENT:")
+                # paymentId = donates[0].transaction_id
+                message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                    amount, payment_id)
+
+                fromSender = 'S@basorg'
+                callThat = sendSMS(message, fromSender, obj.phone)
+                if callThat == 200:
+                    print("Invoice Message Sent.", callThat)
             except Exception:
                 pass
 
-            # TO SEND SMS IF THE DONATION WAS AS GIFT:
-            if donates[0].recieverPhone is not None:
-                fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(
-                    transaction=transaction).order_by('-id')
-                for data in fetchProjectName:
-                    nameProject = data.project.name
-                    request.session['projectName'] = nameProject
-                projectName = request.session.get('projectName')
-                print("IF DONATED AS GIFT:", projectName)
-                phoneNumber = donates[0].recieverPhone
-                amount = donates[0].amount
-                print("IF DONATED AS GIFT PHONE NUMBER:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
-                    projectName, amount)
-                print(message)
-                callThat = sendSMS(message, fromSender, phoneNumber)
-                # print(callThat)
-                if callThat == 200:
-                    print("Message Delivered")
-
-            # client = boto3.client(
-            #     'sns', settings.AWS_SNS_ZONE,
-            #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
-            # )
-
-            sms = SMS.objects.filter(transaction=transaction)
-            for obj in sms:
-                try:
-                    # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
-                        amount, payment_id)
-
-                    fromSender = 'S@basorg'
-                    callThat = sendSMS(message, fromSender, obj.phone)
-                    if callThat == 200:
-                        print("Invoice Message Sent.", callThat)
-                except Exception:
-                    pass
-
-            charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('-id')
-            sponsorCategories = sponsorship.objects.all()
-            return render(
-                request, "web/checkout_result.html",
-                {
-                    "amount": amount, "reference_id": transaction.reference,
-                    "payment_id": transaction.knet_payment_id,
-                    "db_id": transaction.pk,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates,
-                    'charity_categories': charity_categories,
-                    'sponsorCategories': sponsorCategories,
-                }
-            )
-        except Exception as e:
-            return redirect('/')
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('-id')
+        sponsorCategories = sponsorship.objects.all()
+        return render(
+            request, "web/checkout_result.html",
+            {
+                "amount": amount, "reference_id": transaction.reference,
+                "payment_id": transaction.knet_payment_id,
+                "db_id": transaction.pk,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates,
+                'charity_categories': charity_categories,
+                'sponsorCategories': sponsorCategories,
+            }
+        )
+        # except Exception as e:
+        #     return redirect('/')
 
     def post(self, request):
         try:
@@ -3217,135 +3217,135 @@ class ResponseTap(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class PaymentSuccessTap(View):
     def get(self, request):
+        # try:
+        payment_id = request.GET.get("tap_id")
+
+        transaction = Transaction.objects.filter(
+            tap_id=payment_id)
+        transaction = transaction[0]
+
+        amount = 0.0
+        donates = Donate.objects.filter(transaction=transaction)
+        for donate in donates:
+            amount += float(donate.amount)
+
+        project = donates[0].project
+        update_total_fund_firebase(project)
+
+        project_remaining = project.remaining()
+        if project_remaining is not None and project_remaining <= 0 and project.is_target_amount() is True:
+            project.is_closed = True
+            project.save()
+
+        request.session['amounts'] = []
+        request.session['project_ids'] = []
+        cart = Cart(request)
+        cart.removeAll()
+
+        fetchProjectName = Donate.objects.filter(
+            transaction=transaction).order_by('-id')
+        for data in fetchProjectName:
+            projectIdFetchedFromDonationTable = data.project.id
+            print("projectIdFetchedFromDonationTable",
+                  projectIdFetchedFromDonationTable)
         try:
-            payment_id = request.GET.get("tap_id")
+            senderReceiverModel = giftSenderReceiver.objects.filter(
+                project=projectIdFetchedFromDonationTable).order_by('-id')[0]
+            print("DATA IN MODEL:", senderReceiverModel)
+            senderReceiverModel.status = 'Approved'
+            senderReceiverModel.save()
+        except Exception as e:
+            pass
 
-            transaction = Transaction.objects.filter(
-                tap_id=payment_id)
-            transaction = transaction[0]
+        html_message = loader.render_to_string(
+            'web/email.html',
+            {
+                "amount": amount, "reference_id": transaction.reference,
+                "payment_id": transaction.tap_id,
+                "db_id": transaction.id,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates
+            }
+        )
+        # try:
+        email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
+        to_list = donates[0].email
+        adminMail = settings.EMAIL_HOST_USER
+        mail = EmailMultiAlternatives(
+            email_subject, 'This is message', adminMail, [to_list])
+        mail.attach_alternative(html_message, "text/html")
+        # except:
+        #     pass
 
-            amount = 0.0
-            donates = Donate.objects.filter(transaction=transaction)
-            for donate in donates:
-                amount += float(donate.amount)
+        # try:
+        mail.send()
+        print("MAIL SENT AFTER SUCCESS PAYMENT:")
+        # except Exception:
+        #     pass
 
-            project = donates[0].project
-            update_total_fund_firebase(project)
-
-            project_remaining = project.remaining()
-            if project_remaining is not None and project_remaining <= 0 and project.is_target_amount() is True:
-                project.is_closed = True
-                project.save()
-
-            request.session['amounts'] = []
-            request.session['project_ids'] = []
-            cart = Cart(request)
-            cart.removeAll()
-
+        # TO SEND SMS IF THE DONATION WAS AS GIFT:
+        if donates[0].recieverPhone is not None:
+            fromSender = 'S@basorg'
             fetchProjectName = Donate.objects.filter(
                 transaction=transaction).order_by('-id')
             for data in fetchProjectName:
-                projectIdFetchedFromDonationTable = data.project.id
-                print("projectIdFetchedFromDonationTable",
-                      projectIdFetchedFromDonationTable)
-            try:
-                senderReceiverModel = giftSenderReceiver.objects.filter(
-                    project=projectIdFetchedFromDonationTable).order_by('-id')[0]
-                print("DATA IN MODEL:", senderReceiverModel)
-                senderReceiverModel.status = 'Approved'
-                senderReceiverModel.save()
-            except Exception as e:
-                pass
+                nameProject = data.project.name
+                request.session['projectName'] = nameProject
+            projectName = request.session.get('projectName')
+            print("IF DONATED AS GIFT:", projectName)
+            phoneNumber = donates[0].recieverPhone
+            amount = donates[0].amount
+            print("IF DONATED AS GIFT:", phoneNumber)
+            message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
+                projectName, amount)
+            print(message)
+            callThat = sendSMS(message, fromSender, phoneNumber)
+            # print(callThat)
+            if callThat == 200:
+                print("Message Delivered")
 
-            html_message = loader.render_to_string(
-                'web/email.html',
-                {
-                    "amount": amount, "reference_id": transaction.reference,
-                    "payment_id": transaction.tap_id,
-                    "db_id": transaction.id,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates
-                }
-            )
-            try:
-                email_subject = 'شكرا لتبرعك مع جمعية بصائر الخيرية'
-                to_list = donates[0].email
-                adminMail = settings.EMAIL_HOST_USER
-                mail = EmailMultiAlternatives(
-                    email_subject, 'This is message', adminMail, [to_list])
-                mail.attach_alternative(html_message, "text/html")
-            except:
-                pass
+        # client = boto3.client(
+        #     'sns', settings.AWS_SNS_ZONE,
+        #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+        # )
 
+        sms = SMS.objects.filter(transaction=transaction)
+        for obj in sms:
             try:
-                mail.send()
-                print("MAIL SENT AFTER SUCCESS PAYMENT:")
+                # phone = phonenumbers.parse(obj.phone, None)
+                # if phonenumbers.is_valid_number(phone):
+                # paymentId = donates[0].transaction_id
+                message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
+                    amount, payment_id)
+
+                fromSender = 'S@basorg'
+                callThat = sendSMS(message, fromSender, obj.phone)
+                if callThat == 200:
+                    print("Invoice Message Sent.", callThat)
             except Exception:
                 pass
 
-            # TO SEND SMS IF THE DONATION WAS AS GIFT:
-            if donates[0].recieverPhone is not None:
-                fromSender = 'S@basorg'
-                fetchProjectName = Donate.objects.filter(
-                    transaction=transaction).order_by('-id')
-                for data in fetchProjectName:
-                    nameProject = data.project.name
-                    request.session['projectName'] = nameProject
-                projectName = request.session.get('projectName')
-                print("IF DONATED AS GIFT:", projectName)
-                phoneNumber = donates[0].recieverPhone
-                amount = donates[0].amount
-                print("IF DONATED AS GIFT:", phoneNumber)
-                message = "تم اهداؤكم تبرع في مشروع {} بقيمة {}".format(
-                    projectName, amount)
-                print(message)
-                callThat = sendSMS(message, fromSender, phoneNumber)
-                # print(callThat)
-                if callThat == 200:
-                    print("Message Delivered")
+        charity_categories = Category.objects.filter(
+            inMenu=True, parent=None).order_by('-id')
+        sponsorCategories = sponsorship.objects.all()
 
-            # client = boto3.client(
-            #     'sns', settings.AWS_SNS_ZONE,
-            #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
-            # )
-
-            sms = SMS.objects.filter(transaction=transaction)
-            for obj in sms:
-                try:
-                    # phone = phonenumbers.parse(obj.phone, None)
-                    # if phonenumbers.is_valid_number(phone):
-                    # paymentId = donates[0].transaction_id
-                    message = 'تم قبول تبرعكم  بقيمة {} رقم العملية {} شكراً لكم'.format(
-                        amount, payment_id)
-
-                    fromSender = 'S@basorg'
-                    callThat = sendSMS(message, fromSender, obj.phone)
-                    if callThat == 200:
-                        print("Invoice Message Sent.", callThat)
-                except Exception:
-                    pass
-
-            charity_categories = Category.objects.filter(
-                inMenu=True, parent=None).order_by('-id')
-            sponsorCategories = sponsorship.objects.all()
-
-            return render(
-                request, "web/checkout_result.html",
-                {
-                    "amount": amount, "reference_id": transaction.reference,
-                    "payment_id": transaction.tap_id,
-                    "db_id": transaction.pk,
-                    "merchant_track_id": transaction.id,
-                    "success": True,
-                    "donates": donates,
-                    'charity_categories': charity_categories,
-                    'sponsorCategories': sponsorCategories,
-                }
-            )
-        except Exception as e:
-            return redirect('/')
+        return render(
+            request, "web/checkout_result.html",
+            {
+                "amount": amount, "reference_id": transaction.reference,
+                "payment_id": transaction.tap_id,
+                "db_id": transaction.pk,
+                "merchant_track_id": transaction.id,
+                "success": True,
+                "donates": donates,
+                'charity_categories': charity_categories,
+                'sponsorCategories': sponsorCategories,
+            }
+        )
+        # except Exception as e:
+        #     return redirect('/')
 
     def post(self, request):
         try:
@@ -4956,8 +4956,8 @@ def createOwnProject(request):
         # GENERATE SHAREABLE LINK USER's PARTICULAR PROJECT:
         intProjectId = int(projectId)
         country = request.POST.get('country')
-        amount = request.POST.get('amount')
-        amountVar = round(float(amount), 3)
+        amountVar = request.POST.get('amount')
+        # amountVar = round(float(amount), 3)
         projectName = request.POST.get('projectName')
         relativeRelation = request.POST.get('relativeRelation')
         civilIdPhoto = request.POST.get("civilIdPhoto")
@@ -5031,10 +5031,9 @@ def createOwnProject(request):
         projects = Project.objects.filter(is_hidden=True).order_by('-id')
         charity_categories = Category.objects.filter(
             inMenu=True).order_by('-id')
-        messages.success(request, "Project Created Successfully...!")
-        messages.success(request, "Your Private Link Is:")
+        messages.success(request,
+                         "Your Request Has Been Sent Successfully, The link will be shared when it will be approved...!")
         return render(request, 'web/createownproject.html', {
-            'site_url': site_url,
             'cart': cart,
             'totalProjectsInCart': totalProjectsInCart,
             'projects': projects,
@@ -5834,6 +5833,17 @@ def getValuesAccordingToSelectedCategory(request):
             return HttpResponse(data, mimetype)
         except:
             return HttpResponse('Sorry Error Occured...!')
+
+
+def getValuesAccordingToSelectedCategoryInCreateOwnProject(request):
+    if request.method == 'GET':
+        id = request.GET.get('categoryId')
+        print("FetchedId", id)
+        projectsData = Project.objects.get(
+            id=id, is_compaign=False)
+        values = {'amountVar': projectsData.total_amount, 'countryVar': projectsData.location}
+        print(values)
+        return JsonResponse(values)
 
 
 def getSponsoshipValuesAccordingToSelectedCategory(request):

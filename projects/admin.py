@@ -11,7 +11,7 @@ from django.contrib import messages
 
 from .models import Category, Project, Donate, Transaction, \
     TransactionKNETMachine, TransactionCash, ProjectsDirectory, SMS, Country, Sacrifice, sponsorship, \
-    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostImage, giftSenderReceiver, createOwnProjectModel
+    sponsorshipProjects, sponsorshipPageContent, CompaignCategory, Compaigns, CustomerIds, DonateSponsor, volunteer, partner, ProjectPDF, PostPDF, PostImage, giftSenderReceiver, createOwnProjectModel
 
 config = {
     "apiKey": "553f4037184cf18490885a33458dc1cdce96b642",
@@ -311,6 +311,8 @@ class TransactionCashAdmin(admin.ModelAdmin):
 # @admin.register(Project)
 # class ProjectAdmin(ImportExportModelAdmin):
 #     pass
+
+
 class PostImageAdmin(admin.StackedInline):
     model = PostImage
 
@@ -337,9 +339,24 @@ class ProjectAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     class Meta:
         model = Project
 
-
 @admin.register(PostImage)
 class PostImageAdmin(admin.ModelAdmin):
+    pass
+
+
+class PostPDFAdmin(admin.StackedInline):
+    model = PostPDF
+
+
+class ProjectPDFAdmin(admin.ModelAdmin):
+    inlines = [PostPDFAdmin]
+
+    class Meta:
+        model = ProjectPDF
+
+
+@admin.register(PostPDF)
+class PostPDFAdmin(admin.ModelAdmin):
     pass
 # limitCount = CompaignCategory.projectsLimit
 #
@@ -364,7 +381,7 @@ admin.site.register(volunteer)
 admin.site.register(partner)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(createOwnProjectModel)
-admin.site.register(ProjectPDF)
+admin.site.register(ProjectPDF, ProjectPDFAdmin)
 admin.site.register(giftSenderReceiver, giftSenderReceiverAdmin)
 admin.site.register(TransactionKNETMachine, TransactionKNETMachineAdmin)
 admin.site.register(TransactionCash, TransactionCashAdmin)

@@ -147,6 +147,7 @@ urlpatterns += i18n_patterns(
     path('cart_detail', views.cart_detail, name='cart_detail'),
     path('checkoutDetail', views.checkoutDetail, name='checkoutDetail'),
     path('getValuesAccordingToSelectedCategory', views.getValuesAccordingToSelectedCategory, name='getValuesAccordingToSelectedCategory'),
+    path('getValuesAccordingToSelectedCategoryInCreateOwnProject', views.getValuesAccordingToSelectedCategoryInCreateOwnProject, name='getValuesAccordingToSelectedCategoryInCreateOwnProject'),
     path('getSponsoshipValuesAccordingToSelectedCategory', views.getSponsoshipValuesAccordingToSelectedCategory, name='getSponsoshipValuesAccordingToSelectedCategory'),
     path('getCurrency', views.getCurrency, name='getCurrency'),
     path('generateActivationCode', views.generateActivationCode, name='generateActivationCode'),

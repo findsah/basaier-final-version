@@ -428,7 +428,7 @@ def send_mail_when_project_created_by_admin(sender, instance, **kwargs):
 
 class PostImage(models.Model):
     post = models.ForeignKey(Project, default=None, on_delete=models.CASCADE)
-    images = models.FileField(upload_to='projects/%Y/%m/%d')
+    image = models.FileField(upload_to='projects/%Y/%m/%d')
 
     def __str__(self):
         return self.post.name
@@ -442,6 +442,14 @@ class ProjectPDF(models.Model):
     class Meta:
         verbose_name = "PDF File"
         verbose_name_plural = "PDF Files"
+
+
+class PostPDF(models.Model):
+    post = models.ForeignKey(ProjectPDF, default=None, on_delete=models.CASCADE)
+    files = models.FileField(upload_to='moreThanOnePdfFiles', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.post.pk)
 
 
 class giftSenderReceiver(models.Model):
