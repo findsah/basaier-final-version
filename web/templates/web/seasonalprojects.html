@@ -156,19 +156,17 @@
                         <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
                         {{ myFilter.form.category|add_class:'formDivInput inputDiv' }}
                     </div>
-                    <div class="sections container">
+                    <div class="sections">
                         <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
 
                         <div style="z-index: 2; padding: 3px 2rem;">
                             <div id="slider-range"></div>
                             <div class="d-flex justify-content-between slider-labels">
-                                    <span id="slider-range-value1"></span>
-                                    <span id="slider-range-value2"></span>
+                                <span id="slider-range-value1"></span>
+                                <span id="slider-range-value2"></span>
                             </div>
-                                <form action="{% url 'search_project' %}" method="post">
-                                    <input type="hidden" name="min-value" value="">
-                                    <input type="hidden" name="max-value" value="">
-                                </form>
+                            <input type="hidden" name="min-value" value="">
+                            <input type="hidden" name="max-value" value="">
                         </div>
                         {#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
                     </div>

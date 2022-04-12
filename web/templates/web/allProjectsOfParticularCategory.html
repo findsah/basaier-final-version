@@ -160,19 +160,17 @@
                         <div style="z-index: 2; padding: 3px 2rem;">
                             <div id="slider-range"></div>
                             <div class="d-flex justify-content-between slider-labels">
-                                    <span id="slider-range-value1"></span>
-                                    <span id="slider-range-value2"></span>
+                                <span id="slider-range-value1"></span>
+                                <span id="slider-range-value2"></span>
                             </div>
-                                <form action="{% url 'search_project' %}" method="post">
-                                    <input type="hidden" name="min-value" value="">
-                                    <input type="hidden" name="max-value" value="">
-                                </form>
+                            <input type="hidden" name="min-value" value="">
+                            <input type="hidden" name="max-value" value="">
                         </div>
                         {#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
                     </div>
                     <div class="sections" style="border-bottom: none;">
                         <h5 style="font-weight: normal;">الذكاة</h5>
-                            {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
+                        {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
                         <div style="display: flex; justify-content: center; align-items: center;">
                             <button type="submit"
                                     class="btnOfQuickDonate"

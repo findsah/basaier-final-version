@@ -2465,6 +2465,42 @@ def volunteerAndSpread(request):
 
 def joinfieldvolunteer(request):
     if request.method == 'POST':
+        name = request.POST.get('name')
+        civilNumber = request.POST.get('civilNumber')
+        dateOfBirth = request.POST.get('dateOfBirth')
+        sex = request.POST.get('sex')
+        country = request.POST.get('country')
+        phoneNumber1 = request.POST.get('phoneNumber1')
+        emergencyPhoneNumber = request.POST.get('emergencyPhoneNumber')
+        relativeRelation = request.POST.get('relativeRelation')
+        email = request.POST.get('email')
+        qualification = request.POST.get('qualification')
+        specialization = request.POST.get('specialization')
+        employer = request.POST.get('employer')
+        currentPosition = request.POST.get('currentPosition')
+        preferredVolunteeringField = request.POST.get('preferredVolunteeringField')
+        interest = request.POST.get('interest')
+        # try:
+        volunteer.objects.create(
+            name=name,
+            civilNumber=civilNumber,
+            dateOfBirth=dateOfBirth,
+            sex=sex,
+            country=country,
+            phoneNumber1=phoneNumber1,
+            emergencyPhoneNumber=emergencyPhoneNumber,
+            relativeRelation=relativeRelation,
+            email=email,
+            qualification=qualification,
+            specialization=specialization,
+            employer=employer,
+            currentPosition=currentPosition,
+            preferredVolunteeringField=preferredVolunteeringField,
+            interest=interest
+        )
+        # except Exception as e:
+        #     pass
+        messages.success(request, "Welcome, We Appreciate Your Participation...!")
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         return render(request, 'web/joinfieldvolunteer.html', {
@@ -3710,16 +3746,9 @@ def search_project(request):
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('-id')
-    if request.POST.get('min-price') is not None:
-        minPrice = request.POST.get('min-price')
-        employee = Project.objects.filter(is_hidden=False, total_amount__gte=minPrice)
-    elif request.POST.get('max-price') is not None:
-        maxPrice = request.POST.get('min-price')
-        employee = Project.objects.filter(is_hidden=False, total_amount__lte=maxPrice)
-    else:
-        employee = Project.objects.filter(is_hidden=False)
-        myFilter = ProjectFilter(request.POST, queryset=employee)
-        employee = myFilter.qs
+    employee = Project.objects.filter(is_hidden=False)
+    myFilter = ProjectFilter(request.POST, queryset=employee)
+    employee = myFilter.qs
     return render(request, "web/seasonalprojects2.html", {
         # 'searched': searched,
         # 'searched_project': projects,

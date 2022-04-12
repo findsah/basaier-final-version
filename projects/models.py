@@ -1660,8 +1660,8 @@ class volunteer(models.Model):
     specialization = models.CharField(max_length=255, null=True)
     employer = models.CharField(max_length=255, null=True)
     currentPosition = models.CharField(max_length=255, null=True)
-    preferedVolunteeringField = models.CharField(max_length=255, null=True)
-    interset = models.CharField(max_length=255, null=True)
+    preferredVolunteeringField = models.CharField(max_length=255, null=True)
+    interest = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.name

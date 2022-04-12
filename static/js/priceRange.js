@@ -9,7 +9,7 @@ $(document).ready(function() {
   var moneyFormat = wNumb({
     decimals: 0,
     thousand: ',',
-    prefix: 'KD'
+    // prefix: 'KD'
   });
   noUiSlider.create(rangeSlider, {
     start: [20, 1000000],
