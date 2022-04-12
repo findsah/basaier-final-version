@@ -12,30 +12,23 @@
         <h2 style="color: #1385B2; font-size: 37px;">كن متطوعا وناشرا للخير</h2>
         <p style="color: #858585; font-size: 15px;">يمكنك الان تكون متطوعا وناشر للخير</p>
     </div>
+    {% for data in dataScienceNews %}
     <div class="row justify-content-center my-5">
         <div class="col-md-4">
             <div class="video-container">
                 <video autoplay muted controls loop>
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    <source src="/media/{{ data.image }}"
                         type="video/mp4" />
                 </video>
             </div>
         </div>
         <div class="col-md-7">
-            <h2 style="font-size: 23px;">فضل التطوع في عمل الخير</h2>
-            <p style="font-size: 16px;">
-                تحثنا الفطرة البشرية على نشر الخير على الدوام، إذ يولد الإنسان على فطرة حب عمل الخير ويعمل على نشره
-                بين الناس كلما اتيحت له الفرصة .التطوع هو الجهد الذي يقوم به الإنسان لمجتمعه بدافع منه ودون انتظار
-                مقابل
-                “قاصداً بذلك تحمل بعض المسئوليات في مجال العمل الإنساني والاجتماعي. وتتبنى بصائر الخيرية تفعيل ونشر
-                ثقافة العمل التطوعي لتنمية المجتمع والاستفادة من كل الجهود التطوعية، عبر تنمية
-                .قدرات المتطوعين وتحقيق ذواتهم من خلال تدريبهم على المجالات المختلفة في العمل الخيري ،لذلك أطلقنا
-                هذا الموقع ليكون نقطة انطلاق لاستثمار جهود المتطوعين وتحفيزهم على المشاركة الفعالة عبر المساهمة في
-                تأسيس منظمات المجتمع المدني المك ّملة لدور مؤسسات القطاعين العمومي والخاص في الدولة لتحقيق رؤية كويت
-                2035
+            <h2 style="font-size: 23px;">{{ data.title }}</h2>
+            <p style="font-size: 16px;">{{ data.content }}
             </p>
         </div>
     </div>
+    {% endfor %}
 
     <div class="row" style="margin: 8rem 0 3rem 0;">
         <div class="col-4">

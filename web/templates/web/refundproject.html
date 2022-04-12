@@ -274,24 +274,24 @@
                 </div>
             </div> {% endcomment %}
         <div class="firstSection">
-            {% for data in pdfFiles %}
                 <div class="firstSectionTitle">
                     <span style="font-weight: bold;">تقارير المشروع</span>
                 </div>
                 <div class="row firstSectionCard">
+            {% for data in pdfFiles %}
                     <div class="col-md-3">
                         <div class="firstSectionCard1">
-                            {% for project in pdfFiles %}
+{#                            {% for project in pdfFiles %}#}
                                 <p class="firstSectionCard1P"> {{ project.projectCategory.first.name }}</p>
-                            {% endfor %}
+{#                            {% endfor %}#}
                             <a href="{% url 'openPdf' data.id %}">
                                 <img src="/media/{{ data.image }}" alt="{{ data.image }}"
                                      style="width: 100%; height: 234px;">
                             </a>
                         </div>
                     </div>
-                </div>
             {% endfor %}
+                </div>
         </div>
     </div>
 

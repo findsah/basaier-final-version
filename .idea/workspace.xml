@@ -20,7 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/BasaierAgain.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BasaierAgain.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../basierNew1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
@@ -135,7 +145,12 @@
       <workItem from="1649438011498" duration="12182000" />
       <workItem from="1649492076003" duration="5976000" />
       <workItem from="1649522516063" duration="8375000" />
-      <workItem from="1649573376833" duration="12154000" />
+      <workItem from="1649573376833" duration="14618000" />
+      <workItem from="1649664849763" duration="2446000" />
+      <workItem from="1649673426078" duration="166000" />
+      <workItem from="1649676867798" duration="8497000" />
+      <workItem from="1649701935684" duration="1877000" />
+      <workItem from="1649747873456" duration="3838000" />
     </task>
     <servers />
   </component>
@@ -171,18 +186,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="488" y="259" width="943" height="345" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648761831545" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1648929964427">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1649673586938">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648929964427" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1649673586938" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1649268876192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1649268876192" />
-    <state x="398" y="124" width="1269" height="795" key="find.popup" timestamp="1649184670078">
+    <state x="398" y="124" width="1269" height="795" key="find.popup" timestamp="1649671722717">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="398" y="124" width="1269" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649184670078" />
+    <state x="398" y="124" width="1269" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649671722717" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1648751457075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

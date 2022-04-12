@@ -12,14 +12,12 @@
             {% for project in projects %}
                 <div class="carousel-item {% if forloop.first %} active {% endif %} header2">
                     <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}"
-                         alt="{{ project.get_name }}" style="height: 950px;">
+                         alt="{{ project.get_name }}" style="height: 774px;">
 
                     <div class="carousel-caption d-none d-md-block">
                         <h3 class="my-heading">{{ project.get_name }}</h3>
-                        <p class="myp-slider text-center">{{ project.get_detail }}</p>
-                        <!-- <p class="myp-slider text-center">سهوله من خلال موقعنا</p> -->
-                        <!-- <a href="{% url 'project-detail' project.id %}"> -->
-                        <a href="{% url 'allProjects' %}">
+                        <p class="myp-slider text-center">{{ project.get_detail|truncatechars:500 }}</p>
+                        <a href="{% url 'project-detail' project.id %}">
                             <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
                             </button>
                         </a>
@@ -179,15 +177,18 @@
     <section class="testimonials">
         <div class="container">
             <div class="row">
+                {% for data in science_news %}
                 <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <a href="{% url 'allProjects' %}">
+                    <a href="{% url 'science-center-category' data.id %}">
                         <div class="card card-custom">
-                            <img class="card-img-top" src="{% static 'images/child.png' %}">
+                            <video autoplay muted controls loop>
+                                    <source src="/media/{{ data.image }}"
+                                            type="video/mp4"/>
+                                </video>
                             <div class="card-block">
-                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
+                                <h4 class="card-title">{{ data.title }}</h4>
                                 <small>
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
+                                    {{ data.content|truncatechars:255 }}
                                 </small>
                                 <div class="card-bottom">
                                     <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
@@ -197,44 +198,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <a href="{% url 'allProjects' %}">
-                        <div class="card card-custom">
-                            <img class="card-img-top" src="{% static 'images/child.png' %}">
-                            <div class="card-block">
-                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                                <small>
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
-                                </small>
-                                <div class="card-bottom">
-                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                        style="font-size: 14px;">30 دقيقه</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 mt-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <a href="{% url 'allProjects' %}">
-                        <div class="card card-custom">
-                            <img class="card-img-top" src="{% static 'images/child.png' %}">
-                            <div class="card-block">
-                                <h4 class="card-title">اليتيم محمد بن سوريا</h4>
-                                <small>
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
-                                    اليتيم محمد بن سوريا فقد أباه في رمضان
-                                </small>
-                                <div class="card-bottom">
-                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i> <span
-                                        style="font-size: 14px;">30 دقيقه</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+                {% endfor %}
     </section>
     <!-- "background-image: url('{% static 'images/bgFixed.png'%}');" -->
     <section class="testimonials text-center">
@@ -270,19 +234,18 @@
     </section>
 
     <section class="testimonials text-center container">
-        <div class="wow fadeInUp">
+        <div class="wow fadeInUp mb-3">
             <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-evenly">
             {% for data in testimonialsData %}
-                <div class="col-12 col-lg-4">
-                    <div class='main-content' style="margin: 0 !important;">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class='main-content' style="margin: auto; width: 340px; height: 240px;">
                         <div class="testimonialhead">
                             <img class="textimonialimg" src="/media/{{ data.image }}">
                             <p class="textimonialtext"> {{ data.name }} <br/>{{ data.title }}</p>
                         </div>
-                        <p class="textimonialbottomtext"
-                           style="white-space: normal !important;">{{ data.message|truncatechars:255 }}</p>
+                        <p class="textimonialbottomtext" style="text-align: justify;">{{ data.message|truncatechars:200 }}</p>
                     </div>
                 </div>
             {% endfor %}
