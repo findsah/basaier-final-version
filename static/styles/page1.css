@@ -6,6 +6,156 @@ body {
     text-align: right;
 }
 
+/* This line can be removed it was just for display on CodePen: */
+.slider-labels {
+    margin-top: 10px;
+}
+
+/* Functional styling;
+ * These styles are required for noUiSlider to function.
+ * You don't need to change these rules to apply your design.
+ */
+.noUi-target, .noUi-target * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.noUi-target {
+    position: relative;
+    direction: ltr;
+}
+
+.noUi-base {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    /* Fix 401 */
+}
+
+.noUi-origin {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.noUi-handle {
+    position: relative;
+    z-index: 1;
+}
+
+.noUi-stacking .noUi-handle {
+    /* This class is applied to the lower origin when
+       its values is > 50%. */
+    z-index: 10;
+}
+
+.noUi-state-tap .noUi-origin {
+    -webkit-transition: left 0.3s, top .3s;
+    transition: left 0.3s, top .3s;
+}
+
+.noUi-state-drag * {
+    cursor: inherit !important;
+}
+
+/* Painting and performance;
+ * Browsers can paint handles in their own layer.
+ */
+.noUi-base, .noUi-handle {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* Slider size and handle placement;
+ */
+.noUi-horizontal {
+    height: 4px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    left: -7px;
+    top: -7px;
+    background-color: #345DBB;
+}
+
+/* Styling;
+ */
+.noUi-background {
+    background: #D6D7D9;
+}
+
+.noUi-connect {
+    background: #345DBB;
+    -webkit-transition: background 450ms;
+    transition: background 450ms;
+}
+
+.noUi-origin {
+    border-radius: 2px;
+}
+
+.noUi-target {
+    border-radius: 2px;
+}
+
+.noUi-target.noUi-connect {
+}
+
+/* Handles and cursors;
+ */
+.noUi-draggable {
+    cursor: w-resize;
+}
+
+.noUi-vertical .noUi-draggable {
+    cursor: n-resize;
+}
+
+.noUi-handle {
+    cursor: default;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+.noUi-handle:active {
+    border: 8px solid #345DBB;
+    border: 8px solid rgba(53, 93, 187, 0.38);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    left: -14px;
+    top: -14px;
+}
+
+/* Disabled state;
+ */
+[disabled].noUi-connect, [disabled] .noUi-connect {
+    background: #B8B8B8;
+}
+
+[disabled].noUi-origin, [disabled] .noUi-handle {
+    cursor: not-allowed;
+}
+
+
+.fixed-top.scrolled {
+    background-image: linear-gradient(#00A7D0, #0083B0);
+    color: #111 !important;
+    transition: background-color 200ms linear;
+}
 
 .carousel1 {
     min-width: 900px;
@@ -61,92 +211,92 @@ body {
     transform: scale(1.05);
 }
 
-.carousel__activator:nth-of-type(1):checked~.carousel__controls:nth-of-type(1) {
+.carousel__activator:nth-of-type(1):checked ~ .carousel__controls:nth-of-type(1) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(1):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(1):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(0%);
     transform: translateX(0%);
 }
 
-.carousel__activator:nth-of-type(2):checked~.carousel__controls:nth-of-type(2) {
+.carousel__activator:nth-of-type(2):checked ~ .carousel__controls:nth-of-type(2) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(2):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(2):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
 
-.carousel__activator:nth-of-type(3):checked~.carousel__controls:nth-of-type(3) {
+.carousel__activator:nth-of-type(3):checked ~ .carousel__controls:nth-of-type(3) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(3):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(3):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-200%);
     transform: translateX(-200%);
 }
 
-.carousel__activator:nth-of-type(4):checked~.carousel__controls:nth-of-type(4) {
+.carousel__activator:nth-of-type(4):checked ~ .carousel__controls:nth-of-type(4) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(4):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(4):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-300%);
     transform: translateX(-300%);
 }
 
-.carousel__activator:nth-of-type(5):checked~.carousel__controls:nth-of-type(5) {
+.carousel__activator:nth-of-type(5):checked ~ .carousel__controls:nth-of-type(5) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(5):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(5):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-400%);
     transform: translateX(-400%);
 }
 
-.carousel__activator:nth-of-type(6):checked~.carousel__controls:nth-of-type(6) {
+.carousel__activator:nth-of-type(6):checked ~ .carousel__controls:nth-of-type(6) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(6):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(6):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-500%);
     transform: translateX(-500%);
 }
 
-.carousel__activator:nth-of-type(7):checked~.carousel__controls:nth-of-type(7) {
+.carousel__activator:nth-of-type(7):checked ~ .carousel__controls:nth-of-type(7) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(7):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(7):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-600%);
     transform: translateX(-600%);
 }
 
-.carousel__activator:nth-of-type(8):checked~.carousel__controls:nth-of-type(8) {
+.carousel__activator:nth-of-type(8):checked ~ .carousel__controls:nth-of-type(8) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(8):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(8):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-700%);
     transform: translateX(-700%);
 }
 
-.carousel__activator:nth-of-type(9):checked~.carousel__controls:nth-of-type(9) {
+.carousel__activator:nth-of-type(9):checked ~ .carousel__controls:nth-of-type(9) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(9):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(9):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-800%);
     transform: translateX(-800%);
 }
 
-.carousel__activator:nth-of-type(10):checked~.carousel__controls:nth-of-type(10) {
+.carousel__activator:nth-of-type(10):checked ~ .carousel__controls:nth-of-type(10) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(10):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(10):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-900%);
     transform: translateX(-900%);
 }
@@ -229,9 +379,6 @@ body {
     margin: 1rem;
     /*height: 12rem;*/
 }
-
-
-
 
 
 /* navbar  */
@@ -341,23 +488,24 @@ a.openNav {
 }
 
 .desktop-nav {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
 }
 
 .color-light {
     color: #fff;
+    font-size: 14px;
 }
 
 .nav-item {
     font-size: 13px;
     font-weight: bold;
-    margin-bottom: 10px !important;
+    /* margin-bottom: 10px !important; */
 }
 
-.nav-link {
-    /*padding: .2rem 1rem !important;*/
-}
+/* .nav-link {
+    padding: .2rem 1rem !important;
+} */
 
 .mob-ul {
     list-style-type: none;
@@ -599,14 +747,14 @@ header.masthead {
 
     /* show 3 items */
     .carouselPrograms .carousel-inner .active,
-    .carouselPrograms .carousel-inner .active+.carousel-item,
-    .carouselPrograms .carousel-inner .active+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .active + .carousel-item,
+    .carouselPrograms .carousel-inner .active + .carousel-item + .carousel-item {
         display: block;
     }
 
     .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
-    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
         transition: none;
     }
 
@@ -616,7 +764,7 @@ header.masthead {
         transform: translate3d(0, 0, 0);
     }
 
-    .carouselPrograms .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
         position: absolute;
         top: 0;
         right: -33.333%;
@@ -626,10 +774,10 @@ header.masthead {
     }
 
     /* left or forward direction */
-    .carouselPrograms .active.carousel-item-left+.carousel-item-next.carousel-item-left,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
         position: relative;
         transform: translate3d(-100%, 0, 0);
         visibility: visible;
@@ -646,10 +794,10 @@ header.masthead {
     }
 
     /* right or prev direction */
-    .carouselPrograms .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
         position: relative;
         transform: translate3d(100%, 0, 0);
         visibility: visible;
@@ -705,20 +853,14 @@ li.list-inline-item a {
 
 .onImageDiv {
     position: absolute;
-    top: 20%;
-    width: 100%;
+    transform: translate(-8%, 100%);
 }
 
 .crouselBtn {
     background-color: #fff;
     color: #1488B5;
-    padding: 10px 4rem;
-    display: flex;
-    margin: auto;
-    border: none;
+    padding: 4px 4rem;
     border-radius: 25px;
-    outline: none;
-    font-size: 14px;
 }
 
 .crouselText {
@@ -744,17 +886,18 @@ li.list-inline-item a {
 .socialIcons {
     font-size: 25px;
 }
-.tabsUl{
-        flex-direction: column;
-    }
 
-@media only screen and (min-width:1600px) and (max-width:1920px) {
+.tabsUl {
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1920px) {
     .navbar-toggler {
         display: none !important;
     }
 }
 
-@media only screen and (min-width:1440px) {
+@media only screen and (min-width: 1440px) {
     .navbar-toggler {
         display: none !important;
     }
@@ -830,24 +973,88 @@ li.list-inline-item a {
         display: flex;
     }
 }
-@media (max-width: 991px){
-    .navbarUl{
+
+
+@media (max-width: 991px) {
+    .accordion-button:not(.collapsed) {
+        font-size: 12px !important;
+    }
+
+    .card-body p {
+        font-size: 12px !important;
+    }
+
+    .my-heading {
+        font-size: 30px !important;
+    }
+
+    .myp-slider {
+        font-size: 20px;
+    }
+
+    .pathlink {
+        font-size: 14px !important;
+    }
+
+    .title h2 {
+        font-size: 25px !important;
+    }
+
+    .title p {
+        font-size: 14px !important;
+    }
+
+    .navbarUl {
         display: flex !important;
     }
-    .navbarImg{
+
+    .myp {
+        margin: 1rem 0;
+        font-size: 12px;
+    }
+
+    .mybg-eventBtn {
+        padding: 0.5rem 3rem;
+        font-size: 15px;
+    }
+
+    section#marketplace {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    section#marketplace h5 {
+        font-size: 12px !important;
+    }
+
+    .socialIcons {
+        font-size: 16px;
+    }
+
+    .footerUl li {
+        font-size: 12px !important;
+    }
+
+    .footerUl h3 {
+        font-size: 16px !important;
+    }
+
+    .bgStyledSection span {
+        font-size: 30px !important;
+    }
+
+    .navbarImg {
         display: none !important;
     }
-}
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {
     .myh-class {
-        font-size: 2rem;
-        line-height: 3rem;
+        font-size: 25px !important;
+        line-height: 45px !important;
     }
 
     .myp-class {
-        font-size: 12px;
-        line-height: 25px;
+        font-size: 12px !important;
+        line-height: 25px !important;
     }
 
     .testimonials {
@@ -878,7 +1085,7 @@ li.list-inline-item a {
 
 }
 
-@media only screen and (max-width:736px) and (orientation:landscape) {
+@media only screen and (max-width: 736px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -901,7 +1108,7 @@ li.list-inline-item a {
     }
 }
 
-@media only screen and (max-width:667px) and (orientation:landscape) {
+@media only screen and (max-width: 667px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -924,7 +1131,7 @@ li.list-inline-item a {
     }
 }
 
-@media only screen and (max-width:568px) and (orientation:landscape) {
+@media only screen and (max-width: 568px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -976,21 +1183,21 @@ li.list-inline-item a {
 
 @media (max-width: 599px) {
     .myh-class {
-        font-size: 1rem;
-        line-height: 2rem;
+        font-size: 1rem !important;
+        line-height: 2rem !important;
     }
 
     .myp-class {
-        font-size: 12px;
-        line-height: 25px;
+        font-size: 12px !important;
+        line-height: 25px !important;
     }
 
     .my-heading {
-        font-size: 30px;
+        font-size: 30px !important;
     }
 
     .myp-slider {
-        font-size: 15px;
+        font-size: 15px !important;
     }
 
 
@@ -1038,29 +1245,36 @@ li.list-inline-item a {
     .socialIcons {
         font-size: 12px !important;
     }
+
     .text-mutedP {
         text-align: center;
         font-size: 14px;
         margin: 5px 0;
         font-weight: bold;
     }
+
     .testimonials {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
-    .reverseCol{
+
+    .reverseCol {
         flex-direction: column-reverse !important;
     }
+
     header.masthead {
         height: 60vh !important;
     }
-    .affix{
+
+    .affix {
         margin-top: 40% !important;
     }
-    .contactusH6{
+
+    .contactusH6 {
         font-size: 11px !important;
     }
-    .tabsUl{
+
+    .tabsUl {
         flex-direction: row !important;
     }
 }
@@ -1100,7 +1314,7 @@ li.list-inline-item a {
     }
 }
 
-@media only screen and (max-width:568px) and (orientation:landscape) {
+@media only screen and (max-width: 568px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }

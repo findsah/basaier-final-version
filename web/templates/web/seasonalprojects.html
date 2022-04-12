@@ -6,6 +6,7 @@
 {% load widget_tweaks %}
 
 {% block content %}
+
     <div class="container-fluid" style="display: flex;margin-top: 10rem;">
         <div class="container mainProjects">
             <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
@@ -16,7 +17,7 @@
                 </p>
             </div>
 
-        <div class="hideHiddenDiv">
+            <div class="hideHiddenDiv">
                 <form action="{% url 'search_project' %}" method="post">
                     {% csrf_token %}
                     <h5 style="font-weight: normal;">ابحث عن مشروع موسمي</h5>
@@ -56,10 +57,8 @@
                             <div class="d-flex justify-content-between">
                                 <div class="sections" style="border-bottom: 0;">
                                     <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
-                                                                        <span class="multi-range-field my-5 pb-5">
-                                                                                    <input id="multi3" class="multi-range" type="range" name="price"/>
-                                                                                </span>
-{#                                    {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                                    {#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
                                 </div>
                                 <div class="sections"
                                      style="border-bottom: none;
@@ -157,21 +156,25 @@
                         <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
                         {{ myFilter.form.category|add_class:'formDivInput inputDiv' }}
                     </div>
-                    <div class="sections">
+                    <div class="sections container">
                         <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
-                                        <span class="multi-range-field my-5 pb-5">
-                                                        <input id="multi3" class="multi-range" type="range"
-                                                               name="price"/>
-                                                    </span>
-{#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
+
+                        <div style="z-index: 2; padding: 3px 2rem;">
+                            <div id="slider-range"></div>
+                            <div class="d-flex justify-content-between slider-labels">
+                                    <span id="slider-range-value1"></span>
+                                    <span id="slider-range-value2"></span>
+                            </div>
+                                <form action="{% url 'search_project' %}" method="post">
+                                    <input type="hidden" name="min-value" value="">
+                                    <input type="hidden" name="max-value" value="">
+                                </form>
+                        </div>
+                        {#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
                     </div>
                     <div class="sections" style="border-bottom: none;">
                         <h5 style="font-weight: normal;">الذكاة</h5>
-                        <div style="display: flex;
-                                        justify-content: space-around;
-                                        margin-top: 2rem;">
-                            {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
-                        </div>
+                        {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
                         <div style="display: flex; justify-content: center; align-items: center;">
                             <button type="submit"
                                     class="btnOfQuickDonate"
@@ -184,50 +187,5 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $('#multi3').mdbRange({
-            width: '100%',
-            single: {
-                active: true,
-                multi: {
-                    active: true,
-                    rangeLength: 2
-                },
-            }
-        });
-
-        $('#multi4').mdbRange({
-            width: '75%',
-            single: {
-                active: true,
-                multi: {
-                    active: true,
-                    rangeLength: 2
-                },
-            }
-        });
-
-        $('#multi5').mdbRange({
-            width: '50%',
-            single: {
-                active: true,
-                multi: {
-                    active: true,
-                    rangeLength: 2
-                },
-            }
-        });
-
-        $('#multi6').mdbRange({
-            width: '25%',
-            single: {
-                active: true,
-                multi: {
-                    active: true,
-                    rangeLength: 2
-                },
-            }
-        });
-    </script>
 
 {% endblock %}

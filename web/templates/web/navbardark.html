@@ -114,6 +114,16 @@
             crossorigin="anonymous"></script>
 
 
+    {#    FOR PRICE RANGE SLIDER: #}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.css"
+          integrity="sha512-SZgE3m1he0aEF3tIxxnz/3mXu/u/wlMNxQSnE0Cni9j/O8Gs+TjM9tm1NX34nRQ7GiLwUEzwuE3Wv2FLz2667w=="
+          crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"
+            integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA=="
+            crossorigin="anonymous"></script>
+    {#    END FOR PRICE RANGE SLIDER: #}
+
 
     <!-- == mixitup == -->
     <script src="/static/js/mixitup.min.js"></script>
@@ -269,53 +279,56 @@
     </style>
 
 
-<style type="text/css">
-    .header2{
-        background-color: white;
-    }
-    .imageOpacity{
-        opacity: 0.6;
-    }
-</style>
+    <style type="text/css">
+        .header2 {
+            background-color: white;
+        }
+
+        .imageOpacity {
+            opacity: 0.6;
+        }
+    </style>
 
 </head>
 
 <nav class="navbar navbar-dark fixed-top navbar-expand-lg"
-     style="box-shadow: 0 5px 20px lightgrey; color: black !important;">
+     style=" color: black !important;">
     <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="fa fa-bars mfa-white"></span>
-            </button>
-            <div id="main">
+        </button>
+        <div id="main">
             <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars" onclick="openNav()"></span></a>
             <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'images/logo2.png' %}" alt="">
-            </a>
-            </div>
-            <a class="navbar-brand navbarImg" href="{% url 'index' %}">
                 <img src="{% static 'images/logo2.png' %}" alt="">
+            </a>
+        </div>
+        <a class="navbar-brand navbarImg" href="{% url 'index' %}">
+            <img src="{% static 'images/logo2.png' %}" alt="">
+        </a>
+        <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
+            <li class="nav-link">
+                <a href="#" class="btn btn-circle my-social-btn">
+                    <i style="font-size: 25px;" class="fa fa-search searchIcon"></i>
                 </a>
-            <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
-            <li class="nav-link">
-            <a href="#" class="btn btn-circle my-social-btn color-light">
-            <i style="font-size: 25px;" class="fa fa-search searchIcon"></i>
-            </a>
-            <div class="searchDiv">
-            <i style="font-size: 20px;" class="fa fa-search"></i>
-            <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
-            </div>
+                <div class="searchDiv">
+                    <i style="font-size: 20px;" class="fa fa-search"></i>
+                    <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
+                </div>
             </li>
             <li class="nav-link">
-            <a href="{% url 'login' %}" class="btn btn-circle my-social-btn color-light ">
-            <i style="font-size: 25px;" class="fa fa-user"></i>
-            </a>
+                <a href="{% url 'login' %}" class="btn btn-circle my-social-btn ">
+                    <i style="font-size: 25px;" class="fa fa-user"></i>
+                </a>
             </li>
             <li class="nav-link">
-            <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn color-light ">
-            <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
-            </a>
+                <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn ">
+                    <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+                </a>
             </li>
-            </ul>
+        </ul>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <ul class="mob-ul">
@@ -323,19 +336,19 @@
                     <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسيه</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
-                       data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">المشاريع
-                    </a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">المشاريع
+                        </a>
 
-                    <ul class="dropdown-menu">
-                        {% for category in charity_categories %}
-                            {% include "web/category_tree.html" %}
-                        {% endfor %}
-                    </ul>
-                </div>
+                        <ul class="dropdown-menu">
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
-                <div class="dropdown" style="padding: 0.5rem 1rem;">
+                <div class="dropdown" style="padding: 0.4rem 1rem;">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
                         اكتشفنا
@@ -403,20 +416,20 @@
                     <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسيه</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
-                       data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
-                        المشاريع
-                    </a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
+                            المشاريع
+                        </a>
 
-                    <ul class="dropdown-menu">
-                        {% for category in charity_categories %}
-                            {% include "web/category_tree.html" %}
-                        {% endfor %}
-                    </ul>
-                </div>
+                        <ul class="dropdown-menu">
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
-                <li class="nav-item" style="padding: 0.5rem 1rem;">
+                <li class="nav-item" style="padding: 0.4rem 1rem;">
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                            data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
@@ -521,13 +534,17 @@
                  style="padding: 10px;">
                 <!-- Nav tabs -->
                 <div id="tab" class="btn-group d-flex justify-content-between" data-toggle="buttons">
-                    <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center" data-toggle="tab"
+                    <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center"
+                       data-toggle="tab"
                        id="liFastDonationCampaigns1">
-                        <input class="radioBtn" type="radio" name="donate" value="donateprice1" /><span>تبرع لمره واحده</span>
+                        <input class="radioBtn" type="radio" name="donate"
+                               value="donateprice1"/><span>تبرع لمره واحده</span>
                     </a>
-                    <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center" data-toggle="tab"
+                    <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center"
+                       data-toggle="tab"
                        id="liFastDonationSadaka1">
-                        <input class="radioBtn"  type="radio" name="donate" value="donateprice2" /><span>التبرع الدوري</span>
+                        <input class="radioBtn" type="radio" name="donate"
+                               value="donateprice2"/><span>التبرع الدوري</span>
                     </a>
                 </div>
 
@@ -596,7 +613,8 @@
                                                    style="background-color: #1BB1B0">
                                         </div>
                                         <div class="bottomText">
-                                            <span>*</span> سيتم تخصيص هذا التبرع للكفالات والمشاريع والاكثر احتياجا للدعم
+                                            <span>*</span> سيتم تخصيص هذا التبرع للكفالات والمشاريع والاكثر احتياجا
+                                            للدعم
                                         </div>
                                     </div>
                                 </div>
@@ -740,23 +758,25 @@
             </div>
         </div>
     </div>
-    <div style="position: relative; z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;" class="affix">
-            <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
-                <div class="text-center" style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex;
+    <div style="position: relative; z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;"
+         class="affix">
+        <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
+            <div class="text-center" style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex;
                 justify-content: center;
                 align-items: center;">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == "ar" %}
-                        {% trans "تبرع بسرعة" %}
-                    {% else %}
-                        {% trans "Quick Donate" %}
-                    {% endif %}
-                </div>
-                <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex" style="direction: rtl !important;width: 47% !important; height: 100% !important;">
-                    <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>
-                    <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>
-                </div>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    {% trans "تبرع بسرعة" %}
+                {% else %}
+                    {% trans "Quick Donate" %}
+                {% endif %}
             </div>
+            <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"
+                 style="direction: rtl !important;width: 47% !important; height: 100% !important;">
+                <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>
+                <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>
+            </div>
+        </div>
     </div>
 </div>
 {#    <div style="z-index: 1000 !important; margin-top: 10%;" class="affix">#}
@@ -777,7 +797,7 @@
          style="background-image: url('{% static './images/bgstyledgray.png' %}');">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto wow fadeInUp">
+            <div class="col-md-8 mx-auto ">
                 <h5 class="font-weight-bold" style="margin-bottom: 2rem; font-size: 18px;">نؤمن في مؤسسة بصائر
                     الخيريه بأهمية التواصل
                     الفعال، ونتطلع
@@ -794,73 +814,81 @@
 
 <footer class="footer removePadding">
     <div class="container">
-    <div class="row">
-    <div class=" col-6 col-md-4 text-center my-auto  wow zoomIn">
-    <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
+        <div class="row">
+            <div class=" col-6 col-md-4 text-center my-auto  ">
+                <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
+            </div>
+            <div class=" col-6 col-md-4 text-center my-auto  ">
+                <ul style="list-style: none; text-align: right;" class="footerUl">
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">
+                            <h3>
+                                القائمة الرئيسية
+                            </h3>
+                        </a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
+                    </li>
+                </ul>
+            </div>
+            <div class=" col-6 col-md-4 text-right my-auto  ">
+                <ul class="list-inline mb-0 p-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text-mutedP small mb-4 mb-lg-0">
+                    <sup>©</sup> 2021 جميع الحقوق
+                </p>
+            </div>
+        </div>
     </div>
-    <div class=" col-6 col-md-4 text-center my-auto  wow zoomIn">
-    <ul style="list-style: none; text-align: right;" class="footerUl">
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">
-    <h3>
-    القائمة الرئيسية
-    </h3>
-    </a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
-    </li>
-    </ul>
-    </div>
-    <div class=" col-6 col-md-4 text-right my-auto  wow zoomIn">
-    <ul class="list-inline mb-0 p-0">
-    <li class="list-inline-item mr-3">
-    <a href="#">
-    <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
-    </a>
-    </li>
-    <li class="list-inline-item mr-3">
-    <a href="#">
-    <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
-    </a>
-    </li>
-    <li class="list-inline-item">
-    <a href="#">
-    <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
-    </a>
-    </li>
-    <li class="list-inline-item mr-3">
-    <a href="#">
-    <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
-    </a>
-    </li>
-    <li class="list-inline-item mr-3">
-    <a href="#">
-    <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
-    </a>
-    </li>
-    <li class="list-inline-item">
-    <a href="#">
-    <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
-    </a>
-    </li>
-    </ul>
-    <p class="text-mutedP small mb-4 mb-lg-0">
-    <sup>©</sup> 2021 جميع الحقوق
-    </p>
-    </div>
-    </div>
-    </div>
-    </footer>
+</footer>
+
+
+<script type="text/javascript">
+    $(document).scroll(function () {
+        var $nav = $(".fixed-top");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    });
+</script>
 
 {# ADD TO CART AND NAVIGATE TO CART PAGE: #}
 <script type="text/javascript">
@@ -1089,6 +1117,7 @@
 
 <script type="text/javascript">
     {#    REGISTER PAGE: #}
+
     function selectCountryCode(value) {
         var countryValue = value;
         $('#fetchTheSelectedCountryCode').val(countryValue);
@@ -1206,7 +1235,6 @@
         }
     });
 </script>
-
 
 
 {# FOR SHOWING THE COUNTRY AND AMOUNT OF PROJECT: ACCORDING TO THE SELECTED PROJECT: #}
@@ -1359,11 +1387,13 @@
         $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
         $(this).addClass("Active");
     }
+
     function FastDonationAmountSelectCampaigns(amount, PagePrefixSeleect) {
         $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
         $(".btnsearch").removeClass("Active");
         $(this).addClass("Active");
     }
+
     $(document).ready($(function () {
         $("#txtTotalAmountFastAccountCampaigns1,#txtTotalAmountFastAccountCampaigns2").keydown(function (e) {
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -1376,6 +1406,7 @@
             }
         });
     }));
+
     function OnlyNumeric(evt, item, maxLenght) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -1397,5 +1428,31 @@
 
 
 {# END FOR SIDE PANEL: #}
+
+
+{# FOR PRICE RANGE SLIDER: #}
+<script type="text/javascript">
+    const setLabel = (lbl, val) => {
+        const label = $(`#slider-${lbl}-label`);
+        label.text(val);
+        const slider = $(`#slider-div .${lbl}-slider-handle`);
+        const rect = slider[0].getBoundingClientRect();
+    }
+
+    const setLabels = (values) => {
+        setLabel("min", values[0]);
+        setLabel("max", values[1]);
+    }
+
+
+    $('#ex2').slider().on('slide', function (ev) {
+        setLabels(ev.value);
+    });
+    setLabels($('#ex2').attr("data-value").split(","));
+</script>
+{# END FOR PRICE RANGE SLIDER: #}
+
+<script type="text/javascript" src="/static/js/priceRange.js"></script>
+
 
 </html>

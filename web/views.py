@@ -3710,9 +3710,16 @@ def search_project(request):
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('-id')
-    employee = Project.objects.filter(is_hidden=False)
-    myFilter = ProjectFilter(request.POST, queryset=employee)
-    employee = myFilter.qs
+    if request.POST.get('min-price') is not None:
+        minPrice = request.POST.get('min-price')
+        employee = Project.objects.filter(is_hidden=False, total_amount__gte=minPrice)
+    elif request.POST.get('max-price') is not None:
+        maxPrice = request.POST.get('min-price')
+        employee = Project.objects.filter(is_hidden=False, total_amount__lte=maxPrice)
+    else:
+        employee = Project.objects.filter(is_hidden=False)
+        myFilter = ProjectFilter(request.POST, queryset=employee)
+        employee = myFilter.qs
     return render(request, "web/seasonalprojects2.html", {
         # 'searched': searched,
         # 'searched_project': projects,
