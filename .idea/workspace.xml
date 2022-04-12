@@ -22,15 +22,6 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/priceRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/priceRange.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +145,7 @@
       <workItem from="1649676867798" duration="8497000" />
       <workItem from="1649701935684" duration="1877000" />
       <workItem from="1649747873456" duration="21233000" />
-      <workItem from="1649789594640" duration="8937000" />
+      <workItem from="1649789594640" duration="9084000" />
     </task>
     <servers />
   </component>

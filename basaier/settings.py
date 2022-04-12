@@ -145,24 +145,24 @@ WSGI_APPLICATION = 'basaier.wsgi.application'
 # }
 
 # NEW SENT DATABASE:
+# NEW SENT DATABASE WITH CHANGED HOST NAME:
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'basaier',
+#         'NAME': 'basaiernew',
 #         'USER': 'admin',
 #         'PASSWORD': 'admin',
-#         'HOST': 'ec2-3-120-32-152.eu-central-1.compute.amazonaws.com',
+#         'HOST': '127.0.0.1',
 #         'PORT': '5432',
-#     }
-# }
+#      }
+#  }
 
-# NEW SENT DATABASE WITH CHANGED HOST NAME:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'basaiernew',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'NAME': 'elantratech',
+        'USER': 'basiaieradmin',
+        'PASSWORD': 'basaieradmin',
         'HOST': '127.0.0.1',
         'PORT': '5432',
      }
