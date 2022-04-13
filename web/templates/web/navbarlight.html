@@ -1373,26 +1373,19 @@
 
 {# FOR PRICE RANGE SLIDER: #}
 <script type="text/javascript">
-    const setLabel = (lbl, val) => {
-        const label = $(`#slider-${lbl}-label`);
-        label.text(val);
-        const slider = $(`#slider-div .${lbl}-slider-handle`);
-        const rect = slider[0].getBoundingClientRect();
-    }
-
-    const setLabels = (values) => {
-        setLabel("min", values[0]);
-        setLabel("max", values[1]);
-    }
-
-
-    $('#ex2').slider().on('slide', function (ev) {
-        setLabels(ev.value);
-    });
-    setLabels($('#ex2').attr("data-value").split(","));
+    // Without JQuery
+    var slider = new Slider('#ex2', {});
+    // Without JQuery
+    var slider = new Slider('#ex3', {});
+    // Without JQuery
+    var slider = new Slider('#ex4', {});
+    // Without JQuery
+    var slider = new Slider('#ex5', {});
+    // Without JQuery
+    var slider = new Slider('#ex6', {});
+    // Without JQuery
+    var slider = new Slider('#ex7', {});
 </script>
 {# END FOR PRICE RANGE SLIDER: #}
-
-<script type="text/javascript" src="/static/js/priceRange.js"></script>
 
 </html>

@@ -22,6 +22,14 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/priceRange.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/priceRange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +153,7 @@
       <workItem from="1649676867798" duration="8497000" />
       <workItem from="1649701935684" duration="1877000" />
       <workItem from="1649747873456" duration="21233000" />
-      <workItem from="1649789594640" duration="9084000" />
+      <workItem from="1649789594640" duration="16115000" />
     </task>
     <servers />
   </component>
@@ -189,10 +197,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1649268876192" />
-    <state x="398" y="124" width="1269" height="795" key="find.popup" timestamp="1649770751267">
+    <state x="398" y="124" width="1269" height="795" key="find.popup" timestamp="1649799534809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="398" y="124" width="1269" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649770751267" />
+    <state x="398" y="124" width="1269" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649799534809" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1648751457075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

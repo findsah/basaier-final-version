@@ -1363,7 +1363,6 @@ def projectsOfParticularCategory(request, category_id):
     for data in categoryName:
         categoryName1 = data.name
     charity_categories = all_categories.filter(parent=None)
-
     categoryOfProjects = Project.objects.filter(
         category=categoryId, is_hidden=False, is_compaign=False).order_by('-id')
     # print(categoryOfProjects)
@@ -1374,7 +1373,6 @@ def projectsOfParticularCategory(request, category_id):
     #             print("PROJECTS OF THAT CATEGORY: ", data['category__id'])
     #             print("PROJECTS OF THAT CATEGORY: ", data['id'])
 
-    # topImagess = topImages.objects.all().order_by('-id')[:1]
     latest_projects = Project.objects.filter(
         is_closed=False, is_hidden=False).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
