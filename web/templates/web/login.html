@@ -48,16 +48,16 @@
                                 {#                            <input id="btnSubmit" class="moneybtn" type="button" value="رقم الجوال">#}
                                 {#                                    <input type="number" name="email" required#}
                                 {#                                           class="txtbox moneybtn fetchPhoneNumberOfTheUser" placeholder="رقم الجوال"/>#}
-                                <input type="text" style="width: 75%; background: #fff; font-size: 12px" id="fetchTheSelectedCountryCode"
-                                       class="txtbox moneybtn fetchPhoneNumberOfTheUser" name="email"
+                                <input type="text" style="width: 75%; background: #fff; font-size: 12px; direction: ltr !important;" id="fetchTheSelectedCountryCode"
+                                       class="txtbox moneybtn fetchPhoneNumberOfTheUser" name="phoneNumberOfUser"
                                        placeholder=" رقم الهاتف"
                                        required>
                                 <select
-                                        style="width: 25%; border: none !important; background-color: #f4f4f4; font-size: 12px"
+                                        style="width: 25%; border: none !important; background-color: #f4f4f4; font-size: 12px; direction: ltr !important;"
                                         class="input-group__input"
                                         onchange="selectCountryCode(this.value)" id="onChangeWillHitInputField"
                                         required>
-                                    <option value="" selected disabled>إختر</option>
+                                    <option value="" selected disabled style="text-align: center;">إختر</option>
                                     <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                     <option data-countryCode="AD" value="376">Andorra (+376)</option>
                                     <option data-countryCode="AO" value="244">Angola (+244)</option>

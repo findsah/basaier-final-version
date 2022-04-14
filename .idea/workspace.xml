@@ -22,13 +22,10 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/donationbasket.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donationbasket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/toSendSMS.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/toSendSMS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +151,7 @@
       <workItem from="1649747873456" duration="21233000" />
       <workItem from="1649789594640" duration="16154000" />
       <workItem from="1649831687983" duration="3846000" />
-      <workItem from="1649933963812" duration="15044000" />
+      <workItem from="1649933963812" duration="16095000" />
     </task>
     <servers />
   </component>

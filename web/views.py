@@ -1930,7 +1930,7 @@ def Login(request):
             is_sadaqah=False, is_compaign=False).order_by('-id')
         projectsSadaqah = Project.objects.filter(
             is_sadaqah=True, is_compaign=False).order_by('-id')
-        username = request.POST.get('email', '')
+        username = request.POST.get('phoneNumberOfUser', '')
         activationCodeCreateCompaign = request.POST.get('activationCode')
         activationCodeCreateCompaignStr = str(activationCodeCreateCompaign)
         getTheGeneratedCodeFromSession = request.session.get(
@@ -5265,10 +5265,10 @@ def generateActivationCode(request):
     #     phoneNumberOfUser = ''
     randomNumberStr = randomNumber
     language = get_language()
-    if language == 'ar':
-        message = "كود التفعيل الخاص بك  {}".format(randomNumberStr)
-    else:
-        message = "Your OTP code is {}".format(randomNumberStr)
+    # if language == 'ar':
+    message = "كود التفعيل الخاص بك  {}".format(randomNumberStr)
+    # else:
+    #     message = "Your OTP code is {}".format(randomNumberStr)
     callThat = sendSMS(message, fromSender, phoneNumberOfUser1)
     # print(callThat)
     if callThat == 200:
