@@ -3,7 +3,7 @@
     margin-top: -3.1rem;
     background: white;
     text-align: center;
-    /*z-index: 1;*/
+    z-index: 1;
     position: absolute;
     left: 0;
     border-bottom: 1px solid lightgray;
@@ -12,15 +12,20 @@
 
 .inputDiv {
     margin: 2rem auto;
-    border: 1px solid lightgray;
+    border: 1px solid #E8E8E8;
     width: 90%;
     display: flex;
     align-items: center;
     border-radius: 50px;
     justify-content: center;
-    height: 49px;
+    height: 38px;
     outline: none;
-    background-color: lightgray;
+    background-color: #FCFCFC;
+    padding-right: 5px;
+}
+
+.inputOption option {
+    font-size: 12px;
 }
 
 .inputDiv input {
@@ -30,6 +35,7 @@
     padding: 0 10px;
     outline: none;
 }
+
 .sections {
     margin: 2rem 0;
     border-bottom: 1px solid lightgray;

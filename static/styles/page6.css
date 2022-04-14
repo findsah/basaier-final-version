@@ -49,6 +49,7 @@
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 12px;
+    background-color: #fff;
 
 }
 
@@ -59,12 +60,15 @@
 .firstSectionCard2btns {
     outline: none;
     border: none;
-    width: 6rem;
+    width: 6.5rem;
     border-radius: 20px;
     font-size: 12px;
-    height: 1.5rem;
     cursor: pointer;
     text-align: center;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .firstSectionCard2btnsDonatedDonationPage {
@@ -97,10 +101,10 @@
 
 .formDivInput {
     width: 100%;
-    padding: 10px;
     border-radius: 10px;
     outline: none;
     border: 1px solid lightgray;
+    height: 47px;
 }
 
 .formDivBtn {

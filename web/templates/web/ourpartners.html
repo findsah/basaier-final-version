@@ -1,4 +1,4 @@
-{% extends 'web/navbardark.html' %}
+{% extends 'web/navbarlight.html' %}
 {% load static %}
 {% load humanize %}
 {% load i18n %}
@@ -8,6 +8,7 @@
 
 
 <header class="masthead text-white" style="background-image: url('{% static 'images/work.png' %}')">
+    <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -17,9 +18,9 @@
                 <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
                     الدين </p>
                 <a href="{% url 'allProjects' %}">
-                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن</button>
                 </a>
-                <!-- <p class="myp-slider text-center">والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
+                <!-- <p class="myp-slider text-center">والمجتمع إسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
                         وعدم </p>
                     <p class="myp-slider text-center">التساهل الذي يؤدي لضياع</p> -->
             </div>
@@ -69,6 +70,6 @@
             <img style="width: 100%" src="{% static 'images/phoenix.png' %}" alt="img">
         </div>
     </div>
-    <button class="mt-3 become_partner">كن شريكا معنا</button>
+    <button class="mt-3 become_partner">كن شريكاً معنا</button>
 </div>
 {% endblock %}

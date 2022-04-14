@@ -6,150 +6,10 @@ body {
     text-align: right;
 }
 
-/* This line can be removed it was just for display on CodePen: */
-.slider-labels {
-    margin-top: 10px;
+.testimonialsImage {
+    height: 609px;
+    width: 609px;
 }
-
-/* Functional styling;
- * These styles are required for noUiSlider to function.
- * You don't need to change these rules to apply your design.
- */
-.noUi-target, .noUi-target * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -ms-touch-action: none;
-    touch-action: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.noUi-target {
-    position: relative;
-    direction: ltr;
-}
-
-.noUi-base {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-    /* Fix 401 */
-}
-
-.noUi-origin {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-}
-
-.noUi-handle {
-    position: relative;
-    z-index: 1;
-}
-
-.noUi-stacking .noUi-handle {
-    /* This class is applied to the lower origin when
-       its values is > 50%. */
-    z-index: 10;
-}
-
-.noUi-state-tap .noUi-origin {
-    -webkit-transition: left 0.3s, top .3s;
-    transition: left 0.3s, top .3s;
-}
-
-.noUi-state-drag * {
-    cursor: inherit !important;
-}
-
-/* Painting and performance;
- * Browsers can paint handles in their own layer.
- */
-.noUi-base, .noUi-handle {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
-/* Slider size and handle placement;
- */
-.noUi-horizontal {
-    height: 4px;
-}
-
-.noUi-horizontal .noUi-handle {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    left: -7px;
-    top: -7px;
-    background-color: #345DBB;
-}
-
-/* Styling;
- */
-.noUi-background {
-    background: #D6D7D9;
-}
-
-.noUi-connect {
-    background: #345DBB;
-    -webkit-transition: background 450ms;
-    transition: background 450ms;
-}
-
-.noUi-origin {
-    border-radius: 2px;
-}
-
-.noUi-target {
-    border-radius: 2px;
-}
-
-.noUi-target.noUi-connect {
-}
-
-/* Handles and cursors;
- */
-.noUi-draggable {
-    cursor: w-resize;
-}
-
-.noUi-vertical .noUi-draggable {
-    cursor: n-resize;
-}
-
-.noUi-handle {
-    cursor: default;
-    -webkit-box-sizing: content-box !important;
-    -moz-box-sizing: content-box !important;
-    box-sizing: content-box !important;
-}
-
-.noUi-handle:active {
-    border: 8px solid #345DBB;
-    border: 8px solid rgba(53, 93, 187, 0.38);
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    left: -14px;
-    top: -14px;
-}
-
-/* Disabled state;
- */
-[disabled].noUi-connect, [disabled] .noUi-connect {
-    background: #B8B8B8;
-}
-
-[disabled].noUi-origin, [disabled] .noUi-handle {
-    cursor: not-allowed;
-}
-
 
 .fixed-top.scrolled {
     background-image: linear-gradient(#00A7D0, #0083B0);
@@ -409,7 +269,6 @@ body {
     background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
 }
 
 .sidenav a {
@@ -429,9 +288,9 @@ body {
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 0px;
-    font-size: 36px;
-    margin-right: 15px;
+    right: 10px;
+    font-size: 25px !important;
+    padding: 0;
 }
 
 #main {
@@ -480,6 +339,27 @@ a.openNav {
     display: block;
 }
 
+.loginSignupDiv {
+    padding: 12px 0;
+    background-color: #EDEDED;
+}
+
+.loginSignupBtns {
+    margin-top: 2rem;
+    border: 1px solid #B2B2B2;
+    padding: 5px 2.2rem;
+    border-radius: 12px;
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+.sidenavDonationBtn {
+    padding: 8px 4rem;
+    background-image: linear-gradient(#00A7D0, #0083B0);
+    border-radius: 20px;
+    color: #fff;
+}
+
 .desktop-ul {
     display: flex;
     list-style-type: none;
@@ -500,12 +380,7 @@ a.openNav {
 .nav-item {
     font-size: 13px;
     font-weight: bold;
-    /* margin-bottom: 10px !important; */
 }
-
-/* .nav-link {
-    padding: .2rem 1rem !important;
-} */
 
 .mob-ul {
     list-style-type: none;
@@ -513,8 +388,9 @@ a.openNav {
 }
 
 .sidenav li {
-    padding: 0 3px !important;
+    padding: 14px 3px !important;
     position: relative;
+    border-bottom: 1px solid #efebeb;
 }
 
 .sidenav li a {
@@ -531,6 +407,28 @@ a.openNav {
 
 .my-heading {
     font-size: 44px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: black;
+    opacity: 0.5;
+    top: 0;
+}
+
+.giftImgDiv {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: scroll;
+    justify-content: space-between;
+}
+
+.giftImg {
+    width: 261px;
+    height: 319px;
+    margin: 0 10px;
 }
 
 .myp-slider {
@@ -643,7 +541,7 @@ p.myp.text-center {
 .myp-onimgtxt {
     position: absolute;
     bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: white;
     left: 50%;
@@ -853,20 +751,20 @@ li.list-inline-item a {
 
 .onImageDiv {
     position: absolute;
-    transform: translate(-8%, 100%);
+    transform: translate(-26%, 80%);
 }
 
 .crouselBtn {
     background-color: #fff;
     color: #1488B5;
-    padding: 4px 4rem;
+    padding: 4px 3rem;
     border-radius: 25px;
+    font-size: 12px
 }
 
 .crouselText {
     font-size: 14px;
     color: white;
-    margin-bottom: 0;
     line-height: 30px;
     white-space: normal;
 }
@@ -962,7 +860,8 @@ li.list-inline-item a {
     }
 
     .fluidImg {
-        height: 12rem;
+        height: 170px;
+        width: 190px;
     }
 
     .carousel {
@@ -971,11 +870,23 @@ li.list-inline-item a {
 
     .mobileCrousel {
         display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
     }
 }
 
+.spanBorder {
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
 
 @media (max-width: 991px) {
+    .giftImg {
+        width: 139px;
+        height: 170px;
+    }
+
     .accordion-button:not(.collapsed) {
         font-size: 12px !important;
     }
@@ -1024,7 +935,8 @@ li.list-inline-item a {
     }
 
     section#marketplace h5 {
-        font-size: 12px !important;
+        font-size: 13px !important;
+        line-height: 24px;
     }
 
     .socialIcons {
@@ -1033,10 +945,11 @@ li.list-inline-item a {
 
     .footerUl li {
         font-size: 12px !important;
+        line-height: 34px;
     }
 
     .footerUl h3 {
-        font-size: 16px !important;
+        font-size: 19px !important;
     }
 
     .bgStyledSection span {
@@ -1053,8 +966,8 @@ li.list-inline-item a {
     }
 
     .myp-class {
-        font-size: 12px !important;
-        line-height: 25px !important;
+        font-size: 16px !important;
+        line-height: 40px !important;
     }
 
     .testimonials {
@@ -1081,6 +994,12 @@ li.list-inline-item a {
 
     .header-wrap .sub-menu {
         width: 250px;
+    }
+
+    .testimonialsImage {
+        height: 373px;
+        width: 370px;
+        transition: .6s;
     }
 
 }
@@ -1183,17 +1102,16 @@ li.list-inline-item a {
 
 @media (max-width: 599px) {
     .myh-class {
-        font-size: 1rem !important;
-        line-height: 2rem !important;
+        font-size: 25px !important;
     }
 
     .myp-class {
-        font-size: 12px !important;
-        line-height: 25px !important;
+        font-size: 16px !important;
+        line-height: 40px !important;
     }
 
     .my-heading {
-        font-size: 30px !important;
+        font-size: 23px !important;
     }
 
     .myp-slider {
@@ -1231,8 +1149,55 @@ li.list-inline-item a {
     }
 }
 
+.stepFormP {
+    font-size: 16px;
+}
 
 @media (max-width: 428px) {
+    .formDivBtn {
+        font-size: 13px !important;
+        height: 38px !important;
+        font-weight: normal;
+    }
+
+    #progressbar li:after {
+        top: 19px !important;
+    }
+
+    .loginH3 {
+        font-size: 14px !important;
+    }
+
+    .circle {
+        right: 0% !important;
+        width: 6% !important;
+        height: 2rem !important;
+        top: 1px !important;
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+
+    .stepFormP {
+        font-size: 12px;
+    }
+
+    #progressbar li:before {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .firstSectionCard2btns {
+        width: 10.5rem !important;
+    }
+
+    .inputDiv2 {
+        height: 25px !important;
+    }
+
     .removePadding {
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
@@ -1264,6 +1229,8 @@ li.list-inline-item a {
 
     header.masthead {
         height: 60vh !important;
+        margin-top: 5rem;
+        padding-top: 5rem !important;
     }
 
     .affix {

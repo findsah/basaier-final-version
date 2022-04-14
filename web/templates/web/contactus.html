@@ -1,4 +1,4 @@
-{% extends 'web/navbardark.html' %}
+{% extends 'web/navbarlight.html' %}
 {% load static %}
 {% load humanize %}
 {% load i18n %}
@@ -7,6 +7,7 @@
 {% block content %}
 
     <header class="masthead text-white" style="background-image: url('{% static 'images/laptopwork.png' %}');">
+        <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -16,9 +17,9 @@
                     <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
                         الدين </p>
                     <a href="{% url 'allProjects' %}">
-                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن</button>
                     </a>
-                    <!-- <p class="myp-slider text-center">والمجتمع اسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
+                    <!-- <p class="myp-slider text-center">والمجتمع إسمي بكافة اأطيافه ، وحماية المجتمع من الغلو والتطرف
                             وعدم </p>
                         <p class="myp-slider text-center">التساهل الذي يؤدي لضياع</p> -->
                 </div>
@@ -33,14 +34,14 @@
                     <i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-envelope "></i>
                     البريد الالكتروني
                 </h6>
-                <p style="font-size: 22px;" class="contactusH6">info@bsaaer.com</p>
+                <p style="font-size: 22px;" class="contactusH6">info@basaier.org</p>
             </div>
             <div class="col-4">
                 <h6 class="contactusH6">
                     <i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-phone"></i>
                     ارقام الهواتف
                 </h6>
-                <p class="contactusH6" style="font-size: 22px;">+002011 55 069 604</p>
+                <p class="contactusH6" style="font-size: 22px;">00965- 90900055</p>
             </div>
             <div class="col-4">
                 <h6 class="contactusH6">
@@ -48,9 +49,9 @@
                     التواصل الاجتماعي
                 </h6>
                 <div style="display: flex;">
-                    <i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-vimeo"></i>
-                    <i style="font-size: 25px; color: #1385B2; margin: 0 1rem;" class="contactusH6 fa fa-twitter "></i>
-                    <i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-facebook "></i>
+                    <a href="https://www.instagram.com/basaier_kw/"><i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-instagram"></i> </a>
+                    <a href="https://twitter.com/basaier_kw"><i style="font-size: 25px; color: #1385B2; margin: 0 1rem;" class="contactusH6 fa fa-twitter "></i> </a>
+                    <a href="https://ar-ar.facebook.com/basaier.kw/"><i style="font-size: 25px; color: #1385B2;" class="contactusH6 fa fa-facebook "></i> </a>
                 </div>
             </div>
         </div>

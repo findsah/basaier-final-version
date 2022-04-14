@@ -18,7 +18,7 @@
                         <h3 class="my-heading">{{ project.get_name }}</h3>
                         <p class="myp-slider text-center">{{ project.get_detail|truncatechars:500 }}</p>
                         <a href="{% url 'project-detail' project.id %}">
-                            <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان
+                            <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن
                             </button>
                         </a>
                     </div>
@@ -31,6 +31,7 @@
     <div class="mobileCrousel">
         {% for project in projects %}
             <div class="crouselDiv">
+                <div class="overlay" style="border-radius: 14px;"></div>
                 <div class="onImageDiv">
                     <p class="crouselText text-center">
                 <span>
@@ -39,7 +40,7 @@
                         <br/>
                         {{ project.detail|truncatechars:200 }}
                     </p>
-                    <a href="{% url 'project-detail' project.id %}" class="crouselBtn">تبرع الان</a>
+                    <a href="{% url 'project-detail' project.id %}" class="crouselBtn">تبرع الآن</a>
                 </div>
                 <img src="/media/{{ project.image }}" class="crouselImg">
             </div>
@@ -52,13 +53,13 @@
             <div class="row">
                 <div class="col-6 mb-3 ">
                     <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
-                        بوابه التبرع
+                        بوابة التبرع
                     </a>
                     <img src="/static/images/sec2img1.png" class="fluidImg">
                 </div>
                 <div class="col-6 mb-3">
                     <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
-                        أنشأ مشروعك الخاص
+                        أنشئ مشروعك الخاص
                     </a>
                     <img src="/static/images/sec2img2.png" class="fluidImg">
                 </div>
@@ -67,26 +68,24 @@
             <div class="row">
                 <div class="col-6 col-md-3 mb-3">
                     <a href="{% url 'icalculator' %}" class="myp-onimgtxt text-center">
-                        أحسب ذكاتك
+                        احسب زكاتك
                     </a>
                     <img src="/static/images/sec2img6.png" class="fluidImg">
                 </div>
                 <div class="col-6 col-md-3">
                     <p class="myp-onimgtxt text-center">
-                        استفسر عن مشروعك
+                         استفسر عن مشروعك
                     </p>
                     <img src="/static/images/sec2img5.png" class="fluidImg">
                 </div>
                 <div class="col-6 col-md-3 mb-3">
-                    <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center">
-                        انضم الي
-                        ًأدقاء النش
+                    <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center"> إنضم إلى أصدقاء النشر
                     </a>
                     <img src="/static/images/sec2img4.png" class="fluidImg">
                 </div>
                 <div class="col-6 col-md-3">
                     <a href="{% url 'donatedDonation' %}" class="myp-onimgtxt text-center">
-                        أهداء تبرع
+                        إهداء تبرع
                     </a>
                     <img src="/static/images/sec2img3.png" class="fluidImg">
                 </div>
@@ -111,7 +110,7 @@
                         <p class="myp-class">
                             العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
                             والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
                             اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
                             الذي يؤدي لضياع
                         </p>
@@ -135,7 +134,7 @@
                         <p class="myp-class">
                             العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
                             والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
                             اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
                             الذي يؤدي لضياع
                         </p>
@@ -159,14 +158,14 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7">
-                    <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
+                    <h3 class="title-heading">جمعية بصائر الخيرية</h3>
                     <p class="myp">
                         العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية
-                        ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
+                        ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
                         اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
                     </p>
                     <a href="{% url 'allProjects' %}">
-                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن</button>
                     </a>
                 </div>
             </div>
@@ -235,7 +234,7 @@
 
     <section class="testimonials text-center container">
         <div class="mb-5">
-            <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
+            <h3 class="title-heading">جمعية بصائر الخيرية</h3>
         </div>
         <div class="row justify-content-evenly">
             {% for data in testimonialsData %}

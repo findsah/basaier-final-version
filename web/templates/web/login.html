@@ -11,13 +11,13 @@
             <div class="col-12 col-lg-6">
                 <div class="card">
                     <div class="row">
-                        <div class="col-sm-8" style="height: 50px; margin-top: -12px;">
-                            <h3>تبرع دون تسجيل الدخول؟</h3>
+                        <div class="col-8" style="margin-top: -12px;">
+                            <h3 class="loginH3">تبرع دون تسجيل الدخول؟</h3>
                             <p>للتبرعإت السريعة بدون تسجيل<br>
-                                ولكن لم تحفظ فى صفحتك إلشخصىه
+                                 لكنها لا تحفظ في الصفحة الشخصية
                             </p>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-4">
                             <a href="{% url 'register' %}" type="button" class="btn btn-md .mybtn" style="background-color: #1385b2; color: white;
                         width: 130px; border-radius: 10px;">
                                 دخول
@@ -28,7 +28,7 @@
                 <br>
                 <form class="contact-form" action="{% url 'login' %}" method="post">
                     {% csrf_token %}
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 3rem">
                         <div class="row">
 
                             {% if messages %}
@@ -38,26 +38,26 @@
                                 </ul>
                             {% endif %}
 
-                            <div>
-                                <h2>تسجيل دخول</h2>
-                                <p>هنإ ىكتب تفا صىل قصىره عن لوىب ىكتب ىكتب تفا صىل قصىره عن الوىب ساىت</p>
+                            <div style="text-align: center">
+                                <h2 style="font-size: 16px">تسجيل دخول</h2>
+{#                                <p>هنإ ىكتب تفا صىل قصىره عن لوىب ىكتب ىكتب تفا صىل قصىره عن الوىب ساىت</p>#}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6 phone_input d-flex justify-content-between my-3" style="height: 37px;">
+                            <div class="col-8 col-md-6 phone_input d-flex justify-content-between my-3" style="height: 33px;">
                                 {#                            <input id="btnSubmit" class="moneybtn" type="button" value="رقم الجوال">#}
                                 {#                                    <input type="number" name="email" required#}
                                 {#                                           class="txtbox moneybtn fetchPhoneNumberOfTheUser" placeholder="رقم الجوال"/>#}
-                                <input type="text" style="width: 75%;" id="fetchTheSelectedCountryCode"
+                                <input type="text" style="width: 75%; background: #fff; font-size: 12px" id="fetchTheSelectedCountryCode"
                                        class="txtbox moneybtn fetchPhoneNumberOfTheUser" name="email"
-                                       placeholder="Phone"
+                                       placeholder=" رقم الهاتف"
                                        required>
                                 <select
-                                        style="width: 25%; border: none !important; background-color: lightgray;"
+                                        style="width: 25%; border: none !important; background-color: #f4f4f4; font-size: 12px"
                                         class="input-group__input"
                                         onchange="selectCountryCode(this.value)" id="onChangeWillHitInputField"
                                         required>
-                                    <option value="">Country</option>
+                                    <option value="">---</option>
                                     <option data-countryCode="DZ" value="213">Algeria (+213)</option>
                                     <option data-countryCode="AD" value="376">Andorra (+376)</option>
                                     <option data-countryCode="AO" value="244">Angola (+244)</option>
@@ -287,12 +287,12 @@
 
                                 </select>
                             </div>
-                            <div class="col-6 my-3">
+                            <div class="col-4 col-md-6 my-3">
                                 {#                            <input id="btnSubmit" class="moneybtn" type="button" value="رقم الجوال">#}
                                 <button type="button" onclick="generateActivationCode()"
                                         id="activationCodeCreateCompaign"
                                         class="buttons2loginPage d-flex justify-content-center"
-                                        style="align-items: center; height: 37px;">طلب كود تفعيل
+                                        style="align-items: center; height: 30px; font-size: 9px">طلب كود تفعيل
                                 </button>
                             </div>
                         </div>
@@ -311,10 +311,10 @@
 
                             <div class="phone_input d-flex justify-content-between my-3">
                                 <input type="number" name="activationCode" class="txtbox moneybtn"
-                                       placeholder="Activation Code"/>
+                                       placeholder="كود التفعيل"/>
                             </div>
                             <div class="code_input d-flex justify-content-between my-3">
-                                <input class="input_field text-center" required placeholder="Password"
+                                <input class="input_field text-center" required placeholder=" كلمة المرور"
                                        type="password"
                                        id="txtUsername" name="password">
                             </div>

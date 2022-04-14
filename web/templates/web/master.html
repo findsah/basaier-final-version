@@ -340,7 +340,7 @@
                     </a>
 
 
-                    <a href="https://www.facebook.com/basaier.organaization">
+                    <a href="https://ar-ar.facebook.com/basaier.kw/">
                         <span class="fa fa-facebook"
                               style="color: white; border: 1px solid white; padding: 2% 3%; border-radius: 50%;"></span>
                     </a>
@@ -372,15 +372,15 @@
             <li>
                 {% get_current_language as LANGUAGE_CODE %}
                 {% if LANGUAGE_CODE == "ar" %}
-                    <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                    <a href="{% url 'testimonials' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
                             class="fa fa-angle-down"></i></a>
                 {% else %}
-                    <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "About Us" %}<i
+                    <a href="{% url 'testimonials' %}" class="has-submenu">{% trans "About Us" %}<i
                             class="fa fa-angle-down"></i></a>
                 {% endif %}
                 <ul class="dropdown">
                     <div><h5 id="aboutCharity"><a
-                            href="{% url 'aboutUs' %}">  {% trans "About Basaier Chairty >>" %} </a>
+                            href="{% url 'testimonials' %}">  {% trans "About Basaier Chairty >>" %} </a>
                     </h5></div>
                     <ol>
                         {% get_current_language as LANGUAGE_CODE %}
@@ -650,10 +650,10 @@
                     <li>
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "ar" %}
-                            <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
+                            <a href="{% url 'testimonials' %}" class="has-submenu">{% trans "عن الجمعية" %}<i
                                     class="fa fa-angle-down"></i></a>
                         {% else %}
-                            <a href="{% url 'aboutUs' %}" class="has-submenu">{% trans "About Us" %}<i
+                            <a href="{% url 'testimonials' %}" class="has-submenu">{% trans "About Us" %}<i
                                     class="fa fa-angle-down"></i></a>
                         {% endif %}
                         <ul class="dropdown">
@@ -1551,7 +1551,7 @@
                 </div>
                 <div id="linksFooter">
                     <div style="padding-bottom: 15px;">
-                        <a id="forBlackColor" href="https://www.facebook.com/basaier.organaization" target="_blank">
+                        <a id="forBlackColor" href="https://ar-ar.facebook.com/basaier.kw/" target="_blank">
                         <span class=""><i class="fa fa-facebook-square fa-1x footerFontSizeReduce"></i>
                         </span> </a>
                         <a id="forBlackColor" href="https://twitter.com/basaier_kw" target="_blank"><i
@@ -1584,7 +1584,7 @@
                     <div><a href="{% url 'index' %}" class="text-left pb-5 footerFontSizeReduce"
                             id="whiteColor">{% trans "Home" %}</a></div>
                     <div>
-                        <a href="{% url 'aboutUs' %}" class="text-left pb-5 footerFontSizeReduce"
+                        <a href="{% url 'testimonials' %}" class="text-left pb-5 footerFontSizeReduce"
                            id="whiteColor">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% if LANGUAGE_CODE == "ar" %}

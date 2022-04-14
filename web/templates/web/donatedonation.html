@@ -7,15 +7,16 @@
 {% block content %}
 
     <div class="container" style="margin-top: 10rem;">
-        <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
+        <h3 class="pathlink">الرئيسية / إهداء تبرع</h3>
         <div class="title">
-            <h2 style="color: #1385B2; font-size: 37px;">اهداء تبرع</h2>
-            <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصه بصائر</p>
+            <h2 style="color: #1385B2; font-size: 37px;">إهداء تبرع</h2>
+            <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصة بصائر</p>
         </div>
         <div class="firstSection">
             <div class="firstSectionTitle">
-                <span style="color: #858585">المرحله الاولي -</span>
-                <span style="color: #1385B2; font-weight: 500;">اختيار المشروع </span>
+                <span style="color: #858585">المرحلة الأولى -</span>
+                <span style="color: #1385B2; font-weight: 500;">إختيار المشروع </span>
+
             </div>
             <div class="row firstSectionCard">
                 {% for project in projects %}
@@ -57,10 +58,17 @@
         </div>
         <div class="my-4">
             <div class="firstSectionTitle">
-                <span style="color: #858585"> اختيار النموذج-</span>
-                <span style="color: #1385B2">المرحله الثانيه</span>
+                <span style="color: #858585"> المرحلة الثانية -</span>
+                <span style="color: #1385B2">إختيار النموذج</span>
             </div>
-            <div class="row" id="whereWeWillScrollWindow">
+            <div class="giftImgDiv">
+                <img class="giftImg" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
+                <img class="giftImg" src="{% static 'images/imgseries2.png' %}" alt="imgseries">
+                <img class="giftImg" src="{% static 'images/imgseries3.png' %}" alt="imgseries">
+                <img class="giftImg" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
+            </div>
+               
+            {% comment %} <div class="row" id="whereWeWillScrollWindow">
                 <div class="col-12 col-md-3 text-center mb-3">
                     <img style="width: 100%" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
                 </div>
@@ -73,16 +81,16 @@
                 <div class="col-12 col-md-3 text-center mb-3">
                     <img style="width: 100%" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
         <div class="my-5">
             <div class="firstSectionTitle">
-                <span style="color: #858585"> البيانات-</span>
-                <span style="color: #1385B2">المرحله الثالثه</span>
+                <span style="color: #858585">المرحلة الثالثة -</span>
+                <span style="color: #1385B2">البيانات</span>
             </div>
             <div class="formDiv">
                 <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>اسم المرسل
+                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>إسم المرسل
                 </label>
                 <input class="formDivInput" type="text" id="senderNameDonatedDonationPage">
             </div>

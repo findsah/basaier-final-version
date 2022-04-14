@@ -10,7 +10,7 @@ class ProjectFilter(django_filters.FilterSet):
     # total_amount__lte = django_filters.NumberFilter(name='total_amount', lookup_expr='total_amount__lte')
     # total_amount__gte = django_filters.NumberFilter(name='total_amount', lookup_expr='total_amount__gte')
 
-    CHOICES = [('True', 'نعم'), ('False', 'ل')]
+    CHOICES = [('True', 'نعم'), ('False', 'لا')]
     isZakat = django_filters.CharFilter(label='Zakat', widget=forms.RadioSelect(choices=CHOICES))
 
     class Meta:

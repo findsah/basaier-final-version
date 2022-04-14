@@ -17,17 +17,17 @@
 
     <div class="container" style="margin-top: 10rem;">
 
-        <h3 class="pathlink">الرئيسيه / انضم لاصدقاء النش</h3>
+        <h3 class="pathlink">الرئيسية / انضم لاصدقاء النش</h3>
         <div class="title">
             <h2 style="color: #1385B2; font-size: 37px;">انضم لاصدقاء النش</h2>
-            <p style="color: #858585; font-size: 15px;">يمكنك تنضم لاصدقاء النشر من الان</p>
+{#            <p style="color: #858585; font-size: 15px;">يمكنك تنضم لاصدقاء النشر من الان</p>#}
         </div>
         <form action="{% url 'joinchat' %}" method="post">
             {% csrf_token %}
             <div class="mt-5" style="margin-bottom: 10rem;">
                 <div class="formDiv">
                     <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                        <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>الدوله
+                        <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>الدولة
                     </label>
                     <select name="country" id="country" class="formDivInput">
                         <option value="Afganistan">Afghanistan</option>
@@ -285,12 +285,12 @@
                     <input class="formDivInput" type="number" name="number">
                 </div>
                 <div class="formDiv">
-                    <p style="color: #858585; font-size: 15px;">هل ترغب في الانضمام الي مجموعه النشر في الواتساب؟</p>
+                    <p style="color: #858585; font-size: 15px;">ماهي المنصات التي ترغب النشرفيها؟</p>
                     <div style="margin-top: 2rem;">
                         <input type="radio" id="correct" name="contactChoice" value="True">
                         <label for="correct" style="margin-left: 3rem;">نعم</label>
                         <input type="radio" id="wrong" name="contactChoice" value="False">
-                        <label for="wrong">ل</label>
+                        <label for="wrong">لا</label>
                     </div>
                 </div>
                 <div class="formDiv">
@@ -300,7 +300,7 @@
                             <i style="font-size: 25px; color: #1385B2;" class="fa fa-whatsapp"></i> واتساب
                         </div>
                         <div class="col-2 mysocial-icons">
-                            <i style="font-size: 25px; color: #1385B2;" class="fa fa-twitter "></i> تويت
+                            <i style="font-size: 25px; color: #1385B2;" class="fa fa-twitter "></i> تويتر
                         </div>
                         <div class="col-2 mysocial-icons">
                             <i style="font-size: 25px; color: #1385B2;" class="fa fa-snapchat"></i> سنابشات

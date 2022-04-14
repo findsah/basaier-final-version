@@ -89,8 +89,9 @@ select.list-dt:focus {
 #progressbar {
     padding: 0;
     margin-bottom: 30px;
-    overflow: hidden;
-    color: lightgrey
+    white-space: nowrap;
+    overflow-x: scroll;
+    color: lightgrey;
 }
 
 #progressbar .active {
@@ -101,7 +102,7 @@ select.list-dt:focus {
     list-style-type: none;
     font-size: 12px;
     float: left;
-    position: relative
+    position: relative;
 }
 
 #progressbar #first:before {

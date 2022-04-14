@@ -8,28 +8,28 @@
 {% block content %}
     <div class="container-fluid" style="display: flex;margin-top: 10rem;">
         <div class="container mainProjects">
-            <h3 class="pathlink">الرئيسيه / اهداء تبرع</h3>
+            <h3 class="pathlink">الرئيسية / المشاريع</h3>
             <div class="title">
-                <h2 style="color: #1385B2; font-size: 37px;">المشاريع الموسميه</h2>
-                <p style="color: #858585; font-size: 15px;">
-                    يمكنك التعرف علي المشاريع الموسميه
-                </p>
+                <h2 style="color: #1385B2; font-size: 37px;">المشاريع</h2>
+{#                <p style="color: #858585; font-size: 15px;">#}
+{#                    يمكنك التعرف علي المشاريع الموسميه#}
+{#                </p>#}
             </div>
 
             <div class="hideHiddenDiv">
                 <form action="{% url 'search_project' %}" method="post">
                     {% csrf_token %}
-                    <h5 style="font-weight: normal;">ابحث عن مشروع موسمي</h5>
+                    <h5 style="font-weight: normal; font-size: 14px;">البحث حسب اسم المشروع</h5>
                     <div class="sections"
                          style="border-bottom: 0;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;">
-                        <div class="inputDiv" style="margin: 0; width: 75%;">
-                            {% render_field myFilter.form.name placeholder="Name" %}
+                        <div class="inputDiv" style="margin: 0; width: 70%; background: #fff; height: 28px">
+                            {% render_field myFilter.form.name placeholder="إسم " %}
                         </div>
                         <a data-bs-toggle="collapse"
-                           style="text-decoration: none !important;"
+                           style="text-decoration: none !important; font-size: 14px"
                            href="#collapseExample"
                            role="button"
                            aria-expanded="false"
@@ -40,39 +40,42 @@
                     <div class="collapse" id="collapseExample">
                         <div>
                             <div class="sections" style="border-bottom: 0;">
-                                <h5 style="font-weight: normal;">ابحث عن مشروع موسمي</h5>
+                                <h5 style="font-weight: normal; font-size: 14px;">البحث حسب اسم المشروع</h5>
                                 {#                    <form action="{% url 'searchproject' %}" method="POST">#}
-                                <div class="inputDiv" style="margin: 0; width: 100%;">
-                                    {% render_field myFilter.form.name placeholder="Name" %}
+                                <div class="inputDiv" style="margin: 0; width: 100%; height: 28px">
+                                    {% render_field myFilter.form.name placeholder="إسم " %}
                                 </div>
                             </div>
                             <div class="sections" style="border-bottom: 0;">
-                                <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
+                                <h5 style="font-weight: normal; font-size: 14px;">البحث حسب الدولة</h5>
                                 {{ myFilter.form.location|add_class:'formDivInput inputDiv' }}
                             </div>
-                            <div class="sections" style="border-bottom: 0;">
+                            <div class="sections inputOption" style="border-bottom: 0;">
                                 {{ myFilter.form.category|add_class:'formDivInput inputDiv' }}
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="sections" style="border-bottom: 0;">
-                                    <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
+                                    <h5 style="font-weight: normal;">البحث حسب التكلفة</h5>
 
-                                    <b>KD 10</b> <input id="ex7" type="text" class="span2" value="" data-slider-min="20"
+                                    <span>20</span> <input id="seasonalprojects2Slider2" type="text" value=""
+                                                        data-slider-min="20"
                                                         data-slider-max="1000000" data-slider-step="5"
-                                                        data-slider-value="[400000,500000]"/> <b>KD 1000000</b>
+                                                        data-slider-value="[100000,200000]"/> <span>1000000</span>
                                     {#                        {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
-                                </div>
+                              
+  </div>
+
                                 <div class="sections"
                                      style="border-bottom: none;
                                         border-bottom: 0;">
-                                    <h5 style="font-weight: normal;">الذكاة</h5>
+                                    <h5 style="font-weight: normal; font-size: 14px;">زكاة</h5>
                                     {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <button type="submit"
                                         class="btnOfQuickDonate"
-                                        style="background-color: #00B4DB;">Search
+                                        style="background-color: #00B4DB;">البحث
                                 </button>
                             </div>
                         </div>
@@ -148,34 +151,34 @@
                 {% csrf_token %}
                 <div class="sidefilters">
                     <div class="sections">
-                        <h5 style="font-weight: normal;">ابحث عن مشروع موسمي</h5>
+                        <h5 style="font-weight: normal;">البحث حسب اسم المشروع</h5>
                         {#                    <form action="{% url 'searchproject' %}" method="POST">#}
                         {#                {{ myFilter.form.name|add_class:'formDivInput inputDiv' }}#}
-                        {% render_field myFilter.form.name class="formDivInput inputDiv justify-content-right" placeholder="Name" %}
+                        {% render_field myFilter.form.name class="formDivInput inputDiv justify-content-right" placeholder="إسم " %}
                     </div>
                     <div class="sections">
-                        <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
+                        <h5 style="font-weight: normal;">البحث حسب الدولة</h5>
                         {{ myFilter.form.location|add_class:'formDivInput inputDiv' }}
                     </div>
                     <div class="sections">
-                        <h5 style="font-weight: normal;">تصفيه حسب الدوله</h5>
+                        <h5 style="font-weight: normal;">البحث حسب التصنيف</h5>
                         {{ myFilter.form.category|add_class:'formDivInput inputDiv' }}
                     </div>
                     <div class="sections" style="z-index: 2;">
-                        <h5 style="font-weight: normal;">تصفيه حسب السعر</h5>
+                        <h5 style="font-weight: normal;">البحث حسب التكلفة</h5>
 
-                        <b>KD 10</b> <input id="ex6" type="text" class="span2" value="" data-slider-min="20"
+                        <span>10</span> <input id="seasonalprojects2Slider" type="text" value="" data-slider-min="20"
                                             data-slider-max="1000000" data-slider-step="5"
-                                            data-slider-value="[400000,500000]"/> <b>KD 1000000</b>
+                                            data-slider-value="[400000,800000]"/> <span>1000000</span>
                         {#                {% render_field myFilter.form.total_amount class="formDivInput inputDiv" placeholder="Amount" %}#}
                     </div>
                     <div class="sections" style="border-bottom: none;">
-                        <h5 style="font-weight: normal;">الذكاة</h5>
-                        {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled" %}
+                        <h5 style="font-weight: normal;">زكاة</h5>
+                        {% render_field myFilter.form.isZakat class="d-flex justify-content-around list-unstyled p-0" %}
                         <div style="display: flex; justify-content: center; align-items: center;">
                             <button type="submit"
                                     class="btnOfQuickDonate"
-                                    style="background-color: #00B4DB;">Search
+                                    style="background-color: #1488B5;">البحث
                             </button>
                         </div>
                     </div>
@@ -183,5 +186,12 @@
             </form>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Without JQuery
+        var slider = new Slider('#seasonalprojects2Slider', {});
+        // Without JQuery
+        var slider = new Slider('#seasonalprojects2Slider2', {});
+    </script>
 
 {% endblock %}

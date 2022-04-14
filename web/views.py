@@ -720,6 +720,8 @@ class ProjectDetail(TemplateView):
             is_closed=False, is_hidden=False).order_by('-id')[:6]
         print("PROJECTS ID: 721:", id)
         projects = Project.objects.filter(pk=id)
+        projectName = Project.objects.get(pk=id)
+        projectName1 = projectName.name
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         multipleImages = PostImage.objects.filter(post=id)
         for data in multipleImages:
@@ -750,6 +752,7 @@ class ProjectDetail(TemplateView):
                        'project': project,
                        'projects': projects,
                        'pdfFiles': pdfFiles,
+                       'projectName1': projectName1,
                        'multipleImages': multipleImages,
                        'sponsorCategories': sponsorCategories,
                        'cart_projects': cart_projects,
@@ -1359,10 +1362,11 @@ def projectsOfParticularCategory(request, category_id):
     categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     all_categories = Category.objects.filter(inMenu=True).order_by('-id')
-    categoryName = Category.objects.filter(pk=categoryId)
-    for data in categoryName:
-        categoryName1 = data.name
+    categoryName = Category.objects.get(pk=categoryId)
+    # for data in categoryName:
+    categoryName1 = categoryName.name
     charity_categories = all_categories.filter(parent=None)
+
     categoryOfProjects = Project.objects.filter(
         category=categoryId, is_hidden=False, is_compaign=False).order_by('-id')
     # print(categoryOfProjects)
@@ -1373,6 +1377,7 @@ def projectsOfParticularCategory(request, category_id):
     #             print("PROJECTS OF THAT CATEGORY: ", data['category__id'])
     #             print("PROJECTS OF THAT CATEGORY: ", data['id'])
 
+    # topImagess = topImages.objects.all().order_by('-id')[:1]
     latest_projects = Project.objects.filter(
         is_closed=False, is_hidden=False).order_by('-id')[:6]
     cart_projects, projects_selected = get_cart(request)
@@ -2255,8 +2260,10 @@ class ChangePasswordView(TemplateView):
 def aboutUs(request):
     charity_categories = Category.objects.filter(
         inMenu=True, parent=None).order_by('-id')
+    testimonialsData = testimonials.objects.all().order_by('-id')[:3]
     return render(request, 'web/aboutus.html', {
         'charity_categories': charity_categories,
+        'testimonialsData': testimonialsData,
     })
 
 
@@ -2463,42 +2470,6 @@ def volunteerAndSpread(request):
 
 def joinfieldvolunteer(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        civilNumber = request.POST.get('civilNumber')
-        dateOfBirth = request.POST.get('dateOfBirth')
-        sex = request.POST.get('sex')
-        country = request.POST.get('country')
-        phoneNumber1 = request.POST.get('phoneNumber1')
-        emergencyPhoneNumber = request.POST.get('emergencyPhoneNumber')
-        relativeRelation = request.POST.get('relativeRelation')
-        email = request.POST.get('email')
-        qualification = request.POST.get('qualification')
-        specialization = request.POST.get('specialization')
-        employer = request.POST.get('employer')
-        currentPosition = request.POST.get('currentPosition')
-        preferredVolunteeringField = request.POST.get('preferredVolunteeringField')
-        interest = request.POST.get('interest')
-        # try:
-        volunteer.objects.create(
-            name=name,
-            civilNumber=civilNumber,
-            dateOfBirth=dateOfBirth,
-            sex=sex,
-            country=country,
-            phoneNumber1=phoneNumber1,
-            emergencyPhoneNumber=emergencyPhoneNumber,
-            relativeRelation=relativeRelation,
-            email=email,
-            qualification=qualification,
-            specialization=specialization,
-            employer=employer,
-            currentPosition=currentPosition,
-            preferredVolunteeringField=preferredVolunteeringField,
-            interest=interest
-        )
-        # except Exception as e:
-        #     pass
-        messages.success(request, "Welcome, We Appreciate Your Participation...!")
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         return render(request, 'web/joinfieldvolunteer.html', {

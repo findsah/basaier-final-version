@@ -941,7 +941,7 @@
                                         <select id="SearchBox" style="text-transform: uppercase;"
                                                 class="col-xs-12  text-left select2-hidden-accessible form-control"
                                                 onchange="GetZakkatStock()" tabindex="-1" aria-hidden="true">
-                                            <option value="0" selected="selected" class="form-control">Search with
+                                            <option value="0" selected="selected" class="form-control">البحث with
                                                 company name or code
                                             </option>
                                             <option text="AHCS أعمال                                                                                                                                                                                                                                                                                                        - بورصة قطر"
@@ -1641,7 +1641,7 @@
                                 data: {Type: StockType},
                                 success: function (data) {
                                     var options = '';
-                                    options += '<option value="0" selected="selected">Search with company name or code</option>'
+                                    options += '<option value="0" selected="selected">البحث with company name or code</option>'
                                     for (var i = 0; i < data.Zakat.length; i++) {
                                         if (data.Zakat[i]["CompanyCode"] == null) {
                                             data.Zakat[i]["CompanyCode"] = "---";
