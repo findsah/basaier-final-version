@@ -22,10 +22,8 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/toSendSMS.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/toSendSMS.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +149,8 @@
       <workItem from="1649747873456" duration="21233000" />
       <workItem from="1649789594640" duration="16154000" />
       <workItem from="1649831687983" duration="3846000" />
-      <workItem from="1649933963812" duration="16095000" />
+      <workItem from="1649933963812" duration="16166000" />
+      <workItem from="1649953910301" duration="160000" />
     </task>
     <servers />
   </component>
@@ -195,10 +194,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1649268876192" />
-    <state x="89" y="76" width="825" height="795" key="find.popup" timestamp="1649952048945">
+    <state x="89" y="76" width="825" height="795" key="find.popup" timestamp="1649954008145">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="89" y="76" width="825" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649952048945" />
+    <state x="89" y="76" width="825" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649954008145" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1649942892514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
