@@ -289,9 +289,9 @@
 </style>
 
 </head>
-
+{% comment %} box-shadow: -39px -6px 17px -2px black; {% endcomment %}
 <nav class="navbar navbar-dark fixed-top navbar-expand-lg"
-     style=" color: black !important; box-shadow: -39px -6px 17px -2px black;">
+     style=" color: black !important; ">
     <div class="container">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars mfa-white"></span>
@@ -299,16 +299,16 @@
             <div id="main">
             <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars spanBorder" onclick="openNav()"></span></a>
             <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'images/logo2.png' %}" alt="">
+            <img src="{% static 'images/bgfooter.png' %}" alt="logo" style="height: 6rem">
             </a>
             </div>
             <a class="navbar-brand navbarImg" href="{% url 'index' %}">
-                <img src="{% static 'images/logo2.png' %}" alt="">
+                <img src="{% static 'images/logo2.png' %}" alt="logo" class="imgHover">
                 </a>
             <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
             <li class="nav-link">
             <a href="#" class="btn btn-circle my-social-btn">
-            <i style="font-size: 25px;" class="fa fa-search searchIcon"></i>
+            <i style="font-size: 25px; color: #fff" class="fa fa-search searchIcon"></i>
             </a>
             <div class="searchDiv">
             <i style="font-size: 20px;" class="fa fa-search"></i>
@@ -317,12 +317,12 @@
             </li>
             <li class="nav-link">
             <a href="{% url 'login' %}" class="btn btn-circle my-social-btn ">
-            <i style="font-size: 25px;" class="fa fa-user"></i>
+            <i style="font-size: 25px; color: #fff" class="fa fa-user"></i>
             </a>
             </li>
             <li class="nav-link">
             <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn ">
-            <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+            <i style="font-size: 25px; color: #fff" class="fa fa-shopping-cart"></i>
             </a>
             </li>
             </ul>
@@ -336,12 +336,12 @@
                 </div>
                 <ul class="mob-ul p-0">
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
                     </li>
                     <li class="nav-item" style="padding: 0.5rem 1rem;">
                     <div class="dropdown">
                         <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                           aria-expanded="false" style="text-decoration: none;">بوابة التبرع
+                           aria-expanded="false" style="text-decoration: none;">المشاريع
                         </a>
                         <ul class="dropdown-menu">
                             {% for category in charity_categories %}
@@ -399,10 +399,10 @@
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'news' %}">أخبار ورحلات</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
+                        <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
@@ -417,13 +417,13 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarResponsive">
             <ul class="desktop-ul">
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسية</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسيه</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
                        data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
-                        بوابة التبرع
+                        المشاريع
                     </a>
 
                     <ul class="dropdown-menu">
@@ -485,10 +485,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'news' %}">أخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'news' %}"> اخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعادة</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعاده</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
@@ -523,55 +523,49 @@
 </nav>
 
 
-{# COLLAPSED SIDEPANEL: #}
 
-<div style="direction: rtl !important;">
+{# COLLAPSED SIDEPANEL: #}
+<div style="direction: rtl !important; transition: transform .5s ease;">
     <div id="mySidepanel" class="sidepanel affix"
-         style="border-top-left-radius: 20px; border-bottom-left-radius: 20px; position: absolute; height: 614px; direction: rtl !important;">
-        <div id="" role="tabpanel" class="col-xs-12 padding-none container">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
-                <h5 style="color: black;">
+         style="display: none; border-top-left-radius: 20px; width: 445px; height: 550px; border-bottom-left-radius: 20px; position: fixed; direction: rtl !important;">
+        <div role="tabpanel" class="col-xs-12 padding-none container" >
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
+                <h5 style="color: black; margin-top: 5%">
                     اختر نوع التبرع
                 </h5>
-            <div id="FastDonationTabss" role="tabpanel" class="col-xs-12 padding-none"
-                 style="padding: 10px;">
+            <div id="FastDonationTabss" role="tabpanel" class="col-xs-12">
                 <!-- Nav tabs -->
                 <div id="tab" class="btn-group d-flex justify-content-between" data-toggle="buttons">
-                    <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center" data-toggle="tab"
-                       id="liFastDonationCampaigns1">
-                        <input class="radioBtn" type="radio" name="donate" value="donateprice1" /><span>التبرع لمرة واحدة</span>
+                    <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center"
+                       data-toggle="tab" id="liFastDonationCampaigns1">
+                        <input class="radioBtn" type="radio" name="donate" value="donateprice1"/>
+                        <span>تبرع لمره واحده</span>
                     </a>
-                    <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center" data-toggle="tab"
-                       id="liFastDonationSadaka1">
-                        <input class="radioBtn"  type="radio" name="donate" value="donateprice2" /><span>التبرع الدوري</span>
+                    <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center"
+                       data-toggle="tab" id="liFastDonationSadaka1">
+                        <input class="radioBtn" type="radio" name="donate" value="donateprice2"/>
+                        <span>التبرع الدوري</span>
                     </a>
                 </div>
-
-                <br><br>
-
                 <!-- Tab panes -->
-                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom">
-                    <div>
-                        <h3 style="color: black;">اختر المبلغ</h3>
-                    </div>
+                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom" >
+                        <h5 style="color: black;">
+                            اختر المبلغ
+                        </h5>
                     <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20 active"
                          id="FastDonationTabCampaigns1">
                         <div>
-
                             <form id="forQuickDonateProjectForm">
                                 <div class="col-xs-12 padding-15-v2 text-center-xs divBoxes">
                                     <input type="number" min="0" class="text-center"
-                                           id="txtTotalAmountFastAccountCampaigns1"
-                                           name="amount[]"
+                                           id="txtTotalAmountFastAccountCampaigns1" name="amount[]"
                                            onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                                           placeholder="المبلغ"
+                                           placeholder="Cost"
                                            style="width: 80px; height: 53px; border-radius: 10px; border: 1px solid lightgray">
-
                                     <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
                                             onclick="FastDonationAmountSelectCampaigns(500,'1')" type="button">
                                         500
                                     </button>
-
                                     <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
                                             onclick="FastDonationAmountSelectCampaigns(300,'1')" type="button">
                                         300
@@ -581,18 +575,21 @@
                                         100
                                     </button>
                                     <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
-                                            onclick="FastDonationAmountSelectCampaigns(50,'1')" type="button">50
+                                            onclick="FastDonationAmountSelectCampaigns(50,'1')" type="button">
+                                        50
                                     </button>
-                                </div><!-- /.col-lg-8 -->
-                                <div id="FastGeneralDonationAccountDivMain"
-                                     class="col-xs-12 padding-none padding-15-v">
+                                </div>
+                                <!-- /.col-lg-8 -->
+                                <div id="FastGeneralDonationAccountDivMain" class="col-xs-12 padding-none padding-15-v">
                                     {#                                    <div class="col-xs-12 padding-15-v2">#}
                                     <select class="col-xs-12 form-control rounded" id="projectCategory"
                                             name="project_category_id[]" onchange="onchangehit(this.value)">
-                                        <option></option>
+                                        <option>
+                                        </option>
                                         {% for data in charity_categories %}
-                                            <option value="{{ data.pk }}"
-                                                    name="project_category_id[]">{{ data.name }}</option>
+                                            <option value="{{ data.pk }}" name="project_category_id[]">
+                                                {{ data.name }}
+                                            </option>
                                         {% endfor %}
                                     </select>
                                     {#                                    </div>#}
@@ -601,18 +598,17 @@
                                             class="col-xs-12 mt-3 form-control rounded">
                                     </select>
                                     {#                                    </div>#}
-
-
                                     <!-- /input-group -->
                                     <div class="container">
                                         <div class="col-xs-12 margin-10-bottom d-flex justify-content-between my-3">
-                                            <input type="submit" class="btnOfQuickDonate" value="التبرع"
+                                            <input type="submit" class="btnOfQuickDonate" value="يتبرع"
                                                    style="background-color: #00B4DB">
-                                            <input type="submit" class="btnOfQuickDonate" value=" أضف لسلة التبرعات"
+                                            <input type="submit" class="btnOfQuickDonate" value="أضف الي العربه"
                                                    style="background-color: #1BB1B0">
                                         </div>
                                         <div class="bottomText">
-                                            <span>*</span> سيتم تخصيص هذا التبرع للكفالات والمشاريع والاكثر احتياجا للدعم
+                                            <span>*</span> سيتم تخصيص هذا التبرع للكفالات والمشاريع والاكثر احتياجا
+                                            للدعم
                                         </div>
                                     </div>
                                 </div>
@@ -621,9 +617,7 @@
                             {#                            </form>#}
                         </div>
                     </div>
-
-                    <div role="tabpanel" class="tab-pane col-xs-12 padding-none"
-                         id="FastDonationTabSadaka1">
+                    <div role="tabpanel" class="tab-pane col-xs-12 padding-none" id="FastDonationTabSadaka1">
                         <div>
                             <div id="FastDonationAccountDivMain" class="col-xs-12 padding-none">
                                 <div class="col-xs-12 padding-none">
@@ -634,14 +628,15 @@
                                                 {% for project in projectsSadaqah %}
                                                     {% if forloop.first %}
                                                         {#                                            {% if project.is_sadaqah %}#}
-                                                        <h3>{{ project.name }}</h3>
-                                                        <input type="hidden" id="projectId"
-                                                               value="{{ project.id }}">
-
+                                                        <h3>
+                                                            {{ project.name }}
+                                                        </h3>
+                                                        <input type="hidden" id="projectId" value="{{ project.id }}">
                                                         {#                                                <input type="hidden" value="{{ project.name }}">#}
                                                         {#                                            {% endif %}#}
                                                     {% endif %}
                                                 {% endfor %}
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -666,74 +661,60 @@
                                                 500
                                             </button>
                                         </div>
-                                    </div><!-- /.col-lg-8 -->
+                                    </div>
+                                    <!-- /.col-lg-8 -->
                                     <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12 col-sm-12 padding-none-left float-left pb-3">
                                         <div class="col-xs-12 padding-none">
                                             <div class="col-xs-12 padding-none">
                                                 <input type="number" min="0"
                                                        class="col-xs-12 form-control text-center english-font padding-none"
-                                                       id="txtTotalAmountFastAccountSadaqa1"
-                                                       name="amount[]"
+                                                       id="txtTotalAmountFastAccountSadaqa1" name="amount[]"
                                                        onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
                                                        placeholder="{{ getMyCurrency }}">
                                             </div>
-                                        </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-4 -->
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                    <!-- /.col-lg-4 -->
                                 </div>
-
                                 <div class="col-xs-12 margin-10-bottom">
                                     <input type="submit" class="btn btn-block"
-                                           value="{% get_current_language as LANGUAGE_CODE %}
-                            {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "يتبرع" %}
-                            {% else %}
-                                {% trans "Donate" %}
-                            {% endif %}">
+                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "يتبرع" %} {% else %} {% trans "Donate" %} {% endif %}">
                                 </div>
                                 </form>
-
-                                <div class="col-xs-12 padding-less"
-                                     style="padding-top: 25px; padding-bottom: 17px;">
+                                <div class="col-xs-12 padding-less" style="padding-top: 25px; padding-bottom: 17px;">
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                     <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20"
                          id="FastDonationTabSponsorships1">
-
                         <div>
                             <div id="FastDonationSpoonsorshipDivMain">
                                 <div class="col-xs-12 padding-less padding-10-v">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less ">
                                         <select class="form-control col-xs-12 rounded-8"
-                                                id="categorySponsorShipFastDonation"
-                                                name="project_category_id[]"
+                                                id="categorySponsorShipFastDonation" name="project_category_id[]"
                                                 onchange="onHitSponsorFunction(this.value)">
-                                            <option></option>
+                                            <option>
+                                            </option>
                                             {% for data in sponsorCategories %}
-                                                <option value="{{ data.pk }}">{{ data.category }}</option>
+                                                <option value="{{ data.pk }}">
+                                                    {{ data.category }}
+                                                </option>
                                             {% endfor %}
-
                                         </select>
                                     </div>
                                     {#                                        <form id="sponsorshipProjectsFromQuickDonate">#}
                                     {#                                            {% csrf_token %}#}
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less">
                                         <select class="form-control col-xs-12 rounded-8"
-                                                id="showProjectSponsorShipFastDonation"
-                                                name="project_id[]">
+                                                id="showProjectSponsorShipFastDonation" name="project_id[]">
                                         </select>
                                     </div>
                                     <input onclick="pageRedirect()" type="submit"
-                                           value="{% get_current_language as LANGUAGE_CODE %}
-                            {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "كفيل" %}
-                            {% else %}
-                                {% trans "Sponsor" %}
-                            {% endif %}"
+                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "كفيل" %} {% else %} {% trans "Sponsor" %} {% endif %}"
                                            id="project_id"
                                            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group margin-0-bottom padding-less text-center btn btn-block sponsorProjectId">
                                     {#                                        </form>#}
@@ -741,10 +722,8 @@
                                     {#                                        <a href="{% url 'createTokenView' project.id %}" class="text-center btn btn-block">{% trans "Sponsor" %}</a>#}
                                     {#                                    </span>#}
                                 </div>
-
                             </div>
-                            <div class="col-xs-12 padding-less"
-                                 style="padding-top: 25px; padding-bottom: 17px;">
+                            <div class="col-xs-12 padding-less" style="padding-top: 25px; padding-bottom: 17px;">
                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
                             </div>
                         </div>
@@ -753,28 +732,27 @@
             </div>
         </div>
     </div>
-    <div style="position: relative; z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;" class="affix">
-            <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
-                <div class="text-center" style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex;
-                justify-content: center;
-                align-items: center;">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == "ar" %}
-                        {% trans "تبرع بسرعة" %}
-                    {% else %}
-                        {% trans "تبرع سريع" %}
-                    {% endif %}
-                </div>
-                <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex" style="direction: rtl !important;width: 47% !important; height: 100% !important;">
-                    <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>
-                    <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>
-                </div>
+    <div style="z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;"
+         class="affix">
+        <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
+            <div class="text-center"
+                 style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == "ar" %}
+                    {% trans "تبرع بسرعة" %}
+                {% else %}
+                    {% trans "Quick Donate" %}
+                {% endif %}
             </div>
+            <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"
+                 style="direction: rtl !important;width: 47% !important; height: 100% !important;">
+                <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>
+                <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>
+            </div>
+        </div>
     </div>
 </div>
-{#    <div style="z-index: 1000 !important; margin-top: 10%;" class="affix">#}
-{#        <button class="openbtn" onclick="openNav()">☰ Quick Donate <span class="fa fa-heartbeat"></span></button>#}
-{#    </div>#}
+{# END COLLAPSED SIDEPANEL: #}
 
 
 <body>
@@ -787,16 +765,17 @@
 
 
 <section class="testimonials text-center" id="marketplace"
-         style="background-image: url('{% static '/static/images/bgstyledgray.png' %}');">
+         style="background-image: url('{% static 'images/bgstyledgray.png' %}');">
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto ">
                 <h5 style="margin-bottom: 2rem; font-size: 18px;">نؤمن في مؤسسة بصائر
-                نؤمن في مؤسسة بصائر الخيرية بأهمية التواصل الفعال، ونتطلع إلى مشاركتكم وتفاعلكم
-                </h5>
+                    الخيريه بأهمية التواصل
+                    الفعال، ونتطلع
+                    إلى مشاركتكم وتفاعلكم</h5>
 
                 <a href="{% url 'allProjects' %}">
-                    <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن</button>
+                    <button class="mybg-eventBtn mybgHoverWhite" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
                 </a>
             </div>
         </div>
@@ -820,13 +799,13 @@
     </a>
     </li>
     <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">بوابة التبرع</a>
+    <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
     </li>
     <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">قصص السعادة</a>
+    <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
     </li>
     <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">أخبار ورحلات</a>
+    <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
     </li>
     <li style="margin: 1rem 0;">
     <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
@@ -841,22 +820,22 @@
                 </a>
             </li>
             <li class="list-inline-item mr-3">
-                <a href="https://www.youtube.com/channel/UCz3IVSerUyIMM4F1Jd0FGUw">
+                <a href="#">
                     <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="https://www.instagram.com/basaier_kw/">
+                <a href="#">
                     <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
                 </a>
             </li>
             <li class="list-inline-item mr-3">
-                <a href="https://twitter.com/basaier_kw">
+                <a href="#">
                     <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="https://ar-ar.facebook.com/basaier.kw/">
+                <a href="#">
                     <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
                 </a>
             </li>
@@ -1114,11 +1093,12 @@
 {# FOR SIDEPANEL: #}
 <script type="text/javascript">
     function openNavSidePanel() {
-        {#if (window.matchMedia("(max-width: 415px)")){#}
-        {#document.getElementById("mySidepanel").style.width = "300px";#}
-        {# }else{#}
-        document.getElementById("mySidepanel").style.width = "428px";
-        {# }#}
+        {% comment %} if(window.matchMedia("(max-width: 415px)")){
+            document.getElementById("mySidepanel").style.width ="375px";
+        }else{
+            document.getElementById("mySidepanel").style.width = "300px";
+        } {% endcomment %}
+        document.getElementById("mySidepanel").style.width ="50%";
     }
 
     function closeNavSidePanel() {

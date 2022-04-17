@@ -23,7 +23,6 @@ from web import apis
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import url, include
 from people.rest import CreatePeople
-from web.views import zakatPage
 
 admin.site.site_header = 'Basaier Admin Panel'
 admin.site.site_title = 'Basaier Admin Panel'
@@ -33,8 +32,7 @@ admin.site.enable_nav_sidebar = False
 
 urlpatterns = [path('i18n/', include('django.conf.urls.i18n')),
                path('createPeople/', CreatePeople.as_view(),
-               name='createPeople'), ]
-
+                    name='createPeople'), ]
 
 urlpatterns += i18n_patterns(
     path('admin/filebrowser/', site.urls),
@@ -119,10 +117,14 @@ urlpatterns += i18n_patterns(
     path('sponsorshipPage/<int:sponsorCategoryId>', views.sponsorshipPage, name='sponsorshipPage'),
     # path('createToken/<int:sponsorProjectId>', views.createTokenView, name='createTokenView'),
     path('createToken/<int:sponsorProjectId>', views.createTokenView, name='createTokenView'),
-    path('getSponsorshipProjectIdFromQuickDonateToCreateToken', views.getSponsorshipProjectIdFromQuickDonateToCreateToken, name='getSponsorshipProjectIdFromQuickDonateToCreateToken'),
+    path('getSponsorshipProjectIdFromQuickDonateToCreateToken',
+         views.getSponsorshipProjectIdFromQuickDonateToCreateToken,
+         name='getSponsorshipProjectIdFromQuickDonateToCreateToken'),
     path('allSponsorshipProjects/<int:sponsorId>', views.allSponsorshipProjects, name='allSponsorshipProjects'),
-    path('sponsorshipProjectsFromQuickDonate/<int:sponsorId>', views.sponsorshipProjectsFromQuickDonate, name='sponsorshipProjectsFromQuickDonate'),
-    path('sponsorParticularPerson/<int:particularPersonId>', views.sponsorParticularPerson, name='sponsorParticularPerson'),
+    path('sponsorshipProjectsFromQuickDonate/<int:sponsorId>', views.sponsorshipProjectsFromQuickDonate,
+         name='sponsorshipProjectsFromQuickDonate'),
+    path('sponsorParticularPerson/<int:particularPersonId>', views.sponsorParticularPerson,
+         name='sponsorParticularPerson'),
     path('gift', views.giftPage, name="gift"),
     path('giftProjectPage', views.giftProjectPage, name="giftProjectPage"),
     path('giftSendGift', views.giftSendGift, name="giftSendGift"),
@@ -137,8 +139,10 @@ urlpatterns += i18n_patterns(
     path('privateCompaigns', views.privateCompaigns, name='privateCompaigns'),
     path('privateCompaigns/<int:productId>', views.sharedCompaigns, name='sharedCompaigns'),
     path('publicCompaigns/<int:productId>', views.sharedCompaigns, name='sharedCompaigns'),
-    path('thawabCompaignCategoryDetail/<int:categoryId>', views.thawabCompaignCategoryDetail, name='thawabCompaignCategoryDetail'),
-    path('createCompaignOfParticularCategory/<int:categoryId>', views.createCompaignOfParticularCategory, name='createCompaignOfParticularCategory'),
+    path('thawabCompaignCategoryDetail/<int:categoryId>', views.thawabCompaignCategoryDetail,
+         name='thawabCompaignCategoryDetail'),
+    path('createCompaignOfParticularCategory/<int:categoryId>', views.createCompaignOfParticularCategory,
+         name='createCompaignOfParticularCategory'),
     path('cart_add', views.cart_add, name='cart_add'),
     path('cart_add_for_gift', views.cart_add_for_gift, name='cart_add_for_gift'),
     path('cart_remove/<int:id>', views.cart_remove, name='cart_remove'),
@@ -146,9 +150,13 @@ urlpatterns += i18n_patterns(
     path('removeAll', views.removeAll, name='removeAll'),
     path('cart_detail', views.cart_detail, name='cart_detail'),
     path('checkoutDetail', views.checkoutDetail, name='checkoutDetail'),
-    path('getValuesAccordingToSelectedCategory', views.getValuesAccordingToSelectedCategory, name='getValuesAccordingToSelectedCategory'),
-    path('getValuesAccordingToSelectedCategoryInCreateOwnProject', views.getValuesAccordingToSelectedCategoryInCreateOwnProject, name='getValuesAccordingToSelectedCategoryInCreateOwnProject'),
-    path('getSponsoshipValuesAccordingToSelectedCategory', views.getSponsoshipValuesAccordingToSelectedCategory, name='getSponsoshipValuesAccordingToSelectedCategory'),
+    path('getValuesAccordingToSelectedCategory', views.getValuesAccordingToSelectedCategory,
+         name='getValuesAccordingToSelectedCategory'),
+    path('getValuesAccordingToSelectedCategoryInCreateOwnProject',
+         views.getValuesAccordingToSelectedCategoryInCreateOwnProject,
+         name='getValuesAccordingToSelectedCategoryInCreateOwnProject'),
+    path('getSponsoshipValuesAccordingToSelectedCategory', views.getSponsoshipValuesAccordingToSelectedCategory,
+         name='getSponsoshipValuesAccordingToSelectedCategory'),
     path('getCurrency', views.getCurrency, name='getCurrency'),
     path('generateActivationCode', views.generateActivationCode, name='generateActivationCode'),
 
@@ -165,15 +173,20 @@ urlpatterns += i18n_patterns(
     # FOR GETTING ALL SPONSORSHIP PROJECTS:
     path('api/sponsorships/', apis.sponsorships, name='sponsorships'),
     # GETTING THE SPONSORSHIPS PROJECTS WITH THE `POSTED` CATEGORY_ID:
-    path('api/sponsorshipsAccordingToCategory/<int:categoryId>/', apis.sponsorshipsAccordingToCategory, name='sponsorshipsAccordingToCategory'),
+    path('api/sponsorshipsAccordingToCategory/<int:categoryId>/', apis.sponsorshipsAccordingToCategory,
+         name='sponsorshipsAccordingToCategory'),
     path('api/profile2/', apis.profile2, name='profile2'),
-
 )
 
 # urlpatterns += i18n_patterns[
 #
 #
 # ]
+
+handler404 = 'web.views.custom_page_not_found_view'
+handler500 = 'web.views.custom_error_view'
+handler403 = 'web.views.custom_permission_denied_view'
+handler400 = 'web.views.custom_bad_request_view'
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

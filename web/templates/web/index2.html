@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
 
         <div class="carousel-inner">
             {% for project in projects %}
@@ -16,16 +16,23 @@
 
                     <div class="carousel-caption d-none d-md-block">
                         <h3 class="my-heading">{{ project.get_name }}</h3>
-                        <p class="myp-slider text-center">{{ project.get_detail|truncatechars:500 }}</p>
+                        <p class="myp-slider text-center">{{ project.get_detail|truncatechars:255 }}</p>
                         <a href="{% url 'project-detail' project.id %}">
-                            <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن
+                            <button class="mybg-eventBtn mybgHoverBlue" style="background-color: #fff; color: #1488B5;">تبرع الان
                             </button>
                         </a>
                     </div>
                 </div>
             {% endfor %}
+            <div class="person">
+                <a href="javascript:void(0)" class="personClose" onclick="closeNav()">
+                    <i class=" fa fa-times" aria-hidden="true" style="margin: 0 4px !important"></i>
+                </a>
+                <img class="personImg" src="{% static 'images/person.jpeg' %}" >
+            </div>
         </div>
     </div>
+         
 
 
     <div class="mobileCrousel">
@@ -40,55 +47,74 @@
                         <br/>
                         {{ project.detail|truncatechars:200 }}
                     </p>
-                    <a href="{% url 'project-detail' project.id %}" class="crouselBtn">تبرع الآن</a>
+                    <a href="{% url 'project-detail' project.id %}" class="crouselBtn">تبرع الان</a>
                 </div>
                 <img src="/media/{{ project.image }}" class="crouselImg">
             </div>
         {% endfor %}
     </div>
-
     <section class="testimonials">
         <!-- <img src="./images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
         <div class="container">
             <div class="row">
-                <div class="col-6 mb-3 ">
-                    <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
-                        بوابة التبرع
-                    </a>
-                    <img src="/static/images/sec2img1.png" class="fluidImg">
+                <div class="col-6 mb-3">
+                    <div style="position: relative;" class="sectionsHover">
+                        <div class="overlay" style="border-radius: 22px"></div>
+                        <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
+                            بوابه التبرع
+                        </a>
+                        <img src="/static/images/sec2img1.png" class="fluidImg">
+                    </div>
                 </div>
                 <div class="col-6 mb-3">
-                    <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
-                        أنشئ مشروعك الخاص
-                    </a>
+                    <div style="position: relative;">
+                        <div class="overlay" style="border-radius: 22px"></div>
+                        <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
+                            أنشأ مشروعك الخاص
+                        </a>
                     <img src="/static/images/sec2img2.png" class="fluidImg">
                 </div>
+            </div>
             </div>
 
             <div class="row">
                 <div class="col-6 col-md-3 mb-3">
+                    <div style="position: relative;">
+                        <div class="overlay" style="border-radius: 22px"></div>
                     <a href="{% url 'icalculator' %}" class="myp-onimgtxt text-center">
-                        احسب زكاتك
+                        أحسب ذكاتك
                     </a>
                     <img src="/static/images/sec2img6.png" class="fluidImg">
                 </div>
+            </div>
                 <div class="col-6 col-md-3">
-                    <p class="myp-onimgtxt text-center">
-                         استفسر عن مشروعك
-                    </p>
+                    <div style="position: relative;">
+                        <div class="overlay" style="border-radius: 22px"></div>
+                    <a href="" class="myp-onimgtxt text-center">
+                        استفسر عن مشروعك
+                    </a>
                     <img src="/static/images/sec2img5.png" class="fluidImg">
                 </div>
+            </div>
                 <div class="col-6 col-md-3 mb-3">
-                    <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center"> إنضم إلى أصدقاء النشر
+                    <div style="position: relative;">
+                        <div class="overlay" style="border-radius: 22px"></div>
+                    <a href="{% url 'joinchat' %}" class="myp-onimgtxt text-center">
+                        انضم الي
+                        ًأدقاء النش
                     </a>
                     <img src="/static/images/sec2img4.png" class="fluidImg">
                 </div>
+            </div>
                 <div class="col-6 col-md-3">
+                    <div style="position: relative;">
+                        <div class="overlay" style="border-radius: 22px"></div>
                     <a href="{% url 'donatedDonation' %}" class="myp-onimgtxt text-center">
-                        إهداء تبرع
+                        أهداء تبرع
                     </a>
                     <img src="/static/images/sec2img3.png" class="fluidImg">
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -98,19 +124,19 @@
         <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-6 mt-4 ">
+                <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
                     <div class="big-img-3">
                         <img src="{% static 'images/news.png' %}" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 mt-4">
+                <div class="col-sm-12 col-md-6 mt-4  wow bounceInLeft" data-wow-duration="1.4s">
                     <div class="my-right-text">
                         <h3 class="myh-class font-weight-bold">خبر صحفي ولقاء حول<br>
                             مشروع الشهر</h3>
                         <p class="myp-class">
                             العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
                             والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
                             اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
                             الذي يؤدي لضياع
                         </p>
@@ -126,7 +152,7 @@
         <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
         <div class="container">
             <div class="row reverseCol">
-                <div class="col-sm-12 col-md-6 mt-4">
+                <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
                     <div class="my-right-text">
                         <h3 class="myh-class font-weight-bold">
                             هدفنا في هذه السنه
@@ -134,13 +160,13 @@
                         <p class="myp-class">
                             العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري
                             والفني للجمعية نحو تحقيق رؤية ورسالة وأهداف الجمعية
-                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
+                            ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
                             اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل
                             الذي يؤدي لضياع
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 mt-4 ">
+                <div class="col-sm-12 col-md-6 mt-4  wow bounceInLeft" data-wow-duration="1.4s">
                     <div class="big-img-3">
                         <img src="{% static 'images/hadfana.png' %}" class="img-fluid">
                     </div>
@@ -158,14 +184,14 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7">
-                    <h3 class="title-heading">جمعية بصائر الخيرية</h3>
+                    <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
                     <p class="myp">
                         العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية
-                        ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة
+                        ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع اسمي بكافة
                         اأطيافه ، وحماية المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
                     </p>
                     <a href="{% url 'allProjects' %}">
-                        <button class="mybg-eventBtn" style="background-color: #fff; color: #1488B5;">تبرع الآن</button>
+                        <button class="mybg-eventBtn mybgHoverDark" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
                     </a>
                 </div>
             </div>
@@ -203,7 +229,7 @@
     <section class="testimonials text-center">
         <div class="container">
             <div class="row justify-content-center bgStyledSection"
-                 style="background-image: url('{% static './images/bgFixed.png' %}');">
+                 style="background-image: url('{% static 'images/bgFixed.png' %}');">
                 <div class="col-4 col-md-2"
                      style="color: #fff; font-size: 12px; font-weight: bold; border-right: 1px solid #5AB9D4;">
                     <span style="font-size: 47px">75</span> <br/>يتيم مكفول
@@ -234,7 +260,7 @@
 
     <section class="testimonials text-center container">
         <div class="mb-5">
-            <h3 class="title-heading">جمعية بصائر الخيرية</h3>
+            <h3 class="title-heading">جمعيه بصائر الخيريه</h3>
         </div>
         <div class="row justify-content-evenly">
             {% for data in testimonialsData %}

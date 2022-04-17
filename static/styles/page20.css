@@ -2,6 +2,20 @@ body {
     font-family: Cairo;
 }
 
+/*HOME PAGE*/
+.carousel-fade .carousel-item {
+	opacity: 0;
+	transition-duration: .6s;
+	transition-property: opacity;
+}
+
+.carousel-fade .carousel-item.active,
+.carousel-fade .carousel-item-next.carousel-item-left,
+.carousel-fade .carousel-item-prev.carousel-item-right {
+	opacity: 1;
+}
+/*END HOME PAGE*/
+
 .zakat_input, .phone_input, .code_input {
     border: 1px solid #EBEDED;
     border-radius: 30px;

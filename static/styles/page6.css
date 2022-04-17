@@ -99,13 +99,13 @@
     margin: auto;
 }
 
-.formDivInput {
+/* .formDivInput {
     width: 100%;
     border-radius: 10px;
     outline: none;
     border: 1px solid lightgray;
     height: 47px;
-}
+} */
 
 .formDivBtn {
     outline: none;

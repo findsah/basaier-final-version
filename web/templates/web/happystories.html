@@ -32,7 +32,7 @@
                 {% for data in dataScienceNews %}
                     {% if forloop.last %}
                         <a href="{% url 'science-center-category' data.id %}">
-                            <div class="video-container">
+                            <div class="video-container videoImg">
                                 <video autoplay muted controls loop>
                                     <source src="/media/{{ data.image }}"
                                             type="video/mp4"/>
@@ -58,7 +58,7 @@
                     {% for data in dataScienceNews|slice:"2" %}
                         <a href="{% url 'science-center-category' data.id %}">
                             <div class="col-12 col-md-6">
-                                <div class="video-container" style="height: 218px;">
+                                <div class="video-container videoImg" style="height: 218px;">
                                     <video autoplay muted controls loop>
                                         <source
                                                 src="/media/{{ data.image }}"
@@ -85,7 +85,7 @@
                     {% for data in dataScienceNews|slice:"2" %}
                         <a href="{% url 'science-center-category' data.id %}">
                             <div class="col-12 col-md-6">
-                                <div class="video-container" style="height: 218px;">
+                                <div class="video-container videoImg" style="height: 218px;">
                                     <video autoplay muted controls loop>
                                         <source
                                                 src="/media/{{ data.image }}"

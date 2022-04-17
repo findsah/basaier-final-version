@@ -14,7 +14,7 @@ from django.core.mail import EmailMultiAlternatives, send_mail
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.template import loader
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes
@@ -5877,3 +5877,19 @@ def getSponsoshipValuesAccordingToSelectedCategory(request):
             return HttpResponse(data, mimetype)
         except:
             return HttpResponse('Sorry Error Occured...!')
+
+
+def custom_page_not_found_view(request, exception):
+    return render(request, "web/404.html", {})
+
+
+def custom_error_view(request, exception=None):
+    return render(request, "web/404.html", {})
+
+
+def custom_permission_denied_view(request, exception=None):
+    return render(request, "web/404.html", {})
+
+
+def custom_bad_request_view(request, exception=None):
+    return render(request, "web/404.html", {})

@@ -33,8 +33,13 @@
     <div class="row" style="margin: 8rem 0 3rem 0;">
         <div class="col-12 col-lg-4 mb-3">
             <div class="card" style="border-radius: 12px;">
-                <div class="card1-img-top">
-                    <img src="{% static 'images/resturant.png' %}" style="width: 100%;" alt="img">
+                <div class="card1-img-top" style="position: relative">
+                    <div id="overlay" class="overlay" style="display: none"> </div>
+                    <button class="hoverBtn"
+                       style="display: none; background-color: #1488B5; color: #fff;">
+                       تبرع الان
+                   </button> 
+                    <img src="{% static 'images/resturant.png' %}" class="newsImage" style="width: 100%;" alt="img">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">متطوعي حمله فزعه الكويت</h5>
@@ -100,4 +105,30 @@
     </div>
 
 </div>
+
+<script>
+    $(".newsImage").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+
+    $(".overlay").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+
+    $(".hoverBtn").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+</script>
 {% endblock %}

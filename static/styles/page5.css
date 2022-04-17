@@ -42,8 +42,13 @@
   border-radius: 10px;
   outline: none;
   border: 1px solid lightgray;
+  background-color: #fff;
+  height: 48px;
 }
-
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #fff !important;
+  background-color: #1488B5 !important;
+}
 .nav-tabs .nav-link {
   border: none;
   padding: 0;

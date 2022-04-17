@@ -21,18 +21,23 @@
     </div>
 </header>
 
-    <br><br>
+<br><br>
 
-    <div class="container">
-    <div class="row" style="margin: 8rem 0 3rem 0;">
+<div class="container">
+    <div class="row" style="margin: 8rem 0 3rem 0; justify-content: space-between">
         {% for data in news %}
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-3">
             <a href="{% url 'news-detail' data.id %}">
-                <div class="card" style="border-radius: 12px;">
-                    <div class="card1-img-top">
-                        <img src="/media/{{ data.image }}" style="width: 100%;" alt="img">
+                <div class="card1" style="border-radius: 5px;  padding:  0 !important;">
+                    <div class="card1-img-top" style="position: relative">
+                        <div id="overlay" class="overlay" style="display: none"> </div>
+                        <button class="hoverBtn"
+                           style="display: none; background-color: #1488B5; color: #fff;">
+                           تبرع الان
+                       </button> 
+                        <img src="/media/{{ data.image }}" class="newsImage" alt="img">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body customBody">
                         <h5 class="card-title">{{ data.title }}</h5>
                         <p class="card-text">{{ data.content|truncatechars:255 }}
                         </p>
@@ -47,27 +52,65 @@
 
     <div class="row my-5">
         {% for data in news %}
-            {% if forloop.last %}
-        <div class="col-12 meeting_section" style="background-image: url('/media/{{ data.image }}');">
+        {% if forloop.last %}
+        <div class="col-12 meeting_section" style="position: relative; background-image: url('/media/{{ data.image }}');">
+            <div id="overlay forMeeting" class="overlay" style="display: none"> </div>
+            <button class="hoverBtn forMeeting"
+               style="width: 20%;">
+               تبرع الان
+           </button> 
             <h2 class="meeting_heading"> {{ data.title }} </h2>
             <p class="meeting-text">
                 {{ data.content|truncatechars:255 }}
             </p>
         </div>
-            {% endif %}
+        {% endif %}
         {% endfor %}
     </div>
 </div>
 
-    <br><br>
+<br><br>
 
 {#<div>#}
-{#    <h1>I am a Image</h1>#}
-{#    {% for img in images %}#}
-{##}
-{#    <h1>{{img.title}}</h1>#}
-{#    <img alt="image not shown" src="{{img.image.url}}" width="120" />#}
-{##}
-{#    {% endfor %}#}
-{#</div>#}
+    {# <h1>I am a Image</h1>#}
+    {# {% for img in images %}#}
+    {##}
+    {# <h1>{{img.title}}</h1>#}
+    {# <img alt="image not shown" src="{{img.image.url}}" width="120" />#}
+    {##}
+    {# {% endfor %}#}
+    {#</div>#}
+<script>
+    $(".newsImage").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+
+    $(".overlay").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+
+    $(".hoverBtn").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".hoverBtn").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".hoverBtn").css("display", "none");
+    });
+    
+    $(".meeting_section").hover(function() {
+        $(".overlay").css("display", "block");
+        $(".forMeeting").css("display", "block");
+    }, function() {
+        $(".overlay").css("display", "none");
+        $(".forMeeting").css("display", "none");
+    });
+</script>
 {% endblock %}

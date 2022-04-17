@@ -42,17 +42,17 @@
             <h2 style="color: #1385B2; font-size: 37px;">{{ projectName1 }}</h2>
 {#            <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصه بصائر</p>#}
         </div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 28rem;">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000" style="height: 28rem;">
             <div class="carousel-inner">
                 {% for project in projects %}
                     <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} header2">
                         <div class="row justify-content-between">
                             <div class="col-md-5">
-                                <img class="d-block w-100" style="height: 15rem;"
+                                <img class="d-block w-100" style="height: 15rem; border-radius: 17px;"
                                      src="/media/{{ project.image }}" alt="{{ project.get_name }}">
                             </div>
                             <div class="col-md-6" style="font-size: 25px;">
-                                {{ project.get_detail }}
+                                {{ project.get_detail|truncatechars:500 }}
                             </div>
                         </div>
                     </div>
