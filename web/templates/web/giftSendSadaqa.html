@@ -166,7 +166,7 @@
                                                name="amount[]"
                                                onkeypress="return OnlyNumeric(event,this,10);"
                                                pattern="\d*"
-                                               placeholder="Cost">
+                                               placeholder="المبلغ">
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-lg-5 col-xl-5"></div>
@@ -175,7 +175,7 @@
                             <div class="margin-10-bottom pt-2">
                                 <input type="submit" class="btn text-center"
                                        value="{% get_current_language as LANGUAGE_CODE %}{% if LANGUAGE_CODE == "ar" %}
-                                {% trans "يتبرع" %}
+                                {% trans "التبرع" %}
                             {% else %}
                                 {% trans "Donate" %}
                             {% endif %}">

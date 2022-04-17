@@ -6,129 +6,131 @@
 
 {% block content %}
 
-<div class="container" style="margin-top: 10rem;">
-    <h3 class="pathlink">الرئيسية / أكن متطوعاً وناشراً للخير</h3>
-    <div class="title">
-        <h2 style="color: #1385B2; font-size: 37px;">أكن متطوعاً وناشراً للخير</h2>
-        <p style="color: #858585; font-size: 15px;">يمكنك الان تكون متطوعا وناشر للخير</p>
-    </div>
-    {% for data in dataScienceNews %}
-    <div class="row justify-content-center my-5">
-        <div class="col-md-4">
-            <div class="video-container">
-                <video autoplay muted controls loop>
-                    <source src="/media/{{ data.image }}"
-                        type="video/mp4" />
-                </video>
-            </div>
+    <div class="container" style="margin-top: 10rem;">
+        <h3 class="pathlink">الرئيسية / أكن متطوعاً وناشراً للخير</h3>
+        <div class="title">
+            <h2 style="color: #1385B2; font-size: 37px;">أكن متطوعاً وناشراً للخير</h2>
+            <p style="color: #858585; font-size: 15px;">يمكنك الان تكون متطوعا وناشر للخير</p>
         </div>
-        <div class="col-md-7">
-            <h2 style="font-size: 23px;">{{ data.title }}</h2>
-            <p style="font-size: 16px;">{{ data.content }}
-            </p>
-        </div>
-    </div>
-    {% endfor %}
-
-    <div class="row" style="margin: 8rem 0 3rem 0;">
-        <div class="col-12 col-lg-4 mb-3">
-            <div class="card" style="border-radius: 12px;">
-                <div class="card1-img-top" style="position: relative">
-                    <div id="overlay" class="overlay" style="display: none"> </div>
-                    <button class="hoverBtn"
-                       style="display: none; background-color: #1488B5; color: #fff;">
-                       تبرع الان
-                   </button> 
-                    <img src="{% static 'images/resturant.png' %}" class="newsImage" style="width: 100%;" alt="img">
+        {% for data in dataScienceNews %}
+            <div class="row justify-content-center my-5">
+                <div class="col-md-4">
+                    <div class="video-container">
+                        <video autoplay muted controls loop>
+                            <source src="/media/{{ data.image }}"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">متطوعي حمله فزعه الكويت</h5>
-                    <p class="card-text">
-                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
-                        وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
-                        المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                <div class="col-md-7">
+                    <h2 style="font-size: 23px;">{{ data.title }}</h2>
+                    <p style="font-size: 16px;">{{ data.content }}
                     </p>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-4 mb-3">
-            <div class="card" style="border-radius: 12px;">
-                <div class="card1-img-top">
-                    <img src="{% static 'images/desastor.png' %}" style="width: 100%;" alt="img">
+        {% endfor %}
+
+        <div class="row" style="margin: 8rem 0 3rem 0;">
+            <div class="col-12 col-lg-4 mb-3">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top" style="position: relative">
+                        <div id="overlay" class="overlay" style="display: none"></div>
+                        <button class="hoverBtn"
+                                style="display: none; background-color: #1488B5; color: #fff;">
+                            بوابة التبرع
+                        </button>
+                        <img src="{% static 'images/resturant.png' %}" class="newsImage" style="width: 100%;" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">متطوعي حمله فزعه الكويت</h5>
+                        <p class="card-text">
+                            العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
+                            وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
+                            المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">متطوعي رحله سوريا</h5>
-                    <p class="card-text">
-                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
-                        وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
-                        المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
-                    </p>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top">
+                        <img src="{% static 'images/desastor.png' %}" style="width: 100%;" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">متطوعي رحله سوريا</h5>
+                        <p class="card-text">
+                            العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
+                            وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
+                            المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <div class="card" style="border-radius: 12px;">
+                    <div class="card1-img-top">
+                        <img src="{% static 'images/food.png' %}" style="width: 100%;" alt="img">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">توزيع السلال علي الاسر</h5>
+                        <p class="card-text">
+                            العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
+                            وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
+                            المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 mb-3">
-            <div class="card" style="border-radius: 12px;">
-                <div class="card1-img-top">
-                    <img src="{% static 'images/food.png' %}" style="width: 100%;" alt="img">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">توزيع السلال علي الاسر</h5>
-                    <p class="card-text">
-                        العمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية نحو تحقيق رؤية ورسالة
-                        وأهداف الجمعية ضمن الخطة استراتيجية لخدمة الدين والمجتمع إسمي بكافة اأطيافه ، وحماية
-                        المجتمع من الغلو والتطرف وعدم التساهل الذي يؤدي لضياع
-                    </p>
-                </div>
+
+        <div class="row my-5 justify-content-center">
+            <div class="col-md-5 mb-3">
+                <a href="{% url 'joinfieldvolunteer' %}">
+                    <div class="img-container">
+                        <img src="{% static 'images/cricket.png' %}" style="width: 100%; border-radius: 17px;" alt="img">
+                        <div class="overlay" style="border-radius: 17px;"></div>
+                        <h2>
+                            انضم إلى المتطوعين الميدانيين
+                        </h2>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-5 mb-3">
+                <a href="{% url 'joinchat' %}">
+                    <div class="img-container">
+                        <img src="{% static 'images/likecomment.png' %}" style="width: 100%; border-radius: 17px;" alt="img">
+                        <div class="overlay" style="border-radius: 17px;"></div>
+                        <h2>إنضم إلى أصدقاء النشر</h2>
+                    </div>
+                </a>
             </div>
         </div>
+
     </div>
 
-    <div class="row my-5 justify-content-center">
-        <div class="col-md-5 mb-3">
-            <a href="{% url 'joinfieldvolunteer' %}">
-                <div class="img-container">
-                    <img src="{% static 'images/cricket.png' %}" style="width: 100%;" alt="img">
-                    <h2>
-                        انضم إلى المتطوعين الميدانيين
-                    </h2>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-5 mb-3">
-            <a href="{% url 'joinchat' %}">
-                <div class="img-container">
-                    <img src="{% static 'images/likecomment.png' %}" style="width: 100%;" alt="img">
-                    <h2>إنضم إلى أصدقاء النشر</h2>
-                </div>
-            </a>
-        </div>
-    </div>
+    <script>
+        $(".newsImage").hover(function () {
+            $(".overlay").css("display", "block");
+            $(".hoverBtn").css("display", "block");
+        }, function () {
+            $(".overlay").css("display", "none");
+            $(".hoverBtn").css("display", "none");
+        });
 
-</div>
+        $(".overlay").hover(function () {
+            $(".overlay").css("display", "block");
+            $(".hoverBtn").css("display", "block");
+        }, function () {
+            $(".overlay").css("display", "none");
+            $(".hoverBtn").css("display", "none");
+        });
 
-<script>
-    $(".newsImage").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-
-    $(".overlay").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-
-    $(".hoverBtn").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-</script>
+        $(".hoverBtn").hover(function () {
+            $(".overlay").css("display", "block");
+            $(".hoverBtn").css("display", "block");
+        }, function () {
+            $(".overlay").css("display", "none");
+            $(".hoverBtn").css("display", "none");
+        });
+    </script>
 {% endblock %}

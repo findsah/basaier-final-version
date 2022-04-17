@@ -124,7 +124,6 @@
     {#    END FOR PRICE RANGE SLIDER: #}
 
 
-
     <!-- == mixitup == -->
     <script src="/static/js/mixitup.min.js"></script>
     <!-- == Select 2 == -->
@@ -279,69 +278,73 @@
     </style>
 
 
-<style type="text/css">
-    .header2{
-        background-color: white;
-    }
-    .imageOpacity{
-        opacity: 0.6;
-    }
-</style>
+    <style type="text/css">
+        .header2 {
+            background-color: white;
+        }
+
+        .imageOpacity {
+            opacity: 0.6;
+        }
+    </style>
 
 </head>
 {% comment %} box-shadow: -39px -6px 17px -2px black; {% endcomment %}
 <nav class="navbar navbar-dark fixed-top navbar-expand-lg"
      style=" color: black !important; ">
     <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="fa fa-bars mfa-white"></span>
-            </button>
-            <div id="main">
+        </button>
+        <div id="main">
             <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars spanBorder" onclick="openNav()"></span></a>
             <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'images/bgfooter.png' %}" alt="logo" style="height: 6rem">
+                <img src="{% static 'images/bgfooter.png' %}" alt="logo" style="height: 6rem">
             </a>
-            </div>
-            <a class="navbar-brand navbarImg" href="{% url 'index' %}">
-                <img src="{% static 'images/logo2.png' %}" alt="logo" class="imgHover">
+        </div>
+        <a class="navbar-brand navbarImg" href="{% url 'index' %}">
+            <img src="{% static 'images/logo2.png' %}" alt="logo" class="imgHover">
+        </a>
+        <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
+            <li class="nav-link">
+                <a href="#" class="btn btn-circle my-social-btn">
+                    <i style="font-size: 25px; color: #fff" class="fa fa-search searchIcon"></i>
                 </a>
-            <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
-            <li class="nav-link">
-            <a href="#" class="btn btn-circle my-social-btn">
-            <i style="font-size: 25px; color: #fff" class="fa fa-search searchIcon"></i>
-            </a>
-            <div class="searchDiv">
-            <i style="font-size: 20px;" class="fa fa-search"></i>
-            <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
-            </div>
-            </li>
-            <li class="nav-link">
-            <a href="{% url 'login' %}" class="btn btn-circle my-social-btn ">
-            <i style="font-size: 25px; color: #fff" class="fa fa-user"></i>
-            </a>
-            </li>
-            <li class="nav-link">
-            <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn ">
-            <i style="font-size: 25px; color: #fff" class="fa fa-shopping-cart"></i>
-            </a>
-            </li>
-            </ul>
-            <div id="mySidenav" class="sidenav" style="border-left: 1px solid #efebeb">
-                <div class="loginSignupDiv">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                    <div style="display: flex; justify-content: space-around;">
-                        <button class="loginSignupBtns">login</button>
-                        <button class="loginSignupBtns">signup</button>
-                    </div>
+                <div class="searchDiv">
+                    <i style="font-size: 20px;" class="fa fa-search"></i>
+                    <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
                 </div>
-                <ul class="mob-ul p-0">
-                    <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
-                    </li>
-                    <li class="nav-item" style="padding: 0.5rem 1rem;">
+            </li>
+            <li class="nav-link">
+                <a href="{% url 'login' %}" class="btn btn-circle my-social-btn ">
+                    <i style="font-size: 25px; color: #fff" class="fa fa-user"></i>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn ">
+                    <i style="font-size: 25px; color: #fff" class="fa fa-shopping-cart"></i>
+                </a>
+            </li>
+        </ul>
+        <div id="mySidenav" class="sidenav" style="border-left: 1px solid #efebeb">
+            <div class="loginSignupDiv">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <div style="display: flex; justify-content: space-around;">
+                    <button class="loginSignupBtns">login</button>
+                    <button class="loginSignupBtns">signup</button>
+                </div>
+            </div>
+            <ul class="mob-ul p-0">
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
+                </li>
+                <li class="nav-item" style="padding: 0.5rem 1rem;">
                     <div class="dropdown">
-                        <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                           aria-expanded="false" style="text-decoration: none;">المشاريع
+                        <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false" style="text-decoration: none;"> تبرع الآن
                         </a>
                         <ul class="dropdown-menu">
                             {% for category in charity_categories %}
@@ -349,89 +352,90 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    </li>
-                    <div class="dropdown" style="padding: 0.4rem 1rem;border-bottom: 1px solid #efebeb;">
-                        <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                           aria-expanded="false" style="text-decoration: none;">
-                            اكتشفنا
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'testimonials' %}">
-                                    من نحن
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'testimonials' %}">
-                                    قالو عنا
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'partner' %}">
-                                    كن شريكا
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'ourPartners' %}">
-                                    شركاؤنا
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'contactUs' %}">
-                                    اتصل بنا
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'volunteer' %}">
-                                    الاسئله الشائعه
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'joinchat' %}">
-                                    مساعدك الشخصي
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    اللجان التابعه
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
-                    </li>
-                </ul>
-                <div style="display: flex; justify-content: center; margin: 1rem 0;">
-                    <button class="sticky-bottom sidenavDonationBtn">bava-tu-taraba</button>
+                </li>
+                <div class="dropdown" style="padding: 0.4rem 1rem;border-bottom: 1px solid #efebeb;">
+                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false" style="text-decoration: none;">
+                        اكتشفنا
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'testimonials' %}">
+                                من نحن
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'testimonials' %}">
+                                قالو عنا
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'partner' %}">
+                                كن شريكا
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'ourPartners' %}">
+                                شركاؤنا
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'contactUs' %}">
+                                اتصل بنا
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'volunteer' %}">
+                                الاسئله الشائعه
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'joinchat' %}">
+                                مساعدك الشخصي
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                اللجان التابعه
+                            </a>
+                        </li>
+                    </ul>
                 </div>
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> أخبار ورحلات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
+                </li>
+            </ul>
+            <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                <button class="sticky-bottom sidenavDonationBtn">bava-tu-taraba</button>
             </div>
+        </div>
 
 
         <div class="collapse navbar-collapse justify-content-around" id="navbarResponsive">
             <ul class="desktop-ul">
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسيه</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'index' %}">الرئيسية</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
-                       data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
-                        المشاريع
-                    </a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: black;">
+                            تبرع الآن
+                        </a>
 
-                    <ul class="dropdown-menu">
-                        {% for category in charity_categories %}
-                            {% include "web/category_tree.html" %}
-                        {% endfor %}
-                    </ul>
-                </div>
+                        <ul class="dropdown-menu">
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item" style="padding: 0.4rem 1rem;">
                     <div class="dropdown">
@@ -485,10 +489,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'news' %}"> اخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'news' %}"> أخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعاده</a>
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'happyStories' %}"> قصص السعادة</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
@@ -523,23 +527,22 @@
 </nav>
 
 
-
 {# COLLAPSED SIDEPANEL: #}
 <div style="direction: rtl !important; transition: transform .5s ease;">
     <div id="mySidepanel" class="sidepanel affix"
          style="display: none; border-top-left-radius: 20px; width: 445px; height: 550px; border-bottom-left-radius: 20px; position: fixed; direction: rtl !important;">
-        <div role="tabpanel" class="col-xs-12 padding-none container" >
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
-                <h5 style="color: black; margin-top: 5%">
-                    اختر نوع التبرع
-                </h5>
+        <div role="tabpanel" class="col-xs-12 padding-none container">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
+            <h5 style="color: black; margin-top: 5%">
+                اختر نوع التبرع
+            </h5>
             <div id="FastDonationTabss" role="tabpanel" class="col-xs-12">
                 <!-- Nav tabs -->
                 <div id="tab" class="btn-group d-flex justify-content-between" data-toggle="buttons">
                     <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center"
                        data-toggle="tab" id="liFastDonationCampaigns1">
                         <input class="radioBtn" type="radio" name="donate" value="donateprice1"/>
-                        <span>تبرع لمره واحده</span>
+                        <span>التبرع لمرة واحدة</span>
                     </a>
                     <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center"
                        data-toggle="tab" id="liFastDonationSadaka1">
@@ -548,10 +551,10 @@
                     </a>
                 </div>
                 <!-- Tab panes -->
-                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom" >
-                        <h5 style="color: black;">
-                            اختر المبلغ
-                        </h5>
+                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom">
+                    <h5 style="color: black;">
+                        اختر المبلغ
+                    </h5>
                     <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20 active"
                          id="FastDonationTabCampaigns1">
                         <div>
@@ -560,7 +563,7 @@
                                     <input type="number" min="0" class="text-center"
                                            id="txtTotalAmountFastAccountCampaigns1" name="amount[]"
                                            onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                                           placeholder="Cost"
+                                           placeholder="المبلغ"
                                            style="width: 80px; height: 53px; border-radius: 10px; border: 1px solid lightgray">
                                     <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
                                             onclick="FastDonationAmountSelectCampaigns(500,'1')" type="button">
@@ -601,9 +604,9 @@
                                     <!-- /input-group -->
                                     <div class="container">
                                         <div class="col-xs-12 margin-10-bottom d-flex justify-content-between my-3">
-                                            <input type="submit" class="btnOfQuickDonate" value="يتبرع"
+                                            <input type="submit" class="btnOfQuickDonate" value="التبرع"
                                                    style="background-color: #00B4DB">
-                                            <input type="submit" class="btnOfQuickDonate" value="أضف الي العربه"
+                                            <input type="submit" class="btnOfQuickDonate" value=" أضف لسلة التبرعات"
                                                    style="background-color: #1BB1B0">
                                         </div>
                                         <div class="bottomText">
@@ -679,7 +682,7 @@
                                 </div>
                                 <div class="col-xs-12 margin-10-bottom">
                                     <input type="submit" class="btn btn-block"
-                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "يتبرع" %} {% else %} {% trans "Donate" %} {% endif %}">
+                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "التبرع" %} {% else %} {% trans "Donate" %} {% endif %}">
                                 </div>
                                 </form>
                                 <div class="col-xs-12 padding-less" style="padding-top: 25px; padding-bottom: 17px;">
@@ -737,12 +740,7 @@
         <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
             <div class="text-center"
                  style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% if LANGUAGE_CODE == "ar" %}
-                    {% trans "تبرع بسرعة" %}
-                {% else %}
-                    {% trans "Quick Donate" %}
-                {% endif %}
+                تبرع سريع
             </div>
             <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"
                  style="direction: rtl !important;width: 47% !important; height: 100% !important;">
@@ -770,12 +768,14 @@
         <div class="row">
             <div class="col-md-8 mx-auto ">
                 <h5 style="margin-bottom: 2rem; font-size: 18px;">نؤمن في مؤسسة بصائر
-                    الخيريه بأهمية التواصل
+                    الخيريةبأهمية التواصل
                     الفعال، ونتطلع
                     إلى مشاركتكم وتفاعلكم</h5>
 
                 <a href="{% url 'allProjects' %}">
-                    <button class="mybg-eventBtn mybgHoverWhite" style="background-color: #fff; color: #1488B5;">تبرع الان</button>
+                    <button class="mybg-eventBtn mybgHoverWhite" style="background-color: #fff; color: #1488B5;"> تبرع
+                        الآن
+                    </button>
                 </a>
             </div>
         </div>
@@ -785,67 +785,67 @@
 
 <footer class="footer removePadding">
     <div class="container">
-    <div class="row">
-    <div class=" col-6 col-md-4 text-center my-auto  ">
-    <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
-    </div>
-    <div class=" col-6 col-md-4 text-center my-auto  ">
-    <ul style="list-style: none; text-align: right;" class="footerUl">
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">
-    <h3>
-    القائمة الرئيسية
-    </h3>
-    </a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
-    </li>
-    <li style="margin: 1rem 0;">
-    <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
-    </li>
-    </ul>
-    </div>
-    <div class=" col-6 col-md-4 text-right my-auto">
-        <ul class="list-inline mb-0 p-0">
-            <li class="list-inline-item mr-3">
-                <a href="#">
-                    <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
-                </a>
-            </li>
-            <li class="list-inline-item mr-3">
-                <a href="#">
-                    <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#">
-                    <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
-                </a>
-            </li>
-            <li class="list-inline-item mr-3">
-                <a href="#">
-                    <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#">
-                    <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
-                </a>
-            </li>
-        </ul>
-        <p class="text-mutedP small mb-4 mb-lg-0">
-             جميع الحقوق                      
-             2021<sup>©</sup> 
-        </p>
-    </div>
-    </div>
+        <div class="row">
+            <div class=" col-6 col-md-4 text-center my-auto  ">
+                <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
+            </div>
+            <div class=" col-6 col-md-4 text-center my-auto  ">
+                <ul style="list-style: none; text-align: right;" class="footerUl">
+                    <li style="margin: 1rem 0;">
+                        <a href="#" style="text-decoration: none; color: #fff;">
+                            <h3>
+                                القائمة الرئيسية
+                            </h3>
+                        </a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="{% url 'allProjects' %}" style="text-decoration: none; color: #fff;"> بوابة التبرع</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="{% url 'happyStories' %}" style="text-decoration: none; color: #fff;">قصص السعادة</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="{% url 'news' %}" style="text-decoration: none; color: #fff;"> أخبار ورحلات</a>
+                    </li>
+                    <li style="margin: 1rem 0;">
+                        <a href="{% url 'testimonials' %}" style="text-decoration: none; color: #fff;">عن بصائر</a>
+                    </li>
+                </ul>
+            </div>
+            <div class=" col-6 col-md-4 text-right my-auto">
+                <ul class="list-inline mb-0 p-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text-mutedP small mb-4 mb-lg-0">
+                    جميع الحقوق
+                    2021<sup>©</sup>
+                </p>
+            </div>
+        </div>
     </div>
 </footer>
 
@@ -854,11 +854,11 @@
     $(document).scroll(function () {
         var $nav = $(".fixed-top");
         $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-      });
+    });
 </script>
 
-    {# ADD TO CART AND NAVIGATE TO CART PAGE: #}
-    <script type="text/javascript">
+{# ADD TO CART AND NAVIGATE TO CART PAGE: #}
+<script type="text/javascript">
     {#function addCart(post_id) {#}
     $('.addToCartAndNavigateToCartPage').click(function (e) {
         e.preventDefault();
@@ -1084,6 +1084,7 @@
 
 <script type="text/javascript">
     {#    REGISTER PAGE: #}
+
     function selectCountryCode(value) {
         var countryValue = value;
         $('#fetchTheSelectedCountryCode').val(countryValue);
@@ -1098,7 +1099,7 @@
         }else{
             document.getElementById("mySidepanel").style.width = "300px";
         } {% endcomment %}
-        document.getElementById("mySidepanel").style.width ="50%";
+        document.getElementById("mySidepanel").style.width = "50%";
     }
 
     function closeNavSidePanel() {
@@ -1202,7 +1203,6 @@
         }
     });
 </script>
-
 
 
 {# FOR SHOWING THE COUNTRY AND AMOUNT OF PROJECT: ACCORDING TO THE SELECTED PROJECT: #}
@@ -1355,11 +1355,13 @@
         $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
         $(this).addClass("Active");
     }
+
     function FastDonationAmountSelectCampaigns(amount, PagePrefixSeleect) {
         $("#txtTotalAmountFastAccountCampaigns" + PagePrefixSeleect).val(amount);
         $(".btnsearch").removeClass("Active");
         $(this).addClass("Active");
     }
+
     $(document).ready($(function () {
         $("#txtTotalAmountFastAccountCampaigns1,#txtTotalAmountFastAccountCampaigns2").keydown(function (e) {
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -1372,6 +1374,7 @@
             }
         });
     }));
+
     function OnlyNumeric(evt, item, maxLenght) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;

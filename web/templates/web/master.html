@@ -1018,14 +1018,14 @@
                                                    id="txtTotalAmountFastAccountCampaigns1"
                                                    name="amount[]"
                                                    onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                                                   placeholder="Cost">
+                                                   placeholder="المبلغ">
                                         </div>
                                         <!-- /input-group -->
                                         <div class="col-xs-12 margin-10-bottom">
                                             <input type="submit" class="btn btn-block" value="
                             {% get_current_language as LANGUAGE_CODE %}
                             {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "يتبرع" %}
+                                {% trans "التبرع" %}
                             {% else %}
                                 {% trans "Donate" %}
                             {% endif %}">
@@ -1103,7 +1103,7 @@
                                         <input type="submit" class="btn btn-block"
                                                value="{% get_current_language as LANGUAGE_CODE %}
                             {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "يتبرع" %}
+                                {% trans "التبرع" %}
                             {% else %}
                                 {% trans "Donate" %}
                             {% endif %}">
@@ -1176,12 +1176,7 @@
                 <button class="openbtn" onclick="openNav()" style="direction: rtl !important;">
                     <div class="fa fa-clock-o fa-2x text-center" style="direction: rtl !important;"></div>
                     <div class="text-center" style="direction: rtl !important;">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% if LANGUAGE_CODE == "ar" %}
-                            {% trans "تبرع بسرعة" %}
-                        {% else %}
-                            {% trans "Quick Donate" %}
-                        {% endif %}
+                        تبرع سريع
                     </div>
                     <div id="toFixProperOpenTabButtonQuickDonate" style="direction: rtl !important;"><i
                             class="fa fa-caret-right" style="padding-top: 90%"></i>
@@ -1285,7 +1280,7 @@
                                                id="txtTotalAmountFastAccountCampaigns1"
                                                name="amount[]"
                                                onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                                               placeholder="Cost">
+                                               placeholder="المبلغ">
                                     </div>
                                     <!-- /input-group -->
                                     <div class="col-xs-12 margin-10-bottom">
@@ -1360,7 +1355,7 @@
                                            value="
 {% get_current_language as LANGUAGE_CODE %}
                             {% if LANGUAGE_CODE == "ar" %}
-                                {% trans "يتبرع" %}
+                                {% trans "التبرع" %}
                             {% else %}
                                 {% trans "Donate" %}
                             {% endif %}">
@@ -1433,12 +1428,7 @@
             <button class="openbtn" onclick="openNav()">
                 <div class="fa fa-clock-o fa-2x text-center"></div>
                 <div class="text-center">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == "ar" %}
-                        {% trans "تبرع بسرعة" %}
-                    {% else %}
-                        {% trans "Quick Donate" %}
-                    {% endif %}
+                     تبرع سريع
                 </div>
                 <div id="toFixProperOpenTabButtonQuickDonate"><i class="fa fa-caret-right" style="padding-top: 90%"></i>
                 </div>

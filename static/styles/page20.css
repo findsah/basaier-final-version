@@ -6,7 +6,7 @@ body {
 .carousel-fade .carousel-item {
 	opacity: 0;
 	transition-duration: .6s;
-	transition-property: opacity;
+	transition-property: opacity !important;
 }
 
 .carousel-fade .carousel-item.active,

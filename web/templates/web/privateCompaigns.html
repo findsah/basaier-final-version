@@ -93,7 +93,7 @@
                                 <form>
                                     <input type="hidden" id="project_id_thawab_{{ project.id }}"
                                            value="{{ project.id }}">
-                                    <input type="number" placeholder="cost"
+                                    <input type="number" placeholder="المبلغ"
                                            class="text-center text-left2 contribute2"
                                            id="amount_thawab_{{ project.id }}">
 
@@ -105,7 +105,7 @@
                                     <a class="text-center text-right3 thawabContribution" projectId="{{ project.id }}">
                                         {% get_current_language as LANGUAGE_CODE %}
                                         {% if LANGUAGE_CODE == 'ar' %}
-                                            {% trans "يتبرع" %}
+                                            {% trans "التبرع" %}
                                         {% else %}
                                             {% trans "Donate" %}
                                         {% endif %}

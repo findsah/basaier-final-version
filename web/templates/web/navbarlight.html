@@ -306,12 +306,12 @@
             </div>
             <ul class="mob-ul p-0">
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
                 <div class="dropdown">
                     <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                       aria-expanded="false" style="text-decoration: none;">المشاريع
+                       aria-expanded="false" style="text-decoration: none;"> تبرع الآن
                     </a>
                     <ul class="dropdown-menu">
                         {% for category in charity_categories %}
@@ -369,10 +369,10 @@
                     </ul>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}">   أخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
@@ -385,13 +385,13 @@
         <div class="collapse navbar-collapse justify-content-around" id="navbarResponsive">
             <ul class="desktop-ul">
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسيه</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
                 <div class="dropdown">
                     <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none;">
-                        المشاريع
+                        بوابة التبرع
                     </a>
                     <ul class="dropdown-menu">
                         {% for category in charity_categories %}
@@ -449,10 +449,10 @@
                     </ul>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> اخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}">   أخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعاده</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
@@ -502,7 +502,7 @@
                     <a href="#FastDonationTabCampaigns1" class="btn btn-default active d-flex align-items-center"
                        data-toggle="tab" id="liFastDonationCampaigns1">
                         <input class="radioBtn" type="radio" name="donate" value="donateprice1"/>
-                        <span>تبرع لمره واحده</span>
+                        <span>التبرع لمرة واحدة</span>
                     </a>
                     <a href="#FastDonationTabSadaka1" class="btn btn-default d-flex align-items-center"
                        data-toggle="tab" id="liFastDonationSadaka1">
@@ -523,7 +523,7 @@
                                     <input type="number" min="0" class="text-center"
                                            id="txtTotalAmountFastAccountCampaigns1" name="amount[]"
                                            onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                                           placeholder="Cost"
+                                           placeholder="المبلغ"
                                            style="width: 80px; height: 53px; border-radius: 10px; border: 1px solid lightgray">
                                     <button class="QC_secondary-border-btn padding-10-h QC_fixed-amount-btn"
                                             onclick="FastDonationAmountSelectCampaigns(500,'1')" type="button">
@@ -564,9 +564,9 @@
                                     <!-- /input-group -->
                                     <div class="container">
                                         <div class="col-xs-12 margin-10-bottom d-flex justify-content-between my-3">
-                                            <input type="submit" class="btnOfQuickDonate" value="يتبرع"
+                                            <input type="submit" class="btnOfQuickDonate" value="التبرع"
                                                    style="background-color: #00B4DB">
-                                            <input type="submit" class="btnOfQuickDonate" value="أضف الي العربه"
+                                            <input type="submit" class="btnOfQuickDonate" value="أضف لسلة التبرعات"
                                                    style="background-color: #1BB1B0">
                                         </div>
                                         <div class="bottomText">
@@ -642,7 +642,7 @@
                                 </div>
                                 <div class="col-xs-12 margin-10-bottom">
                                     <input type="submit" class="btn btn-block"
-                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "يتبرع" %} {% else %} {% trans "Donate" %} {% endif %}">
+                                           value="{% get_current_language as LANGUAGE_CODE %} {% if LANGUAGE_CODE == "ar" %} {% trans "التبرع" %} {% else %} {% trans "Donate" %} {% endif %}">
                                 </div>
                                 </form>
                                 <div class="col-xs-12 padding-less" style="padding-top: 25px; padding-bottom: 17px;">
@@ -700,12 +700,7 @@
         <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
             <div class="text-center"
                  style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% if LANGUAGE_CODE == "ar" %}
-                    {% trans "تبرع بسرعة" %}
-                {% else %}
-                    {% trans "Quick Donate" %}
-                {% endif %}
+                تبرع سريع
             </div>
             <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"
                  style="direction: rtl !important;width: 47% !important; height: 100% !important;">
@@ -728,13 +723,13 @@
             <div class="col-md-8 mx-auto">
                 <h5 style="margin-bottom: 2rem; font-size: 18px;">
                     نؤمن في مؤسسة بصائر
-                    الخيريه بأهمية التواصل
+                    الخيريةبأهمية التواصل
                     الفعال، ونتطلع
                     إلى مشاركتكم وتفاعلكم
                 </h5>
                 <a href="{% url 'allProjects' %}">
                     <button class="mybg-eventBtn mybgHoverDark" style="background-color: #1488B5; color: #fff;">
-                        تبرع الان
+                        بوابة التبرع
                     </button>
                 </a>
             </div>
@@ -757,16 +752,16 @@
                         </a>
                     </li>
                     <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">بوابه التبرع</a>
+                        <a href="{% url 'allProjects' %}" style="text-decoration: none; color: #fff;"> بوابة التبرع</a>
                     </li>
                     <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">قصص السعاده</a>
+                        <a href="{% url 'happyStories' %}" style="text-decoration: none; color: #fff;">قصص السعادة</a>
                     </li>
                     <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">اخبار ورحلات</a>
+                        <a href="{% url 'news' %}" style="text-decoration: none; color: #fff;"> أخبار ورحلات</a>
                     </li>
                     <li style="margin: 1rem 0;">
-                        <a href="#" style="text-decoration: none; color: #fff;">عن بصائر</a>
+                        <a href="{% url 'testimonials' %}" style="text-decoration: none; color: #fff;">عن بصائر</a>
                     </li>
                 </ul>
             </div>

@@ -30,7 +30,7 @@
                            id="txtTotalAmountFastAccountCampaigns2"
                            name="amount[]"
                            onkeypress="return OnlyNumeric(event,this,10);" pattern="\d*"
-                           placeholder="Cost" style="color: black;">
+                           placeholder="المبلغ" style="color: black;">
                     <button onclick="FastDonationAmountSelectCampaignsThis(500,'2')" type="button" class="btn1">500
                     </button>
                     <button onclick="FastDonationAmountSelectCampaignsThis(300,'2')" type="button" class="btn1">300
@@ -127,7 +127,7 @@
                              ">
                         {% get_current_language as LANGUAGE_CODE %}
                                     {% if LANGUAGE_CODE == "ar" %}
-                                        {% trans "يتبرع" %}
+                                        {% trans "التبرع" %}
                                     {% else %}
                                         {% trans "Donate" %}
                                     {% endif %}
