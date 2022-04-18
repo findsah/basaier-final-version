@@ -269,11 +269,11 @@
         <div id="main">
             <a href="javascript:void(0)" class="openNav"><span class="fa fa-bars spanBorder" onclick="openNav()"></span></a>
             <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static 'images/logo.png' %}" alt="img" class="imgHover" >
+                <img src="{% static 'images/logo.png' %}" alt="img" class="imgHover">
             </a>
         </div>
         <a class="navbar-brand navbarImg" href="{% url 'index' %}">
-            <img src="{% static 'images/logo.png' %}" alt="" class="imgHover" >
+            <img src="{% static 'images/logo.png' %}" alt="" class="imgHover">
         </a>
         <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
             <li class="nav-link">
@@ -309,19 +309,21 @@
                     <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
-                <div class="dropdown">
-                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                       aria-expanded="false" style="text-decoration: none;"> تبرع الآن
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for category in charity_categories %}
-                            {% include "web/category_tree.html" %}
-                        {% endfor %}
-                    </ul>
-                </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false" style="text-decoration: none;"> تبرع الآن
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
                 <div class="dropdown" style="padding: 0.4rem 1rem;border-bottom: 1px solid #efebeb;">
-                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none;">
                         اكتشفنا
                     </a>
@@ -369,7 +371,7 @@
                     </ul>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}">   أخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> أخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
@@ -388,20 +390,22 @@
                     <a class="nav-link desktop-nav color-light" href="{% url 'index' %}">الرئيسية</a>
                 </li>
                 <li class="nav-item" style="padding: 0.5rem 1rem;">
-                <div class="dropdown">
-                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                       aria-expanded="false" style="text-decoration: none;">
-                        بوابة التبرع
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for category in charity_categories %}
-                            {% include "web/category_tree.html" %}
-                        {% endfor %}
-                    </ul>
-                </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink1"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false" style="text-decoration: none;">
+                            بوابة التبرع
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for category in charity_categories %}
+                                {% include "web/category_tree.html" %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
                 <div class="dropdown" style="padding: 0.4rem 1rem;">
-                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle color-light" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown"
                        aria-expanded="false" style="text-decoration: none;">
                         اكتشفنا
                     </a>
@@ -449,7 +453,7 @@
                     </ul>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}">   أخبار ورحلات</a>
+                    <a class="nav-link desktop-nav color-light" href="{% url 'news' %}"> أخبار ورحلات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'happyStories' %}"> قصص السعادة</a>
@@ -491,11 +495,11 @@
 <div style="direction: rtl !important; transition: transform .5s ease;">
     <div id="mySidepanel" class="sidepanel affix"
          style="display: none; border-top-left-radius: 20px; width: 445px; height: 550px; border-bottom-left-radius: 20px; position: fixed; direction: rtl !important;">
-        <div role="tabpanel" class="col-xs-12 padding-none container" >
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
-                <h5 style="color: black; margin-top: 5%">
-                    اختر نوع التبرع
-                </h5>
+        <div role="tabpanel" class="col-xs-12 padding-none container">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNavSidePanel()">×</a>
+            <h5 style="color: black; margin-top: 5%">
+                اختر نوع التبرع
+            </h5>
             <div id="FastDonationTabss" role="tabpanel" class="col-xs-12">
                 <!-- Nav tabs -->
                 <div id="tab" class="btn-group d-flex justify-content-between" data-toggle="buttons">
@@ -511,10 +515,10 @@
                     </a>
                 </div>
                 <!-- Tab panes -->
-                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom" >
-                        <h5 style="color: black;">
-                            اختر المبلغ
-                        </h5>
+                <div class="tab-content col-xs-12 padding-none bg-white border-none margin-0-bottom">
+                    <h5 style="color: black;">
+                        اختر المبلغ
+                    </h5>
                     <div role="tabpanel" class="tab-pane col-xs-12 padding-none margin-top-20 active"
                          id="FastDonationTabCampaigns1">
                         <div>
@@ -695,20 +699,86 @@
             </div>
         </div>
     </div>
-    <div style="z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;"
-         class="affix">
-        <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">
-            <div class="text-center"
-                 style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
-                تبرع سريع
-            </div>
-            <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"
-                 style="direction: rtl !important;width: 47% !important; height: 100% !important;">
-                <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>
-                <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>
-            </div>
+
+
+    <div style="
+            z-index: 2 !important;
+            margin-top: 20%;
+            position: fixed;
+            direction: rtl !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        ">
+        <i class="fa fa-minus"
+           id="openCloseBtn"
+           onclick="openAndClose()"
+           style="
+            padding: 0;
+            background: white;
+            color: #1488B5;
+            height: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 26px;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: -12px;
+            cursor: pointer;
+        "></i>
+
+        <div class="openbtn"
+             id="openbtn"
+             onclick="openNavSidePanel()"
+             style="
+            direction: rtl !important;
+            color: #1BB1B0;
+            background: white;
+            height: 57px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 151px;
+            font-size: 15px;
+            cursor: pointer;
+            ">
+            تبرع سريع
         </div>
+        <i class="fa fa-angle-left"
+           id="openbtn"
+           onclick="openNavSidePanel()"
+           style="
+            font-size: 40px;
+            padding: 0;
+            background: #1488B5;
+            color: #FFFFFF;
+            height: 57px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            border-radius: 50% 0 0 50%;
+            cursor: pointer;
+        "></i>
     </div>
+
+    {#    <div style="z-index: 2 !important; margin-top: 20%; position: fixed; direction: rtl !important;"#}
+    {#         class="affix">#}
+    {#        <div class="openbtn" onclick="openNavSidePanel()" style="position: fixed; direction: rtl !important;">#}
+    {#            <div class="text-center"#}
+    {#                 style="direction: rtl !important; color: #1BB1B0; width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">#}
+    {#                تبرع سريع#}
+    {#            </div>#}
+    {#            <div id="toFixProperOpenTabButtonQuickDonate" class="d-flex"#}
+    {#                 style="direction: rtl !important;width: 47% !important; height: 100% !important;">#}
+    {#                <i class="fa fa-circle-o" style="padding-top: 36%; padding-right: 24%; font-size: 8px;"></i>#}
+    {#                <i class="fa fa-angle-left" style="padding-top: 17%; padding-right: 2%; font-size: 24px;"></i>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
 </div>
 {# END COLLAPSED SIDEPANEL: #}
 
@@ -794,8 +864,8 @@
                     </li>
                 </ul>
                 <p class="text-mutedP small mb-4 mb-lg-0">
-                     جميع الحقوق
-                     2021<sup>©</sup>
+                    جميع الحقوق
+                    2021<sup>©</sup>
                 </p>
             </div>
         </div>
@@ -806,7 +876,7 @@
     $(document).scroll(function () {
         var $nav = $(".fixed-top");
         $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-      });
+    });
 </script>
 
 {# ADD TO CART AND NAVIGATE TO CART PAGE: #}
@@ -1040,13 +1110,30 @@
 </script>
 {# FOR SIDEPANEL: #}
 <script type="text/javascript">
+
+    function openAndClose() {
+        const openCloseId = document.getElementById("openCloseBtn");
+        const openbtnId = document.getElementById("openbtn");
+
+        if (openCloseId.classList.contains('fa-minus')) {
+            openCloseId.classList.remove('fa-minus');
+            openCloseId.classList.add('fa-plus');
+            openbtnId.style.display = "none";
+        } else if (openCloseId.classList.contains('fa-plus')) {
+            openCloseId.classList.remove('fa-plus');
+            openCloseId.classList.add('fa-minus');
+            openbtnId.style.display = "flex";
+        }
+
+    }
+
     function openNavSidePanel() {
         {#if (window.matchMedia("(max-width: 415px)")){#}
         {#document.getElementById("mySidepanel").style.width = "300px";#}
         {# }else{#}
         {% comment %} document.getElementById("mySidepanel").style.width = "50%"; {% endcomment %}
         document.getElementById("mySidepanel").style.display = "block";
-        document.getElementById("mySidepanel").style.transitionDelay = "5s";
+        document.getElementById("mySidepanel").style.transitionDelay = "width 5s";
         {# }#}
     }
 
@@ -1148,7 +1235,6 @@
         }
     });
 </script>
-
 
 
 {# FOR SHOWING THE COUNTRY AND AMOUNT OF PROJECT: ACCORDING TO THE SELECTED PROJECT: #}

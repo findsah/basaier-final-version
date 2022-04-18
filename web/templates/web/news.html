@@ -6,111 +6,91 @@
 
 {% block content %}
 
-<header class="masthead text-white" style="background-image: url('{% static 'images/sec2img2.png'%}');">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h3 class="my-heading">جمعية بصائر الخيرية</h3>
-                <p class="myp-slider text-center">لعمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية
-                    نحو</p>
-                <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
-                    الدين </p>
+    <header class="masthead text-white" style="background-image: url('{% static 'images/sec2img2.png' %}');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="my-heading">جمعية بصائر الخيرية</h3>
+                    <p class="myp-slider text-center">لعمومية بتشكيل مجلس ادارة الذي يتولى العمل اداري والفني للجمعية
+                        نحو</p>
+                    <p class="myp-slider text-center">تحقيق رؤية ورسالة وأهداف الجمعية ضمن الخطة استراتيجية لخدمة
+                        الدين </p>
+                </div>
             </div>
         </div>
-    </div>
-</header>
-
-<br><br>
-
-<div class="container">
-    <div class="row" style="margin: 8rem 0 3rem 0; justify-content: space-between">
-        {% for data in news %}
-        <div class="col-12 col-md-3">
-            <a href="{% url 'news-detail' data.id %}">
-                <div class="card1" style="border-radius: 5px;  padding:  0 !important;">
-                    <div class="card1-img-top" style="position: relative">
-                        <div id="overlay" class="overlay" style="display: none"> </div>
-{#                        <button class="hoverBtn"#}
-{#                           style="display: none; background-color: #1488B5; color: #fff;">#}
-{#                           بوابة التبرع#}
-{#                       </button> #}
-                        <img src="/media/{{ data.image }}" class="newsImage" alt="img" style="width: 100%;">
-                    </div>
-                    <div class="card-body customBody">
-                        <h5 class="card-title">{{ data.title }}</h5>
-                        <p class="card-text">{{ data.content|truncatechars:255 }}
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
+    </header>
 
     <br><br>
 
-    <div class="row my-5">
-        {% for data in news %}
-        {% if forloop.last %}
-        <div class="col-12 meeting_section" style="position: relative; background-image: url('/media/{{ data.image }}');">
-            <div id="overlay forMeeting" class="overlay" style="display: none"> </div>
-            <button class="hoverBtn forMeeting"
-               style="width: 20%;">
-               بوابة التبرع
-           </button> 
-            <h2 class="meeting_heading"> {{ data.title }} </h2>
-            <p class="meeting-text">
-                {{ data.content|truncatechars:255 }}
-            </p>
+    <div class="container">
+        <div class="row" style="margin: 8rem 0 3rem 0; justify-content: space-between;">
+            {% for data in news %}
+                <div class="col-12 col-md-3">
+                    <a href="{% url 'news-detail' data.id %}">
+                        <div class="card1" style="border-radius: 5px;  padding:  0 !important;">
+                            <div class="card1-img-top" style="position: relative">
+                                <div class="overlay overlay2{{ data.id }}" style="display: none;"></div>
+                                <button class="hoverBtn hoverBtn2{{ data.id }}" onmouseover="mouseEnter({{ data.id }});"
+                                        onmouseleave="mouseLeave({{ data.id }});"
+                                        style="display: none; background-color: #1488B5; color: #fff;">
+                                    بوابة التبرع
+                                </button>
+                                <img src="/media/{{ data.image }}" alt="img" onmouseover="mouseEnter({{ data.id }});"
+                                     onmouseleave="mouseLeave({{ data.id }});"
+                                     style="width: 100%; height: 100%;">
+                            </div>
+                            <div class="card-body customBody">
+                                <h5 class="card-title">{{ data.title }}</h5>
+                                <p class="card-text">{{ data.content|truncatechars:255 }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-        {% endif %}
-        {% endfor %}
+
+        <br><br>
+
+        <div class="row my-5">
+            {% for data in news %}
+                {% if forloop.last %}
+                    <a href="{% url 'news-detail' data.id %}">
+                        <div class="col-12 meeting_section"
+                             style="position: relative; background-image: url('/media/{{ data.image }}');">
+                            <div class="overlay" style="display: none;"></div>
+                            <button class="hoverBtn"
+                                    style="width: 20%;">
+                                بوابة التبرع
+                            </button>
+                            <h2 class="meeting_heading"> {{ data.title }} </h2>
+                            <p class="meeting-text">
+                                {{ data.content|truncatechars:255 }}
+                            </p>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-<br><br>
+    <br><br>
+    <script>
+        function mouseEnter(id) {
+            console.log(id);
+            const variable = $(".hoverBtn2" + id);
+            const displayOverlay = $(".overlay2" + id);
+            variable.css("display", "block");
+            displayOverlay.css("display", "block");
+        }
 
-{#<div>#}
-    {# <h1>I am a Image</h1>#}
-    {# {% for img in images %}#}
-    {##}
-    {# <h1>{{img.title}}</h1>#}
-    {# <img alt="image not shown" src="{{img.image.url}}" width="120" />#}
-    {##}
-    {# {% endfor %}#}
-    {#</div>#}
-<script>
-    $(".newsImage").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-
-    $(".overlay").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-
-    $(".hoverBtn").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".hoverBtn").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".hoverBtn").css("display", "none");
-    });
-    
-    $(".meeting_section").hover(function() {
-        $(".overlay").css("display", "block");
-        $(".forMeeting").css("display", "block");
-    }, function() {
-        $(".overlay").css("display", "none");
-        $(".forMeeting").css("display", "none");
-    });
-</script>
+        function mouseLeave(id) {
+            console.log(id);
+            const variable = $(".hoverBtn2" + id);
+            const displayOverlay = $(".overlay2" + id);
+            variable.css("display", "none");
+            displayOverlay.css("display", "none");
+        }
+    </script>
 {% endblock %}

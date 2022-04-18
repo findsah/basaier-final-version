@@ -545,7 +545,7 @@ class Index(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
-                                          is_compaign=False, is_thawab=False).order_by('-id')
+                                          is_compaign=False, is_thawab=False).order_by('-id')[:3]
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
