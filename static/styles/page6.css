@@ -3,10 +3,11 @@
     color: #000000;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     header.masthead {
+        height: auto;
         padding-top: 12rem;
-        padding-bottom: 12rem;
+        padding-bottom: 3rem;
     }
 }
 

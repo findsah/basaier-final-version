@@ -2,14 +2,14 @@
 
 header.masthead {
   position: relative;
-  height: 509px;
+  height: 774px;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-top: 10rem;
+  padding-top: 12rem;
 }
 
 

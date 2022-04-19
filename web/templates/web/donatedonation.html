@@ -6,7 +6,9 @@
 
 {% block content %}
 
-    <div class="container" style="margin-top: 10rem;">
+    <div style="position: relative; overflow: hidden">
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -11rem; top: 10rem" alt="img">
+        <div class="container" style="margin-top: 10rem;">
         <h3 class="pathlink">الرئيسية / إهداء تبرع</h3>
         <div class="title">
             <h2 style="color: #1385B2; font-size: 37px;">إهداء تبرع</h2>
@@ -18,9 +20,9 @@
                 <span style="color: #1385B2; font-weight: 500;">إختيار المشروع </span>
 
             </div>
-            <div class="row firstSectionCard">
+            <div class="firstSectionCard" style="display: flex; justify-content: center; overflow-x: scroll; white-space: nowrap;">
                 {% for project in projects %}
-                    <div class="col-md-3">
+                    <div class="m-3">
                         <div class="firstSectionCard1">
                             <p class="firstSectionCard1P"> {{ project.get_name }}</p>
                             <img src="/media/{{ project.image }}" alt="{{ project.get_name }}"
@@ -121,6 +123,7 @@
 {#            </div>#}
         </div>
     </div>
+</div>
 
 
 {% endblock %}

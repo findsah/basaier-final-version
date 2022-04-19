@@ -198,17 +198,18 @@ body {
     width: 20%;
 }
 
+
 .testimonialhead {
     display: flex;
     align-items: center;
 }
 
 .testimonialsHover {
-     transition: transform .7s;
+    transition: transform .7s;
 }
 
-.testimonialsHover:hover{
-     transform: scale(1.07);
+.testimonialsHover:hover {
+    transform: scale(1.07);
     color: #FFFFFF !important;
     cursor: pointer;
     background-image: linear-gradient(#00B4DB, #0083B0);
@@ -450,13 +451,15 @@ a.openNav {
 }
 
 .testimonials {
+    position: relative;
+    overflow: hidden !important;
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
 
 .testimonialsBG1 {
     position: absolute;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .myp {
@@ -656,11 +659,6 @@ section#marketplace h5 {
     font-size: 14px;
     border-radius: 10px;
     border: none;
-}
-
-header.masthead {
-    background-repeat: no-repeat;
-    height: 774px;
 }
 
 /* slider testimonials */
@@ -949,7 +947,7 @@ li.list-inline-item a {
         font-size: 8px;
     }
 
-    .carousel {
+    .carouselHide {
         display: none;
     }
 
@@ -967,6 +965,24 @@ li.list-inline-item a {
 }
 
 @media (max-width: 991px) {
+    .icalculatorMain {
+        display: block !important;
+    }
+
+    .icalculatorUI {
+        display: flex !important;
+        overflow-x: scroll;
+        white-space: nowrap;
+        width: 100% !important;
+    }
+    .icalculatorTabs{
+        width: 100% !important;
+    }
+
+    .img-container h2 {
+        font-size: 18px !important;
+    }
+
     .giftImg {
         width: 139px;
         height: 170px;
@@ -1180,6 +1196,27 @@ li.list-inline-item a {
 }
 
 @media (max-width: 599px) {
+    .inputDiv {
+        /* margin: 0 !important; */
+        width: 100% !important;
+    }
+
+    .hideOnSmall {
+        display: none;
+    }
+
+    .list-inline {
+        display: flex !important;
+    }
+
+    .text-mutedP {
+        display: block !important;
+    }
+
+    .img-container h2 {
+        font-size: 10px !important;
+    }
+
     .myh-class {
         font-size: 25px !important;
     }

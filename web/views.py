@@ -841,7 +841,7 @@ class privateProjectDetail(TemplateView):
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False).order_by('-id')[:6]
+            is_closed=False, is_hidden=False).order_by('-id')[:6]
         projects = Project.objects.filter(pk=id)
         pdfFiles = ProjectPDF.objects.filter(projectCategory=id)
         multipleImages = PostImage.objects.filter(post=id)
@@ -885,7 +885,7 @@ class privateProjectDetail(TemplateView):
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_closed=False).order_by('-id')[:6]
+            is_closed=False, is_hidden=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
         sacrifices = Sacrifice.objects.filter(
             availability__gt=0, project=project).order_by('country').all()
@@ -1922,12 +1922,12 @@ def Login(request):
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
-            is_compaign=False).order_by('-id')[:6]
+            is_compaign=False, is_hidden=False).order_by('-id')[:6]
         cart_projects, projects_selected = get_cart(request)
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         projects = Project.objects.filter(
-            is_sadaqah=False, is_compaign=False).order_by('-id')
+            is_sadaqah=False, is_compaign=False, is_hidden=False).order_by('-id')
         projectsSadaqah = Project.objects.filter(
             is_sadaqah=True, is_compaign=False).order_by('-id')
         username = request.POST.get('phoneNumberOfUser', '')

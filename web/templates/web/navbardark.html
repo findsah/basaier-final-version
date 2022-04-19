@@ -851,10 +851,41 @@
 <footer class="footer removePadding">
     <div class="container">
         <div class="row">
-            <div class=" col-6 col-md-4 text-center my-auto  ">
-                <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg" alt="logoimg">
+            <div class=" col-6 col-md-4 text-center">
+                <img src="{% static 'images/bgfooter.png' %}" class="footerLogoImg imgHover" alt="logoimg">
+                <ul class="list-inline mb-0 p-0" style="display: none">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-linkedin fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-youtube fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="socialIcons fa fa-twitter fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="socialIcons fa fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text-mutedP small mb-4 mb-lg-0" style="display: none">
+                    جميع الحقوق
+                    2021<sup>©</sup>
+                </p>
             </div>
-            <div class=" col-6 col-md-4 text-center my-auto  ">
+            <div class=" col-6 col-md-4 text-center my-auto">
                 <ul style="list-style: none; text-align: right;" class="footerUl">
                     <li style="margin: 1rem 0;">
                         <a href="#" style="text-decoration: none; color: #fff;">
@@ -877,7 +908,7 @@
                     </li>
                 </ul>
             </div>
-            <div class=" col-6 col-md-4 text-right my-auto">
+            <div class="col-6 col-md-4 text-right my-auto hideOnSmall">
                 <ul class="list-inline mb-0 p-0">
                     <li class="list-inline-item mr-3">
                         <a href="#">

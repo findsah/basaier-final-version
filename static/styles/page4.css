@@ -1,6 +1,6 @@
 .video-container {
-  height: 100%;
   position: relative;
+  height: 249px;
 }
 
 .video-container video {

@@ -7,7 +7,6 @@
 {% block content %}
 
     <style>
-        /*HOME PAGE*/
         .carousel-fade .carousel-item {
             opacity: 0;
             transition-duration: .6s;
@@ -33,10 +32,9 @@
             transform: translateX(0);
             transform: translate3d(0, 0, 0);
         }
-        /*END HOME PAGE*/
     </style>
 
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel carouselHide slide carousel-fade" data-interval="5000" data-ride="carousel">
 
         <div class="carousel-inner">
             {% for project in projects %}
@@ -84,7 +82,7 @@
         {% endfor %}
     </div>
     <section class="testimonials">
-        <!-- <img src="./images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
         <div class="container">
             <div class="row">
                 <div class="col-6 mb-3">
@@ -150,7 +148,7 @@
 
 
     <section class="testimonials">
-        <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="left: -9rem;" alt="img"> -->
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
@@ -178,7 +176,7 @@
 
 
     <section class="testimonials">
-        <!-- <img src="{% static 'images/bg1.png' %}" class="testimonialsBG1" style="right: -9rem;" alt="img"> -->
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img"> 
         <div class="container">
             <div class="row reverseCol">
                 <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
@@ -231,6 +229,7 @@
 
 
     <section class="testimonials">
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> 
         <div class="container">
             <div class="row">
                 {% for data in science_news %}
@@ -291,7 +290,9 @@
         </div>
     </section>
 
-    <section class="testimonials text-center container">
+    <section class="testimonials text-center">
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img"> 
+        <div class="container">
         <div class="mb-5">
             <h3 class="title-heading">جمعية بصائر الخيرية</h3>
         </div>
@@ -311,6 +312,7 @@
                 </div>
             {% endfor %}
         </div>
+    </div>
     </section>
 
     <section class="testimonials text-center">
