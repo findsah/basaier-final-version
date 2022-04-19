@@ -198,20 +198,6 @@ body {
     width: 20%;
 }
 
-/*HOME PAGE*/
-.carousel-fade .carousel-item {
-	opacity: 0;
-	transition-duration: .6s;
-	transition-property: opacity !important;
-}
-
-.carousel-fade .carousel-item.active,
-.carousel-fade .carousel-item-next.carousel-item-left,
-.carousel-fade .carousel-item-prev.carousel-item-right {
-	opacity: 1;
-}
-/*END HOME PAGE*/
-
 .testimonialhead {
     display: flex;
     align-items: center;
