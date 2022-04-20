@@ -25,15 +25,19 @@
 
     <div class="container">
         <div class="row" style="margin: 5rem 0;">
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-5 mb-3">
                 {% for data in dataScienceNews %}
                     {% if forloop.last %}
                         <a href="{% url 'science-center-category' data.id %}">
-                            <div class="video-container videoImg">
-                                <video autoplay muted controls loop>
-                                    <source src="/media/{{ data.image }}"
-                                            type="video/mp4"/>
-                                </video>
+                            <div class="videoImg" style="width: 100%; position: relative;">
+                                {% if data.video %}
+                                    <video autoplay muted controls loop style="height: 514px; width: 100%;">
+                                        <source src="/media/{{ data.video }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                {% else %}
+                                    <img src="/media/{{ data.image }}" style="height: 514px; width: 100%;">
+                                {% endif %}
                                 <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
                                     <div>
                                         <h2>{{ data.title }}</h2>
@@ -50,17 +54,21 @@
                     {% endif %}
                 {% endfor %}
             </div>
+
             <div class="col-12 col-md-7">
                 <div class="row">
-                    {% for data in dataScienceNews|slice:"2" %}
+                    {% for data in dataScienceNews|slice:"1" %}
                         <a href="{% url 'science-center-category' data.id %}">
                             <div class="col-12 col-md-6">
-                                <div class="video-container videoImg" style="height: 218px;">
-                                    <video autoplay muted controls loop>
-                                        <source
-                                                src="/media/{{ data.image }}"
-                                                type="video/mp4"/>
-                                    </video>
+                                <div class="video-container videoImg">
+                                    {% if data.video %}
+                                        <video autoplay muted controls loop style="width: 100%;">
+                                            <source src="/media/{{ data.video }}"
+                                                    type="video/mp4"/>
+                                        </video>
+                                    {% else %}
+                                        <img src="/media/{{ data.image }}" style="width: 100%;">
+                                    {% endif %}
                                     <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
                                         <div>
                                             <h2 class="card_overly_h">{{ data.title }}</h2>
@@ -79,15 +87,18 @@
                 </div>
 
                 <div class="row mt-3">
-                    {% for data in dataScienceNews|slice:"2" %}
+                    {% for data in dataScienceNews|slice:"1" %}
                         <a href="{% url 'science-center-category' data.id %}">
                             <div class="col-12 col-md-6">
-                                <div class="video-container videoImg" style="height: 218px;">
-                                    <video autoplay muted controls loop>
-                                        <source
-                                                src="/media/{{ data.image }}"
-                                                type="video/mp4"/>
-                                    </video>
+                                <div class="video-container videoImg">
+                                    {% if data.video %}
+                                        <video autoplay muted controls loop style="width: 100%;">
+                                            <source src="/media/{{ data.video }}"
+                                                    type="video/mp4"/>
+                                        </video>
+                                    {% else %}
+                                        <img src="/media/{{ data.image }}" style="width: 100%;">
+                                    {% endif %}
                                     <div class="card_overly d-flex align-items-end justify-content-center p-2 text-white">
                                         <div>
                                             <h2 class="card_overly_h">{{ data.title }}</h2>

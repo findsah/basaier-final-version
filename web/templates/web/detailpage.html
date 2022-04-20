@@ -7,7 +7,7 @@
 {% block content %}
 
     <header class="masthead text-white" style="background-image: url('{% static 'images/qasas.png' %}');">
-    <div class="overlay"></div>
+        <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -27,10 +27,14 @@
                 type="video/mp4" />
         </video> -->
         <div class="container">
-            <video autoplay muted controls loop class="videoOnDetailPageOfSuccessStories">
-                <source src="/media/{{ obj.image }}"
+            {% if obj.video %}
+            <video autoplay muted controls loop class="videoOnDetailPageOfSuccessStories" style="height: 470px; width: 100%;">
+                <source src="/media/{{ obj.video }}"
                         type="video/mp4"/>
             </video>
+            {% else %}
+                <img src="/media/{{ obj.image }}" style="height: 470px; width: 100%;">
+            {% endif %}
         </div>
         {#    <!-- <img src="{% static './images/child.png' %}" alt="detailimg"> -->#}
         <h5>{{ obj.title }}</h5>

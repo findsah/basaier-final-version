@@ -245,10 +245,14 @@
                     <div class="col-sm-6 col-md-4 mt-4 ">
                         <a href="{% url 'science-center-category' data.id %}">
                             <div class="card card-custom">
-                                <video autoplay muted controls loop>
-                                    <source src="/media/{{ data.image }}"
-                                            type="video/mp4"/>
-                                </video>
+                                {% if data.video %}
+                                    <video autoplay muted controls loop style="height: 160px; width: 100%;">
+                                        <source src="/media/{{ data.video }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                {% else %}
+                                    <img src="/media/{{ data.image }}" style="height: 160px; width: 100%;">
+                                {% endif %}
                                 <div class="card-block">
                                     <h4 class="card-title">{{ data.title }}</h4>
                                     <small>
