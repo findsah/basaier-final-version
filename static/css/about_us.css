@@ -1,83 +1,12 @@
-.jumbotron {
-    display: flex;
-    justify-content: center;
-    /*margin-top: 20px;*/
-    background-image: url("img.jpg");
-    background-repeat: no-repeat;
-    /* width: 100% !important; */
-    color: white !important;
-    font-size: 50px;
-    /* font-weight: bold; */
+p {
+    color: #00A0D1;
+    font-weight: bold;
 }
-#topPullOnTop {
-    position: absolute;
-    top: 20%;
-    left: 32%;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-}
-@media(max-width: 768px){
-    #topPullOnTop {
-        top: 12%;
-        left: 47%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 40px;
-    }
-}
-
-@media(max-width: 414px){
-    #topPullOnTop {
-        top: -20%;
-        left: 43%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 25px;
-    }
-}
-
-@media(max-width: 411px){
-    #topPullOnTop {
-        top: -10%;
-        left: 45%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 25px;
-    }
-}
-
-@media(max-width: 375px){
-    #topPullOnTop {
-        top: -25%;
-        left: 44%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 25px;
-    }
-}
-
-@media(max-width: 360px){
-    #topPullOnTop {
-        top: -25%;
-        left: 48%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 20px;
-    }
-}
-
-@media(max-width: 320px){
-    #topPullOnTop {
-        top: -35%;
-        left: 48%;
-    }
-    #topPullOnTop > h1 {
-        font-size: 20px;
-    }
+.logoColorNew{
+    color: #00A0D1 !important;
 }
 .kalima {
-    color: #4d5280 !important;
+    color: #00A0D1 !important;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -89,7 +18,7 @@
     /*text-align: center;*/
     display: flex;
     justify-content: center;
-    margin-top: 0px !important;
+    margin-top: 0 !important;
     margin-bottom: 20px !important;
     font-size: 16px;
 }
@@ -133,7 +62,7 @@
     margin-top: 3%;
     width: 50%;
     float: left;
-    background-color: #F1EFED;
+    background-color: #00A0D1;
     border-radius: 5px;
     padding: 15px;
     position: relative;
@@ -188,7 +117,7 @@
     top: 16px;
     left: 50%;
     margin-left: -25px;
-    background-color: #a6a5c1;
+    background-color: #00A0D1;
     z-index: 100;
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
@@ -234,7 +163,7 @@ section {
 
 section .section-title {
     text-align: center;
-    color: #007b5e;
+    color: #00A0D1;
     margin-bottom: 50px;
     text-transform: uppercase;
 }

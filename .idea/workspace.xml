@@ -21,24 +21,21 @@
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/about_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/about_us.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page2.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page4.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page4.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/styles/page6.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page6.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/aboutus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/about_us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/testimonials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/iqalculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/iqalculator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/newsdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/newsdetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
@@ -174,6 +171,8 @@
       <workItem from="1650261077536" duration="58000" />
       <workItem from="1650269349933" duration="27194000" />
       <workItem from="1650356506476" duration="4507000" />
+      <workItem from="1650441293780" duration="14000" />
+      <workItem from="1650444298757" duration="9178000" />
     </task>
     <servers />
   </component>
@@ -221,10 +220,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1650282990464" />
-    <state x="399" y="63" width="825" height="795" key="find.popup" timestamp="1650300749568">
+    <state x="399" y="63" width="825" height="795" key="find.popup" timestamp="1650447310259">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="399" y="63" width="825" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650300749568" />
+    <state x="399" y="63" width="825" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650447310259" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1649942892514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

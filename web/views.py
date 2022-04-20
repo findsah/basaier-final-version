@@ -2257,49 +2257,48 @@ class ChangePasswordView(TemplateView):
         })
 
 
-def aboutUs(request):
+# def aboutUs(request):
+#     charity_categories = Category.objects.filter(
+#         inMenu=True, parent=None).order_by('-id')
+#     testimonialsData = testimonials.objects.all().order_by('-id')[:3]
+#     # THIS ABOUT_US PAGE IS THE PREVIOUS PAGE, AND IT WILL SHOW THEM THE ABOUT US:
+#     return render(request, 'web/about_us.html', {
+#         'charity_categories': charity_categories,
+#         'testimonialsData': testimonialsData,
+#     })
+
+
+def testimonialsView(request):
     charity_categories = Category.objects.filter(
         inMenu=True, parent=None).order_by('-id')
     testimonialsData = testimonials.objects.all().order_by('-id')[:3]
-    return render(request, 'web/aboutus.html', {
+    # THIS ABOUTUS.HTML PAGE IS SHOWING THEM THE TESIMONIALS:
+    return render(request, 'web/testimonials.html', {
         'charity_categories': charity_categories,
         'testimonialsData': testimonialsData,
     })
 
 
-# class AboutUs(TemplateView):
-#     # template_name = "web/about_us.html"
-#
-#     def get(self, request, *args, **kwargs):
-#         cart = Cart(request)
-#         totalProjectsInCart = cart.get_total_products()
-#         # getMyCurrency = getCurrency(request)
-#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         news = PRNews.objects.all().order_by('-id')[:6]
-#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         boardOfDirectory = boardOfDirectories.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('-id')
-#         project_dirctories = ProjectsDirectory.objects.all()
-#         sponsorCategories = sponsorship.objects.all()
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('-id')
-#
-#         cart_projects, projects_selected = get_cart(request)
-#         return render(request, self.template_name,
-#                       {'sliders': sliders,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'news': news,
-#                        'sponsorCategories': sponsorCategories,
-#                        'boardOfDirectory': boardOfDirectory,
-#                        'project_dirctories': project_dirctories,
-#                        'science_news': science_news,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        })
+def aboutUs(request):
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    boardOfDirectory = boardOfDirectories.objects.all().order_by('-id')[:4]
+    categories = PRCategory.objects.all().order_by('-id')
+    sponsorCategories = sponsorship.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, parent=None).order_by('-id')
+
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, "web/about_us.html",
+                  {
+                      'categories': categories,
+                      'charity_categories': charity_categories,
+                      'sponsorCategories': sponsorCategories,
+                      'boardOfDirectory': boardOfDirectory,
+                      'cart_projects': cart_projects,
+                      'projects_selected': projects_selected,
+                      'totalProjectsInCart': totalProjectsInCart,
+                  })
 
 
 class ContactUs(TemplateView):
@@ -5880,16 +5879,168 @@ def getSponsoshipValuesAccordingToSelectedCategory(request):
 
 
 def custom_page_not_found_view(request, exception):
-    return render(request, "web/404.html", {})
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    # getMyCurrency = getCurrency(request)
+    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+    sliders = Slider.objects.all().order_by('-id')[:5]
+    project_dirctories = ProjectsDirectory.objects.all()
+    projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
+                                      is_compaign=False, is_thawab=False).order_by('-id')[:3]
+    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
+                                             is_compaign=False).order_by('-id')
+    news = PRNews.objects.all().order_by('-id')[:6]
+    news2 = PRNews.objects.all().order_by('-id')[:4]
+    testimonialsData = testimonials.objects.all().order_by('-id')[:3]
+    science_news = ScienceNews.objects.all().order_by('-id')[:3]
+    categories = PRCategory.objects.all().order_by('-id')
+    sponsorCategories = sponsorship.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, inHomePage=True, parent=None
+    ).order_by('-id')
+    # whoWeAreVar = whoWeAre.objects.all()
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, 'web/404.html',
+                  {'sliders': sliders,
+                   'projects': projects,
+                   'projectsSadaqah': projectsSadaqah,
+                   'categories': categories,
+                   'charity_categories': charity_categories,
+                   'news': news,
+                   'news2': news2,
+                   'sponsorCategories': sponsorCategories,
+                   'science_news': science_news,
+                   'cart_projects': cart_projects,
+                   'projects_selected': projects_selected,
+                   'project_dirctories': project_dirctories,
+                   # 'whoWeAreVar': whoWeAreVar,
+                   'totalProjectsInCart': totalProjectsInCart,
+                   'getMyCurrency': getMyCurrency,
+                   'testimonialsData': testimonialsData,
+                   })
 
 
 def custom_error_view(request, exception=None):
-    return render(request, "web/404.html", {})
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    # getMyCurrency = getCurrency(request)
+    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+    sliders = Slider.objects.all().order_by('-id')[:5]
+    project_dirctories = ProjectsDirectory.objects.all()
+    projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
+                                      is_compaign=False, is_thawab=False).order_by('-id')[:3]
+    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
+                                             is_compaign=False).order_by('-id')
+    news = PRNews.objects.all().order_by('-id')[:6]
+    news2 = PRNews.objects.all().order_by('-id')[:4]
+    testimonialsData = testimonials.objects.all().order_by('-id')[:3]
+    science_news = ScienceNews.objects.all().order_by('-id')[:3]
+    categories = PRCategory.objects.all().order_by('-id')
+    sponsorCategories = sponsorship.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, inHomePage=True, parent=None
+    ).order_by('-id')
+    # whoWeAreVar = whoWeAre.objects.all()
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, 'web/404.html',
+                  {'sliders': sliders,
+                   'projects': projects,
+                   'projectsSadaqah': projectsSadaqah,
+                   'categories': categories,
+                   'charity_categories': charity_categories,
+                   'news': news,
+                   'news2': news2,
+                   'sponsorCategories': sponsorCategories,
+                   'science_news': science_news,
+                   'cart_projects': cart_projects,
+                   'projects_selected': projects_selected,
+                   'project_dirctories': project_dirctories,
+                   # 'whoWeAreVar': whoWeAreVar,
+                   'totalProjectsInCart': totalProjectsInCart,
+                   'getMyCurrency': getMyCurrency,
+                   'testimonialsData': testimonialsData,
+                   })
 
 
 def custom_permission_denied_view(request, exception=None):
-    return render(request, "web/404.html", {})
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    # getMyCurrency = getCurrency(request)
+    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+    sliders = Slider.objects.all().order_by('-id')[:5]
+    project_dirctories = ProjectsDirectory.objects.all()
+    projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
+                                      is_compaign=False, is_thawab=False).order_by('-id')[:3]
+    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
+                                             is_compaign=False).order_by('-id')
+    news = PRNews.objects.all().order_by('-id')[:6]
+    news2 = PRNews.objects.all().order_by('-id')[:4]
+    testimonialsData = testimonials.objects.all().order_by('-id')[:3]
+    science_news = ScienceNews.objects.all().order_by('-id')[:3]
+    categories = PRCategory.objects.all().order_by('-id')
+    sponsorCategories = sponsorship.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, inHomePage=True, parent=None
+    ).order_by('-id')
+    # whoWeAreVar = whoWeAre.objects.all()
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, 'web/404.html',
+                  {'sliders': sliders,
+                   'projects': projects,
+                   'projectsSadaqah': projectsSadaqah,
+                   'categories': categories,
+                   'charity_categories': charity_categories,
+                   'news': news,
+                   'news2': news2,
+                   'sponsorCategories': sponsorCategories,
+                   'science_news': science_news,
+                   'cart_projects': cart_projects,
+                   'projects_selected': projects_selected,
+                   'project_dirctories': project_dirctories,
+                   # 'whoWeAreVar': whoWeAreVar,
+                   'totalProjectsInCart': totalProjectsInCart,
+                   'getMyCurrency': getMyCurrency,
+                   'testimonialsData': testimonialsData,
+                   })
 
 
 def custom_bad_request_view(request, exception=None):
-    return render(request, "web/404.html", {})
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
+    # getMyCurrency = getCurrency(request)
+    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
+    sliders = Slider.objects.all().order_by('-id')[:5]
+    project_dirctories = ProjectsDirectory.objects.all()
+    projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
+                                      is_compaign=False, is_thawab=False).order_by('-id')[:3]
+    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
+                                             is_compaign=False).order_by('-id')
+    news = PRNews.objects.all().order_by('-id')[:6]
+    news2 = PRNews.objects.all().order_by('-id')[:4]
+    testimonialsData = testimonials.objects.all().order_by('-id')[:3]
+    science_news = ScienceNews.objects.all().order_by('-id')[:3]
+    categories = PRCategory.objects.all().order_by('-id')
+    sponsorCategories = sponsorship.objects.all()
+    charity_categories = Category.objects.filter(
+        inMenu=True, inHomePage=True, parent=None
+    ).order_by('-id')
+    # whoWeAreVar = whoWeAre.objects.all()
+    cart_projects, projects_selected = get_cart(request)
+    return render(request, 'web/404.html',
+                  {'sliders': sliders,
+                   'projects': projects,
+                   'projectsSadaqah': projectsSadaqah,
+                   'categories': categories,
+                   'charity_categories': charity_categories,
+                   'news': news,
+                   'news2': news2,
+                   'sponsorCategories': sponsorCategories,
+                   'science_news': science_news,
+                   'cart_projects': cart_projects,
+                   'projects_selected': projects_selected,
+                   'project_dirctories': project_dirctories,
+                   # 'whoWeAreVar': whoWeAreVar,
+                   'totalProjectsInCart': totalProjectsInCart,
+                   'getMyCurrency': getMyCurrency,
+                   'testimonialsData': testimonialsData,
+                   })

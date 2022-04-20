@@ -300,8 +300,8 @@
             <div class="loginSignupDiv">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <div style="display: flex; justify-content: space-around;">
-                    <button class="loginSignupBtns">login</button>
-                    <button class="loginSignupBtns">signup</button>
+                    <a href="{% url 'login' %}" class="loginSignupBtns">تسجيل الدخول</a>
+                    <a href="{% url 'register' %}" class="loginSignupBtns">اشتراك</a>
                 </div>
             </div>
             <ul class="mob-ul p-0">
@@ -329,7 +329,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="{% url 'testimonials' %}">
+                            <a class="dropdown-item" href="{% url 'aboutUs' %}">
                                 من نحن
                             </a>
                         </li>
@@ -411,7 +411,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="{% url 'testimonials' %}">
+                            <a class="dropdown-item" href="{% url 'aboutUs' %}">
                                 من نحن
                             </a>
                         </li>

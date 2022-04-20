@@ -24,10 +24,10 @@
     <br><br>
 
     <div class="container">
-        <div style="display: flex; margin: 8rem 0 3rem 0; justify-content: center; overflow-x: scroll; white-space: nowrap;">
+        <div style="display: flex; margin: 4rem 0 3rem 0; overflow-x: scroll; white-space: nowrap;">
             {% for data in news %}
                 <div class="m-3">
-                    <a href="{% url 'news-detail' data.id %}"> 
+                    <a href="{% url 'news-detail' data.id %}">
                         <div class="card1" style="border-radius: 5px;width: 20rem;  padding:  0 !important;">
                             <div class="card1-img-top" style="position: relative">
                                 <div class="overlay overlay2{{ data.id }}" style="display: none;"></div>
