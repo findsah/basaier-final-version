@@ -468,12 +468,12 @@
     <section class="pb-5 mt-5">
         <div class="container">
             <h3 class="text-center logoColorNew">أعضاء مجلس الإدارة</h3>
-            <div class="row mb-5">
+            <div class="mb-5 d-flex justify-content-between" style="overflow-x: scroll; white-space: nowrap;">
                 <!-- Team member -->
                 {% for data in boardOfDirectory %}
-                    <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div>
                         <div class="frontside">
-                            <div class="card">
+                            <div class="card" style="width: 15rem; padding: 0 !important; margin: 1rem;">
                                 <div class="card-body text-center">
                                     <p><img class="img-fluid" style="border: 1px solid #0085B2;"
                                             src="/media/{{ data.image }}"
@@ -498,7 +498,10 @@
                 {% endfor %}
                 <!-- ./Team member -->
             </div>
+        </div>
+    </section>
 
+    <div class="container justify-content-center">
             <h3 class="text-center logoColorNew">الخاتمة</h3>
             <p class="text-center">
                 كانت هذه أول إطلالة عليكم من خلال جمعية بصائر الخيرية..<br>
@@ -506,7 +509,6 @@
                 ونحن على ثقة كبيرة بأن القادم أجمل.. بكم ومعكم.<br>
                 نستودعكم الله إلى موعد قريب...
             </p>
-        </div>
-    </section>
+    </div>
 
 {% endblock %}

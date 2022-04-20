@@ -21,23 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/about_us.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/about_us.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page6.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page6.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/404.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/about_us.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/about_us.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/testimonials.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/newsdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/newsdetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/volunteerandspread.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +157,7 @@
       <workItem from="1650269349933" duration="27194000" />
       <workItem from="1650356506476" duration="4507000" />
       <workItem from="1650441293780" duration="14000" />
-      <workItem from="1650444298757" duration="9178000" />
+      <workItem from="1650444298757" duration="9700000" />
     </task>
     <servers />
   </component>
