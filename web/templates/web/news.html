@@ -36,9 +36,17 @@
                                         style="display: none; background-color: #1488B5; color: #fff;">
                                     بوابة التبرع
                                 </button>
+                                {% if data.video %}
+                                <video autoplay muted controls loop>
+                                        <source
+                                                src="/media/{{ data.video }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                {% else %}
                                 <img src="/media/{{ data.image }}" alt="img" onmouseover="mouseEnter({{ data.id }});"
                                      onmouseleave="mouseLeave({{ data.id }});"
                                      style="width: 100%; height: 100%;">
+                                {% endif %}
                             </div>
                             <div class="card-body customBody">
                                 <h5 class="card-title">{{ data.title }}</h5>

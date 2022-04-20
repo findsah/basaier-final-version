@@ -22,6 +22,18 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/basaier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/allProjectsOfParticularCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/newsdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/newsdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/projectsOfParticularCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/projectsOfParticularCategory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/seasonalprojects2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +168,7 @@
       <workItem from="1650269349933" duration="27194000" />
       <workItem from="1650356506476" duration="4507000" />
       <workItem from="1650441293780" duration="14000" />
-      <workItem from="1650444298757" duration="10119000" />
+      <workItem from="1650444298757" duration="11725000" />
     </task>
     <servers />
   </component>
@@ -204,10 +216,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1650282990464" />
-    <state x="399" y="63" width="825" height="795" key="find.popup" timestamp="1650447310259">
+    <state x="399" y="63" width="1266" height="795" key="find.popup" timestamp="1650456247836">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="399" y="63" width="825" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650447310259" />
+    <state x="399" y="63" width="1266" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1650456247836" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1649942892514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

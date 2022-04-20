@@ -352,6 +352,7 @@ class Project(models.Model):
     donater_name = models.CharField(max_length=255, blank=True, null=True)
     donater_phone = models.CharField(max_length=255, blank=True, null=True)
     created_by = models.IntegerField(null=True)
+    video = models.FileField(upload_to='projects/videos/%Y/%m/%d', blank=True, null=True)
     image = models.ImageField(
         upload_to='projects/%Y/%m/%d', blank=True, null=True)
 

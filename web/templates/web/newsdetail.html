@@ -7,7 +7,7 @@
 {% block content %}
 
     <header class="masthead text-white" style="background-image: url('{% static 'images/qasas.png' %}');">
-    <div class="overlay"></div>
+        <div class="overlay"></div>
     </header>
 
     <div class="container my-5">
@@ -17,7 +17,17 @@
         </video> -->
         {#        <div class="d-flex justify-content-between mb-3" style="overflow-x: scroll; white-space: nowrap;">#}
         <div class="d-flex justify-content-between mb-3">
-            <img src="/media/{{ obj.image }}" alt="detailimg" class="img-fluid" style="margin: 0 10px; height: 470px; width: 100%; border-radius: 17px;">
+            {% if obj.video %}
+                <video autoplay muted controls loop
+                     style="margin: 0 10px; height: 470px; width: 100%; border-radius: 17px;">
+                    <source
+                            src="/media/{{ obj.video }}"
+                            type="video/mp4"/>
+                </video>
+            {% else %}
+                <img src="/media/{{ obj.image }}" alt="detailimg" class="img-fluid"
+                     style="margin: 0 10px; height: 470px; width: 100%; border-radius: 17px;">
+            {% endif %}
         </div>
         <h5>{{ obj.title }}</h5>
         <p style="font-size: 12px;">{{ obj.content }}

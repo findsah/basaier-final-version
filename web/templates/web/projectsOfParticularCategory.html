@@ -22,9 +22,18 @@
                                              data-wow-delay=".2s"
                                              style="width: 100%; height: 484px; visibility: visible; animation-duration: 1.5s; animation-delay: 0.2s; animation-name: fadeInUpSmd;">
                                             <div class="">
-                                                <img src="/media/{{ project.image }}"
-                                                     style="height: 284px;"
-                                                     class="our-causes__text-content-image" alt="">
+                                                {% if project.video %}
+                                                    <video autoplay muted controls loop
+                                                           style="height: 284px; width: 100%;">
+                                                        <source
+                                                                src="/media/{{ project.video }}"
+                                                                type="video/mp4"/>
+                                                    </video>
+                                                {% else %}
+                                                    <img src="/media/{{ project.image }}"
+                                                         style="height: 284px;"
+                                                         class="our-causes__text-content-image" alt="">
+                                                {% endif %}
                                             </div>
                                             <div class="text-center">
                                                 {% if request.user.is_authenticated == True %}
@@ -42,8 +51,8 @@
                                                     id="logoColor"><a
                                                         href="{% url 'project-detail' project.id %}">{{ project.get_name }}</a>
                                                 </h4>
-{#                                                <p>{% if project.isZakat %}{% trans "Calculate your Zakat" %}{% else %}#}
-{#                                                    {% trans "Enter your donation in" %}{% endif %} {{ getMyCurrency }}:</p>#}
+                                                {#                                                <p>{% if project.isZakat %}{% trans "Calculate your Zakat" %}{% else %}#}
+                                                {#                                                    {% trans "Enter your donation in" %}{% endif %} {{ getMyCurrency }}:</p>#}
                                                 <div class="number">
                                                     <input class="text-center"
                                                             {% if project.is_defined %} value="{{ project.suggestedDonation|floatformat }} {% endif %}"
@@ -54,11 +63,11 @@
                                                 </div>
                                                 {% if project.is_defined == False %}
                                                     <p style="margin-bottom: 0 !important;">{% get_current_language as LANGUAGE_CODE %}
-                                            {% if LANGUAGE_CODE == "ar" %}
-                                                {% trans "يمكنك التبرع بأي مبلغ" %}
-                                            {% else %}
-                                                {% trans "You can donate any amount" %}
-                                            {% endif %}</p>
+                                                        {% if LANGUAGE_CODE == "ar" %}
+                                                            {% trans "يمكنك التبرع بأي مبلغ" %}
+                                                        {% else %}
+                                                            {% trans "You can donate any amount" %}
+                                                        {% endif %}</p>
                                                 {% else %}
                                                     <p style="margin-bottom: 0 !important;"><br/></p>
                                                 {% endif %}

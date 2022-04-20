@@ -75,6 +75,7 @@ class PRNews(models.Model):
     image = models.FileField(upload_to='news/%Y/%m/%d', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    video = models.FileField(upload_to='news/videos/%Y/%m/%d', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "PR News"

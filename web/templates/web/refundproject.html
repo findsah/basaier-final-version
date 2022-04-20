@@ -50,8 +50,16 @@
                         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} header2">
                             <div class="row justify-content-between">
                                 <div class="col-md-5">
-                                    <img class="d-block w-100" style="height: 15rem; border-radius: 17px;"
-                                         src="/media/{{ project.image }}" alt="{{ project.get_name }}">
+                                    {% if project.video %}
+                                        <video autoplay muted controls loop style="height: 15rem; border-radius: 17px; width: 100%;">
+                                            <source
+                                                    src="/media/{{ project.video }}"
+                                                    type="video/mp4"/>
+                                        </video>
+                                    {% else %}
+                                        <img class="d-block w-100" style="height: 15rem; border-radius: 17px;"
+                                             src="/media/{{ project.image }}" alt="{{ project.get_name }}">
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-6" style="font-size: 25px;">
                                     {{ project.get_detail|truncatechars:500 }}

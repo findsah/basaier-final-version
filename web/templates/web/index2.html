@@ -34,13 +34,22 @@
         }
     </style>
 
-    <div id="carouselExampleIndicators" class="carousel carouselHide slide carousel-fade" data-interval="5000" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel carouselHide slide carousel-fade" data-interval="5000"
+         data-ride="carousel">
 
         <div class="carousel-inner">
             {% for project in projects %}
                 <div class="carousel-item {% if forloop.first %} active {% endif %} header2">
-                    <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}"
-                         alt="{{ project.get_name }}" style="height: 774px;">
+                    {% if project.video %}
+                        <video autoplay muted controls loop style="height: 774px; width: 100%;">
+                            <source
+                                    src="/media/{{ project.video }}"
+                                    type="video/mp4"/>
+                        </video>
+                    {% else %}
+                        <img class="d-block w-100 imageOpacity" src="/media/{{ project.image }}"
+                             alt="{{ project.get_name }}" style="height: 774px; width: 100%;">
+                    {% endif %}
                     <div class="carousel-caption d-none d-md-block">
                         <h3 class="my-heading" style="margin-bottom: 3rem;">{{ project.get_name }}</h3>
                         {#                        <p class="myp-slider text-center">{{ project.get_detail|truncatechars:255 }}</p>#}
@@ -176,7 +185,7 @@
 
 
     <section class="testimonials">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img"> 
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img">
         <div class="container">
             <div class="row reverseCol">
                 <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
@@ -229,7 +238,7 @@
 
 
     <section class="testimonials">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img"> 
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
         <div class="container">
             <div class="row">
                 {% for data in science_news %}
@@ -291,28 +300,28 @@
     </section>
 
     <section class="testimonials text-center">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img"> 
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img">
         <div class="container">
-        <div class="mb-5">
-            <h3 class="title-heading">جمعية بصائر الخيرية</h3>
-        </div>
-        <div style="
-                display: flex;
-                {#justify-content: center;#}
-                overflow-x: scroll !important;
-                white-space: nowrap;">
-            {% for data in testimonialsData %}
-                <div class='main-content testimonialsHover' style="height: 240px; width: 340px;">
-                    <div class="testimonialhead">
-                        <img class="textimonialimg" src="/media/{{ data.image }}">
-                        <p class="textimonialtext"> {{ data.name }} <br/>{{ data.title }}</p>
+            <div class="mb-5">
+                <h3 class="title-heading">جمعية بصائر الخيرية</h3>
+            </div>
+            <div style="
+                    display: flex;
+                    {#justify-content: center;#}
+                    overflow-x: scroll !important;
+                    white-space: nowrap;">
+                {% for data in testimonialsData %}
+                    <div class='main-content testimonialsHover' style="height: 240px; width: 340px;">
+                        <div class="testimonialhead">
+                            <img class="textimonialimg" src="/media/{{ data.image }}">
+                            <p class="textimonialtext"> {{ data.name }} <br/>{{ data.title }}</p>
+                        </div>
+                        <p class="textimonialbottomtext"
+                           style="text-align: justify; white-space: normal;">{{ data.message|truncatechars:300 }}</p>
                     </div>
-                    <p class="textimonialbottomtext"
-                       style="text-align: justify; white-space: normal;">{{ data.message|truncatechars:300 }}</p>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
     </section>
 
     <section class="testimonials text-center">

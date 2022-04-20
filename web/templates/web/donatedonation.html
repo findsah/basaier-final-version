@@ -9,68 +9,78 @@
     <div style="position: relative; overflow: hidden">
         <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -11rem; top: 10rem" alt="img">
         <div class="container" style="margin-top: 10rem;">
-        <h3 class="pathlink">الرئيسية / إهداء تبرع</h3>
-        <div class="title">
-            <h2 style="color: #1385B2; font-size: 37px;">إهداء تبرع</h2>
-            <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصة بصائر</p>
-        </div>
-        <div class="firstSection">
-            <div class="firstSectionTitle">
-                <span style="color: #858585">المرحلة الأولى -</span>
-                <span style="color: #1385B2; font-weight: 500;">إختيار المشروع </span>
-
+            <h3 class="pathlink">الرئيسية / إهداء تبرع</h3>
+            <div class="title">
+                <h2 style="color: #1385B2; font-size: 37px;">إهداء تبرع</h2>
+                <p style="color: #858585; font-size: 15px;">يمكنك اهداء تبرع لاي شخص من خلال منصة بصائر</p>
             </div>
-            <div class="firstSectionCard" style="display: flex; justify-content: center; overflow-x: scroll; white-space: nowrap;">
-                {% for project in projects %}
-                    <div class="m-3">
-                        <div class="firstSectionCard1">
-                            <p class="firstSectionCard1P"> {{ project.get_name }}</p>
-                            <img src="/media/{{ project.image }}" alt="{{ project.get_name }}"
-                                 style="width: 100%; height: 234px;">
-                        </div>
+            <div class="firstSection">
+                <div class="firstSectionTitle">
+                    <span style="color: #858585">المرحلة الأولى -</span>
+                    <span style="color: #1385B2; font-weight: 500;">إختيار المشروع </span>
 
-                        <form>
-                            {% csrf_token %}
-                            <div class="firstSectionCard2">
-                                <div class="zakat_input d-flex justify-content-between">
-                                    <span for="dinar">مبلغ النقد</span>
-                                    <input type="number" name="amount[]"
-                                           id="enteredCost{{ project.id }}" min="1" style="width: 50%;">
-                                </div>
-                                <div class="d-flex justify-content-between my-3">
-                                    <input type="submit"
-                                           class="firstSectionCard2btns addToCartProjectOfNewPageOfDonatedDonationPage"
-                                           style="color: #fff; background-color: #1385B2;"
-                                           value="اهداء"
-                                           projectId="{{ project.id }}"/>
-                                    <a href="{% url 'project-detail' project.id %}" class="firstSectionCard2btnsDonatedDonationPage">
-                                        تفاصيل
-                                    </a>
-                                    <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
-                                    <input type="hidden" class="project_category_id"
-                                           name="project_category_id[]"
-                                           value="{{ project.category.first.id }}">
-                                    <input type="hidden" name="project_id[]" value="{{ project.id }} ">
-                                </div>
+                </div>
+                <div class="firstSectionCard"
+                     style="display: flex; justify-content: center; overflow-x: scroll; white-space: nowrap;">
+                    {% for project in projects %}
+                        <div class="m-3">
+                            <div class="firstSectionCard1">
+                                <p class="firstSectionCard1P"> {{ project.get_name }}</p>
+                                {% if project.video %}
+                                    <video autoplay muted controls loop style="height: 234px; width: 100%;">
+                                        <source
+                                                src="/media/{{ project.video }}"
+                                                type="video/mp4"/>
+                                    </video>
+                                {% else %}
+                                    <img src="/media/{{ project.image }}" alt="{{ project.get_name }}"
+                                         style="width: 100%; height: 234px;">
+                                {% endif %}
                             </div>
-                        </form>
-                    </div>
-                {% endfor %}
+
+                            <form>
+                                {% csrf_token %}
+                                <div class="firstSectionCard2">
+                                    <div class="zakat_input d-flex justify-content-between">
+                                        <span for="dinar">مبلغ النقد</span>
+                                        <input type="number" name="amount[]"
+                                               id="enteredCost{{ project.id }}" min="1" style="width: 50%;">
+                                    </div>
+                                    <div class="d-flex justify-content-between my-3">
+                                        <input type="submit"
+                                               class="firstSectionCard2btns addToCartProjectOfNewPageOfDonatedDonationPage"
+                                               style="color: #fff; background-color: #1385B2;"
+                                               value="اهداء"
+                                               projectId="{{ project.id }}"/>
+                                        <a href="{% url 'project-detail' project.id %}"
+                                           class="firstSectionCard2btnsDonatedDonationPage">
+                                            تفاصيل
+                                        </a>
+                                        <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
+                                        <input type="hidden" class="project_category_id"
+                                               name="project_category_id[]"
+                                               value="{{ project.category.first.id }}">
+                                        <input type="hidden" name="project_id[]" value="{{ project.id }} ">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-        <div class="my-4">
-            <div class="firstSectionTitle">
-                <span style="color: #858585"> المرحلة الثانية -</span>
-                <span style="color: #1385B2">إختيار النموذج</span>
-            </div>
-            <div class="giftImgDiv">
-                <img class="giftImg" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
-                <img class="giftImg" src="{% static 'images/imgseries2.png' %}" alt="imgseries">
-                <img class="giftImg" src="{% static 'images/imgseries3.png' %}" alt="imgseries">
-                <img class="giftImg" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
-            </div>
-               
-            {% comment %} <div class="row" id="whereWeWillScrollWindow">
+            <div class="my-4">
+                <div class="firstSectionTitle">
+                    <span style="color: #858585"> المرحلة الثانية -</span>
+                    <span style="color: #1385B2">إختيار النموذج</span>
+                </div>
+                <div class="giftImgDiv">
+                    <img class="giftImg" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
+                    <img class="giftImg" src="{% static 'images/imgseries2.png' %}" alt="imgseries">
+                    <img class="giftImg" src="{% static 'images/imgseries3.png' %}" alt="imgseries">
+                    <img class="giftImg" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
+                </div>
+
+                {% comment %} <div class="row" id="whereWeWillScrollWindow">
                 <div class="col-12 col-md-3 text-center mb-3">
                     <img style="width: 100%" src="{% static 'images/imgseries1.png' %}" alt="imgseries">
                 </div>
@@ -84,46 +94,46 @@
                     <img style="width: 100%" src="{% static 'images/imgseries4.png' %}" alt="imgseries">
                 </div>
             </div> {% endcomment %}
-        </div>
-        <div class="my-5">
-            <div class="firstSectionTitle">
-                <span style="color: #858585">المرحلة الثالثة -</span>
-                <span style="color: #1385B2">البيانات</span>
             </div>
-            <div class="formDiv">
-                <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>إسم المرسل
-                </label>
-                <input class="formDivInput" type="text" id="senderNameDonatedDonationPage">
-            </div>
-            <div class="formDiv">
-                <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                    <i style="font-size: 25px; color: #1385B2;" class="fas fa-male ml-3"></i>المرسل له
-                </label>
-                <input class="formDivInput" type="text" id="receiverNameDonatedDonationPage">
-            </div>
-            <div class="formDiv">
-                <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i>التبرع
-                </label>
-                <input class="formDivInput" type="number" id="phoneNumberDonatedDonationPage">
-            </div>
-            <div class="formDiv">
-                <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
-                    <i style="font-size: 25px; color: #1385B2;" class="fa fa-inbox ml-3"></i>البريد
-                </label>
-                <input class="formDivInput" type="email" id="emailDonatedDonationPage">
-            </div>
-{#            <div class="formDivBtns">#}
-{#                <button class="formDivBtn" style="color: #fff; background-color: #1385B2;">اهداء</button>#}
+            <div class="my-5">
+                <div class="firstSectionTitle">
+                    <span style="color: #858585">المرحلة الثالثة -</span>
+                    <span style="color: #1385B2">البيانات</span>
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        <i style="font-size: 25px; color: #1385B2;" class="fa fa-user ml-3"></i>إسم المرسل
+                    </label>
+                    <input class="formDivInput" type="text" id="senderNameDonatedDonationPage">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        <i style="font-size: 25px; color: #1385B2;" class="fas fa-male ml-3"></i>المرسل له
+                    </label>
+                    <input class="formDivInput" type="text" id="receiverNameDonatedDonationPage">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i>التبرع
+                    </label>
+                    <input class="formDivInput" type="number" id="phoneNumberDonatedDonationPage">
+                </div>
+                <div class="formDiv">
+                    <label for="name" style="display: flex; align-items: center; font-size: 15px; color: #717171;">
+                        <i style="font-size: 25px; color: #1385B2;" class="fa fa-inbox ml-3"></i>البريد
+                    </label>
+                    <input class="formDivInput" type="email" id="emailDonatedDonationPage">
+                </div>
+                {#            <div class="formDivBtns">#}
+                {#                <button class="formDivBtn" style="color: #fff; background-color: #1385B2;">اهداء</button>#}
                 {#            <a href="{% url 'allProjects' %}">#}
                 {#                <button class="firstSectionCard2btns"#}
                 {#                    style="color: gray; background-color: #fff; border: 1px solid #1385B2;">تفاصيل</button>#}
                 {#            </a>#}
-{#            </div>#}
+                {#            </div>#}
+            </div>
         </div>
     </div>
-</div>
 
 
 {% endblock %}
