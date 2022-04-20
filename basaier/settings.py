@@ -157,23 +157,23 @@ WSGI_APPLICATION = 'basaier.wsgi.application'
 #      }
 #  }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'elantratech',
-#         'USER': 'basiaieradmin',
-#         'PASSWORD': 'basaieradmin',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#      }
-#  }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'elantratech',
+        'USER': 'basiaieradmin',
+        'PASSWORD': 'basaieradmin',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+     }
+ }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -289,10 +289,10 @@ TAP_PAY_CUSTOMER_URL = "https://api.tap.company/v2/customers"
 TAP_PAY_CREATE_TOKEN_URL = "https://api.tap.company/v2/tokens"
 TAP_PAY_CARD_URL = "https://api.tap.company/v2/card/"
 # TAP_PAY_CARD_URL = "https://api.tap.company/v2/card/{customer_id}" WE WILL CONCATENATE THAT CUSTOMER_ID
-TAP_API_KEY = "sk_test_7MFWOt9IpNQ3fz2YUag5Heuh"
+# TAP_API_KEY = "sk_test_7MFWOt9IpNQ3fz2YUag5Heuh"
 
 # KEY FOR LIVE:
-# TAP_API_KEY = "sk_live_VjRY4rK3EeCtmzvgX86BqN2n"
+TAP_API_KEY = "sk_live_VjRY4rK3EeCtmzvgX86BqN2n"
 # END KEY FOR LIVE:
 
 
