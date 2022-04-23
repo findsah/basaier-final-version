@@ -22,10 +22,9 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/detailpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/detailpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/happystories.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/happystories.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +159,8 @@
       <workItem from="1650269349933" duration="27194000" />
       <workItem from="1650356506476" duration="4507000" />
       <workItem from="1650441293780" duration="14000" />
-      <workItem from="1650444298757" duration="14840000" />
+      <workItem from="1650444298757" duration="15037000" />
+      <workItem from="1650744047257" duration="5249000" />
     </task>
     <servers />
   </component>

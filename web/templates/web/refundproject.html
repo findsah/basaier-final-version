@@ -204,14 +204,15 @@
                                    value="تبرع الآن" projectId="{{ project.id }}"/>
                         </div>
                     </div>
-                    <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
-                    <input type="hidden" class="project_category_id"
-                           name="project_category_id[]"
-                           value="{{ project.category.first.id }}">
-                    <input type="hidden" name="project_id[]" value="{{ project.id }} ">
+                        <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
+                        <input type="hidden" class="project_category_id"
+                               name="project_category_id[]"
+                               value="{{ project.category.first.id }}">
+                        <input type="hidden" name="project_id[]" value="{{ project.id }} ">
                     </form>
                 {% endfor %}
         </div>
+
         <div class="col-12 col-md-5 text-center">
             <span class="share">تبرع بالنشر</span>
             <div class="d-flex justify-content-center my-3">

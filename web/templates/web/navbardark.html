@@ -963,11 +963,26 @@
         var amount = document.getElementById("enteredCost" + post_id).value;
         console.log({project_id, amount});
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (amount < 0) {
-            alert('Please Select A Valid Amount')
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else {
             $.ajax({
                 type: 'POST',
@@ -991,13 +1006,33 @@
                     {#amount[0].reset();#}
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
     });
 </script>
 {# END ADD TO CART AND NAVIGATE TO CART PAGE: #}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title" id="exampleModalLongTitle">تفاصيل التبرع</h5>
+            </div>
+            <div class="modal-body text-center contentOfModalBodyWillBeChanged">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {# ADD TO CART THE GIFTSENDGIT PAGE PROJECT: #}
 <script type="text/javascript">
@@ -1009,11 +1044,26 @@
         var amount = document.getElementById("enteredCost" + post_id).value;
         console.log({project_id, amount});
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (amount < 0) {
-            alert('Please Select A Valid Amount')
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else {
             $.ajax({
                 type: 'POST',
@@ -1031,13 +1081,23 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    alert('Donation Added To Cart....!');
+                    $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
                     {#amount[0].reset();#}
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
@@ -1057,24 +1117,58 @@
         var receiverNameDonatedDonationPage = document.getElementById('receiverNameDonatedDonationPage').value;
         var phoneNumberDonatedDonationPage = document.getElementById('phoneNumberDonatedDonationPage').value;
         var emailDonatedDonationPage = document.getElementById('emailDonatedDonationPage').value;
-        {#console.log({project_id, amount});#}
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (amount < 0) {
-            alert('Please Select A Valid Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (senderNameDonatedDonationPage === '') {
-            alert('Please Provide The Sender Name');
+            $(".contentOfModalBodyWillBeChanged").html("الرجاء إدخال اسم المرسل");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (receiverNameDonatedDonationPage === '') {
-            alert('Please Provide The Receiver Name');
+            $(".contentOfModalBodyWillBeChanged").html(" يرجى تقديم اسم المستلم");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (phoneNumberDonatedDonationPage === '') {
-            alert('Please Provide The Receiver Phone Number');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تقديم رقم هاتف المستلم");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (emailDonatedDonationPage === '') {
-            alert('Please Provide The Email');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تقديم البريد الإلكتروني");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else {
             $.ajax({
@@ -1097,13 +1191,18 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    alert('Donation Added To Cart....!');
+                    $('#exampleModalCenter').modal('show')
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
                     {#amount[0].reset();#}
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
@@ -1123,24 +1222,58 @@
         var receiverNameDonatedDonationPage = document.getElementById('receiverNameDonatedDonationPage').value;
         var phoneNumberDonatedDonationPage = document.getElementById('phoneNumberDonatedDonationPage').value;
         var emailDonatedDonationPage = document.getElementById('emailDonatedDonationPage').value;
-        {#console.log({project_id, amount});#}
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (amount < 0) {
-            alert('Please Select A Valid Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (senderNameDonatedDonationPage === '') {
-            alert('Please Provide The Sender Name');
+            $(".contentOfModalBodyWillBeChanged").html("الرجاء إدخال اسم المرسل");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (receiverNameDonatedDonationPage === '') {
-            alert('Please Provide The Receiver Name');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تقديم اسم المتلقي");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (phoneNumberDonatedDonationPage === '') {
-            alert('Please Provide The Receiver Phone Number');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تقديم رقم هاتف المستلم");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else if (emailDonatedDonationPage === '') {
-            alert('Please Provide The Email');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تقديم البريد الإلكتروني");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             document.getElementById('whereWeWillScrollWindow').scrollIntoView();
         } else {
             $.ajax({
@@ -1163,13 +1296,23 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    alert('Donation Added To Cart....!');
+                    $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
                     {#amount[0].reset();#}
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
@@ -1242,9 +1385,19 @@
         var project_id = $('#projectsAccordingToCategory').val();
         var amount = $('#txtTotalAmountFastAccountCampaigns1').val();
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else {
             {# var project_category_id = $('.project_category_id').val(); #}
             console.log({project_id, amount});
@@ -1264,12 +1417,22 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    console.log(amount);
-                    console.log(project_id);
-                    alert("Cart Added");
+                    {#console.log(amount);#}
+                    {#console.log(project_id);#}
+                    $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
@@ -1283,9 +1446,19 @@
         var project_id = $('#projectsAccordingToCategory2').val();
         var amount = $('#txtTotalAmountFastAccountCampaigns2').val();
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else {
             {# var project_category_id = $('.project_category_id').val(); #}
             console.log({project_id, amount});
@@ -1305,12 +1478,17 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    console.log(amount);
-                    console.log(project_id);
-                    alert("Cart Added");
+                    {#console.log(amount);#}
+                    {#console.log(project_id);#}
+                    $('#exampleModalCenter').modal('show')
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
@@ -1340,7 +1518,12 @@
                 $('#countryCreateOwnProject').val(json.countryVar);
             },
             failure: function () {
-                alert('Got an error dude');
+                $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             }
         });
     }
@@ -1379,7 +1562,12 @@
                 }
             },
             failure: function () {
-                alert('Got an error dude');
+                $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             }
         });
     }
@@ -1415,7 +1603,12 @@
                 }
             },
             failure: function () {
-                alert('Got an error dude');
+                $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
             }
         });
     }
@@ -1429,9 +1622,19 @@
         var project_id = $('#projectsAccordingToCategory').val();
         var amount = $('#txtTotalAmountFastAccountCampaigns1').val();
         if (amount <= 0) {
-            alert('Please Select The Amount');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المبلغ");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else if (project_id == null) {
-            alert('Please Select The Project');
+            $(".contentOfModalBodyWillBeChanged").html("يرجى تحديد المشروع");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
         } else {
             {# var project_category_id = $('.project_category_id').val(); #}
             console.log({project_id, amount});
@@ -1451,12 +1654,20 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    console.log(amount);
-                    console.log(project_id);
-                    alert("Cart Added");
+                    $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
                 error: function () {
-                    alert("Something went wrong!");
+                    $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
+            $('#exampleModalCenter').modal('show');
+            // Set a timeout to hide the element again
+            setTimeout(function () {
+                $("#exampleModalCenter").modal('hide');
+            }, 3000);
                 },
             });
         }
