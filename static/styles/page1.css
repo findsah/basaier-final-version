@@ -66,92 +66,92 @@ body {
     transform: scale(1.05);
 }
 
-.carousel__activator:nth-of-type(1):checked~.carousel__controls:nth-of-type(1) {
+.carousel__activator:nth-of-type(1):checked ~ .carousel__controls:nth-of-type(1) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(1):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(1):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(0%);
     transform: translateX(0%);
 }
 
-.carousel__activator:nth-of-type(2):checked~.carousel__controls:nth-of-type(2) {
+.carousel__activator:nth-of-type(2):checked ~ .carousel__controls:nth-of-type(2) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(2):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(2):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
 
-.carousel__activator:nth-of-type(3):checked~.carousel__controls:nth-of-type(3) {
+.carousel__activator:nth-of-type(3):checked ~ .carousel__controls:nth-of-type(3) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(3):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(3):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-200%);
     transform: translateX(-200%);
 }
 
-.carousel__activator:nth-of-type(4):checked~.carousel__controls:nth-of-type(4) {
+.carousel__activator:nth-of-type(4):checked ~ .carousel__controls:nth-of-type(4) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(4):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(4):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-300%);
     transform: translateX(-300%);
 }
 
-.carousel__activator:nth-of-type(5):checked~.carousel__controls:nth-of-type(5) {
+.carousel__activator:nth-of-type(5):checked ~ .carousel__controls:nth-of-type(5) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(5):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(5):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-400%);
     transform: translateX(-400%);
 }
 
-.carousel__activator:nth-of-type(6):checked~.carousel__controls:nth-of-type(6) {
+.carousel__activator:nth-of-type(6):checked ~ .carousel__controls:nth-of-type(6) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(6):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(6):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-500%);
     transform: translateX(-500%);
 }
 
-.carousel__activator:nth-of-type(7):checked~.carousel__controls:nth-of-type(7) {
+.carousel__activator:nth-of-type(7):checked ~ .carousel__controls:nth-of-type(7) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(7):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(7):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-600%);
     transform: translateX(-600%);
 }
 
-.carousel__activator:nth-of-type(8):checked~.carousel__controls:nth-of-type(8) {
+.carousel__activator:nth-of-type(8):checked ~ .carousel__controls:nth-of-type(8) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(8):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(8):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-700%);
     transform: translateX(-700%);
 }
 
-.carousel__activator:nth-of-type(9):checked~.carousel__controls:nth-of-type(9) {
+.carousel__activator:nth-of-type(9):checked ~ .carousel__controls:nth-of-type(9) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(9):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(9):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-800%);
     transform: translateX(-800%);
 }
 
-.carousel__activator:nth-of-type(10):checked~.carousel__controls:nth-of-type(10) {
+.carousel__activator:nth-of-type(10):checked ~ .carousel__controls:nth-of-type(10) {
     display: flex;
 }
 
-.carousel__activator:nth-of-type(10):checked~.carousel__screen .carousel__track {
+.carousel__activator:nth-of-type(10):checked ~ .carousel__screen .carousel__track {
     -webkit-transform: translateX(-900%);
     transform: translateX(-900%);
 }
@@ -666,14 +666,14 @@ section#marketplace h5 {
 
     /* show 3 items */
     .carouselPrograms .carousel-inner .active,
-    .carouselPrograms .carousel-inner .active+.carousel-item,
-    .carouselPrograms .carousel-inner .active+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .active + .carousel-item,
+    .carouselPrograms .carousel-inner .active + .carousel-item + .carousel-item {
         display: block;
     }
 
     .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
-    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carouselPrograms .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
         transition: none;
     }
 
@@ -683,7 +683,7 @@ section#marketplace h5 {
         transform: translate3d(0, 0, 0);
     }
 
-    .carouselPrograms .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
         position: absolute;
         top: 0;
         right: -33.333%;
@@ -693,10 +693,10 @@ section#marketplace h5 {
     }
 
     /* left or forward direction */
-    .carouselPrograms .active.carousel-item-left+.carousel-item-next.carousel-item-left,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
-    .carouselPrograms .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carouselPrograms .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
         position: relative;
         transform: translate3d(-100%, 0, 0);
         visibility: visible;
@@ -713,10 +713,10 @@ section#marketplace h5 {
     }
 
     /* right or prev direction */
-    .carouselPrograms .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
-    .carouselPrograms .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
+    .carouselPrograms .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carouselPrograms .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
         position: relative;
         transform: translate3d(100%, 0, 0);
         visibility: visible;
@@ -869,13 +869,13 @@ li.list-inline-item a {
     flex-direction: column;
 }
 
-@media only screen and (min-width:1600px) and (max-width:1920px) {
+@media only screen and (min-width: 1600px) and (max-width: 1920px) {
     .navbar-toggler {
         display: none !important;
     }
 }
 
-@media only screen and (min-width:1440px) {
+@media only screen and (min-width: 1440px) {
     .navbar-toggler {
         display: none !important;
     }
@@ -953,7 +953,7 @@ li.list-inline-item a {
 
     .mobileCrousel {
         display: flex;
-        justify-content: center;
+        /*justify-content: center;*/
         margin-bottom: 1rem;
     }
 }
@@ -975,7 +975,8 @@ li.list-inline-item a {
         white-space: nowrap;
         width: 100% !important;
     }
-    .icalculatorTabs{
+
+    .icalculatorTabs {
         width: 100% !important;
     }
 
@@ -1099,7 +1100,7 @@ li.list-inline-item a {
 
 }
 
-@media only screen and (max-width:736px) and (orientation:landscape) {
+@media only screen and (max-width: 736px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -1122,7 +1123,7 @@ li.list-inline-item a {
     }
 }
 
-@media only screen and (max-width:667px) and (orientation:landscape) {
+@media only screen and (max-width: 667px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -1145,7 +1146,7 @@ li.list-inline-item a {
     }
 }
 
-@media only screen and (max-width:568px) and (orientation:landscape) {
+@media only screen and (max-width: 568px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }
@@ -1414,7 +1415,7 @@ div::-webkit-scrollbar {
     }
 }
 
-@media only screen and (max-width:568px) and (orientation:landscape) {
+@media only screen and (max-width: 568px) and (orientation: landscape) {
     .navbar-toggler {
         display: none !important;
     }

@@ -257,6 +257,21 @@
         .imageOpacity {
             opacity: 0.6;
         }
+
+        .cartNumberSpan {
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            left: 52%;
+            z-index: 3;
+            top: 0;
+            height: 15px;
+            width: 15px;
+            color: whitesmoke;
+            font-weight: bold;
+            text-align: center;
+            font-size: 10px;
+        }
     </style>
 </head>
 <nav class="navbar navbar-expand-lg fixed-top">
@@ -291,8 +306,9 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn color-light ">
-                    <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+                <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn" style="position: relative;">
+                    <i style="font-size: 25px; color: #fff" class="fa fa-shopping-cart"></i>
+                    <span class="cartNumberSpan">{% if totalProjectsInCart %}{{ totalProjectsInCart }}{% endif %}</span>
                 </a>
             </li>
         </ul>
@@ -482,8 +498,11 @@
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn color-light ">
-                        <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
+                    <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn"
+                       style="position: relative;">
+                        <i style="font-size: 25px; color: #fff" class="fa fa-shopping-cart"></i>
+                        <span class="cartNumberSpan">{% if totalProjectsInCart %}
+                            {{ totalProjectsInCart }}{% endif %}</span>
                     </a>
                 </li>
             </ul>
@@ -957,7 +976,10 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     location.href = "/checkoutDetail";
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
@@ -965,11 +987,11 @@
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1038,21 +1060,24 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1142,21 +1167,24 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1252,22 +1280,22 @@
                 },
                 success: function () {
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
                     {#amount[0].reset();#}
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1367,21 +1395,24 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1426,21 +1457,24 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }
@@ -1471,11 +1505,11 @@
             },
             failure: function () {
                 $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                $('#exampleModalCenter').modal('show');
+                // Set a timeout to hide the element again
+                setTimeout(function () {
+                    $("#exampleModalCenter").modal('hide');
+                }, 3000);
             }
         });
     }
@@ -1515,11 +1549,11 @@
             },
             failure: function () {
                 $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                $('#exampleModalCenter').modal('show');
+                // Set a timeout to hide the element again
+                setTimeout(function () {
+                    $("#exampleModalCenter").modal('hide');
+                }, 3000);
             }
         });
     }
@@ -1556,11 +1590,11 @@
             },
             failure: function () {
                 $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                $('#exampleModalCenter').modal('show');
+                // Set a timeout to hide the element again
+                setTimeout(function () {
+                    $("#exampleModalCenter").modal('hide');
+                }, 3000);
             }
         });
     }
@@ -1625,21 +1659,24 @@
                     {#project_category_id: project_category_id,#}
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
-                success: function () {
+                success: function (values) {
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    $('.cartNumberSpan').html(totalNumber+1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");
-            $('#exampleModalCenter').modal('show');
-            // Set a timeout to hide the element again
-            setTimeout(function () {
-                $("#exampleModalCenter").modal('hide');
-            }, 3000);
+                    $('#exampleModalCenter').modal('show');
+                    // Set a timeout to hide the element again
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal('hide');
+                    }, 3000);
                 },
             });
         }

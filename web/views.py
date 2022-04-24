@@ -579,120 +579,6 @@ class Index(TemplateView):
                        })
 
 
-# class ProjectDetail(TemplateView):
-#     template_name = "web/project_detail.html"
-#
-#     def get(self, request, *args, **kwargs):
-#         cart = Cart(request)
-#         totalProjectsInCart = cart.get_total_products()
-#         # getMyCurrency = getCurrency(request)
-#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         project_dirctories = ProjectsDirectory.objects.all()
-#         project = None
-#         if 'slug' in kwargs:
-#             project = get_object_or_404(Project, slug=kwargs['slug'])
-#         else:
-#             project = get_object_or_404(Project, pk=kwargs['id'])
-#
-#         # if (project.total_amount is not None) and(project.total_amount > 0 and int(project.remaining()) == 0) or project.is_closed:
-#         #     return redirect("/")
-#
-#         categories = PRCategory.objects.all().order_by('-id')
-#         sponsorCategories = sponsorship.objects.all()
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('-id')
-#         latest_projects = Project.objects.filter(
-#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
-#         cart_projects, projects_selected = get_cart(request)
-#         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-#         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
-#
-#         sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
-#         if len(sacrifices_json_data) > 0:
-#             self.template_name = "web/project_sacrifice_detail_.html"
-#         if request.user.is_authenticated:
-#             userId = request.user.id
-#             userInstance = get_object_or_404(User, id=userId)
-#             profile = get_object_or_404(Profile, user=userInstance)
-#             phoneNumberOfUser = profile.phone
-#         else:
-#             phoneNumberOfUser = ''
-#
-#         return render(request, self.template_name,
-#                       {'sliders': sliders,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'latest_projects': latest_projects,
-#                        'project': project,
-#                        'sponsorCategories': sponsorCategories,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'project_dirctories': project_dirctories,
-#                        'sacrifices_json': sacrifices_json,
-#                        'sacrifices': sacrifices,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        'phoneNumberOfUser': phoneNumberOfUser,
-#                        })
-#
-#     def post(self, request, *args, **kwargs):
-#         cart = Cart(request)
-#         totalProjectsInCart = cart.get_total_products()
-#         # getMyCurrency = getCurrency(request)
-#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#         numberOfShare = int(request.POST.get('numberOfShare', 0))
-#
-#         amounts = request.POST.getlist('amount[]', [""])
-#         # print(amounts)
-#         # if amounts == [""]:
-#         #     amounts = ["0.0"]
-#
-#         # project_category_ids = request.POST.getlist('project_category_id[]')
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         project_dirctories = ProjectsDirectory.objects.all()
-#         project = None
-#
-#         if 'slug' in kwargs:
-#             project = get_object_or_404(Project, slug=kwargs['slug'])
-#         else:
-#             project = get_object_or_404(Project, pk=kwargs['id'])
-#             # fetchProject = Project.objects.values('id', 'category__id').filter(pk=kwargs['id'])
-#             # for data in fetchProject:
-#             #     print(data)
-#         categories = PRCategory.objects.all().order_by('-id')
-#         sponsorCategories = sponsorship.objects.all()
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('-id')
-#         latest_projects = Project.objects.filter(
-#             is_closed=False, is_hidden=False, category__inHomePage=True, is_compaign=False).order_by('-id')[:6]
-#         cart_projects, projects_selected = get_cart(request)
-#         sacrifices = Sacrifice.objects.filter(availability__gt=0, project=project).order_by('country').all()
-#         sacrifices_json_data = Sacrifice.objects.filter(availability__gt=0, project=project).values()
-#         sacrifices_json = json.dumps(list(sacrifices_json_data), cls=DjangoJSONEncoder)
-#         if len(sacrifices_json_data) > 0:
-#             self.template_name = "web/project_sacrifice_detail_.html"
-#         return render(request, self.template_name,
-#                       {'sliders': sliders,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'latest_projects': latest_projects,
-#                        'project': project,
-#                        'sponsorCategories': sponsorCategories,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'project_dirctories': project_dirctories,
-#                        'numberOfShare': numberOfShare,
-#                        'amount': "{0:.3f}".format(float(amounts[0].strip())),
-#                        # 'project_category_id': int(project_category_ids[0]),
-#                        'sacrifices_json': sacrifices_json,
-#                        'sacrifices': sacrifices,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        })
-
-
-# BASAIER DESIGN HAS BEEN CHANGED, SO WE HAVE USED NEW TEMPLATE FOR DISPLAYING DETAIL OF A PARTICULAR PROJECT.
 class ProjectDetail(TemplateView):
     template_name = "web/refundproject.html"
 
@@ -1051,6 +937,7 @@ def happyStories(request):
         'dataScienceNews': dataScienceNews,
         'charity_categories': charity_categories,
         'cart_projects': cart_projects,
+        'totalProjectsInCart': totalProjectsInCart,
     })
 
 
@@ -2345,71 +2232,14 @@ class ContactUs(TemplateView):
                        })
 
 
-# class Volunteer(TemplateView):
-#     # template_name = "web/volunteerPreviousMaybe.html"
-#     template_name = "web/volunteer.html"
-#
-#     @method_decorator(csrf_protect)
-#     def post(self, request, *args, **kwargs):
-#         name = request.POST.get('name', '')
-#         email = request.POST.get('email', '')
-#         currentJob = request.POST.get('currentJob', '')
-#         phoneNumber = request.POST.get('phoneNumber', '')
-#         highestQualification = request.POST.get('highestQualification', '')
-#         address = request.POST.get('address', '')
-#         adminMail = settings.EMAIL_HOST_USER
-#         if email is not None and name is not None and currentJob is not None and phoneNumber is not None and highestQualification is not None and address is not None:
-#             volunteer.objects.create(
-#                 name=name,
-#                 email=email,
-#                 currentJob=currentJob,
-#                 phoneNumber=phoneNumber,
-#                 highestQualification=highestQualification,
-#                 address=address
-#             )
-#             language = get_language()
-#             if language == 'ar':
-#                 messages.success(request, ("تم إرسال الرسالة بنجاح.!"))
-#             else:
-#                 messages.success(request, ("Message Sent Successfully...!"))
-#         # contact = Contact.objects.create(
-#         #     name=name, email=email,
-#         #     subject=subject, message=currentJob
-#         # )
-#         send_mail(email, address, adminMail, [adminMail, ])
-#         return render(request, self.template_name)
-#
-#     def get(self, request, *args, **kwargs):
-#         cart = Cart(request)
-#         totalProjectsInCart = cart.get_total_products()
-#         # getMyCurrency = getCurrency(request)
-#         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         news = PRNews.objects.all().order_by('-id')[:6]
-#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('-id')
-#         sponsorCategories = sponsorship.objects.all()
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, parent=None).order_by('-id')
-#         cart_projects, projects_selected = get_cart(request)
-#         return render(request, self.template_name,
-#                       {'sliders': sliders,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'news': news,
-#                        'sponsorCategories': sponsorCategories,
-#                        'science_news': science_news,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        })
-
 def volunteerNew(request):
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
     charity_categories = Category.objects.filter(
         inMenu=True, parent=None).order_by('-id')
     return render(request, 'web/volunteer.html', {
         'charity_categories': charity_categories,
+        'totalProjectsInCart': totalProjectsInCart,
     })
 
 
@@ -3494,7 +3324,6 @@ def zakatPage(request):
         'projects': projects,
         'sliders': sliders,
         'project_dirctories': project_dirctories,
-        'projects': projects,
         'projectsSadaqah': projectsSadaqah,
         'categories': categories,
         'sponsorCategories': sponsorCategories,
@@ -3610,63 +3439,6 @@ def zakatForStocks(request):
     })
 
 
-# def allProjects(request):
-#     cart = Cart(request)
-#     totalProjectsInCart = cart.get_total_products()
-#     # getMyCurrency = getCurrency(request)
-#     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#     if request.user.is_authenticated:
-#         userId1 = request.user.id
-#         userId = int(userId1)
-#         sliders = Slider.objects.all().order_by('-id')[:5]
-#         project_dirctories = ProjectsDirectory.objects.all()
-#         news = PRNews.objects.all().order_by('-id')[:6]
-#         science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#         categories = PRCategory.objects.all().order_by('-id')
-#         sponsorCategories = sponsorship.objects.all()
-#
-#         charity_categories = Category.objects.filter(
-#             inMenu=True, inHomePage=True, parent=None
-#         ).order_by('-id')
-#         cart_projects, projects_selected = get_cart(request)
-#
-#         current_user = request.user.id
-#         # userInDonation = Donate.objects.filter(user=current_user)
-#         userIdsFromDonateTable = Donate.objects.all().order_by('-id')
-#         # idsOfProject = projectIdsOfUser.values('project_id')
-#         # if projectIdsOfUser != '':
-#         #     projects = Project.objects.filter(id=projectIdsOfUser, is_hidden=False)
-#         # else:
-#         #     projects = Project.objects.all()
-#         projects = Project.objects.filter(created_by=userId, is_compaign=False).order_by('-id')
-#         # I'M CHANGING THE ALL allProjects.html WITH seasonalprojects.html page, for new basaier design.
-#         return render(request, 'web/allProjects.html',
-#                       {'sliders': sliders,
-#                        'projects': projects,
-#                        'userIdsFromDonateTable': userIdsFromDonateTable,
-#                        'categories': categories,
-#                        'charity_categories': charity_categories,
-#                        'news': news,
-#                        'sponsorCategories': sponsorCategories,
-#                        'science_news': science_news,
-#                        'cart_projects': cart_projects,
-#                        'projects_selected': projects_selected,
-#                        'project_dirctories': project_dirctories,
-#                        'current_user': current_user,
-#                        'totalProjectsInCart': totalProjectsInCart,
-#                        'getMyCurrency': getMyCurrency,
-#                        })
-#     else:
-#         language = get_language()
-#         if language == 'ar':
-#             messages.error(request, 'الرجاء تسجيل الدخول أولا.!')
-#             return redirect('/ar/login/')
-#         else:
-#             messages.error(request, 'Please Login First...!')
-#             return redirect('/en/login/')
-#     # return render(request, 'web/allProjects.html', {'projects': projects})
-
-
 def allProjects(request):
     cart = Cart(request)
     totalProjectsInCart = cart.get_total_products()
@@ -3724,39 +3496,6 @@ def search_project(request):
         'employee': employee,
         'charity_categories': charity_categories,
     })
-
-
-# def sponsorshipPage(request, sponsorCategoryId):
-#     cart = Cart(request)
-#     totalProjectsInCart = cart.get_total_products()
-#     getMyCurrency = getCurrency(request)
-#     sliders = Slider.objects.all().order_by('-id')[:5]
-#     project_dirctories = ProjectsDirectory.objects.all()
-#     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#     categories = PRCategory.objects.all().order_by('-id')
-#     sponsorCategories = sponsorship.objects.all()
-#     sponsorProjects = sponsorshipProjects.objects.filter(category=sponsorCategoryId).order_by('-id')[:6]
-#     sponsorshipsPageContent = sponsorshipPageContent.objects.filter(category=sponsorCategoryId)
-#     charity_categories = Category.objects.filter(
-#         inMenu=True, inHomePage=True, parent=None
-#     ).order_by('-id')
-#     cart_projects, projects_selected = get_cart(request)
-#
-#     return render(request, 'web/sponsorshipPage.html', {
-#         'sliders': sliders,
-#         'project_dirctories': project_dirctories,
-#         'science_news': science_news,
-#         'categories': categories,
-#         'sponsorCategories': sponsorCategories,
-#         'charity_categories': charity_categories,
-#         'cart_projects': cart_projects,
-#         'projects_selected': projects_selected,
-#         'sponsorProjects': sponsorProjects,
-#         'sponsorCategoryId': sponsorCategoryId,
-#         'sponsorshipsPageContent': sponsorshipsPageContent,
-#         'totalProjectsInCart': totalProjectsInCart,
-#         'getMyCurrency': getMyCurrency,
-#     })
 
 
 def sponsorshipPage(request, sponsorCategoryId):
@@ -5389,7 +5128,6 @@ def createCompaignOfParticularCategory(request, categoryId):
                 })
             else:
                 cart = Cart(request)
-                totalProjectsInCart = cart.get_total_products()
                 if request.user.is_authenticated:
                     userId = request.user.id
                     userInstance = get_object_or_404(User, id=userId)
@@ -5622,8 +5360,8 @@ def cart_add(request):
             #     'totalProjectsInCart': totalProjectsInCart,
             # })
             # return JsonResponse({'status': 'OK'})
-            print("Countered Add Cart...!")
-            return HttpResponse('')
+            values = {'totalProjectsInCart': totalProjectsInCart}
+            return JsonResponse(values)
     else:
         # messages.error(request, 'Your Cart Could Not Be Added...!')
         # return JsonResponse({'status': 'Fail'})
@@ -5636,16 +5374,13 @@ def cart_remove(request, id):
     product = get_object_or_404(Project, id=id)
     cart.remove(product)
     totalProjectsInCart = cart.get_total_products()
-    # return render(request, 'web/add_to_cart.html', {
-    #     'totalProjectsInCart': totalProjectsInCart,
-    # })
     language = get_language()
     if language == 'ar':
         messages.success(request, 'تمت إزالة عربة التسوق بنجاح.!')
-        return redirect('/ar/cart_detail')
+        return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
     else:
         messages.success(request, 'Cart Has Been Removed Successfully...!')
-        return redirect('/en/cart_detail')
+        return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
 
 
 @require_POST
@@ -5655,30 +5390,24 @@ def cart_update(request, id):
     print(selectedAmount)
     product = get_object_or_404(Project, id=id)
     totalProjectsInCart = cart.get_total_products()
-    # form = CartAddProductForm(request.POST)
-    # if form.is_valid():
-    #     cd = form.cleaned_data
     if cart != '':
         cart.update(product=product, selectAmount=selectedAmount,
                     quantity=1, override_quantity=False)
-        # return render(request, 'web/add_to_cart.html', {
-        #     'totalProjectsInCart': totalProjectsInCart,
-        # })
         language = get_language()
         if language == 'ar':
             messages.success(request, 'تم تحديث عربة التسوق بنجاح ...!')
-            return redirect('/ar/cart_detail')
+            return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
         else:
             messages.success(request, 'Cart Has Been Updated Successfully...!')
-            return redirect('/en/cart_detail')
+            return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
     else:
         language = get_language()
         if language == 'ar':
             messages.error(request, 'تم تحديث عربة التسوق بنجاح.!')
-            return redirect('/ar/cart_detail')
+            return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
         else:
             messages.error(request, 'Your Cart Could Not Be Updated...!')
-            return redirect('/en/cart_detail')
+            return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
 
 
 def removeAll(request):
@@ -5691,10 +5420,10 @@ def removeAll(request):
     language = get_language()
     if language == 'ar':
         messages.success(request, 'تمت إزالة عربات التسوق بنجاح.!')
-        return redirect('/ar/checkoutDetail')
+        return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
     else:
         messages.success(request, 'Carts Have Been Removed Successfully...!')
-        return redirect('/en/checkoutDetail')
+        return render(request, 'web/donationbasket.html', {'totalProjectsInCart', totalProjectsInCart})
 
 
 def cart_detail(request):
@@ -5738,55 +5467,6 @@ def cart_detail(request):
         'sponsorCategories': sponsorCategories,
         'charity_categories': charity_categories,
     })
-
-
-# def checkoutDetail(request):
-#     cart = Cart(request)
-#     totalProjectsInCart = cart.get_total_products()
-#     # getMyCurrency = getCurrency(request)
-#     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-#     sliders = Slider.objects.all().order_by('-id')[:5]
-#     project_dirctories = ProjectsDirectory.objects.all()
-#     projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False, is_compaign=False).order_by(
-#         '-id')[:3]
-#     projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
-#                                              is_compaign=False).order_by('-id')
-#     news = PRNews.objects.all().order_by('-id')[:6]
-#     news2 = PRNews.objects.all().order_by('-id')[:4]
-#     science_news = ScienceNews.objects.all().order_by('-id')[:6]
-#     categories = PRCategory.objects.all().order_by('-id')
-#     sponsorCategories = sponsorship.objects.all()
-#     charity_categories = Category.objects.filter(
-#         inMenu=True, inHomePage=True, parent=None
-#     ).order_by('-id')
-#     if request.user.is_authenticated:
-#         userId = request.user.id
-#         userInstance = get_object_or_404(User, id=userId)
-#         profile = get_object_or_404(Profile, user=userInstance)
-#         phoneNumberOfUser = profile.phone
-#     else:
-#         phoneNumberOfUser = ''
-#     # print("PHONE NUMBER OF THE USER:", phoneNumberOfUser)
-#     # cust = get_object_or_404(Customer, id=id)
-#     # for item in cart:
-#     #     item['update_quantity_form'] = CartAddProductForm(initial={
-#     #         'quantity': item['quantity'],
-#     #         'override': True})
-#     return render(request, 'web/cartCheckoutDetailPage.html', {
-#         'cart': cart,
-#         'projects': projects,
-#         'totalProjectsInCart': totalProjectsInCart,
-#         'getMyCurrency': getMyCurrency,
-#         'sliders': sliders,
-#         'project_dirctories': project_dirctories,
-#         'news': news,
-#         'news2': news2,
-#         'science_news': science_news,
-#         'categories': categories,
-#         'sponsorCategories': sponsorCategories,
-#         'charity_categories': charity_categories,
-#         'phoneNumberOfUser': phoneNumberOfUser,
-#     })
 
 
 def checkoutDetail(request):
@@ -6039,7 +5719,6 @@ def custom_bad_request_view(request, exception=None):
                    'cart_projects': cart_projects,
                    'projects_selected': projects_selected,
                    'project_dirctories': project_dirctories,
-                   # 'whoWeAreVar': whoWeAreVar,
                    'totalProjectsInCart': totalProjectsInCart,
                    'getMyCurrency': getMyCurrency,
                    'testimonialsData': testimonialsData,
