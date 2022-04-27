@@ -62,7 +62,7 @@
             {% for project in projects %}
                 {% if carouselVideo.file %}
                     <div class="carousel-item header2 {% if forloop.first %}active{% endif %}">
-                        <video autoplay playsinline style="height: 774px; width: 100%;pointer-events: none;">
+                        <video autoplay muted controls style="height: 774px; width: 100%;">
                             <source
                                     src="/media/{{ carouselVideo.file }}"
                                     type="video/mp4"/>

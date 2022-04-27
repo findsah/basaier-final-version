@@ -22,22 +22,7 @@
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/page1.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/page1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/bepartner.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/bepartner.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/createownproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/createownproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/donatedonation.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/donatedonation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/giftRecieverAndSender.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/giftRecieverAndSender.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinchat.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinchat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/joinfieldvolunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/privateCompaigns.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/privateCompaigns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/refundproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/refundproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/templates/web/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +164,7 @@
       <workItem from="1650827637515" duration="64000" />
       <workItem from="1650892745147" duration="2613000" />
       <workItem from="1650969358395" duration="748000" />
-      <workItem from="1650998048009" duration="18373000" />
+      <workItem from="1650998048009" duration="20041000" />
     </task>
     <servers />
   </component>

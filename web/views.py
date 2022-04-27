@@ -1872,7 +1872,7 @@ def Login(request):
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         projects = Project.objects.filter(
             is_sadaqah=False, is_compaign=False, is_hidden=False).order_by('-id')[:2]
-        carouselVideo = carouselVideoNotification.objects.all()[:1].get()
+        carouselVideo = carouselVideoNotification.objects.all().order_by('-id')[:1].get()
         # if 'category_id' in kwargs:
         #     projects = Project.objects.filter(
         #         category__id=kwargs['category_id']).order_by('-id')[:15]
