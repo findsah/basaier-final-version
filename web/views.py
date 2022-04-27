@@ -3481,6 +3481,8 @@ def allProjects(request):
 
 
 def search_project(request):
+    cart = Cart(request)
+    totalProjectsInCart = cart.get_total_products()
     # Search bar on seasonal projects page i.e seasonalprojects.html
     project_data = Project.objects.all()
     charity_categories = Category.objects.filter(
@@ -3495,6 +3497,7 @@ def search_project(request):
         'myFilter': myFilter,
         'employee': employee,
         'charity_categories': charity_categories,
+        'totalProjectsInCart': totalProjectsInCart,
     })
 
 

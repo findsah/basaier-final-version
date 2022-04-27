@@ -18,11 +18,11 @@ from django.utils.translation import ugettext_lazy as _
 
 # import django_heroku
 
-LANGUAGES = (
-    ('ar', _('ar')),
-    ('en', _('en')),
-)
-LANGUAGE_CODE = 'ar'
+# LANGUAGE_CODE = 'ar'
+# LANGUAGES = (
+#     ('ar', _('ar')),
+#     ('en', _('en')),
+# )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -71,20 +71,39 @@ INSTALLED_APPS = [
     'web',
 ]
 
+TIME_ZONE = 'Asia/Kuwait'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+ugettext = lambda s: s
+LANGUAGES = (
+    ('ar', ugettext('Arabic')),
+    ('en', ugettext('English')),
+)
+LANGUAGE_CODE = 'ar'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'web.middleware.ForceLangMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
     # 'geoip2_extras.middleware.GeoIP2Middleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 # GEOIP_PATH = os.path.dirname(__file__)
 
@@ -121,16 +140,6 @@ WSGI_APPLICATION = 'basaier.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'basaier',
-#         'USER': 'postgres',
-#         'PASSWORD': '',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 
 # THIS IS THE DATABASE OF HEROKU `basaier` app....!
 # DATABASES = {
@@ -143,19 +152,6 @@ WSGI_APPLICATION = 'basaier.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
-
-# NEW SENT DATABASE:
-# NEW SENT DATABASE WITH CHANGED HOST NAME:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'basaiernew',
-#         'USER': 'admin',
-#         'PASSWORD': 'admin',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#      }
-#  }
 
 # DATABASES = {
 #     'default': {
@@ -217,15 +213,6 @@ EMAIL_PORT = 587
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-
-TIME_ZONE = 'Asia/Kuwait'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # rest frame work settings
@@ -239,10 +226,6 @@ REST_FRAMEWORK = {
 }
 
 # AWS settings
-# AWS_STORAGE_BUCKET_NAME = 'basaier-test2'
-# AWS_ACCESS_KEY_ID = 'AKIA4DK6FGQNHWX4GNGG'
-# AWS_SECRET_ACCESS_KEY = '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'
-# # AWS_ACCESS_KEY_ID = 'AKIA4DK6FGQNIGLK4LV4'
 AWS_STORAGE_BUCKET_NAME = 'basaier'
 AWS_ACCESS_KEY_ID = 'AKIAINMCKJ26TS7BOUPQ'
 AWS_SECRET_ACCESS_KEY = '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'

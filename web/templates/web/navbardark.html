@@ -322,24 +322,78 @@
         <a class="navbar-brand navbarImg" href="{% url 'index' %}">
             <img src="{% static 'images/logo2.png' %}" alt="logo" class="imgHover">
         </a>
-        <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important;">
+        <ul class="navbar-nav navbarUl" style="display: none; flex-direction: row !important; align-items: center;">
             <li class="nav-link">
                 <a href="#" class="btn btn-circle my-social-btn">
-                    <i style="font-size: 25px; color: #fff" class="fa fa-search searchIcon"></i>
+                    {#                    <i style="font-size: 25px; color: #fff" class="fa fa-search searchIcon"></i>#}
+                    <i>
+                        <svg id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search"
+                             xmlns="http://www.w3.org/2000/svg" width="27" height="27.007" viewBox="0 0 27 27.007">
+                            <path id="Icon_ionic-ios-search-2" data-name="Icon ionic-ios-search"
+                                  d="M31.184,29.545l-7.509-7.58a10.7,10.7,0,1,0-1.624,1.645l7.46,7.53a1.156,1.156,0,0,0,1.631.042A1.163,1.163,0,0,0,31.184,29.545ZM15.265,23.7a8.45,8.45,0,1,1,5.977-2.475A8.4,8.4,0,0,1,15.265,23.7Z"
+                                  transform="translate(-4.5 -4.493)" fill="#fff"/>
+                        </svg>
+
+                    </i>
                 </a>
                 <div class="searchDiv">
-                    <i style="font-size: 20px;" class="fa fa-search"></i>
+                    {#                    <i style="font-size: 20px;" class="fa fa-search"></i>#}
+                    <i>
+                        <svg id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search"
+                             xmlns="http://www.w3.org/2000/svg" width="27" height="27.007" viewBox="0 0 27 27.007">
+                            <path id="Icon_ionic-ios-search-2" data-name="Icon ionic-ios-search"
+                                  d="M31.184,29.545l-7.509-7.58a10.7,10.7,0,1,0-1.624,1.645l7.46,7.53a1.156,1.156,0,0,0,1.631.042A1.163,1.163,0,0,0,31.184,29.545ZM15.265,23.7a8.45,8.45,0,1,1,5.977-2.475A8.4,8.4,0,0,1,15.265,23.7Z"
+                                  transform="translate(-4.5 -4.493)"/>
+                        </svg>
+                    </i>
                     <input class="searchInput" type="text" name="search" placeholder="ادفع الان">
                 </div>
             </li>
             <li class="nav-link">
                 <a href="{% url 'login' %}" class="btn btn-circle my-social-btn ">
-                    <i style="font-size: 25px; color: #fff" class="fa fa-user"></i>
+                    {#                    <i style="font-size: 25px; color: #fff" class="fa fa-user"></i>#}
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21.102" height="23.49"
+                             viewBox="0 0 21.102 23.49">
+                            <g id="Icon_feather-user" data-name="Icon feather-user" transform="translate(1 1)">
+                                <path id="Path_1" data-name="Path 1"
+                                      d="M25.1,29.663V27.276A4.776,4.776,0,0,0,20.327,22.5H10.776A4.776,4.776,0,0,0,6,27.276v2.388"
+                                      transform="translate(-6 -8.173)" fill="none" stroke="#fff" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-width="2"/>
+                                <path id="Path_2" data-name="Path 2"
+                                      d="M21.551,9.276A4.776,4.776,0,1,1,16.776,4.5a4.776,4.776,0,0,1,4.776,4.776Z"
+                                      transform="translate(-7.224 -4.5)" fill="none" stroke="#fff"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+
+                    </i>
                 </a>
             </li>
             <li class="nav-link">
                 <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn" style="position: relative;">
-                    <i style="font-size: 25px; color: #fff;" class="fa fa-shopping-cart color-dark"></i>
+                    {#                    <i style="font-size: 25px; color: #fff;" class="fa fa-shopping-cart color-dark"></i>#}
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28.265" height="27.071"
+                             viewBox="0 0 28.265 27.071">
+                            <g id="Icon_feather-shopping-cart" data-name="Icon feather-shopping-cart"
+                               transform="translate(1 1)">
+                                <path id="Path_3" data-name="Path 3"
+                                      d="M14.388,31.194A1.194,1.194,0,1,1,13.194,30,1.194,1.194,0,0,1,14.388,31.194Z"
+                                      transform="translate(-3.643 -7.316)" fill="none" stroke="#fff"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                <path id="Path_4" data-name="Path 4"
+                                      d="M30.888,31.194A1.194,1.194,0,1,1,29.694,30,1.194,1.194,0,0,1,30.888,31.194Z"
+                                      transform="translate(-7.01 -7.316)" fill="none" stroke="#fff"
+                                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                <path id="Path_5" data-name="Path 5"
+                                      d="M1.5,1.5H6.276l3.2,15.986a2.388,2.388,0,0,0,2.388,1.922h11.6a2.388,2.388,0,0,0,2.388-1.922l1.91-10.017H7.469"
+                                      transform="translate(-1.5 -1.5)" fill="none" stroke="#fff" stroke-linecap="round"
+                                      stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+
+                    </i>
                     <span class="cartNumberSpan">{% if totalProjectsInCart %}{{ totalProjectsInCart }}{% endif %}</span>
                 </a>
             </li>
@@ -362,7 +416,8 @@
                            data-bs-toggle="dropdown"
                            aria-expanded="false" style="text-decoration: none;"> تبرع الآن
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="{% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == 'ar' %}text-align: right;{% else %}text-align: left;{% endif %}">
                             {% for category in charity_categories %}
                                 {% include "web/category_tree.html" %}
                             {% endfor %}
@@ -375,12 +430,9 @@
                        aria-expanded="false" style="text-decoration: none;">
                         اكتشفنا
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'aboutUs' %}">
-                                من نحن
-                            </a>
-                        </li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                        style="{% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == 'ar' %}text-align: right;{% else %}text-align: left;{% endif %}">
                         <li>
                             <a class="dropdown-item" href="{% url 'testimonials' %}">
                                 قالو عنا
@@ -427,6 +479,19 @@
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'aboutUs' %}">
+                        من نحن
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-dark">English</a> {% else %}
+                        <a
+                                href="{% url 'to-arabic' %}"
+                                class="nav-link desktop-nav color-dark">العربية</a> {% endif %}
+                </li>
             </ul>
             <div style="display: flex; justify-content: center; margin: 1rem 0;">
                 <button class="sticky-bottom sidenavDonationBtn">bava-tu-taraba</button>
@@ -446,7 +511,8 @@
                             تبرع الآن
                         </a>
 
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="{% get_current_language as LANGUAGE_CODE %}
+                                {% if LANGUAGE_CODE == 'ar' %}text-align: right;{% else %}text-align: left;{% endif %}">
                             {% for category in charity_categories %}
                                 {% include "web/category_tree.html" %}
                             {% endfor %}
@@ -460,12 +526,9 @@
                             اكتشفنا
                         </a>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'aboutUs' %}">
-                                    من نحن
-                                </a>
-                            </li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                            style="{% get_current_language as LANGUAGE_CODE %}
+                                    {% if LANGUAGE_CODE == 'ar' %}text-align: right;{% else %}text-align: left;{% endif %}">
                             <li>
                                 <a class="dropdown-item" href="{% url 'testimonials' %}">
                                     قالو عنا
@@ -513,27 +576,83 @@
                 <li class="nav-item">
                     <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'aboutUs' %}">
+                        من نحن
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-dark">English</a> {% else %}
+                        <a
+                                href="{% url 'to-arabic' %}"
+                                class="nav-link desktop-nav color-dark">العربية</a> {% endif %}
+                </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0 col-md-7">
             <input class="myform-control mr-sm-2" type="search"
                 placeholder="find peoples, instruments, bands and more..." aria-label="Search">
             <button class="btn btn-light"><i class="fa fa-search"></i></button>
         </form> -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" style="margin-left: 0 !important; align-items: center;">
                 <li class="nav-link">
                     <a href="#" class="btn-circle my-social-btn color-dark">
-                        <i style="font-size: 25px;" class="fa fa-search"></i>
+                        {#                        <i style="font-size: 25px;" class="fa fa-search"></i>#}
+                        <i>
+                            <svg id="Icon_ionic-ios-search" data-name="Icon ionic-ios-search"
+                                 xmlns="http://www.w3.org/2000/svg" width="27" height="27.007" viewBox="0 0 27 27.007">
+                                <path id="Icon_ionic-ios-search-2" data-name="Icon ionic-ios-search"
+                                      d="M31.184,29.545l-7.509-7.58a10.7,10.7,0,1,0-1.624,1.645l7.46,7.53a1.156,1.156,0,0,0,1.631.042A1.163,1.163,0,0,0,31.184,29.545ZM15.265,23.7a8.45,8.45,0,1,1,5.977-2.475A8.4,8.4,0,0,1,15.265,23.7Z"
+                                      transform="translate(-4.5 -4.493)"/>
+                            </svg>
+                        </i>
                     </a>
                 </li>
                 <li class="nav-link">
                     <a href="{% url 'login' %}" class="btn-circle my-social-btn color-dark">
-                        <i style="font-size: 25px;" class="fa fa-user"></i>
+                        {#                        <i style="font-size: 25px;" class="fa fa-user"></i>#}
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21.102" height="23.49"
+                                 viewBox="0 0 21.102 23.49">
+                                <g id="Icon_feather-user" data-name="Icon feather-user" transform="translate(1 1)">
+                                    <path id="Path_1" data-name="Path 1"
+                                          d="M25.1,29.663V27.276A4.776,4.776,0,0,0,20.327,22.5H10.776A4.776,4.776,0,0,0,6,27.276v2.388"
+                                          transform="translate(-6 -8.173)" fill="none" stroke="#2f2f2f"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                    <path id="Path_2" data-name="Path 2"
+                                          d="M21.551,9.276A4.776,4.776,0,1,1,16.776,4.5a4.776,4.776,0,0,1,4.776,4.776Z"
+                                          transform="translate(-7.224 -4.5)" fill="none" stroke="#2f2f2f"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                </g>
+                            </svg>
+                        </i>
                     </a>
                 </li>
                 <li class="nav-link">
                     <a href="{% url 'checkoutDetail' %}" class="btn btn-circle my-social-btn"
                        style="position: relative;">
-                        <i style="font-size: 25px; color: black;" class="fa fa-shopping-cart color-dark"></i>
+                        {#                        <i style="font-size: 25px; color: black;" class="fa fa-shopping-cart color-dark"></i>#}
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28.265" height="27.071"
+                                 viewBox="0 0 28.265 27.071">
+                                <g id="Icon_feather-shopping-cart" data-name="Icon feather-shopping-cart"
+                                   transform="translate(1 1)">
+                                    <path id="Path_3" data-name="Path 3"
+                                          d="M14.388,31.194A1.194,1.194,0,1,1,13.194,30,1.194,1.194,0,0,1,14.388,31.194Z"
+                                          transform="translate(-3.643 -7.316)" fill="none" stroke="#2f2f2f"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                    <path id="Path_4" data-name="Path 4"
+                                          d="M30.888,31.194A1.194,1.194,0,1,1,29.694,30,1.194,1.194,0,0,1,30.888,31.194Z"
+                                          transform="translate(-7.01 -7.316)" fill="none" stroke="#2f2f2f"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                    <path id="Path_5" data-name="Path 5"
+                                          d="M1.5,1.5H6.276l3.2,15.986a2.388,2.388,0,0,0,2.388,1.922h11.6a2.388,2.388,0,0,0,2.388-1.922l1.91-10.017H7.469"
+                                          transform="translate(-1.5 -1.5)" fill="none" stroke="#2f2f2f"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                </g>
+                            </svg>
+                        </i>
                         <span class="cartNumberSpan">{% if totalProjectsInCart %}
                             {{ totalProjectsInCart }}{% endif %}</span>
                     </a>
@@ -1021,7 +1140,7 @@
                 success: function (values) {
                     let cartNumber = values.totalProjectsInCart;
                     totalNumber = parseInt(cartNumber);
-                    $('.cartNumberSpan').html(totalNumber+1);
+                    $('.cartNumberSpan').html(totalNumber + 1);
                     location.href = "/checkoutDetail";
                     {#window.location.href = "giftRecieverAndSender";#}
                     {#project_id[0].reset();#}
@@ -1105,7 +1224,7 @@
                 success: function (values) {
                     let cartNumber = values.totalProjectsInCart;
                     totalNumber = parseInt(cartNumber);
-                    $('.cartNumberSpan').html(totalNumber+1);
+                    $('.cartNumberSpan').html(totalNumber + 1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
                     $('#exampleModalCenter').modal('show');
                     // Set a timeout to hide the element again
@@ -1444,7 +1563,7 @@
                 success: function (values) {
                     let cartNumber = values.totalProjectsInCart;
                     totalNumber = parseInt(cartNumber);
-                    $('.cartNumberSpan').html(totalNumber+1);
+                    $('.cartNumberSpan').html(totalNumber + 1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
                     $('#exampleModalCenter').modal('show');
                     // Set a timeout to hide the element again
@@ -1506,7 +1625,7 @@
                 success: function (values) {
                     let cartNumber = values.totalProjectsInCart;
                     totalNumber = parseInt(cartNumber);
-                    $('.cartNumberSpan').html(totalNumber+1);
+                    $('.cartNumberSpan').html(totalNumber + 1);
                     $('#exampleModalCenter').modal('show');
                 },
                 error: function () {
@@ -1683,7 +1802,7 @@
                 success: function (values) {
                     let cartNumber = values.totalProjectsInCart;
                     totalNumber = parseInt(cartNumber);
-                    $('.cartNumberSpan').html(totalNumber+1);
+                    $('.cartNumberSpan').html(totalNumber + 1);
                     $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
                     $('#exampleModalCenter').modal('show');
                     // Set a timeout to hide the element again
