@@ -6,6 +6,10 @@ body {
     text-align: right;
 }
 
+a{
+    text-decoration: none !important;
+}
+
 .fixed-top.scrolled {
     background-image: linear-gradient(#00A7D0, #0083B0);
     color: #111 !important;
@@ -570,6 +574,18 @@ p.myp.text-center {
     color: white;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-decoration: none;
+}
+
+.myp-onimgtxt2 {
+    position: absolute;
+    bottom: 10px;
+    font-size: 34px;
+    font-weight: bold;
+    color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
 }
 
 .fluidImg {
@@ -944,6 +960,10 @@ li.list-inline-item a {
     }
 
     .myp-onimgtxt {
+        font-size: 8px;
+    }
+
+    .myp-onimgtxt2 {
         font-size: 8px;
     }
 

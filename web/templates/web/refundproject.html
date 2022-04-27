@@ -51,7 +51,8 @@
                             <div class="row justify-content-between">
                                 <div class="col-md-5">
                                     {% if project.video %}
-                                        <video autoplay muted controls loop style="height: 15rem; border-radius: 17px; width: 100%;">
+                                        <video autoplay muted controls loop
+                                               style="height: 15rem; border-radius: 17px; width: 100%;">
                                             <source
                                                     src="/media/{{ project.video }}"
                                                     type="video/mp4"/>
@@ -120,7 +121,7 @@
                         {% csrf_token %}
                         <div class="zakat_input d-flex justify-content-between">
                             <span>مبلغ النقد</span>
-                            <input type="number" name="amount[]"
+                            <input type="number" name="amount[]" style="width: 80%;"
                                    id="enteredCost{{ project.id }}" min="1">
                         </div>
                         <div class="justify-content-center my-3">
@@ -135,6 +136,8 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header" style="position: relative;">
+                                            <p style="display: flex; justify-content: center; text-align: center; color: red;"
+                                               class="giftModalSuccessMessage"></p>
                                             <button type="button" id="btnclose" data-dismiss="modal"
                                                     style="font-size: 2rem; position: absolute; right: 20px; top: -10px;">
                                                 x
@@ -166,7 +169,7 @@
                                                     <i style=" color: #1385B2;" class="fa fa-phone ml-3"></i>رقم
                                                     الهاتف
                                                 </label>
-                                                <input class="formDivInput" type="number"
+                                                <input class="formDivInput" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                        id="phoneNumberDonatedDonationPage">
                                             </div>
                                             <div style="margin-bottom: 10px;">
@@ -204,11 +207,11 @@
                                    value="تبرع الآن" projectId="{{ project.id }}"/>
                         </div>
                     </div>
-                        <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
-                        <input type="hidden" class="project_category_id"
-                               name="project_category_id[]"
-                               value="{{ project.category.first.id }}">
-                        <input type="hidden" name="project_id[]" value="{{ project.id }} ">
+                    <input type="hidden" id="projectId{{ project.id }}" value="{{ project.id }}">
+                    <input type="hidden" class="project_category_id"
+                           name="project_category_id[]"
+                           value="{{ project.category.first.id }}">
+                    <input type="hidden" name="project_id[]" value="{{ project.id }} ">
                     </form>
                 {% endfor %}
         </div>

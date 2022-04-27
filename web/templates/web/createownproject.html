@@ -68,14 +68,14 @@
                            style="display: flex; align-items: center; font-size: 15px; color: #717171;">
                         <i style="font-size: 25px; color: #1385B2;" class="fa fa-money ml-3"></i> صوره البطاقه المدنيه
                     </label>
-                    <input class="formDivInput" type="number" min="0" name="civilIdPhoto" id="civilIdPhoto">
+                    <input class="formDivInput" type="text" name="civilIdPhoto" id="civilIdPhoto" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                 </div>
                 <div class="formDiv">
                     <label for="phoneNumber"
                            style="display: flex; align-items: center; font-size: 15px; color: #717171;">
                         <i style="font-size: 25px; color: #1385B2;" class="fa fa-phone ml-3"></i>التبرع
                     </label>
-                    <input class="formDivInput" type="number" name="phoneNumber" id="phoneNumber" min="0">
+                    <input class="formDivInput" type="text" name="phoneNumber" id="phoneNumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                 </div>
                 <div class="formDiv">
                     <label for="checkbox" style="display: flex; align-items: center; font-size: 15px; color: #717171;">

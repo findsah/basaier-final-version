@@ -38,7 +38,7 @@
                 <label for="name" style="display: flex; align-items: center; font-size: 12px; color: #717171;">
                     الرقم المدني
                 </label>
-                <input class="formDivInput" type="number" name="civilNumber">
+                <input class="formDivInput" type="text" name="civilNumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             <div class="formDiv">
                 <label for="name" style="display: flex; align-items: center; font-size: 12px; color: #717171;">
@@ -312,7 +312,7 @@
                 <label for="name" style="display: flex; align-items: center; font-size: 12px; color: #717171;">
                     التبرع1
                 </label>
-                <input class="formDivInput" type="number" name="phoneNumber1">
+                <input class="formDivInput" type="text" name="phoneNumber1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             <div class="row">
                 <div class="col-md-8">
@@ -320,7 +320,7 @@
                         <label for="name" style="display: flex; align-items: center; font-size: 12px; color: #717171;">
                             التبرع حالة الطوارئ1
                         </label>
-                        <input class="formDivInput" type="number" name="emergencyPhoneNumber">
+                        <input class="formDivInput" type="text" name="emergencyPhoneNumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                     </div>
                 </div>
                 <div class="col-md-4">

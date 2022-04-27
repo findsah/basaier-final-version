@@ -1335,10 +1335,19 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function () {
-                    $('#exampleModalCenter').modal('show')
-                    {#window.location.href = "giftRecieverAndSender";#}
-                    {#project_id[0].reset();#}
-                    {#amount[0].reset();#}
+                    let cartNumber = values.totalProjectsInCart;
+                    totalNumber = parseInt(cartNumber);
+                    console.log(totalNumber);
+                    $('.cartNumberSpan').html(totalNumber + 1);
+                    $(".contentOfModalBodyWillBeChanged").html("تمت إضافة التبرع إلى عربة التسوق");
+                    console.log('تضاف الهدية إلى عربة التسوق');
+                    $('.giftModalSuccessMessage').html('تضاف الهدية إلى عربة التسوق');
+                    {#$('#exampleModalCenter').modal('show');#}
+                    {#// Set a timeout to hide the element again#}
+                    {#setTimeout(function () {#}
+                    {#    $("#exampleModalCenter").modal('hide');#}
+                    {# }, 3000); #}
+                    $('#myModalGift'+post_id).modal('hide');
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");

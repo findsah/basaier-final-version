@@ -32,20 +32,46 @@
             transform: translateX(0);
             transform: translate3d(0, 0, 0);
         }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        .myp-onimgtxt2 {
+            position: absolute;
+            bottom: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-decoration: none;
+        }
     </style>
 
     <div id="carouselExampleIndicators" class="carousel carouselHide slide carousel-fade" data-interval="5000"
          data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{% if forloop.first %} active {% endif %}"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="0"
+                class="{% if forloop.first %} active {% endif %}"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
 
         <div class="carousel-inner">
             {% for project in projects %}
-                <div class="carousel-item {% if forloop.first %} active {% endif %} header2">
+                {% if carouselVideo.file %}
+                    <div class="carousel-item header2 {% if forloop.first %}active{% endif %}">
+                        <video autoplay playsinline style="height: 774px; width: 100%;pointer-events: none;">
+                            <source
+                                    src="/media/{{ carouselVideo.file }}"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
+                {% endif %}
+                <div class="carousel-item header2">
                     {% if project.video %}
+                        {#                                                {% if project.video %}#}
                         <video autoplay muted controls loop style="height: 774px; width: 100%;">
                             <source
                                     src="/media/{{ project.video }}"
@@ -76,7 +102,6 @@
     </div>
 
 
-
     <div class="mobileCrousel">
         {% for project in projects %}
             <div class="crouselDiv">
@@ -91,10 +116,19 @@
                     </p>
                     <a href="{% url 'project-detail' project.id %}" class="crouselBtn"> تبرع الآن</a>
                 </div>
-                <img src="/media/{{ project.image }}" class="crouselImg">
+                {% if project.video %}
+                    <video autoplay muted controls loop class="crouselImg">
+                        <source
+                                src="/media/{{ project.video }}"
+                                type="video/mp4"/>
+                    </video>
+                {% else %}
+                    <img src="/media/{{ project.image }}" class="crouselImg">
+                {% endif %}
             </div>
         {% endfor %}
     </div>
+
     <section class="testimonials">
         <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
         <div class="container">
@@ -102,7 +136,7 @@
                 <div class="col-6 mb-3">
                     <div style="position: relative;" class="sectionsHover">
                         <div class="overlay" style="border-radius: 22px"></div>
-                        <a href="{% url 'allProjects' %}" class="myp-onimgtxt text-center">
+                        <a href="{% url 'allProjects' %}" class="myp-onimgtxt2 text-center">
                             بوابة التبرع
                         </a>
                         <img src="/static/images/sec2img1.png" class="fluidImg">
@@ -111,7 +145,7 @@
                 <div class="col-6 mb-3">
                     <div style="position: relative;">
                         <div class="overlay" style="border-radius: 22px"></div>
-                        <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt text-center">
+                        <a href="{% url 'createOwnProject' %}" class="myp-onimgtxt2 text-center">
                             أنشئ مشروعك الخاص
                         </a>
                         <img src="/static/images/sec2img2.png" class="fluidImg">
@@ -162,7 +196,7 @@
 
 
     <section class="testimonials">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
+        <img src="/static/images/imageWithPattern.png" class="testimonialsBG1" style="left: -32rem;" alt="img">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 mt-4  wow bounceInRight" data-wow-duration="1.4s">
@@ -243,13 +277,13 @@
 
 
     <section class="testimonials">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -9rem;" alt="img">
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -10rem;" alt="img">
         <div class="container">
             <div class="row">
                 {% for data in science_news %}
                     <div class="col-sm-6 col-md-4 mt-4 ">
-                        <a href="{% url 'science-center-category' data.id %}">
-                            <div class="card card-custom">
+                        <div class="card card-custom">
+                            <a href="{% url 'science-center-category' data.id %}">
                                 {% if data.video %}
                                     <video autoplay muted controls loop style="height: 160px; width: 100%;">
                                         <source src="/media/{{ data.video }}"
@@ -258,19 +292,19 @@
                                 {% else %}
                                     <img src="/media/{{ data.image }}" style="height: 160px; width: 100%;">
                                 {% endif %}
-                                <div class="card-block">
-                                    <h4 class="card-title">{{ data.title }}</h4>
-                                    <small>
-                                        {{ data.content|truncatechars:255 }}
-                                    </small>
-                                    <div class="card-bottom">
-                                        <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i>
-                                        <span
-                                                style="font-size: 14px;">30 دقيقه</span>
-                                    </div>
+                            </a>
+                            <div class="card-block">
+                                <h3 style="color: #148AB4;">{{ data.title }}</h3>
+                                <h4>
+                                    {{ data.content|truncatechars:255 }}
+                                </h4>
+                                <div class="card-bottom">
+                                    <i class="fa fa-clock-o" style="font-size: 1.5rem; margin-left: 10px;"></i>
+                                    <span
+                                            style="font-size: 14px;">30 دقيقه</span>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 {% endfor %}
     </section>
@@ -309,10 +343,10 @@
     </section>
 
     <section class="testimonials text-center">
-        <img src="/static/images/bg1.png" class="testimonialsBG1" style="right: -9rem;" alt="img">
+        <img src="/static/images/imageWithPattern.png" class="testimonialsBG1" style="right: -20rem;" alt="img">
         <div class="container">
             <div class="mb-5">
-                <h3 class="title-heading">جمعية بصائر الخيرية</h3>
+                <h3 class="myh-class title-heading">ماذا قالو عنا</h3>
             </div>
             <div class="justify-content-between" style="
                     display: flex;
@@ -334,6 +368,7 @@
     </section>
 
     <section class="testimonials text-center">
+        <img src="/static/images/bg1.png" class="testimonialsBG1" style="left: -10rem;" alt="img">
         <div class="container">
             <img class="img-fluid" src="{% static 'images/googlemap.png' %}" alt="mapimg">
         </div>

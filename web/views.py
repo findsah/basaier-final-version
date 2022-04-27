@@ -33,7 +33,7 @@ import random
 from libraries import helpers
 from news.models import Profile
 from news.models import Slider, PRNews, PRCategory, \
-    ScienceCategory, ScienceNews
+    ScienceCategory, ScienceNews, carouselVideoNotification
 from people.models import Contact
 from projects.models import Project, Category, \
     Transaction, Donate, ProjectsDirectory, SMS, Sacrifice, sponsorship, sponsorshipProjects, sponsorshipPageContent, \
@@ -545,7 +545,7 @@ class Index(TemplateView):
         sliders = Slider.objects.all().order_by('-id')[:5]
         project_dirctories = ProjectsDirectory.objects.all()
         projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
-                                          is_compaign=False, is_thawab=False).order_by('-id')[:3]
+                                          is_compaign=False, is_thawab=False).order_by('-id')[:2]
         projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                                  is_compaign=False).order_by('-id')
         news = PRNews.objects.all().order_by('-id')[:6]
@@ -559,6 +559,7 @@ class Index(TemplateView):
         ).order_by('-id')
         # whoWeAreVar = whoWeAre.objects.all()
         cart_projects, projects_selected = get_cart(request)
+        carouselVideo = carouselVideoNotification.objects.all()[:1].get()
         return render(request, self.template_name,
                       {'sliders': sliders,
                        'projects': projects,
@@ -576,6 +577,7 @@ class Index(TemplateView):
                        'totalProjectsInCart': totalProjectsInCart,
                        'getMyCurrency': getMyCurrency,
                        'testimonialsData': testimonialsData,
+                       'carouselVideo': carouselVideo,
                        })
 
 
@@ -1814,9 +1816,8 @@ def Login(request):
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         projects = Project.objects.filter(
-            is_sadaqah=False, is_compaign=False, is_hidden=False).order_by('-id')
-        projectsSadaqah = Project.objects.filter(
-            is_sadaqah=True, is_compaign=False).order_by('-id')
+            is_sadaqah=False, is_compaign=False, is_hidden=False).order_by('-id')[:2]
+        carouselVideo = carouselVideoNotification.objects.all()[:1].get()
         username = request.POST.get('phoneNumberOfUser', '')
         activationCodeCreateCompaign = request.POST.get('activationCode')
         activationCodeCreateCompaignStr = str(activationCodeCreateCompaign)
@@ -1845,7 +1846,7 @@ def Login(request):
                                   'news': news,
                                   'science_news': science_news,
                                   'projects': projects,
-                                  'projectsSadaqah': projectsSadaqah,
+                                  'carouselVideo': carouselVideo,
                               })
             else:
                 messages = "Username/Password Combination Invalid."
@@ -1861,9 +1862,7 @@ def Login(request):
         totalProjectsInCart = cart.get_total_products()
         # getMyCurrency = getCurrency(request)
         getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-        sliders = Slider.objects.all().order_by('-id')[:5]
         categories = PRCategory.objects.all().order_by('-id')
-        sponsorCategories = sponsorship.objects.all()
         charity_categories = Category.objects.filter(
             inMenu=True, parent=None).order_by('-id')
         latest_projects = Project.objects.filter(
@@ -1872,9 +1871,8 @@ def Login(request):
         news = PRNews.objects.all().order_by('-id')[:6]
         science_news = ScienceNews.objects.all().order_by('-id')[:6]
         projects = Project.objects.filter(
-            is_sadaqah=False, is_compaign=False).order_by('-id')
-        projectsSadaqah = Project.objects.filter(
-            is_sadaqah=True, is_compaign=False).order_by('-id')
+            is_sadaqah=False, is_compaign=False, is_hidden=False).order_by('-id')[:2]
+        carouselVideo = carouselVideoNotification.objects.all()[:1].get()
         # if 'category_id' in kwargs:
         #     projects = Project.objects.filter(
         #         category__id=kwargs['category_id']).order_by('-id')[:15]
@@ -1883,15 +1881,13 @@ def Login(request):
                           {
                               'totalProjectsInCart': totalProjectsInCart,
                               'getMyCurrency': getMyCurrency,
-                              'sliders': sliders,
                               'categories': categories,
-                              'sponsorCategories': sponsorCategories,
                               'charity_categories': charity_categories,
                               'latest_projects': latest_projects,
                               'news': news,
                               'science_news': science_news,
                               'projects': projects,
-                              'projectsSadaqah': projectsSadaqah,
+                              'carouselVideo': carouselVideo,
                           })
 
         # getMyCurrency = getCurrency(request)

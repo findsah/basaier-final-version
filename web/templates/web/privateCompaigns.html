@@ -93,7 +93,7 @@
                                 <form>
                                     <input type="hidden" id="project_id_thawab_{{ project.id }}"
                                            value="{{ project.id }}">
-                                    <input type="number" placeholder="المبلغ"
+                                    <input type="text" placeholder="المبلغ" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                            class="text-center text-left2 contribute2"
                                            id="amount_thawab_{{ project.id }}">
 
