@@ -449,8 +449,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'contactUs' %}">
-                                اتصل بنا
+                            <a class="dropdown-item" href="{% url 'aboutUs' %}">
+                                من نحن
                             </a>
                         </li>
                         <li>
@@ -480,8 +480,8 @@
                     <a class="nav-link desktop-nav color-light" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'aboutUs' %}">
-                        من نحن
+                    <a class="nav-link desktop-nav color-light" href="{% url 'contactUs' %}">
+                        اتصل بنا
                     </a>
                 </li>
                 <li class="nav-item">
@@ -545,8 +545,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'contactUs' %}">
-                                    اتصل بنا
+                                <a class="dropdown-item" href="{% url 'aboutUs' %}">
+                                    من نحن
                                 </a>
                             </li>
                             <li>
@@ -577,8 +577,8 @@
                     <a class="nav-link desktop-nav color-dark" href="{% url 'volunteerAndSpread' %}">تطوع معنا</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link desktop-nav color-dark" href="{% url 'aboutUs' %}">
-                        من نحن
+                    <a class="nav-link desktop-nav color-dark" href="{% url 'contactUs' %}">
+                        اتصل بنا
                     </a>
                 </li>
                 <li class="nav-item">
@@ -1347,7 +1347,7 @@
                     {#setTimeout(function () {#}
                     {#    $("#exampleModalCenter").modal('hide');#}
                     {# }, 3000); #}
-                    $('#myModalGift'+post_id).modal('hide');
+                    $('#myModalGift' + post_id).modal('hide');
                 },
                 error: function () {
                     $(".contentOfModalBodyWillBeChanged").html("هناك خطأ ما");

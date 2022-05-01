@@ -559,7 +559,8 @@ class Index(TemplateView):
         ).order_by('-id')
         # whoWeAreVar = whoWeAre.objects.all()
         cart_projects, projects_selected = get_cart(request)
-        carouselVideo = carouselVideoNotification.objects.all()[:1].get()
+        # carouselVideo = carouselVideoNotification.objects.all()[:1].get()
+        carouselVideo = carouselVideoNotification.objects.last()
         return render(request, self.template_name,
                       {'sliders': sliders,
                        'projects': projects,

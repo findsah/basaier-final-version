@@ -52,16 +52,18 @@
     <div id="carouselExampleIndicators" class="carousel carouselHide slide carousel-fade" data-interval="5000"
          data-ride="carousel">
         <ol class="carousel-indicators">
+            {% if carouselVideo.file %}
             <li data-target="#carouselExampleIndicators" data-slide-to="0"
-                class="{% if forloop.first %} active {% endif %}"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                class="active"></li>
+                {% endif %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" class="{% if carouselVideo.file %}{% else %}active{% endif %}"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
 
         <div class="carousel-inner">
             {% for project in projects %}
                 {% if carouselVideo.file %}
-                    <div class="carousel-item header2 {% if forloop.first %}active{% endif %}">
+                    <div class="carousel-item header2 {% if carouselVideo.file %}{% if forloop.first %}active{% endif %}{% endif %}">
                         <video autoplay muted controls style="height: 774px; width: 100%;">
                             <source
                                     src="/media/{{ carouselVideo.file }}"
@@ -69,7 +71,7 @@
                         </video>
                     </div>
                 {% endif %}
-                <div class="carousel-item header2">
+                <div class="carousel-item header2 {% if carouselVideo.file %}{% else %}{% if forloop.first %}active{% endif %}{% endif %}">
                     {% if project.video %}
                         {#                                                {% if project.video %}#}
                         <video autoplay muted controls loop style="height: 774px; width: 100%;">
