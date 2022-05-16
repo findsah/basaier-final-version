@@ -363,6 +363,15 @@
                     <span class="cartNumberSpan">{% if totalProjectsInCart %}{{ totalProjectsInCart }}{% endif %}</span>
                 </a>
             </li>
+
+            <li class="nav-item" style="margin: 0 2rem;">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ar' %}
+                    <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-light">English</a> {% else %}
+                    <a
+                            href="{% url 'to-arabic' %}"
+                            class="nav-link desktop-nav color-light">العربية</a> {% endif %}
+            </li>
         </ul>
         <div id="mySidenav" class="sidenav" style="border-left: 1px solid #efebeb">
             <div class="loginSignupDiv">
@@ -450,14 +459,6 @@
                         اتصل بنا
                     </a>
                 </li>
-                <li class="nav-item">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == 'ar' %}
-                        <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-light">English</a> {% else %}
-                        <a
-                                href="{% url 'to-arabic' %}"
-                                class="nav-link desktop-nav color-light">العربية</a> {% endif %}
-                </li>
             </ul>
             <div style="display: flex; justify-content: center; margin: 1rem 0;">
                 <button class="sticky-bottom sidenavDonationBtn">bava-tu-taraba</button>
@@ -543,14 +544,6 @@
                         اتصل بنا
                     </a>
                 </li>
-                <li class="nav-item">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == 'ar' %}
-                        <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-light">English</a> {% else %}
-                        <a
-                                href="{% url 'to-arabic' %}"
-                                class="nav-link desktop-nav color-light">العربية</a> {% endif %}
-                </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0 col-md-7">
                             <input class="myform-control mr-sm-2" type="search" placeholder="find peoples, instruments, bands and more..." aria-label="Search">
@@ -630,6 +623,15 @@
                         <span class="cartNumberSpan">{% if totalProjectsInCart %}
                             {{ totalProjectsInCart }}{% endif %}</span>
                     </a>
+                </li>
+
+                <li class="nav-item" style="margin: 0 2rem;">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <a href="{% url 'to-english' %}" class="nav-link desktop-nav color-light">English</a> {% else %}
+                        <a
+                                href="{% url 'to-arabic' %}"
+                                class="nav-link desktop-nav color-light">العربية</a> {% endif %}
                 </li>
             </ul>
         </div>
@@ -855,7 +857,7 @@
             justify-content: center;
             align-items: center;
         ">
-        <i class="fa fa-minus"
+        <i class="fa fa-plus"
            id="openCloseBtn"
            onclick="openAndClose()"
            style="
@@ -882,7 +884,7 @@
             color: #1BB1B0;
             background: white;
             height: 57px;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             width: 151px;

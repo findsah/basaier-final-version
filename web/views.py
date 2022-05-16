@@ -3288,42 +3288,20 @@ def update_total_fund_firebase(project):
     #     db.child("donates").push(data)
 
 
-# # FOR CAROUSEL IMAGE UPLOAD: MODEL IN web APP:
-# def carouselImagesView(request):
-#     images = carouselImages.objects.all()
-#     return render(request, 'web/index.html', {'images': images})
-# # END FOR CAROUSEL IMAGE UPLOAD: MODEL IN web APP:
-
-
 def zakatPage(request):
     cart = Cart(request)
     totalProjectsInCart = cart.get_total_products()
-    projects = Project.objects.filter(is_compaign=False).order_by('-id')[:1]
-    sliders = Slider.objects.all().order_by('-id')[:5]
-    project_dirctories = ProjectsDirectory.objects.all()
     projects = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=False,
                                       is_compaign=False).order_by('-id')[:3]
-    projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
-                                             is_compaign=False).order_by('-id')
-    news = PRNews.objects.all().order_by('-id')[:6]
-    news2 = PRNews.objects.all().order_by('-id')[:4]
-    science_news = ScienceNews.objects.all().order_by('-id')[:6]
     categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('-id')
-    # getMyCurrency = getCurrency(request)
-    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     return render(request, 'web/zakatNew.html', {
         'totalProjectsInCart': totalProjectsInCart,
-        'getMyCurrency': getMyCurrency,
         'projects': projects,
-        'sliders': sliders,
-        'project_dirctories': project_dirctories,
-        'projectsSadaqah': projectsSadaqah,
         'categories': categories,
-        'sponsorCategories': sponsorCategories,
         'charity_categories': charity_categories,
     })
 
@@ -3337,15 +3315,11 @@ def zakatForMoney(request):
                                       is_compaign=False).order_by('-id')[:3]
     projectsSadaqah = Project.objects.filter(is_closed=False, is_hidden=False, is_sadaqah=True,
                                              is_compaign=False).order_by('-id')
-    news = PRNews.objects.all().order_by('-id')[:6]
-    news2 = PRNews.objects.all().order_by('-id')[:4]
-    science_news = ScienceNews.objects.all().order_by('-id')[:6]
     categories = PRCategory.objects.all().order_by('-id')
     sponsorCategories = sponsorship.objects.all()
     charity_categories = Category.objects.filter(
         inMenu=True, inHomePage=True, parent=None
     ).order_by('-id')
-    # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     return render(request, 'web/zakatForMoney.html', {
         'totalProjectsInCart': totalProjectsInCart,
@@ -3420,17 +3394,6 @@ def zakatForCattle(request):
     # getMyCurrency = getCurrency(request)
     getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
     return render(request, 'web/zakatForCattle.html', {
-        'totalProjectsInCart': totalProjectsInCart,
-        'getMyCurrency': getMyCurrency,
-    })
-
-
-def zakatForStocks(request):
-    cart = Cart(request)
-    totalProjectsInCart = cart.get_total_products()
-    # getMyCurrency = getCurrency(request)
-    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-    return render(request, 'web/zakatForStocks.html', {
         'totalProjectsInCart': totalProjectsInCart,
         'getMyCurrency': getMyCurrency,
     })
@@ -4801,146 +4764,16 @@ def createOwnProject(request):
         })
 
 
-def postAProject(request):
-    cart = Cart(request)
-    totalProjectsInCart = cart.get_total_products()
-    # getMyCurrency = getCurrency(request)
-    getMyCurrency = request.session.get('fetchedCurrencyFromAjax')
-    if request.user.is_authenticated == True:
-        projects = Project.objects.all()
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        project_dirctories = ProjectsDirectory.objects.all()
-        # projects = Project.objects.all().order_by('-id')[:12]
-        news = PRNews.objects.all().order_by('-id')[:6]
-        science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = Category.objects.all().order_by('-id')
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, inHomePage=True, parent=None
-        ).order_by('-id')
-        cart_projects, projects_selected = get_cart(request)
-        if request.method == 'POST':
-            slugVar = request.POST.get('slug')
-            nameVar = request.POST.get('name')
-            nameEnVar = request.POST.get('nameEn')
-            detailVar = request.POST.get('detail')
-            detailEnVar = request.POST.get('detailEn')
-            totalAmount = request.POST.get('totalAmount')
-            totalAmountVar = round(float(totalAmount), 3)
-            # print(totalAmountVar)
-            isDefinedVar = request.POST.get('isDefined')
-            definedAmount = request.POST.get('definedAmount')
-            definedAmountVar = round(float(definedAmount), 3)
-            # print(definedAmountVar)
-            # isClosedVar = request.POST.get('isClosed')
-            # imageVar = request.POST.get('largeImage')
-            imageVar = request.FILES["largeImage"]
-            print("FETCHED FROM POST IMAGE VARIABLE LARGE:", imageVar)
-            # imageSmallVar = request.POST.get('smallImage')
-            imageSmallVar = request.FILES["smallImage"]
-            print("FETCHED FROM POST IMAGE VARIABLE SMALL:", imageSmallVar)
-            categoryVar = request.POST.get('category')
-            suggestedDonation = request.POST.get('suggestedDonation')
-            suggestedDonationVar = round(float(suggestedDonation), 3)
-            # print(suggestedDonationVar)
-            emailVar = request.POST.get('email')
-            # orderVar = request.POST.get('order')
-            isZakatVar = request.POST.get('isZakat')
-            isShareVar = request.POST.get('isShare')
-            isThawabVar = request.POST.get('isThawab')
-            # isCompaignVar = request.POST.get('isCompaign')
-            shareJump = request.POST.get('shareJump')
-            shareJumpVar = round(float(shareJump), 3)
-            shareCount = request.POST.get('shareCount')
-            shareCountVar = round(float(shareCount), 3)
-            deptEmailVar = request.POST.get('deptEmail')
-            financeDeptEmailVar = request.POST.get('financeDeptEmail')
-            donatorNameVar = request.POST.get('donatorName')
-            donatorPhoneVar = request.POST.get('donatorPhone')
-            userId = request.user.id
-            receive_category = Category.objects.get(id=categoryVar)
-
-            project = Project.objects.create(
-                slug=slugVar,
-                name=nameVar,
-                nameEn=nameEnVar,
-                detail=detailVar,
-                detailEn=detailEnVar,
-                total_amount=totalAmountVar,
-                is_defined=isDefinedVar,
-                defined_amount=definedAmountVar,
-                # is_closed=isClosedVar,
-                is_hidden=True,
-                image=imageVar,
-                image_small=imageSmallVar,
-                # project.category.set(categoryVar),
-                suggestedDonation=suggestedDonationVar,
-                normal_email=emailVar,
-                # order=orderVar,
-                isZakat=isZakatVar,
-                is_share=isShareVar,
-                is_thawab=isThawabVar,
-                # is_compaign=isCompaignVar,
-                share_jump=shareJumpVar,
-                share_count=shareCountVar,
-                projects_dep_email=deptEmailVar,
-                finaince_dep_email=financeDeptEmailVar,
-                donater_name=donatorNameVar,
-                donater_phone=donatorPhoneVar,
-                created_by=userId,
-            )
-            # WE ARE NOT USING project.save BECAUSE CATEGORY table/model HAS MANY TO MANY RELATION WITH PROJECT MODEL. SO
-            # THE CATEGORY MODEL IS TREATING LIKE A PARENT OF PROJECT MODEL, SO WE HAVE TO GET THAT CATEGORY_ID FIRST THEN SAVE
-            # THE OTHER PROJECT CREDENTIALS ACCORDING TO THAT GET ID: AND USE .add() METHOD OR MAYBE .set()
-            # https://stackoverflow.com/questions/47706946/message-title-needs-to-have-a-value-for-field-id-before-this-many-to-many
-            project.category.add(receive_category)
-            # project.save()n
-            language = get_language()
-            if language == 'ar':
-                messages.success(request, ("تم إنشاء المشروع بنجاح.!"))
-            else:
-                messages.success(request, "Project Created Successfully...!")
-        return render(request, 'web/postAProject.html',
-                      {'sliders': sliders,
-                       'projects': projects,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'news': news,
-                       'sponsorCategories': sponsorCategories,
-                       'science_news': science_news,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'project_dirctories': project_dirctories,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       'getMyCurrency': getMyCurrency,
-                       })
-    else:
-        # projects = Project.objects.all()
-        sliders = Slider.objects.all().order_by('-id')[:5]
-        project_dirctories = ProjectsDirectory.objects.all()
-        projects = Project.objects.all().order_by('-id')[:12]
-        news = PRNews.objects.all().order_by('-id')[:6]
-        science_news = ScienceNews.objects.all().order_by('-id')[:6]
-        categories = Category.objects.all().order_by('-id')
-        sponsorCategories = sponsorship.objects.all()
-        charity_categories = Category.objects.filter(
-            inMenu=True, inHomePage=True, parent=None
-        ).order_by('-id')
-        cart_projects, projects_selected = get_cart(request)
-        messages.error(request, ("Please Login First....!"))
-        return render(request, 'web/login.html',
-                      {'sliders': sliders,
-                       'projects': projects,
-                       'categories': categories,
-                       'charity_categories': charity_categories,
-                       'news': news,
-                       'sponsorCategories': sponsorCategories,
-                       'science_news': science_news,
-                       'cart_projects': cart_projects,
-                       'projects_selected': projects_selected,
-                       'project_dirctories': project_dirctories,
-                       'totalProjectsInCart': totalProjectsInCart,
-                       })
+# def postAProject(request):
+#     categoryVar = request.POST.get('category')
+#     receive_category = Category.objects.get(id=categoryVar)
+#
+#     project = Project.objects.create(
+#         created_by=userId,
+#     )
+#     # https://stackoverflow.com/questions/47706946/message-title-needs-to-have-a-value-for-field-id-before-this-many-to-many
+#     project.category.add(receive_category)
+#     # project.save()
 
 
 def thawabCompaignCategoryDetail(request, categoryId):

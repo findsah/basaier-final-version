@@ -21,9 +21,18 @@
   <component name="ChangeListManager">
     <list default="true" id="0db42f2f-794f-4a57-977e-ebf36f6e1f1a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basaier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/basaier/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/index2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/index2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/master.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbardark.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbardark.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/templates/web/navbarlight.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/navbarlight.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/postAProject.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/zakatForCattle.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/zakatForCattle.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/zakatForStocks.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/web/zakatNew.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/templates/web/zakatNew.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +176,8 @@
       <workItem from="1650998048009" duration="20273000" />
       <workItem from="1651133745189" duration="865000" />
       <workItem from="1651213062484" duration="13000" />
+      <workItem from="1652167411805" duration="6527000" />
+      <workItem from="1652693680001" duration="2483000" />
     </task>
     <servers />
   </component>
@@ -190,9 +201,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="845" y="383" width="629" height="274" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1648625095115" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1649581102754">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="575" y="221" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1652168025568">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state x="575" y="221" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1652168025568" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1649581102754" />
     <state width="943" height="522" key="#com.intellij.structuralsearch.plugin.ui.StructuralReplaceDialog" timestamp="1648754137415">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -214,10 +226,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1650282990464" />
-    <state x="399" y="63" width="1266" height="795" key="find.popup" timestamp="1651060598454">
+    <state x="399" y="63" width="1266" height="795" key="find.popup" timestamp="1652695711337">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="399" y="63" width="1266" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1651060598454" />
+    <state x="333" y="52" width="1055" height="658" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1652175830005" />
+    <state x="399" y="63" width="1266" height="795" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1652695711337" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1649942892514">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

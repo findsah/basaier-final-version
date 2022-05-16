@@ -563,11 +563,13 @@
                         {% endif %}
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "ar" %}
-                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+{#                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"#}
+                            <li><a href=""><i class="fa fa-tasks"
                                                                       aria-hidden="true"></i>
                                 {% trans "أضف مشروع" %}</a></li>
                         {% else %}
-                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+{#                            <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"#}
+                            <li><a href=""><i class="fa fa-tasks"
                                                                       aria-hidden="true"></i>
                                 {% trans "Post A Project" %}</a></li>
                         {% endif %}
@@ -828,11 +830,11 @@
                                 {% endif %}
                                 {% get_current_language as LANGUAGE_CODE %}
                                 {% if LANGUAGE_CODE == "ar" %}
-                                    <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                    <li><a href=""><i class="fa fa-tasks"
                                                                               aria-hidden="true"></i>
                                         {% trans "أضف مشروع" %}</a></li>
                                 {% else %}
-                                    <li><a href="{% url 'postAProject' %}"><i class="fa fa-tasks"
+                                    <li><a href=""><i class="fa fa-tasks"
                                                                               aria-hidden="true"></i>
                                         {% trans "Post A Project" %}</a></li>
                                 {% endif %}
